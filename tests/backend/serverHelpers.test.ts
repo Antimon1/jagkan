@@ -1,7 +1,6 @@
 import { effectiveNow, MAX_CLOCK_SKEW_MS, MAX_OFFLINE_AGE_MS } from '@/backend/clientTime';
 import { messagesForEvents, weeklySummaryMessage } from '@/backend/pushMessages';
 import { plusChangesFromEvent, safeEqual } from '@/backend/revenuecat';
-import { stars } from '@/backend/starsText';
 import { catalog } from '@/data/catalog';
 import type { WeeklyResult } from '@/domain/types';
 
@@ -82,21 +81,43 @@ describe('push messages', () => {
   it('sends an approval request to the parents that opens the approval card', () => {
     const { driver, childId, challengeId } = family();
     driver.run({ type: 'requestCompletion', challengeId }, { kind: 'child', childIds: [childId] });
-    const [message] = messagesForEvents(driver.state, driver.events, catalog);
+    const [message] = messagesForEvents(driver.state, driver.events);
 
     expect(message.audience).toEqual({ kind: 'parents' });
-    expect(message.title).toBe('Evelyn säger: Jag klarade det!');
+    expect(message.body).toBe('Ny förfrågan att godkänna 🎉');
     expect(message.url).toBe(`/parent/approve/${challengeId}`);
+  });
+
+  it('never puts names or titles in a push message (it leaves the EU)', () => {
+    const { driver, childId, challengeId } = family();
+    driver.run({ type: 'createReward', title: 'Glass', icon: '🍦', costStars: 1, childId: null });
+    driver.run({ type: 'requestCompletion', challengeId }, { kind: 'child', childIds: [childId] });
+    const requested = messagesForEvents(driver.state, driver.events);
+    driver.run({ type: 'approveCompletion', challengeId });
+    const approved = messagesForEvents(driver.state, driver.events);
+    driver.run({ type: 'requestReward', rewardId: driver.state.rewards[0].id, childId }, { kind: 'child', childIds: [childId] });
+    const wanted = messagesForEvents(driver.state, driver.events);
+
+    const template = catalog.templates.find((t) => t.id === driver.state.challenges[0].templateId);
+    expect(template).toBeDefined();
+    const messages = [...requested, ...approved, ...wanted];
+    expect(messages).toHaveLength(3);
+    for (const message of messages) {
+      const text = `${message.title} ${message.body}`;
+      expect(text).not.toMatch(/Evelyn|Glass/);
+      expect(text).not.toContain(template?.titleParent);
+      expect(text).not.toContain(template?.titleChild);
+    }
   });
 
   it('tells the child about approvals and respects the parents notification setting', () => {
     const { driver, childId, challengeId } = family();
     driver.run({ type: 'updateSettings', settings: { notifications: { approvals: false } } });
     driver.run({ type: 'requestCompletion', challengeId }, { kind: 'child', childIds: [childId] });
-    expect(messagesForEvents(driver.state, driver.events, catalog)).toEqual([]);
+    expect(messagesForEvents(driver.state, driver.events)).toEqual([]);
 
     driver.run({ type: 'approveCompletion', challengeId });
-    const childMessages = messagesForEvents(driver.state, driver.events, catalog);
+    const childMessages = messagesForEvents(driver.state, driver.events);
     expect(childMessages).toEqual([expect.objectContaining({ audience: { kind: 'child', childId }, url: '/child' })]);
   });
 
@@ -107,10 +128,10 @@ describe('push messages', () => {
     const challengeId = driver.custom(childId, 'hem');
     driver.run({ type: 'approveCompletion', challengeId });
     driver.run({ type: 'requestReward', rewardId, childId }, { kind: 'child', childIds: [childId] });
-    expect(messagesForEvents(driver.state, driver.events, catalog)[0].body).toBe('Evelyn vill ha: Glass');
+    expect(messagesForEvents(driver.state, driver.events)[0]).toMatchObject({ audience: { kind: 'parents' }, url: '/parent/rewards' });
 
     driver.run({ type: 'resolveRewardRequest', requestId: driver.state.rewardRequests[0].id, confirm: true });
-    expect(messagesForEvents(driver.state, driver.events, catalog)[0].body).toBe('Belöningen är din: Glass!');
+    expect(messagesForEvents(driver.state, driver.events)[0]).toMatchObject({ audience: { kind: 'child', childId }, url: '/child/shop' });
   });
 
   it('summarises the week for the parents', () => {
@@ -123,8 +144,7 @@ describe('push messages', () => {
       results: [{ childId, stars: 1, score: 1, isWinner: true, isRecord: false, previousRecord: 0 }],
       createdAt: START,
     };
-    expect(weeklySummaryMessage(driver.state, result)?.body).toBe('Evelyn vann veckan! 🏆 Evelyn 1 stjärna');
+    expect(weeklySummaryMessage(driver.state, result)?.body).toBe('Veckan är klar. Se hur det gick! 🌟');
     expect(weeklySummaryMessage(driver.state, { ...result, results: [] })).toBeNull();
-    expect(stars(3)).toBe('3 stjärnor');
   });
 });

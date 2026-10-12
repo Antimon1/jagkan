@@ -41,10 +41,9 @@ describe('authorization (spec 14.1 RLS rules, enforced in the engine)', () => {
     });
   });
 
-  it('reserves Plus and AI-suggestion writes for trusted server code', () => {
-    const { d, evelyn } = twoKids();
+  it('reserves Plus writes for trusted server code', () => {
+    const { d } = twoKids();
     expect(d.try({ type: 'setPlus', active: false })).toMatchObject({ error: 'forbidden' });
-    expect(d.try({ type: 'addAiSuggestions', childId: evelyn, items: [] })).toMatchObject({ error: 'forbidden' });
   });
 
   it('rejects parents from another family', () => {

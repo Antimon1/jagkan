@@ -19,11 +19,10 @@ describe('demo family', () => {
     expect(state.weeklyResults.length).toBeGreaterThan(0);
   });
 
-  it('has a waiting approval, rewards, a family goal and suggestions', () => {
+  it('has a waiting approval, rewards and a family goal', () => {
     expect(pendingApprovals(state, catalog)).toHaveLength(1);
     expect(state.rewards).toHaveLength(3);
     expect(state.goals).toHaveLength(1);
-    expect(state.aiSuggestions.length).toBeGreaterThan(0);
   });
 
   it('only keeps recent celebrations unseen', () => {

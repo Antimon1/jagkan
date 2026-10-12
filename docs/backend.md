@@ -25,6 +25,10 @@ Realtime ◄──────────────────────�
   for access to its children (`pair-device`). That anonymous session is the device
   token; removing the device deletes the user and revokes it.
 - **Photos never leave the device.** No table has a photo or media column.
+- **No data about the children leaves the EU.** There is no AI (removed 2026-10-12,
+  see `docs/idepanel-helhetsanalys.md`). Push messages go through Expo, Apple and
+  Google, so they are neutral: no names, challenge titles or rewards
+  (`src/backend/pushMessages.ts`).
 
 ### Edge Functions and the spec (14.2)
 
@@ -32,9 +36,6 @@ Realtime ◄──────────────────────�
 |---|---|
 | `pair-device` | `pair-device` |
 | `approve-completion` | `game-action` (command `approveCompletion`, one transaction) |
-| `ai-card-text` | inside `game-action` on approval for Plus families (`_shared/game.ts`), template text as fallback |
-| `ai-weekly-suggestions` | `ai-weekly-suggestions` (parent "Ge mig fler", or cron) |
-| `ai-custom-challenge` | `ai-custom-challenge` |
 | `weekly-rollup` | `weekly-rollup` (cron) |
 | `revenuecat-webhook` | `revenuecat-webhook` |
 | Export / delete data (spec 12) | export happens in the app; `delete-family` erases the family |
@@ -54,8 +55,6 @@ Realtime ◄──────────────────────�
 
    | Secret | What |
    |---|---|
-   | `ANTHROPIC_API_KEY` | Claude API key for the Plus AI features. Without it, AI falls back to the library. |
-   | `ANTHROPIC_MODEL` | Optional. Defaults to `claude-haiku-5-5` (fast and inexpensive). |
    | `CRON_SECRET` | A long random string; the scheduled jobs send it. |
    | `REVENUECAT_WEBHOOK_SECRET` | Shared secret for the RevenueCat webhook. |
    | `EXPO_ACCESS_TOKEN` | Optional, if push security is enabled in Expo. |
@@ -96,8 +95,6 @@ revoke all on function public.jk_call_function(text) from public, anon, authenti
 select cron.schedule('jagkan-weekly-rollup', '30 18 * * 0', $$ select public.jk_call_function('weekly-rollup') $$);
 -- Monday morning catch-up (the rollup is idempotent).
 select cron.schedule('jagkan-weekly-rollup-catchup', '0 4 * * 1', $$ select public.jk_call_function('weekly-rollup') $$);
--- AI weekly suggestions for Plus families.
-select cron.schedule('jagkan-ai-weekly', '0 19 * * 0', $$ select public.jk_call_function('ai-weekly-suggestions') $$);
 ```
 
 ## RevenueCat
@@ -110,7 +107,7 @@ family id as RevenueCat app user id and the entitlement `plus`.
 
 - `npm test`: engine and server logic (Jest).
 - `npm run test:db`: every migration in PGlite (Postgres in WebAssembly) with a
-  stand-in for Supabase auth: RLS, pairing, invites, AI limits, and a full
+  stand-in for Supabase auth: RLS, pairing, invites, and a full
   engine → `jk_apply_diff` → snapshot round trip.
 - `deno check supabase/functions/*/index.ts`: Edge Function types (CI).
 

@@ -6,7 +6,7 @@ export const corsHeaders: Record<string, string> = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
-/** Largest request body we accept (a command or an AI request is far smaller). */
+/** Largest request body we accept (a command is far smaller). */
 export const MAX_BODY_BYTES = 32_000;
 
 /** An error with a status code and a short code the app can show a message for. */

@@ -14,6 +14,8 @@ The owner usually works from a phone and writes in Swedish: answer in Swedish.
   `key_other`) for counts. Texts shown to the child never mention losing or failing
   (tested in `tests/i18n.test.ts`).
 - Photos and videos never leave the device (spec 12): no media columns, no uploads.
+- No AI (spec 8) and no data about the children outside the EU: push messages stay
+  neutral, without names, challenge titles or rewards (`src/backend/pushMessages.ts`).
 - Child buttons are at least 64 pt and every child text has a `SpeakButton`.
 - Database columns mirror the domain types (`src/domain/rows.ts`). Schema changes are
   new migrations; `npm run test:db` round-trips engine state through the database.

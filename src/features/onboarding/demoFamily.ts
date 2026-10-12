@@ -2,7 +2,6 @@ import { catalog } from '@/data/catalog';
 import type { Command } from '@/domain/commands';
 import { applyCommand } from '@/domain/engine';
 import { createFamilyState } from '@/domain/factory';
-import { suggestFromLibrary, templateToPayload } from '@/domain/library';
 import type { Actor, BranchId, FamilyState } from '@/domain/types';
 import { newId } from '@/lib/ids';
 
@@ -96,11 +95,6 @@ export function buildDemoFamily(now: Date = new Date()): FamilyState {
   run({ type: 'activateTemplate', childId: rafael, templateId: firstTemplate('ute', 6) }, 0);
   run({ type: 'recordAttempt', challengeId: lastChallenge() }, 0, 'child');
 
-  const evelynChild = state.children.find((c) => c.id === evelyn);
-  if (evelynChild) {
-    const items = suggestFromLibrary(state, catalog, evelynChild, now.toISOString(), 3, true).map(templateToPayload);
-    if (items.length) run({ type: 'addAiSuggestions', childId: evelyn, items }, 0, 'system');
-  }
   run({ type: 'rollupWeeks' }, 0, 'system');
 
   // Do not replay two weeks of animations: only the newest ones stay unseen.

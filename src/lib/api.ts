@@ -1,7 +1,5 @@
 import { Platform } from 'react-native';
 
-import type { AiChallengePayload } from '@/domain/types';
-
 import { requireSupabase } from './supabase';
 
 /**
@@ -131,21 +129,12 @@ export async function registerPushToken(token: string): Promise<void> {
   if (error) throw new Error(error.message);
 }
 
-// --- AI (Plus, spec 8) ------------------------------------------------------
+// --- Edge Functions ---------------------------------------------------------
 
 async function invoke<T>(name: string, body: Record<string, unknown>): Promise<T> {
   const { data, error } = await requireSupabase().functions.invoke<T>(name, { body });
   if (error || !data) throw new Error(error?.message ?? `${name} failed`);
   return data;
-}
-
-export async function requestAiSuggestions(childId: string): Promise<{ added: number; fallback: boolean }> {
-  return invoke('ai-weekly-suggestions', { childId });
-}
-
-export async function requestAiCustomChallenge(childId: string, description: string): Promise<AiChallengePayload> {
-  const result = await invoke<{ challenge: AiChallengePayload }>('ai-custom-challenge', { childId, description });
-  return result.challenge;
 }
 
 // --- Data (GDPR, spec 12) ---------------------------------------------------

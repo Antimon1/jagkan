@@ -4,16 +4,12 @@ import { StyleSheet, View } from 'react-native';
 
 import { AppText } from '@/components/AppText';
 import { Button } from '@/components/Button';
-import { Card } from '@/components/Card';
 import { CHALLENGE_ICONS, EmojiPicker } from '@/components/EmojiPicker';
 import { Chip, ChipRow, SectionHeader, TextField, ToggleRow } from '@/components/forms';
 import { goBack, Screen } from '@/components/Screen';
-import { showToast } from '@/components/Toast';
 import { BRANCH_ICONS, BRANCHES } from '@/domain/constants';
 import type { BranchId } from '@/domain/types';
-import { draftCustomChallenge } from '@/features/ai/aiClient';
 import { useT } from '@/lib/i18n';
-import { logError } from '@/lib/log';
 import { useFamily } from '@/state/game';
 import { useDispatch } from '@/state/hooks';
 import { palette, space } from '@/theme/tokens';
@@ -29,8 +25,6 @@ export default function CustomChallenge() {
   const [icon, setIcon] = useState('⭐');
   const [tip, setTip] = useState('');
   const [repeatable, setRepeatable] = useState(false);
-  const [description, setDescription] = useState('');
-  const [thinking, setThinking] = useState(false);
   const child = state.children.find((c) => c.id === childId);
 
   const create = async () => {
@@ -42,46 +36,8 @@ export default function CustomChallenge() {
     if (ok) goBack('/parent');
   };
 
-  const askAi = async () => {
-    if (!child || !description.trim()) return;
-    setThinking(true);
-    try {
-      const draft = await draftCustomChallenge(state, child, description.trim());
-      if (!draft) {
-        showToast(t('parent.ai.empty'));
-        return;
-      }
-      setTitle(draft.titleChild);
-      setBranch(draft.branch);
-      setIcon(draft.icon);
-      setTip(draft.parentTip);
-      setRepeatable(draft.repeatable);
-    } catch (error) {
-      logError('custom.ai', error);
-      showToast(t('common.somethingWrong'), 'error');
-    } finally {
-      setThinking(false);
-    }
-  };
-
   return (
     <Screen back="/parent" title={t('parent.custom.title')}>
-      <Card tone="primary" style={styles.gap}>
-        <AppText variant="heading">✨ {t('parent.custom.aiHelp')}</AppText>
-        <AppText variant="caption" color={palette.inkSoft}>
-          {t('parent.custom.aiHelpHint')}
-        </AppText>
-        <TextField
-          label={t('parent.custom.aiHelp')}
-          placeholder={t('parent.custom.aiPlaceholder')}
-          value={description}
-          onChangeText={setDescription}
-          multiline
-          maxLength={300}
-        />
-        <Button label={t('parent.custom.aiSuggest')} variant="secondary" onPress={askAi} loading={thinking} disabled={!description.trim()} />
-      </Card>
-
       <SectionHeader title={t('parent.custom.forChild')} />
       <ChipRow>
         {state.children.map((c) => (

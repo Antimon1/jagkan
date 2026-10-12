@@ -71,7 +71,7 @@ describe('core loop: spark → request → approve → star → hatch', () => {
     expect(d.state.completions[0].approvedBy).toBe('parent-1');
   });
 
-  it('uses the AI/parent card text when given', () => {
+  it('uses the parent card text when given', () => {
     const d = new Driver();
     const child = d.addChild('Rafael', 2021, 6);
     const id = d.activate(child, freeTemplate('mat'));

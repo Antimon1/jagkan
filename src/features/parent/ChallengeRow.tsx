@@ -71,7 +71,7 @@ export function ChallengeRow({ view, childName }: { view: ChallengeView; childNa
                 />
               </>
             ) : null}
-            {challenge.status === 'paused' || challenge.status === 'suggested' ? (
+            {challenge.status === 'paused' ? (
               <Button
                 size="sm"
                 label={t('parent.child.activate')}

@@ -1,7 +1,6 @@
 // Applies one game command from a parent or a paired child device (spec 14.2).
 // The same engine as in the app runs here and is the source of truth; the answer
-// is the snapshot the caller may see. Covers `approve-completion` and
-// `ai-card-text` from the spec (see _shared/game.ts).
+// is the snapshot the caller may see. Covers `approve-completion` from the spec.
 import type { Command } from '../_shared/domain/commands.ts';
 import { runCommand } from '../_shared/game.ts';
 import { HttpError, isUuid, json, readBody, serve } from '../_shared/http.ts';

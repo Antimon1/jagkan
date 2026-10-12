@@ -32,8 +32,6 @@ export interface CommitInput {
   catalog: Catalog;
   now: () => string;
   newId: () => string;
-  /** Runs once, before the first attempt, e.g. to let AI write the collector card text. */
-  prepare?: (state: FamilyState, command: Command) => Promise<Command>;
 }
 
 export type CommitError = DomainErrorCode | 'conflict';
@@ -59,12 +57,11 @@ export async function commitCommand(store: FamilyStore, input: CommitInput): Pro
     return { ok: true, state: snapshotToState(snapshot), events: [], duplicate: true, changed: false };
   }
 
-  let command = input.command;
+  const { command } = input;
   for (let attempt = 1; attempt <= MAX_COMMIT_ATTEMPTS; attempt += 1) {
     const snapshot = await store.loadSnapshot(familyId);
     if (!snapshot) return { ok: false, error: 'not_found' };
     const state = snapshotToState(snapshot);
-    if (attempt === 1 && input.prepare) command = await input.prepare(state, command);
 
     const result = applyCommand(state, command, actor, { now: input.now(), newId: input.newId, catalog: input.catalog });
     if (!result.ok) return { ok: false, error: result.error, message: result.message };

@@ -109,16 +109,6 @@ describe('commitCommand', () => {
     expect(store.writes).toHaveLength(0);
   });
 
-  it('runs prepare once and uses the prepared command', async () => {
-    const { store, challengeId } = seeded();
-    const prepare = jest.fn(async (_state: FamilyState, command: Command) => ({ ...command, cardText: 'Evelyn klarade det!' }) as Command);
-    store.forced = ['conflict'];
-    await commitCommand(store, { ...input({ type: 'approveCompletion', challengeId }), prepare });
-
-    expect(prepare).toHaveBeenCalledTimes(1);
-    expect(store.state?.completions[0].cardText).toBe('Evelyn klarade det!');
-  });
-
   it('reports a missing family', async () => {
     const store = new MemoryStore(null);
     expect(await commitCommand(store, input({ type: 'rollupWeeks' }))).toEqual({ ok: false, error: 'not_found' });

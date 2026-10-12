@@ -14,8 +14,8 @@
 - **Försöket räknas.** Barnet belönas för att våga försöka, inte bara när det lyckas.
 - **Milstolpar, inte sysslor.** Appen handlar om självständighet, inte om veckopeng för disk.
 - **Växer med barnet.** Världen, utmaningarna och utseendet följer barnets ålder, och samlingen finns kvar hela barndomen.
-- **Lite jobb för föräldern.** Föräldern godkänner med ett tryck, AI föreslår nya utmaningar och påminnelser sker automatiskt.
-- **Integritet.** Foton och videor av barnen lämnar aldrig enheten.
+- **Lite jobb för föräldern.** Föräldern godkänner med ett tryck, biblioteket föreslår nya utmaningar efter barnets ålder och påminnelser sker automatiskt.
+- **Integritet.** Foton och videor av barnen lämnar aldrig enheten, och inga uppgifter om barnen lämnar EU.
 
 **Bakgrund:** Appen bygger på "Vuxen spelet". Det är ett stjärnspel på en A3-affisch som grundaren använder med sina barn (6 och 5 år). Barnen är engagerade och gillar att tävla. Problemen har varit att komma på nya prövningar, att komma ihåg spelet och att kunna dokumentera framgångar på ett roligt sätt. Appen ska lösa just de problemen.
 
@@ -133,16 +133,15 @@ Spelmekaniken är densamma i alla världar. Det som skiljer dem åt är utseende
 
 1. **Biblioteket:** En inbyggd, kurerad lista (seed-data i JSON, se 6.4). Varje post har gren, åldersspann, svårighet (1–3), barnvänlig titel, ikon, förälderbeskrivning och tips.
 2. **Egna utmaningar:** Föräldern skriver en egen titel och väljer gren och ikon.
-3. **AI-förslag (Plus):** Varje vecka föreslår AI 3 nya utmaningar per barn, se avsnitt 8.
+3. **Förslag ur biblioteket:** På barnets sida föreslår appen utmaningar som passar barnets ålder. Grenar som barnet inte har provat kommer först.
 
 ### 6.2 Utmaningens livscykel
 
 ```
-suggested → active → (attempts…) → requested → completed
-                 ↘ paused / archived
+active → (attempts…) → requested → completed
+     ↘ paused / archived
 ```
 
-- `suggested`: AI eller biblioteket har föreslagit utmaningen. Föräldern ser den och kan aktivera den.
 - `active`: utmaningen syns hos barnet som ett ägg. Rekommendation: **max 5 aktiva utmaningar per barn**, så att det inte blir rörigt.
 - `requested`: barnet har tryckt "Jag klarade det!" och väntar på att föräldern ska godkänna.
 - `completed`: föräldern har godkänt, barnet har fått en stjärna och varelsen har kläckts.
@@ -151,13 +150,13 @@ suggested → active → (attempts…) → requested → completed
 
 ### 6.3 Godkännandeflöde (förälder)
 
-1. Föräldern får en push-notis: "Evelyn säger: Jag drog upp blixtlåset själv! 🎉"
+1. Föräldern får en push-notis: "Ny förfrågan att godkänna 🎉". Notisen innehåller inga namn, titlar eller belöningar, eftersom push går via Expo, Apple och Google utanför EU (se 12). Detaljerna visas i appen.
 2. Föräldern öppnar notisen och ser kortet. Föräldern kan:
    - **Godkänn** (ett tryck)
    - **Godkänn med foto eller video.** Kameran öppnas och bilden sparas **lokalt** på föräldrarnas enhet.
    - **Ge en gnista i stället** ("Bra försök, nästan där!")
    - Lägga till en kort kommentar (valfritt)
-3. Appen skapar ett **samlarkort** med titel, datum, varelse, gren och en stolt text i tredje person, till exempel *"Evelyn har lärt sig dra upp blixtlåset helt själv. Hon kämpade i flera dagar och gav inte upp!"* I Plus skriver AI texten. I gratisversionen används en mall.
+3. Appen skapar ett **samlarkort** med titel, datum, varelse, gren och en stolt text i tredje person, till exempel *"Evelyn har lärt sig dra upp blixtlåset helt själv. Hon kämpade i flera dagar och gav inte upp!"* Texten byggs av en mall.
 4. Barnets enhet får en realtidsuppdatering och visar kläckningsanimationen nästa gång barnet öppnar appen. Om appen redan är öppen visas den direkt.
 
 ### 6.4 Startbibliotek (seed)
@@ -229,23 +228,15 @@ Claude Code skapar `seed/challenges.json` med **minst 150 utmaningar** fördelad
 
 ---
 
-## 8. AI-funktioner (Plus)
+## 8. Ingen AI
 
-Alla AI-anrop går via backend (edge function). **API-nyckeln får aldrig ligga i appen.** Modell: Claude via Anthropic API. Välj en snabb och billig modell för textgenerering.
+JagKan! använder ingen AI. AI togs bort helt 2026-10-12 efter idépanelens helhetsanalys (`docs/idepanel-helhetsanalys.md`). Föräldrar betalar inte för AI, och AI var den största integritetsrisken, eftersom förnamn och förälderns fritext skickades till en tjänst i USA.
 
-| Funktion | Input | Output | Frekvens |
-|---|---|---|---|
-| **Veckoförslag** | Barnets ålder, värld, klarade utmaningar (bara titlar och grenar), aktiva utmaningar, grenar som saknas | 3 nya utmaningar i JSON-format enligt schemat i 6.4 | 1 gång per barn och vecka, samt "Ge mig fler" (max 3 gånger per dag) |
-| **Samlarkortstext** | Barnets förnamn, utmaningens titel, förälderns kommentar, antal försök | 2–3 meningar i tredje person, varm och stolt ton | Varje gång en utmaning godkänns |
-| **Egna utmaningar** | Förälderns fritext, till exempel "hon är rädd för att gå på toa själv i skolan" | Förslag på titel, gren, ikon och tips | Vid behov |
+I stället gäller:
 
-**Säkerhetsregler för AI**
-
-- Skicka **inga foton och inga efternamn** till AI. Skicka bara förnamn och ålder.
-- AI-förslag går **alltid via föräldern** innan barnet ser dem. Barnet ser aldrig opåverkad AI-text.
-- Systemprompten ska kräva utmaningar som är säkra, passar åldern och kan göras hemma. Den ska inte föreslå något farligt, till exempel spis eller kniv för de yngsta utan att en vuxen är med.
-- Validera utdata mot JSON-schemat. Om valideringen misslyckas används utmaningar ur biblioteket i stället.
-- Begränsa antalet anrop (rate limit) per familj för att kontrollera kostnaden.
+- **Ett stort, handskrivet bibliotek** (6.4) med förslag på handlingar för varje gren och åldersband.
+- **Förslag ur biblioteket** efter barnets ålder (6.1).
+- **Samlarkortstext från mallar** (6.3).
 
 ---
 
@@ -264,15 +255,14 @@ Alla AI-anrop går via backend (edge function). **API-nyckeln får aldrig ligga 
 
 1. **Onboarding:** konto (e-post eller Sign in with Apple/Google), familjens namn, lägga till barn (förnamn, födelseår och månad, valfri profilbild som är en varelse och inte ett foto), val av tävlingslägen.
 2. **Översikt:** väntande godkännanden överst, sedan ett kort per barn med stjärnor denna vecka, aktiva utmaningar och nästa milstolpe.
-3. **Barnets sida:** aktiva, föreslagna och klarade utmaningar, statistik per gren, album och inställningar för världen.
+3. **Barnets sida:** aktiva utmaningar, förslag ur biblioteket, klarade utmaningar, statistik per gren, album och inställningar för världen.
 4. **Utmaningsbiblioteket:** sök och filtrera på gren, ålder och svårighet. Föräldern lägger till med ett tryck.
-5. **AI-förslag (Plus):** en veckolista per barn där föräldern sveper för att aktivera eller avvisa.
-6. **Skapa egen utmaning.**
-7. **Belöningar:** skapa, redigera och se förfrågningar och historik.
-8. **Tävlingar:** familjemål, syskonduell (med handikapp) och mot mig själv.
-9. **Album:** foton och videor (lokala), samlarkort, delning (via systemets delningsfunktion, startad av föräldern) och export.
-10. **Enheter:** parkoppla barnets enhet och se eller ta bort kopplade enheter.
-11. **Inställningar:** notiser, gnista-till-stjärna-regeln, max antal aktiva utmaningar, PIN, prenumeration, export och radering av data, bjuda in medförälder.
+5. **Skapa egen utmaning.**
+6. **Belöningar:** skapa, redigera och se förfrågningar och historik.
+7. **Tävlingar:** familjemål, syskonduell (med handikapp) och mot mig själv.
+8. **Album:** foton och videor (lokala), samlarkort, delning (via systemets delningsfunktion, startad av föräldern) och export.
+9. **Enheter:** parkoppla barnets enhet och se eller ta bort kopplade enheter.
+10. **Inställningar:** notiser, gnista-till-stjärna-regeln, max antal aktiva utmaningar, PIN, prenumeration, export och radering av data, bjuda in medförälder.
 
 ## 11. Enheter, konton och parkoppling
 
@@ -292,8 +282,10 @@ Alla AI-anrop går via backend (edge function). **API-nyckeln får aldrig ligga 
 | Foton och videor av barn | **Endast lokalt** på enheten där de togs (appens dokumentkatalog) | Laddas aldrig upp till servern. Exportknappen sparar till enhetens bildbibliotek eller till förälderns val av moln via systemets delningsfunktion. |
 | Spel-data (stjärnor, utmaningar, varelser, belöningar) | Backend i **EU-region** | Behövs för synk mellan förälderns och barnets enhet. |
 | Barnets uppgifter | Förnamn, födelseår och månad | Inget efternamn, ingen exakt födelsedag, ingen plats. |
+| Push-notiser | Går via Expo, Apple och Google, utanför EU | Neutrala texter utan namn, titlar eller belöningar. Detaljerna visas i appen. |
 | Analys | Bara anonym, egen statistik på första parts-nivå | **Ingen reklam och ingen tredjepartsanalys i barnvyn** (krav för Apple Kids Category och Google Play Families). |
 
+- **Inga uppgifter om barnen lämnar EU.** Appen använder inga AI-tjänster, och push-notiserna är neutrala (se tabellen).
 - Funktionerna **Exportera all data** (JSON) och **Radera familjen** finns i inställningarna.
 - Integritetspolicy och användarvillkor på svenska krävs före lansering. Det är en extern uppgift och ingår inte i kodbygget.
 - Lokala foton kopplas till samlarkortet via `localMediaId`. Om filen saknas, till exempel efter byte av telefon, visas den ritade varelsen i stället.
@@ -311,8 +303,6 @@ Alla AI-anrop går via backend (edge function). **API-nyckeln får aldrig ligga 
 | Världar | Den värld som passar barnets ålder | Alla världar och specialvarelser |
 | Belöningar | Max 3 | Obegränsat |
 | Tävlingslägen | Mot mig själv | Alla tre |
-| AI-veckoförslag | – | ✅ |
-| AI-samlarkortstext | Mall | ✅ AI-skriven |
 | Album-export | – | ✅ |
 
 - **Pris:** Ska bestämmas. Arbetsförslag är 49 kr/mån eller 399 kr/år med 14 dagars gratis provperiod. Priserna sätts i App Store och Play Console, inte i koden.
@@ -328,9 +318,8 @@ Alla AI-anrop går via backend (edge function). **API-nyckeln får aldrig ligga 
 | App | **Expo (React Native) + TypeScript**, Expo Router | En kodbas för iOS och Android, samt EAS Build och Submit |
 | State/data | TanStack Query + Zustand, MMKV för lokal cache | Fungerar offline och är enkel |
 | Backend | **Supabase** (Postgres, Auth, Realtime, Edge Functions, Storage endast för grafik) i EU-region | Snabbt att bygga, Row Level Security, realtidssynk |
-| AI | Anthropic API via Supabase Edge Function | Nyckeln skyddas, och kostnad och anrop kan begränsas |
 | Prenumeration | RevenueCat | Ett gemensamt API för båda appbutikerna |
-| Push | Expo Notifications | Notiser om godkännanden, veckoförslag och påminnelser |
+| Push | Expo Notifications | Neutrala notiser om godkännanden, belöningar, veckosammanfattning och påminnelser |
 | Media | expo-camera, expo-image-picker, expo-file-system, expo-media-library (för export) | Lokal lagring |
 | Animation | react-native-reanimated, lottie-react-native | Kläckning och firande |
 | Tal | expo-speech (sv-SE) | Uppläsning för barn som inte kan läsa |
@@ -347,7 +336,7 @@ child_devices       (id, family_id, device_token_hash, child_ids uuid[], created
 pairing_codes       (code, family_id, child_ids, expires_at)
 
 challenge_templates (id, branch, age_min, age_max, difficulty, title_child, title_parent, icon, parent_tip, repeatable, tags, is_plus)
-child_challenges    (id, child_id, template_id null, custom_title, custom_icon, branch, status, source: library|custom|ai,
+child_challenges    (id, child_id, template_id null, custom_title, custom_icon, branch, status, source: library|custom,
                      sparks int, repeat_count, created_at, activated_at, requested_at, completed_at)
 attempts            (id, child_challenge_id, created_at, source: child|parent)
 completions         (id, child_challenge_id, approved_by, approved_at, parent_note, card_text, creature_id, local_media_id null)
@@ -364,9 +353,6 @@ reward_requests     (id, reward_id, child_id, status: requested|confirmed|declin
 family_goals        (id, family_id, title, target_stars, reward_text, start_at, end_at, reached_at)
 competitions        (family_id, sibling_duel_enabled, handicaps jsonb, self_mode_enabled)
 weekly_results      (id, family_id, week_start, results jsonb)
-
-ai_suggestions      (id, child_id, payload jsonb, status: new|accepted|dismissed, created_at)
-ai_usage            (family_id, day, calls)
 ```
 
 - Stjärnsaldot räknas fram från `star_ledger` (summa av delta). Totalt antal stjärnor räknas bara på positiva poster, utom `adjust`.
@@ -377,9 +363,6 @@ ai_usage            (family_id, day, calls)
 ### 14.2 Edge Functions
 
 - `pair-device`: validerar koden och utfärdar device-token
-- `ai-weekly-suggestions`: körs schemalagt (cron) varje söndag kväll för Plus-familjer, och kan också anropas manuellt
-- `ai-card-text`: anropas när föräldern godkänner
-- `ai-custom-challenge`
 - `approve-completion`: transaktion som sätter status till completed, skapar posten i star_ledger, kläcker varelsen, kontrollerar milstolpar och utveckling och skickar push
 - `weekly-rollup`: körs på söndag kväll, räknar fram veckoresultat och pokaler och skickar en veckosammanfattning till föräldrarna
 - `revenuecat-webhook`: uppdaterar `families.plus_active`
@@ -396,7 +379,7 @@ jagkan/
     components/
     features/
       challenges/  rewards/  creatures/  competitions/  album/  pairing/  subscription/
-    lib/ (supabase, ai, i18n, speech, media)
+    lib/ (supabase, i18n, speech, media)
     theme/ (world themes: valley, dino, explorer)
   assets/ creatures/ sounds/ lottie/
   seed/ challenges.json  creatures.json  milestones.json  reward_suggestions.json
@@ -417,7 +400,7 @@ Hela lanseringsversionen byggs, men i en ordning som gör att appen kan testas h
 | **2. Samling och belöningar** | Samling, utveckling, milstolpar, belöningsbutik, inlösen, samlarkort med mall-text, lokala foton, album, push-notiser, uppläsning | Familjen kan använda appen hemma i vardagen |
 | **3. Tävlingar** | Familjemål, syskonduell med handikapp, mot mig själv, veckosammanfattning | Alla tre lägena fungerar |
 | **4. Världar** | Dinodalen och Utforskarbasen (teman, grafik, animationer), uppflyttning och examen, trofésamling | Ett barn kan gå från värld 1 till värld 2 |
-| **5. AI och Plus** | Edge functions för AI, veckoförslag, AI-kortstext, egna utmaningar med AI, RevenueCat, styrning av Plus-funktioner, föräldraspärr | Plus-köp i sandbox fungerar och AI-förslag visas |
+| **5. Plus** | RevenueCat, styrning av Plus-funktioner, föräldraspärr | Plus-köp i sandbox fungerar |
 | **6. Lanseringsklar** | Riktig grafik, ljud, export och radering av data, polering av onboarding, tillgänglighet, E2E-tester, App Store- och Play-listningar, EAS Submit | Godkänd i TestFlight och intern testning på Play |
 
 **Acceptanskriterier för hela appen**

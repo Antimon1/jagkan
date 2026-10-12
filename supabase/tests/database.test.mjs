@@ -41,11 +41,7 @@ async function seedFamily(db) {
   await run({ type: 'createReward', title: 'Glass', icon: '🍦', costStars: 1, childId: null });
   await run({ type: 'addCustomChallenge', childId: rafael, title: 'Bädda sängen', branch: 'hem', icon: '🛏️' });
   await run({ type: 'setFamilyGoal', title: 'Bio', targetStars: 10, rewardText: 'Popcorn' });
-  await run({ type: 'updateCompetitions', siblingDuelEnabled: true, handicaps: { [evelyn]: 1.5 } });
-  const last = await run({ type: 'addAiSuggestions', childId: rafael, items: [catalog.templates[0]].map((t) => ({
-    titleChild: t.titleChild, titleParent: t.titleParent, branch: t.branch, icon: t.icon, parentTip: t.parentTip,
-    difficulty: t.difficulty, repeatable: t.repeatable, ageMin: t.ageMin, ageMax: t.ageMax,
-  })) }, { kind: 'system' }, null);
+  const last = await run({ type: 'updateCompetitions', siblingDuelEnabled: true, handicaps: { [evelyn]: 1.5 } });
   return { parent, familyId, evelyn, rafael, store, run, state: last.state };
 }
 
@@ -117,10 +113,10 @@ describe('JagKan! database', () => {
       assert.equal(reuse.rows[0].r.error, 'invalid_code');
     });
 
-    test('see their own children, the shared family data and no AI suggestions or parents', async () => {
+    test('see their own children, the shared family data and no parents', async () => {
       const challenges = await asUser(db, device, 'select child_id from public.child_challenges');
       assert.deepEqual(challenges.rows.map((r) => r.child_id), [family.evelyn]);
-      for (const table of ['ai_suggestions', 'parents', 'child_devices']) {
+      for (const table of ['parents', 'child_devices']) {
         const { rows } = await asUser(db, device, `select count(*)::int as n from public.${table}`);
         assert.equal(rows[0].n, 0, table);
       }
@@ -132,7 +128,6 @@ describe('JagKan! database', () => {
       const { rows } = await asUser(db, device, 'select public.jk_my_snapshot() as s');
       const snap = rows[0].s;
       assert.equal(snap.parents.length, 0);
-      assert.equal(snap.aiSuggestions.length, 0);
       assert.ok(snap.challenges.every((c) => c.child_id === family.evelyn));
       assert.ok(snap.ledger.length > 0);
       const seen = await asService(db, 'select last_seen from public.child_devices where auth_user_id = $1', [device.id]);
@@ -283,10 +278,11 @@ describe('JagKan! database', () => {
     });
   });
 
-  test('AI calls are limited per family and per child', async () => {
-    const take = async (childId) =>
-      (await asService(db, 'select public.jk_ai_take($1, $2, 4, 2) as ok', [family.familyId, childId])).rows[0].ok;
-    assert.deepEqual([await take(family.evelyn), await take(family.evelyn), await take(family.evelyn)], [true, true, false]);
-    assert.deepEqual([await take(null), await take(null), await take(null)], [true, true, false]);
+  test('AI tables and functions are gone', async () => {
+    const { rows } = await db.query(`select
+      (select count(*)::int from pg_tables
+        where schemaname = 'public' and tablename in ('ai_suggestions', 'ai_usage', 'ai_child_usage')) as tables,
+      (select count(*)::int from pg_proc where proname = 'jk_ai_take') as functions`);
+    assert.deepEqual(rows[0], { tables: 0, functions: 0 });
   });
 });

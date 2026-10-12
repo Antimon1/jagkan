@@ -1,10 +1,4 @@
-import type {
-  AiChallengePayload,
-  BranchId,
-  FamilySettings,
-  NotificationSettings,
-  WorldId,
-} from './types';
+import type { BranchId, FamilySettings, NotificationSettings, WorldId } from './types';
 
 /**
  * Every state change in JagKan! is a serializable command. The same command
@@ -63,9 +57,6 @@ export type Command =
       handicaps?: Record<string, number>;
     }
   | { type: 'rollupWeeks' }
-  // AI suggestions
-  | { type: 'addAiSuggestions'; childId: string; items: AiChallengePayload[] }
-  | { type: 'resolveAiSuggestion'; suggestionId: string; accept: boolean }
   // Collection & worlds
   | { type: 'markCelebrationsSeen'; childId: string; celebrationIds: string[] }
   | { type: 'setAvatar'; childId: string; creatureId: string }
@@ -86,5 +77,5 @@ export const CHILD_COMMANDS: ReadonlySet<CommandType> = new Set<CommandType>([
   'rollupWeeks',
 ]);
 
-/** Commands only trusted server code may send (RevenueCat webhook, AI functions, demo mode). */
-export const SYSTEM_COMMANDS: ReadonlySet<CommandType> = new Set<CommandType>(['setPlus', 'addAiSuggestions']);
+/** Commands only trusted server code may send (RevenueCat webhook, demo mode). */
+export const SYSTEM_COMMANDS: ReadonlySet<CommandType> = new Set<CommandType>(['setPlus']);

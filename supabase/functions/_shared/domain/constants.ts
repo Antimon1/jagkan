@@ -53,9 +53,6 @@ export const GRADUATION_SNOOZE_DAYS = 7;
 /** Weekly rollup happens on Sunday evening (local time), spec 14.2. */
 export const WEEKLY_ROLLUP_HOUR = 19;
 
-export const AI_SUGGESTIONS_PER_WEEK = 3;
-export const AI_MORE_PER_DAY = 3;
-
 export const DEFAULT_SETTINGS: FamilySettings = {
   sparkBonusEnabled: true,
   maxActiveChallenges: DEFAULT_MAX_ACTIVE,

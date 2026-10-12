@@ -14,5 +14,5 @@ export * from './selectors';
 export * from './stars';
 export * from './time';
 export * from './types';
-export { sanitizeAiChallenge } from './handlers/ai';
+export * from './upgrade';
 export { challengeTitle } from './handlers/challenges';

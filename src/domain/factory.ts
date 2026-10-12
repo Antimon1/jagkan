@@ -41,7 +41,6 @@ export function createFamilyState(input: CreateFamilyInput): FamilyState {
     goals: [],
     competitions: { ...DEFAULT_COMPETITIONS, handicaps: {} },
     weeklyResults: [],
-    aiSuggestions: [],
     celebrations: [],
   };
 }

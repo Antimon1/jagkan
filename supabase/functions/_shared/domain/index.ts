@@ -15,5 +15,5 @@ export * from './selectors.ts';
 export * from './stars.ts';
 export * from './time.ts';
 export * from './types.ts';
-export { sanitizeAiChallenge } from './handlers/ai.ts';
+export * from './upgrade.ts';
 export { challengeTitle } from './handlers/challenges.ts';

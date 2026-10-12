@@ -27,7 +27,7 @@ import { useFamily } from '@/state/game';
 import { useDispatch, useNow } from '@/state/hooks';
 import { BRANCH_COLORS, palette, space } from '@/theme/tokens';
 
-type Tab = 'active' | 'suggested' | 'completed' | 'stats';
+type Tab = 'active' | 'ideas' | 'completed' | 'stats';
 
 function NewChild() {
   const t = useT();
@@ -82,7 +82,6 @@ function ChildDetails({ state, childId }: { state: FamilyState; childId: string 
   if (!child) return null;
 
   const active = challengesByStatus(state, catalog, child.id, ['requested', 'active', 'paused']);
-  const suggested = challengesByStatus(state, catalog, child.id, ['suggested']);
   const album = albumFor(state, catalog, child.id);
   const stats = branchStats(state, child.id);
   const history = weeklyHistory(state, child.id, now, 8);
@@ -90,7 +89,7 @@ function ChildDetails({ state, childId }: { state: FamilyState; childId: string 
 
   const tabs: { key: Tab; label: string }[] = [
     { key: 'active', label: `${t('parent.child.active')} (${active.length})` },
-    { key: 'suggested', label: t('parent.child.suggested') },
+    { key: 'ideas', label: t('parent.child.ideas') },
     { key: 'completed', label: `${t('parent.child.completed')} (${album.length})` },
     { key: 'stats', label: t('parent.child.stats') },
   ];
@@ -118,7 +117,6 @@ function ChildDetails({ state, childId }: { state: FamilyState; childId: string 
           <View style={styles.addRow}>
             <Button size="sm" label={`📚 ${t('parent.child.fromLibrary')}`} onPress={() => router.push({ pathname: '/parent/library', params: { child: child.id } })} />
             <Button size="sm" variant="secondary" label={`✏️ ${t('parent.child.custom')}`} onPress={() => router.push({ pathname: '/parent/custom', params: { child: child.id } })} />
-            <Button size="sm" variant="secondary" label={`✨ ${t('parent.child.ai')}`} onPress={() => router.push({ pathname: '/parent/ai', params: { child: child.id } })} />
           </View>
           {active.length === 0 ? <AppText color={palette.inkSoft}>{t('parent.overview.noChallenges')}</AppText> : null}
           {active.map((view) => (
@@ -127,11 +125,8 @@ function ChildDetails({ state, childId }: { state: FamilyState; childId: string 
         </View>
       ) : null}
 
-      {tab === 'suggested' ? (
+      {tab === 'ideas' ? (
         <View style={styles.list}>
-          {suggested.map((view) => (
-            <ChallengeRow key={view.challenge.id} view={view} childName={child.firstName} />
-          ))}
           <SectionHeader title={t('parent.child.suggestions')} />
           {libraryIdeas.map((template) => (
             <Card key={template.id} style={styles.idea}>

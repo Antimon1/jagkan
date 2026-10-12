@@ -1,6 +1,5 @@
 import { CHILD_COMMANDS, SYSTEM_COMMANDS, type Command } from './commands';
 import { fail, isFailure, type Failure, type HandlerResult } from './guards';
-import { addAiSuggestions, resolveAiSuggestion } from './handlers/ai';
 import {
   activateTemplate,
   addCustomChallenge,
@@ -35,7 +34,6 @@ export function targetChildId(state: FamilyState, command: Command): string | nu
     case 'activateTemplate':
     case 'addCustomChallenge':
     case 'requestReward':
-    case 'addAiSuggestions':
     case 'markCelebrationsSeen':
     case 'setAvatar':
     case 'changeWorld':
@@ -49,8 +47,6 @@ export function targetChildId(state: FamilyState, command: Command): string | nu
       return state.challenges.find((c) => c.id === command.challengeId)?.childId ?? null;
     case 'resolveRewardRequest':
       return state.rewardRequests.find((r) => r.id === command.requestId)?.childId ?? null;
-    case 'resolveAiSuggestion':
-      return state.aiSuggestions.find((s) => s.id === command.suggestionId)?.childId ?? null;
     default:
       return null;
   }
@@ -117,10 +113,6 @@ function run(tx: Tx, command: Command, ctx: EngineContext, actor: Actor): Handle
       return updateCompetitions(tx, command);
     case 'rollupWeeks':
       return rollupWeeks(tx, command, ctx);
-    case 'addAiSuggestions':
-      return addAiSuggestions(tx, command, ctx);
-    case 'resolveAiSuggestion':
-      return resolveAiSuggestion(tx, command, ctx);
     case 'markCelebrationsSeen':
       return markCelebrationsSeen(tx, command, ctx);
     case 'setAvatar':

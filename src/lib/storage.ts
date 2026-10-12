@@ -40,5 +40,4 @@ export const STORAGE_KEYS = {
   localFamily: 'jk.family.v1',
   outbox: 'jk.outbox.v1',
   localMedia: 'jk.media.v1',
-  aiUsage: 'jk.aiUsage.v1',
 } as const;

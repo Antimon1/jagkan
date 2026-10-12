@@ -123,7 +123,6 @@ export function removeChild(tx: Tx, cmd: Cmd<'removeChild'>): HandlerResult {
     milestones: keep(state.milestones),
     ledger: keep(state.ledger),
     rewardRequests: keep(state.rewardRequests),
-    aiSuggestions: keep(state.aiSuggestions),
     celebrations: keep(state.celebrations),
     rewards: state.rewards.map((r) => (r.childId === cmd.childId ? { ...r, childId: null, active: false } : r)),
     competitions: { ...state.competitions, handicaps },

@@ -1,4 +1,5 @@
 import type { FamilyState } from '@/domain/types';
+import { upgradeState } from '@/domain/upgrade';
 import { readJson, removeKey, STORAGE_KEYS, writeJson } from '@/lib/storage';
 
 import type { GameBackend } from './backend';
@@ -11,8 +12,7 @@ export function createLocalBackend(): GameBackend {
   return {
     kind: 'local',
     async load() {
-      const state = await readJson<FamilyState>(STORAGE_KEYS.localFamily);
-      return state && state.schemaVersion === 1 ? state : null;
+      return upgradeState(await readJson<unknown>(STORAGE_KEYS.localFamily));
     },
     async commit(_command, next) {
       const ok = await writeJson(STORAGE_KEYS.localFamily, next);

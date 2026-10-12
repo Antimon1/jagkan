@@ -1,7 +1,6 @@
 import { catalog } from '@/data/catalog';
 import { templateCardText } from '@/domain/cardText';
-import { sanitizeAiChallenge } from '@/domain/handlers/ai';
-import { searchLibrary, suggestFromLibrary, templateToPayload } from '@/domain/library';
+import { searchLibrary, suggestFromLibrary } from '@/domain/library';
 import {
   albumFor,
   branchStats,
@@ -42,43 +41,6 @@ describe('challenge library (spec 6.1)', () => {
     expect(new Set(picks.map((p) => p.branch)).size).toBe(3);
     expect(picks.some((p) => p.branch === 'kropp')).toBe(false);
     expect(picks.every((p) => p.ageMin <= 6)).toBe(true);
-  });
-});
-
-describe('AI output validation (spec 8)', () => {
-  it('accepts a valid challenge and rejects broken ones', () => {
-    const valid = templateToPayload(catalog.templates[0]);
-    expect(sanitizeAiChallenge(valid)).toEqual(valid);
-    expect(sanitizeAiChallenge({ ...valid, branch: 'farligt' })).toBeNull();
-    expect(sanitizeAiChallenge({ ...valid, ageMin: 9, ageMax: 5 })).toBeNull();
-    expect(sanitizeAiChallenge({ ...valid, titleChild: '' })).toBeNull();
-    expect(sanitizeAiChallenge('nope')).toBeNull();
-  });
-
-  it('stores suggestions and turns accepted ones into challenges', () => {
-    const d = new Driver();
-    const child = d.addChild('Evelyn', 2020, 3);
-    const items = suggestFromLibrary(d.state, catalog, d.state.children[0], d.now, 2, true).map(templateToPayload);
-    d.run({ type: 'addAiSuggestions', childId: child, items }, SYSTEM);
-    expect(d.state.aiSuggestions).toHaveLength(2);
-    d.run({ type: 'resolveAiSuggestion', suggestionId: d.state.aiSuggestions[0].id, accept: true });
-    d.run({ type: 'resolveAiSuggestion', suggestionId: d.state.aiSuggestions[1].id, accept: false });
-    expect(d.state.challenges).toHaveLength(1);
-    expect(d.state.challenges[0]).toMatchObject({ source: 'ai', status: 'active' });
-    expect(d.state.aiSuggestions.map((s) => s.status)).toEqual(['accepted', 'dismissed']);
-    expect(d.try({ type: 'addAiSuggestions', childId: child, items: [{ bad: true } as never] }, SYSTEM)).toMatchObject({
-      error: 'invalid_input',
-    });
-  });
-
-  it('keeps an accepted suggestion as "suggested" when the child has too many eggs', () => {
-    const d = new Driver();
-    d.run({ type: 'updateSettings', settings: { maxActiveChallenges: 1 } });
-    const child = d.addChild('Evelyn', 2020, 3);
-    d.custom(child, 'kropp');
-    d.run({ type: 'addAiSuggestions', childId: child, items: [templateToPayload(catalog.templates[1])] }, SYSTEM);
-    d.run({ type: 'resolveAiSuggestion', suggestionId: d.state.aiSuggestions[0].id, accept: true });
-    expect(d.state.challenges[1].status).toBe('suggested');
   });
 });
 

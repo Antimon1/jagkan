@@ -13,18 +13,11 @@ export type AgeBand = 1 | 2 | 3;
 export type Difficulty = 1 | 2 | 3;
 export type Stage = 1 | 2 | 3;
 
-export type ChallengeStatus =
-  | 'suggested'
-  | 'active'
-  | 'requested'
-  | 'completed'
-  | 'paused'
-  | 'archived';
-export type ChallengeSource = 'library' | 'custom' | 'ai';
+export type ChallengeStatus = 'active' | 'requested' | 'completed' | 'paused' | 'archived';
+export type ChallengeSource = 'library' | 'custom';
 export type ParentRole = 'admin' | 'coparent';
 export type LedgerReason = 'completion' | 'spark_bonus' | 'reward_redeem' | 'adjust';
 export type RewardRequestStatus = 'requested' | 'confirmed' | 'declined';
-export type AiSuggestionStatus = 'new' | 'accepted' | 'dismissed';
 export type AttemptSource = 'child' | 'parent' | 'duel';
 
 // ---------------------------------------------------------------------------
@@ -321,27 +314,6 @@ export interface WeeklyResult {
   createdAt: string;
 }
 
-export interface AiChallengePayload {
-  titleChild: string;
-  titleParent: string;
-  branch: BranchId;
-  icon: string;
-  parentTip: string;
-  difficulty: Difficulty;
-  repeatable: boolean;
-  ageMin: number;
-  ageMax: number;
-}
-
-export interface AiSuggestion {
-  id: string;
-  familyId: string;
-  childId: string;
-  payload: AiChallengePayload;
-  status: AiSuggestionStatus;
-  createdAt: string;
-}
-
 export type CelebrationType =
   | 'hatch'
   | 'grow'
@@ -381,7 +353,6 @@ export interface FamilyState {
   goals: FamilyGoal[];
   competitions: Competitions;
   weeklyResults: WeeklyResult[];
-  aiSuggestions: AiSuggestion[];
   celebrations: Celebration[];
 }
 

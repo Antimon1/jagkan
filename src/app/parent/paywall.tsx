@@ -19,15 +19,13 @@ import {
 import { useFamily, useGameStore } from '@/state/game';
 import { palette, radius, space } from '@/theme/tokens';
 
-const FEATURES = ['children', 'library', 'worlds', 'rewards', 'competitions', 'ai', 'cards', 'export'] as const;
+const FEATURES = ['children', 'library', 'worlds', 'rewards', 'competitions', 'export'] as const;
 const FEATURE_ICONS: Record<(typeof FEATURES)[number], string> = {
   children: '👨‍👩‍👧‍👦',
   library: '📚',
   worlds: '🌍',
   rewards: '🎁',
   competitions: '🏆',
-  ai: '✨',
-  cards: '🃏',
   export: '💾',
 };
 
