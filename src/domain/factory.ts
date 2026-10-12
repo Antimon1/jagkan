@@ -1,0 +1,47 @@
+import { DEFAULT_COMPETITIONS, DEFAULT_SETTINGS } from './constants';
+import type { FamilyState } from './types';
+
+export interface CreateFamilyInput {
+  familyId: string;
+  familyName: string;
+  parentId: string;
+  parentName: string;
+  now: string;
+}
+
+export function createFamilyState(input: CreateFamilyInput): FamilyState {
+  return {
+    schemaVersion: 1,
+    family: {
+      id: input.familyId,
+      name: input.familyName,
+      createdAt: input.now,
+      plusActive: false,
+      settings: { ...DEFAULT_SETTINGS, notifications: { ...DEFAULT_SETTINGS.notifications } },
+      revision: 0,
+    },
+    parents: [
+      {
+        id: input.parentId,
+        familyId: input.familyId,
+        role: 'admin',
+        displayName: input.parentName,
+        createdAt: input.now,
+      },
+    ],
+    children: [],
+    challenges: [],
+    attempts: [],
+    completions: [],
+    creatures: [],
+    milestones: [],
+    ledger: [],
+    rewards: [],
+    rewardRequests: [],
+    goals: [],
+    competitions: { ...DEFAULT_COMPETITIONS, handicaps: {} },
+    weeklyResults: [],
+    aiSuggestions: [],
+    celebrations: [],
+  };
+}

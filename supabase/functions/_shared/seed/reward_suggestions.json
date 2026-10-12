@@ -1,0 +1,250 @@
+[
+  {
+    "id": "rw_valja_middag",
+    "title": "Välja middag",
+    "icon": "🍝",
+    "costStars": 5,
+    "ageMin": 4,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_extra_saga",
+    "title": "Extra godnattsaga",
+    "icon": "📖",
+    "costStars": 3,
+    "ageMin": 4,
+    "ageMax": 8
+  },
+  {
+    "id": "rw_biokvall",
+    "title": "Biokväll",
+    "icon": "🎬",
+    "costStars": 20,
+    "ageMin": 4,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_extra_skarmtid",
+    "title": "30 min extra skärmtid",
+    "icon": "📱",
+    "costStars": 8,
+    "ageMin": 6,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_valja_lek",
+    "title": "Välja lek med en vuxen",
+    "icon": "🧩",
+    "costStars": 3,
+    "ageMin": 4,
+    "ageMax": 8
+  },
+  {
+    "id": "rw_bada_skum",
+    "title": "Skumbad med extra bubblor",
+    "icon": "🛁",
+    "costStars": 3,
+    "ageMin": 4,
+    "ageMax": 7
+  },
+  {
+    "id": "rw_kojbygge",
+    "title": "Bygga koja i vardagsrummet",
+    "icon": "🏕️",
+    "costStars": 6,
+    "ageMin": 4,
+    "ageMax": 10
+  },
+  {
+    "id": "rw_glass",
+    "title": "Gå och köpa glass",
+    "icon": "🍦",
+    "costStars": 6,
+    "ageMin": 4,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_lekplats",
+    "title": "Utflykt till favoritlekplatsen",
+    "icon": "🛝",
+    "costStars": 5,
+    "ageMin": 4,
+    "ageMax": 8
+  },
+  {
+    "id": "rw_baka",
+    "title": "Baka något gott tillsammans",
+    "icon": "🧁",
+    "costStars": 6,
+    "ageMin": 4,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_valja_musik",
+    "title": "Välja musik i bilen",
+    "icon": "🎵",
+    "costStars": 2,
+    "ageMin": 4,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_pyjamasfrukost",
+    "title": "Frukost i pyjamas i soffan",
+    "icon": "🥞",
+    "costStars": 5,
+    "ageMin": 4,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_vaka_lite_lange",
+    "title": "Vara uppe 15 min längre",
+    "icon": "🌙",
+    "costStars": 6,
+    "ageMin": 5,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_spelkvall",
+    "title": "Spelkväll med familjen",
+    "icon": "🎲",
+    "costStars": 8,
+    "ageMin": 4,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_rita_ute",
+    "title": "Rita med kritor på gatan",
+    "icon": "🖍️",
+    "costStars": 3,
+    "ageMin": 4,
+    "ageMax": 8
+  },
+  {
+    "id": "rw_simhall",
+    "title": "Åka till simhallen",
+    "icon": "🏊",
+    "costStars": 15,
+    "ageMin": 4,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_bjuda_kompis",
+    "title": "Bjuda hem en kompis",
+    "icon": "👫",
+    "costStars": 8,
+    "ageMin": 4,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_dansa",
+    "title": "Dansfest i köket",
+    "icon": "💃",
+    "costStars": 3,
+    "ageMin": 4,
+    "ageMax": 10
+  },
+  {
+    "id": "rw_picknick",
+    "title": "Picknick där du bestämmer platsen",
+    "icon": "🧺",
+    "costStars": 8,
+    "ageMin": 4,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_bibliotek",
+    "title": "Biblioteksbesök och välja böcker",
+    "icon": "📚",
+    "costStars": 4,
+    "ageMin": 4,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_skattjakt",
+    "title": "Skattjakt som en vuxen gör",
+    "icon": "🗺️",
+    "costStars": 10,
+    "ageMin": 4,
+    "ageMax": 9
+  },
+  {
+    "id": "rw_ensam_tid",
+    "title": "En stund ensam med en förälder",
+    "icon": "💛",
+    "costStars": 5,
+    "ageMin": 4,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_lasa_med_ficklampa",
+    "title": "Läsa med ficklampa under täcket",
+    "icon": "🔦",
+    "costStars": 4,
+    "ageMin": 5,
+    "ageMax": 10
+  },
+  {
+    "id": "rw_valja_helgaktivitet",
+    "title": "Välja helgaktivitet",
+    "icon": "🎡",
+    "costStars": 15,
+    "ageMin": 6,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_tagresa",
+    "title": "Dagsutflykt med tåg",
+    "icon": "🚆",
+    "costStars": 30,
+    "ageMin": 6,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_laga_favorit",
+    "title": "Laga din favoriträtt tillsammans",
+    "icon": "🍳",
+    "costStars": 10,
+    "ageMin": 7,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_filmkvall_kompis",
+    "title": "Filmkväll med en kompis",
+    "icon": "🍿",
+    "costStars": 15,
+    "ageMin": 9,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_slippa_en_uppgift",
+    "title": "Byta en uppgift med en förälder",
+    "icon": "🔄",
+    "costStars": 8,
+    "ageMin": 8,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_egen_spellista",
+    "title": "Göra familjens spellista för veckan",
+    "icon": "🎧",
+    "costStars": 4,
+    "ageMin": 9,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_aventyrsdag",
+    "title": "Äventyrsdag som du planerar",
+    "icon": "🧗",
+    "costStars": 40,
+    "ageMin": 10,
+    "ageMax": 13
+  },
+  {
+    "id": "rw_overnattning",
+    "title": "Övernattning med kompis",
+    "icon": "🛏️",
+    "costStars": 25,
+    "ageMin": 8,
+    "ageMax": 13
+  }
+]

@@ -33,6 +33,10 @@ yarn-error.*
 # local env files
 .env*.local
 
+# test output
+coverage/
+.playwright-mcp/
+
 # typescript
 *.tsbuildinfo
 

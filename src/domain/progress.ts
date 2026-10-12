@@ -1,0 +1,113 @@
+import { milestonesAscending } from './catalog';
+import { feedBranch, isBranchMaster, unlockSpecial } from './creatures';
+import { earnedSince, totalStars } from './stars';
+import { celebrate, emit, patchState, replaceById, type Tx } from './tx';
+import type {
+  BranchId,
+  ChildMilestone,
+  EngineContext,
+  FamilyGoal,
+  FamilyState,
+  StarEntry,
+  WorldId,
+} from './types';
+
+export interface AwardStarInput {
+  childId: string;
+  reason: 'completion' | 'spark_bonus';
+  refId: string;
+  branch: BranchId;
+  world: WorldId;
+}
+
+/**
+ * Add one earned star and run everything that depends on it:
+ * creature growth, branch master, milestones and the family goal.
+ */
+export function awardStar(tx: Tx, ctx: EngineContext, input: AwardStarInput): Tx {
+  const { childId, branch, world } = input;
+  const wasMaster = isBranchMaster(tx.state, ctx, childId, world, branch);
+
+  const entry: StarEntry = {
+    id: ctx.newId(),
+    familyId: tx.state.family.id,
+    childId,
+    delta: 1,
+    reason: input.reason,
+    refId: input.refId,
+    branch,
+    world,
+    note: null,
+    createdAt: ctx.now,
+  };
+  let result = patchState(tx, { ledger: [...tx.state.ledger, entry] });
+  result = feedBranch(result, ctx, childId, world, branch);
+
+  if (!wasMaster && isBranchMaster(result.state, ctx, childId, world, branch)) {
+    result = emit(result, { type: 'branch_master', childId, branch, world });
+    result = celebrate(result, ctx, childId, 'branch_master', { branch, world });
+  }
+
+  result = checkMilestones(result, ctx, childId, world);
+  result = checkFamilyGoal(result, ctx);
+  return result;
+}
+
+/** Award every milestone the child's lifetime stars have reached but that is not recorded yet. */
+export function checkMilestones(tx: Tx, ctx: EngineContext, childId: string, world: WorldId): Tx {
+  const total = totalStars(tx.state, childId);
+  const reached = new Set(tx.state.milestones.filter((m) => m.childId === childId).map((m) => m.milestoneId));
+  let result = tx;
+  for (const milestone of milestonesAscending(ctx.catalog)) {
+    if (reached.has(milestone.id) || milestone.thresholdStars > total) continue;
+    const record: ChildMilestone = {
+      id: ctx.newId(),
+      familyId: result.state.family.id,
+      childId,
+      milestoneId: milestone.id,
+      reachedAt: ctx.now,
+    };
+    result = patchState(result, { milestones: [...result.state.milestones, record] });
+    const unlocked = unlockSpecial(result, ctx, childId, world, { type: 'milestone', milestoneId: milestone.id }, {
+      celebrate: false,
+    });
+    result = unlocked.tx;
+    result = emit(result, { type: 'milestone_reached', childId, milestoneId: milestone.id });
+    result = celebrate(result, ctx, childId, 'milestone', {
+      milestoneId: milestone.id,
+      title: milestone.title,
+      threshold: milestone.thresholdStars,
+      specialId: unlocked.special?.id ?? null,
+    });
+  }
+  return result;
+}
+
+export function activeGoal(state: FamilyState, nowIso: string): FamilyGoal | undefined {
+  if (!state.competitions.familyGoalEnabled) return undefined;
+  const now = new Date(nowIso).getTime();
+  return state.goals.find(
+    (g) => !g.reachedAt && !g.cancelledAt && (g.endAt === null || new Date(g.endAt).getTime() >= now),
+  );
+}
+
+export function goalProgress(state: FamilyState, goal: FamilyGoal): number {
+  return state.children.reduce((sum, child) => sum + earnedSince(state, child.id, goal.startAt), 0);
+}
+
+function checkFamilyGoal(tx: Tx, ctx: EngineContext): Tx {
+  const goal = activeGoal(tx.state, ctx.now);
+  if (!goal || goalProgress(tx.state, goal) < goal.targetStars) return tx;
+
+  let result = patchState(tx, { goals: replaceById(tx.state.goals, goal.id, { reachedAt: ctx.now }) });
+  result = emit(result, { type: 'family_goal_reached', goalId: goal.id });
+  for (const child of result.state.children) {
+    result = celebrate(result, ctx, child.id, 'family_goal', {
+      goalId: goal.id,
+      title: goal.title,
+      rewardText: goal.rewardText,
+    });
+    result = unlockSpecial(result, ctx, child.id, child.world, { type: 'family_goal' }, { celebrate: false }).tx;
+  }
+  return result;
+}

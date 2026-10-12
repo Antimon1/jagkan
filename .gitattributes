@@ -1,0 +1,8 @@
+# LF everywhere, so generated files (supabase/functions/_shared, catalog SQL) compare equal on every OS.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.wav binary
+*.mp3 binary
+*.ttf binary
+*.ico binary

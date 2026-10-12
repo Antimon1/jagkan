@@ -1,0 +1,51 @@
+[
+  {
+    "id": "m5",
+    "thresholdStars": 5,
+    "title": "Lilla hjälten",
+    "backgroundKey": "bg_m5",
+    "emoji": "🌟"
+  },
+  {
+    "id": "m10",
+    "thresholdStars": 10,
+    "title": "Stjärnsamlaren",
+    "backgroundKey": "bg_m10",
+    "emoji": "⭐"
+  },
+  {
+    "id": "m25",
+    "thresholdStars": 25,
+    "title": "Självis",
+    "backgroundKey": "bg_m25",
+    "emoji": "💪"
+  },
+  {
+    "id": "m50",
+    "thresholdStars": 50,
+    "title": "Superstjärnan",
+    "backgroundKey": "bg_m50",
+    "emoji": "🌠"
+  },
+  {
+    "id": "m100",
+    "thresholdStars": 100,
+    "title": "Mästare",
+    "backgroundKey": "bg_m100",
+    "emoji": "🏆"
+  },
+  {
+    "id": "m200",
+    "thresholdStars": 200,
+    "title": "Stormästare",
+    "backgroundKey": "bg_m200",
+    "emoji": "👑"
+  },
+  {
+    "id": "m365",
+    "thresholdStars": 365,
+    "title": "Årets hjälte",
+    "backgroundKey": "bg_m365",
+    "emoji": "🎉"
+  }
+]

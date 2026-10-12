@@ -1,0 +1,81 @@
+import type { AgeBand, BranchId, Competitions, FamilySettings, Stage, WorldId } from './types';
+
+export const BRANCHES: readonly BranchId[] = ['kropp', 'mat', 'hem', 'ute', 'pengar', 'kanslor', 'mod'];
+
+export const BRANCH_ICONS: Readonly<Record<BranchId, string>> = {
+  kropp: '🪥',
+  mat: '🍳',
+  hem: '🏠',
+  ute: '🚲',
+  pengar: '🪙',
+  kanslor: '💛',
+  mod: '🦁',
+};
+
+export const WORLDS: readonly WorldId[] = ['valley', 'dino', 'explorer'];
+
+export const WORLD_BY_BAND: Readonly<Record<AgeBand, WorldId>> = {
+  1: 'valley',
+  2: 'dino',
+  3: 'explorer',
+};
+
+export const BAND_BY_WORLD: Readonly<Record<WorldId, AgeBand>> = {
+  valley: 1,
+  dino: 2,
+  explorer: 3,
+};
+
+export const MIN_AGE = 4;
+export const MAX_AGE = 13;
+
+/** Each world has 3 creatures per branch. */
+export const SLOTS_PER_BRANCH = 3;
+
+/** Stars fed to a creature to reach a stage (spec 3.2: 3 stars = stage 2, 10 stars = stage 3). */
+export const STAGE_THRESHOLDS: Readonly<Record<Stage, number>> = { 1: 0, 2: 3, 3: 10 };
+
+/** Sparks on one challenge that give a bonus star (spec 3.2). */
+export const SPARKS_PER_BONUS_STAR = 3;
+
+export const DEFAULT_MAX_ACTIVE = 5;
+export const MAX_ACTIVE_LIMIT = 10;
+
+export const FREE_LIMITS = {
+  maxChildren: 1,
+  maxRewards: 3,
+} as const;
+
+/** Re-suggest graduation this many days after the child chose "not yet". */
+export const GRADUATION_SNOOZE_DAYS = 7;
+
+/** Weekly rollup happens on Sunday evening (local time), spec 14.2. */
+export const WEEKLY_ROLLUP_HOUR = 19;
+
+export const AI_SUGGESTIONS_PER_WEEK = 3;
+export const AI_MORE_PER_DAY = 3;
+
+export const DEFAULT_SETTINGS: FamilySettings = {
+  sparkBonusEnabled: true,
+  maxActiveChallenges: DEFAULT_MAX_ACTIVE,
+  soundEnabled: true,
+  speechEnabled: true,
+  locale: 'sv',
+  timeZone: 'Europe/Stockholm',
+  notifications: {
+    approvals: true,
+    weeklySummary: true,
+    reminders: true,
+    reminderHour: 17,
+  },
+};
+
+export const DEFAULT_COMPETITIONS: Competitions = {
+  familyGoalEnabled: false,
+  siblingDuelEnabled: false,
+  selfModeEnabled: true,
+  handicaps: {},
+};
+
+export const HANDICAP_MIN = 1;
+export const HANDICAP_MAX = 3;

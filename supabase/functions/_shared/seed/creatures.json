@@ -1,0 +1,2157 @@
+{
+  "version": 1,
+  "worlds": [
+    {
+      "id": "valley",
+      "name": "Äggdalen",
+      "band": 1,
+      "ageMin": 4,
+      "ageMax": 6,
+      "eggLabel": "ägg",
+      "attemptVerb": "Ägget värms",
+      "doneVerb": "Ägget kläcks",
+      "style": "Pastell och 3D-lera, runda gulliga varelser"
+    },
+    {
+      "id": "dino",
+      "name": "Dinodalen",
+      "band": 2,
+      "ageMin": 7,
+      "ageMax": 9,
+      "eggLabel": "fossil",
+      "attemptVerb": "Du gräver fram fossilet",
+      "doneVerb": "Dinon vaknar",
+      "style": "Kraftiga färger, dinosaurier och drakar"
+    },
+    {
+      "id": "explorer",
+      "name": "Utforskarbasen",
+      "band": 3,
+      "ageMin": 10,
+      "ageMax": 13,
+      "eggLabel": "utrustningslåda",
+      "attemptVerb": "Lådan laddas",
+      "doneVerb": "Lådan öppnas",
+      "style": "Flat och isometrisk stil, utforskare och teknik"
+    }
+  ],
+  "species": [
+    {
+      "id": "valley_kropp_1",
+      "world": "valley",
+      "branch": "kropp",
+      "slot": 1,
+      "color": "#F7A8C4",
+      "personality": "Älskar skum och bubblor och sjunger när den tvättar sig.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Bubbis",
+          "emoji": "🫧",
+          "assetKey": "valley/kropp_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Bubbelina",
+          "emoji": "🫧",
+          "assetKey": "valley/kropp_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Skumdrottningen Bubbelina",
+          "emoji": "👑",
+          "assetKey": "valley/kropp_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_kropp_2",
+      "world": "valley",
+      "branch": "kropp",
+      "slot": 2,
+      "color": "#B9E4F5",
+      "personality": "Borstar tänderna tills de glittrar som snö.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Tandis",
+          "emoji": "🦷",
+          "assetKey": "valley/kropp_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Glittertand",
+          "emoji": "✨",
+          "assetKey": "valley/kropp_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Tandfén Glitter",
+          "emoji": "🧚",
+          "assetKey": "valley/kropp_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_kropp_3",
+      "world": "valley",
+      "branch": "kropp",
+      "slot": 3,
+      "color": "#FFD9A8",
+      "personality": "Klär på sig fortare än vinden och har strumpor i alla färger.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Strumpis",
+          "emoji": "🧦",
+          "assetKey": "valley/kropp_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Strumpelina",
+          "emoji": "🧦",
+          "assetKey": "valley/kropp_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Kung Strumpelin",
+          "emoji": "👑",
+          "assetKey": "valley/kropp_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_mat_1",
+      "world": "valley",
+      "branch": "mat",
+      "slot": 1,
+      "color": "#FFE59E",
+      "personality": "Bakar små bullar i sin äggskalsugn.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Bullis",
+          "emoji": "🥐",
+          "assetKey": "valley/mat_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Bullan",
+          "emoji": "🍞",
+          "assetKey": "valley/mat_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Bagarmästare Bullan",
+          "emoji": "🧁",
+          "assetKey": "valley/mat_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_mat_2",
+      "world": "valley",
+      "branch": "mat",
+      "slot": 2,
+      "color": "#C8F0C0",
+      "personality": "Tycker allra mest om knapriga morötter.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Morotto",
+          "emoji": "🥕",
+          "assetKey": "valley/mat_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Morottina",
+          "emoji": "🥕",
+          "assetKey": "valley/mat_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Grönsaksprinsen Morotto",
+          "emoji": "🥦",
+          "assetKey": "valley/mat_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_mat_3",
+      "world": "valley",
+      "branch": "mat",
+      "slot": 3,
+      "color": "#FFC4C4",
+      "personality": "Häller upp mjölk utan att spilla en enda droppe.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Mjölkis",
+          "emoji": "🥛",
+          "assetKey": "valley/mat_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Mjölkelina",
+          "emoji": "🥛",
+          "assetKey": "valley/mat_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Gräddkungen",
+          "emoji": "🍦",
+          "assetKey": "valley/mat_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_hem_1",
+      "world": "valley",
+      "branch": "hem",
+      "slot": 1,
+      "color": "#D7C8F5",
+      "personality": "Sorterar allt efter färg och sjunger städvisor.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Städis",
+          "emoji": "🧹",
+          "assetKey": "valley/hem_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Damma",
+          "emoji": "🪶",
+          "assetKey": "valley/hem_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Ordningsfén Damma",
+          "emoji": "✨",
+          "assetKey": "valley/hem_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_hem_2",
+      "world": "valley",
+      "branch": "hem",
+      "slot": 2,
+      "color": "#FFDDE9",
+      "personality": "Bäddar sin säng av moln varje morgon.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Kuddis",
+          "emoji": "☁️",
+          "assetKey": "valley/hem_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Molnbädd",
+          "emoji": "☁️",
+          "assetKey": "valley/hem_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Drömväktaren",
+          "emoji": "🌙",
+          "assetKey": "valley/hem_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_hem_3",
+      "world": "valley",
+      "branch": "hem",
+      "slot": 3,
+      "color": "#BDEBDD",
+      "personality": "Vattnar blommorna och pratar snällt med dem.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Blomsis",
+          "emoji": "🌼",
+          "assetKey": "valley/hem_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Blomstra",
+          "emoji": "🌷",
+          "assetKey": "valley/hem_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Trädgårdsdrottningen Blomstra",
+          "emoji": "🌻",
+          "assetKey": "valley/hem_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_ute_1",
+      "world": "valley",
+      "branch": "ute",
+      "slot": 1,
+      "color": "#A8D8F0",
+      "personality": "Tittar alltid åt båda hållen, två gånger.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Tittis",
+          "emoji": "👀",
+          "assetKey": "valley/ute_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Kikaren",
+          "emoji": "🔭",
+          "assetKey": "valley/ute_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Vägvisaren Kikaren",
+          "emoji": "🧭",
+          "assetKey": "valley/ute_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_ute_2",
+      "world": "valley",
+      "branch": "ute",
+      "slot": 2,
+      "color": "#FFD1A1",
+      "personality": "Cyklar runt dalen med ringklocka på styret.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Cykla",
+          "emoji": "🚲",
+          "assetKey": "valley/ute_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Trampis",
+          "emoji": "🚲",
+          "assetKey": "valley/ute_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Cykelstjärnan",
+          "emoji": "🌟",
+          "assetKey": "valley/ute_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_ute_3",
+      "world": "valley",
+      "branch": "ute",
+      "slot": 3,
+      "color": "#C9E7A8",
+      "personality": "Hoppar i vattenpölar så att det skvätter.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Plaskis",
+          "emoji": "💦",
+          "assetKey": "valley/ute_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Pölhopparen",
+          "emoji": "🌧️",
+          "assetKey": "valley/ute_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Regnbågsplask",
+          "emoji": "🌈",
+          "assetKey": "valley/ute_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_pengar_1",
+      "world": "valley",
+      "branch": "pengar",
+      "slot": 1,
+      "color": "#F8E3A3",
+      "personality": "Samlar blanka mynt i sin lilla grisbuk.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Myntis",
+          "emoji": "🪙",
+          "assetKey": "valley/pengar_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Grisis",
+          "emoji": "🐷",
+          "assetKey": "valley/pengar_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Skattkammargrisen",
+          "emoji": "💰",
+          "assetKey": "valley/pengar_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_pengar_2",
+      "world": "valley",
+      "branch": "pengar",
+      "slot": 2,
+      "color": "#E9C6F2",
+      "personality": "Räknar till tio och tillbaka igen.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Räknis",
+          "emoji": "🔢",
+          "assetKey": "valley/pengar_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Räknelina",
+          "emoji": "🧮",
+          "assetKey": "valley/pengar_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Professor Räknelin",
+          "emoji": "🎓",
+          "assetKey": "valley/pengar_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_pengar_3",
+      "world": "valley",
+      "branch": "pengar",
+      "slot": 3,
+      "color": "#FFCBA4",
+      "personality": "Driver den minsta affären i hela dalen.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Handlis",
+          "emoji": "🛒",
+          "assetKey": "valley/pengar_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Butiksbo",
+          "emoji": "🏪",
+          "assetKey": "valley/pengar_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Marknadsmästaren",
+          "emoji": "🎪",
+          "assetKey": "valley/pengar_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_kanslor_1",
+      "world": "valley",
+      "branch": "kanslor",
+      "slot": 1,
+      "color": "#FFC6D9",
+      "personality": "Ger de mjukaste kramarna i Äggdalen.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Kramis",
+          "emoji": "🤗",
+          "assetKey": "valley/kanslor_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Kramelina",
+          "emoji": "💗",
+          "assetKey": "valley/kanslor_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Hjärtdrottningen",
+          "emoji": "💖",
+          "assetKey": "valley/kanslor_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_kanslor_2",
+      "world": "valley",
+      "branch": "kanslor",
+      "slot": 2,
+      "color": "#FFF0A6",
+      "personality": "Ler så att solen blir lite avundsjuk.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Solis",
+          "emoji": "☀️",
+          "assetKey": "valley/kanslor_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Solstråle",
+          "emoji": "🌞",
+          "assetKey": "valley/kanslor_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Glädjespridaren",
+          "emoji": "🎈",
+          "assetKey": "valley/kanslor_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_kanslor_3",
+      "world": "valley",
+      "branch": "kanslor",
+      "slot": 3,
+      "color": "#C4E0F9",
+      "personality": "Lyssnar alltid, även på de minsta viskningarna.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Lyssnis",
+          "emoji": "👂",
+          "assetKey": "valley/kanslor_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Viskelina",
+          "emoji": "🐚",
+          "assetKey": "valley/kanslor_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Vänskapsväktaren",
+          "emoji": "🫶",
+          "assetKey": "valley/kanslor_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_mod_1",
+      "world": "valley",
+      "branch": "mod",
+      "slot": 1,
+      "color": "#FFB3A7",
+      "personality": "Vågar smaka allt, till och med blåbärssoppa med strössel.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Modis",
+          "emoji": "🦁",
+          "assetKey": "valley/mod_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Lejonungen",
+          "emoji": "🦁",
+          "assetKey": "valley/mod_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Modiga Manen",
+          "emoji": "🦁",
+          "assetKey": "valley/mod_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_mod_2",
+      "world": "valley",
+      "branch": "mod",
+      "slot": 2,
+      "color": "#B5E8E0",
+      "personality": "Dyker ner i vattnet och blåser bubblor.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Dykis",
+          "emoji": "🐠",
+          "assetKey": "valley/mod_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Dykarina",
+          "emoji": "🐬",
+          "assetKey": "valley/mod_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Havsäventyraren",
+          "emoji": "🐳",
+          "assetKey": "valley/mod_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_mod_3",
+      "world": "valley",
+      "branch": "mod",
+      "slot": 3,
+      "color": "#E0CCF7",
+      "personality": "Är inte rädd för mörkret, för den lyser själv.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Lysis",
+          "emoji": "🌟",
+          "assetKey": "valley/mod_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Glimma",
+          "emoji": "✨",
+          "assetKey": "valley/mod_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Nattstjärnan Glimma",
+          "emoji": "🌠",
+          "assetKey": "valley/mod_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_kropp_1",
+      "world": "dino",
+      "branch": "kropp",
+      "slot": 1,
+      "color": "#2FA36B",
+      "personality": "Borstar sina åttio tänder varje morgon och kväll.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Borsto",
+          "emoji": "🦖",
+          "assetKey": "dino/kropp_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Borstosaurus",
+          "emoji": "🦖",
+          "assetKey": "dino/kropp_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Borstorex den Store",
+          "emoji": "🦖",
+          "assetKey": "dino/kropp_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_kropp_2",
+      "world": "dino",
+      "branch": "kropp",
+      "slot": 2,
+      "color": "#1E88E5",
+      "personality": "Plaskar i vulkanens varma källor och tvättar sig noga.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Plaski",
+          "emoji": "🦕",
+          "assetKey": "dino/kropp_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Plaskodon",
+          "emoji": "🦕",
+          "assetKey": "dino/kropp_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Stormplaskodon",
+          "emoji": "🌊",
+          "assetKey": "dino/kropp_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_kropp_3",
+      "world": "dino",
+      "branch": "kropp",
+      "slot": 3,
+      "color": "#F4511E",
+      "personality": "Knyter rosetter med svansen.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Knytis",
+          "emoji": "🦕",
+          "assetKey": "dino/kropp_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Knytoceratops",
+          "emoji": "🦕",
+          "assetKey": "dino/kropp_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Rosettoceratops Rex",
+          "emoji": "🎀",
+          "assetKey": "dino/kropp_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_mat_1",
+      "world": "dino",
+      "branch": "mat",
+      "slot": 1,
+      "color": "#FB8C00",
+      "personality": "Kokar soppa i en grotta vid vulkanen.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Grytis",
+          "emoji": "🦖",
+          "assetKey": "dino/mat_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Grytosaurus",
+          "emoji": "🍲",
+          "assetKey": "dino/mat_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Kocko-Rex",
+          "emoji": "👨‍🍳",
+          "assetKey": "dino/mat_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_mat_2",
+      "world": "dino",
+      "branch": "mat",
+      "slot": 2,
+      "color": "#7CB342",
+      "personality": "Äter bara gröna blad, men massor av dem.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Bladis",
+          "emoji": "🦕",
+          "assetKey": "dino/mat_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Bladiplodocus",
+          "emoji": "🌿",
+          "assetKey": "dino/mat_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Jättebladiplodocus",
+          "emoji": "🦕",
+          "assetKey": "dino/mat_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_mat_3",
+      "world": "dino",
+      "branch": "mat",
+      "slot": 3,
+      "color": "#E53935",
+      "personality": "Gräddar pannkakor med sin eldandedräkt.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Pannkis",
+          "emoji": "🐉",
+          "assetKey": "dino/mat_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Pannkaksdraken",
+          "emoji": "🥞",
+          "assetKey": "dino/mat_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Flamkocken",
+          "emoji": "🔥",
+          "assetKey": "dino/mat_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_hem_1",
+      "world": "dino",
+      "branch": "hem",
+      "slot": 1,
+      "color": "#8E24AA",
+      "personality": "Bygger det prydligaste boet i hela dalen.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Bobo",
+          "emoji": "🦕",
+          "assetKey": "dino/hem_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Bobyggarosaurus",
+          "emoji": "🪺",
+          "assetKey": "dino/hem_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Mästerbyggaren Bobo",
+          "emoji": "🏰",
+          "assetKey": "dino/hem_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_hem_2",
+      "world": "dino",
+      "branch": "hem",
+      "slot": 2,
+      "color": "#00897B",
+      "personality": "Sorterar stenar efter storlek och färg.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Stenis",
+          "emoji": "🪨",
+          "assetKey": "dino/hem_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Stenosortus",
+          "emoji": "🦖",
+          "assetKey": "dino/hem_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Stenkungen Sortus",
+          "emoji": "👑",
+          "assetKey": "dino/hem_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_hem_3",
+      "world": "dino",
+      "branch": "hem",
+      "slot": 3,
+      "color": "#3949AB",
+      "personality": "Viker sina vingar lika fint som nyvikt tvätt.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Vikis",
+          "emoji": "🦅",
+          "assetKey": "dino/hem_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Vikodactyl",
+          "emoji": "🦅",
+          "assetKey": "dino/hem_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Pterovikodactyl",
+          "emoji": "🪽",
+          "assetKey": "dino/hem_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_ute_1",
+      "world": "dino",
+      "branch": "ute",
+      "slot": 1,
+      "color": "#43A047",
+      "personality": "Springer genom djungeln och vet alltid vägen hem.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Spåris",
+          "emoji": "🦖",
+          "assetKey": "dino/ute_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Spårosaurus",
+          "emoji": "🐾",
+          "assetKey": "dino/ute_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Djungelguiden",
+          "emoji": "🧭",
+          "assetKey": "dino/ute_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_ute_2",
+      "world": "dino",
+      "branch": "ute",
+      "slot": 2,
+      "color": "#FDD835",
+      "personality": "Flyger högt och spanar efter trafik.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Spanis",
+          "emoji": "🦅",
+          "assetKey": "dino/ute_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Spanodactyl",
+          "emoji": "🦅",
+          "assetKey": "dino/ute_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Himlaspanaren",
+          "emoji": "🔭",
+          "assetKey": "dino/ute_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_ute_3",
+      "world": "dino",
+      "branch": "ute",
+      "slot": 3,
+      "color": "#6D4C41",
+      "personality": "Gräver tunnlar mellan alla vulkaner.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Grävis",
+          "emoji": "⛏️",
+          "assetKey": "dino/ute_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Grävoraptor",
+          "emoji": "🦖",
+          "assetKey": "dino/ute_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Tunnelkungen",
+          "emoji": "🕳️",
+          "assetKey": "dino/ute_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_pengar_1",
+      "world": "dino",
+      "branch": "pengar",
+      "slot": 1,
+      "color": "#FFB300",
+      "personality": "Vaktar en skatt av gyllene stenar.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Guldis",
+          "emoji": "🐉",
+          "assetKey": "dino/pengar_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Guldoraptor",
+          "emoji": "🦖",
+          "assetKey": "dino/pengar_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Skattdraken Guldora",
+          "emoji": "💰",
+          "assetKey": "dino/pengar_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_pengar_2",
+      "world": "dino",
+      "branch": "pengar",
+      "slot": 2,
+      "color": "#26A69A",
+      "personality": "Byter fossil med alla på dalens marknad.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Bytis",
+          "emoji": "🦕",
+          "assetKey": "dino/pengar_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Bytosaurus",
+          "emoji": "🦕",
+          "assetKey": "dino/pengar_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Handelsmästaren",
+          "emoji": "⚖️",
+          "assetKey": "dino/pengar_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_pengar_3",
+      "world": "dino",
+      "branch": "pengar",
+      "slot": 3,
+      "color": "#C0CA33",
+      "personality": "Sparar ett blad varje dag inför vintern.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Sparis",
+          "emoji": "🦖",
+          "assetKey": "dino/pengar_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Sparoceratops",
+          "emoji": "🦖",
+          "assetKey": "dino/pengar_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Förrådskungen",
+          "emoji": "🏺",
+          "assetKey": "dino/pengar_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_kanslor_1",
+      "world": "dino",
+      "branch": "kanslor",
+      "slot": 1,
+      "color": "#EC407A",
+      "personality": "Brummar mjukt när någon är ledsen.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Brummis",
+          "emoji": "🦕",
+          "assetKey": "dino/kanslor_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Brummosaurus",
+          "emoji": "🦕",
+          "assetKey": "dino/kanslor_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Tröstaren",
+          "emoji": "💞",
+          "assetKey": "dino/kanslor_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_kanslor_2",
+      "world": "dino",
+      "branch": "kanslor",
+      "slot": 2,
+      "color": "#29B6F6",
+      "personality": "Har världens längsta hals för att kunna krama många på en gång.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Kramodon",
+          "emoji": "🦕",
+          "assetKey": "dino/kanslor_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Kramodocus",
+          "emoji": "🦕",
+          "assetKey": "dino/kanslor_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Storkramodocus",
+          "emoji": "🤗",
+          "assetKey": "dino/kanslor_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_kanslor_3",
+      "world": "dino",
+      "branch": "kanslor",
+      "slot": 3,
+      "color": "#FFA726",
+      "personality": "Delar alltid med sig av sina bär.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Delis",
+          "emoji": "🐉",
+          "assetKey": "dino/kanslor_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Delophosaurus",
+          "emoji": "🫐",
+          "assetKey": "dino/kanslor_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Vänskapsdraken",
+          "emoji": "🐉",
+          "assetKey": "dino/kanslor_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_mod_1",
+      "world": "dino",
+      "branch": "mod",
+      "slot": 1,
+      "color": "#D32F2F",
+      "personality": "Modigast i Dinodalen och vågar klättra upp på vulkanen.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Vågis",
+          "emoji": "🦖",
+          "assetKey": "dino/mod_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Vågoraptor",
+          "emoji": "🦖",
+          "assetKey": "dino/mod_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Vulkanklättraren",
+          "emoji": "🌋",
+          "assetKey": "dino/mod_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_mod_2",
+      "world": "dino",
+      "branch": "mod",
+      "slot": 2,
+      "color": "#0277BD",
+      "personality": "Dyker djupast av alla i urhavet.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Dyko",
+          "emoji": "🐊",
+          "assetKey": "dino/mod_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Dykosaurus",
+          "emoji": "🐉",
+          "assetKey": "dino/mod_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Djuphavsdraken",
+          "emoji": "🌊",
+          "assetKey": "dino/mod_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_mod_3",
+      "world": "dino",
+      "branch": "mod",
+      "slot": 3,
+      "color": "#5E35B1",
+      "personality": "Flyger genom stormar utan att blinka.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Stormis",
+          "emoji": "🐉",
+          "assetKey": "dino/mod_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Stormodactyl",
+          "emoji": "⚡",
+          "assetKey": "dino/mod_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Åskdraken",
+          "emoji": "🌩️",
+          "assetKey": "dino/mod_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_kropp_1",
+      "world": "explorer",
+      "branch": "kropp",
+      "slot": 1,
+      "color": "#14B8A6",
+      "personality": "Utrustning för den som sköter sin kropp som en rymdpilot.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Hygienkit",
+          "emoji": "🧴",
+          "assetKey": "explorer/kropp_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Expeditionskit",
+          "emoji": "🎒",
+          "assetKey": "explorer/kropp_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Astronautkit Vega",
+          "emoji": "🚀",
+          "assetKey": "explorer/kropp_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_kropp_2",
+      "world": "explorer",
+      "branch": "kropp",
+      "slot": 2,
+      "color": "#0EA5E9",
+      "personality": "En klocka som håller koll på sömn och rutiner.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Rutinklocka",
+          "emoji": "⏰",
+          "assetKey": "explorer/kropp_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Smartklocka",
+          "emoji": "⌚",
+          "assetKey": "explorer/kropp_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Kronometer Zenit",
+          "emoji": "🛰️",
+          "assetKey": "explorer/kropp_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_kropp_3",
+      "world": "explorer",
+      "branch": "kropp",
+      "slot": 3,
+      "color": "#475569",
+      "personality": "Kläder för alla väder och alla äventyr.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Regnjacka",
+          "emoji": "🧥",
+          "assetKey": "explorer/kropp_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Expeditionsjacka",
+          "emoji": "🧥",
+          "assetKey": "explorer/kropp_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Polarjacka Aurora",
+          "emoji": "❄️",
+          "assetKey": "explorer/kropp_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_mat_1",
+      "world": "explorer",
+      "branch": "mat",
+      "slot": 1,
+      "color": "#F97316",
+      "personality": "Ett kök som får plats i ryggsäcken.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Fältspis",
+          "emoji": "🔥",
+          "assetKey": "explorer/mat_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Stormkök",
+          "emoji": "🍳",
+          "assetKey": "explorer/mat_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Lägerköket Supernova",
+          "emoji": "🏕️",
+          "assetKey": "explorer/mat_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_mat_2",
+      "world": "explorer",
+      "branch": "mat",
+      "slot": 2,
+      "color": "#84CC16",
+      "personality": "Odlar mat i basens växthus.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Frölåda",
+          "emoji": "🌱",
+          "assetKey": "explorer/mat_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Växthusmodul",
+          "emoji": "🪴",
+          "assetKey": "explorer/mat_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Biodom Gaia",
+          "emoji": "🌍",
+          "assetKey": "explorer/mat_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_mat_3",
+      "world": "explorer",
+      "branch": "mat",
+      "slot": 3,
+      "color": "#F59E0B",
+      "personality": "Receptsamlingen som gör dig till basens kock.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Receptkort",
+          "emoji": "📇",
+          "assetKey": "explorer/mat_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Kockbok",
+          "emoji": "📖",
+          "assetKey": "explorer/mat_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Mästerkockens Kodex",
+          "emoji": "📜",
+          "assetKey": "explorer/mat_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_hem_1",
+      "world": "explorer",
+      "branch": "hem",
+      "slot": 1,
+      "color": "#6366F1",
+      "personality": "Håller basen i perfekt ordning.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Verktygslåda",
+          "emoji": "🧰",
+          "assetKey": "explorer/hem_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Multiverktyg",
+          "emoji": "🛠️",
+          "assetKey": "explorer/hem_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Ingenjörskit Atlas",
+          "emoji": "⚙️",
+          "assetKey": "explorer/hem_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_hem_2",
+      "world": "explorer",
+      "branch": "hem",
+      "slot": 2,
+      "color": "#0EA5E9",
+      "personality": "En robot som hjälper till, men bara när du har visat vägen.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Städdrönare",
+          "emoji": "🛸",
+          "assetKey": "explorer/hem_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Hemrobot",
+          "emoji": "🤖",
+          "assetKey": "explorer/hem_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Robot Kvasar",
+          "emoji": "🤖",
+          "assetKey": "explorer/hem_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_hem_3",
+      "world": "explorer",
+      "branch": "hem",
+      "slot": 3,
+      "color": "#14B8A6",
+      "personality": "Ett tvättsystem som klarar all expeditionslera.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Tvättmodul",
+          "emoji": "🧺",
+          "assetKey": "explorer/hem_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Torkmodul",
+          "emoji": "🌀",
+          "assetKey": "explorer/hem_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Tvättstation Orbit",
+          "emoji": "🪐",
+          "assetKey": "explorer/hem_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_ute_1",
+      "world": "explorer",
+      "branch": "ute",
+      "slot": 1,
+      "color": "#F97316",
+      "personality": "Hittar vägen även när GPS:en tystnar.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Kompass",
+          "emoji": "🧭",
+          "assetKey": "explorer/ute_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Kartbräda",
+          "emoji": "🗺️",
+          "assetKey": "explorer/ute_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Navigatör Polaris",
+          "emoji": "⭐",
+          "assetKey": "explorer/ute_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_ute_2",
+      "world": "explorer",
+      "branch": "ute",
+      "slot": 2,
+      "color": "#475569",
+      "personality": "Lyser upp de mörkaste stigarna.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Ficklampa",
+          "emoji": "🔦",
+          "assetKey": "explorer/ute_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Pannlampa",
+          "emoji": "💡",
+          "assetKey": "explorer/ute_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Strålkastare Nova",
+          "emoji": "🌟",
+          "assetKey": "explorer/ute_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_ute_3",
+      "world": "explorer",
+      "branch": "ute",
+      "slot": 3,
+      "color": "#0EA5E9",
+      "personality": "Tar dig fram i all terräng.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Terrängcykel",
+          "emoji": "🚲",
+          "assetKey": "explorer/ute_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Expeditionscykel",
+          "emoji": "🚵",
+          "assetKey": "explorer/ute_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Rover Titan",
+          "emoji": "🛰️",
+          "assetKey": "explorer/ute_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_pengar_1",
+      "world": "explorer",
+      "branch": "pengar",
+      "slot": 1,
+      "color": "#F59E0B",
+      "personality": "Ett kassaskåp för basens viktigaste resurser.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Spardosa",
+          "emoji": "💰",
+          "assetKey": "explorer/pengar_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Kassaskåp",
+          "emoji": "🔐",
+          "assetKey": "explorer/pengar_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Valv Kronos",
+          "emoji": "🏦",
+          "assetKey": "explorer/pengar_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_pengar_2",
+      "world": "explorer",
+      "branch": "pengar",
+      "slot": 2,
+      "color": "#84CC16",
+      "personality": "Räknar resurser snabbare än en superdator.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Miniräknare",
+          "emoji": "🧮",
+          "assetKey": "explorer/pengar_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Datorplatta",
+          "emoji": "💻",
+          "assetKey": "explorer/pengar_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Superdator Orakel",
+          "emoji": "🖥️",
+          "assetKey": "explorer/pengar_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_pengar_3",
+      "world": "explorer",
+      "branch": "pengar",
+      "slot": 3,
+      "color": "#F43F5E",
+      "personality": "Märket för den som gör smarta affärer.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Handelsmärke Brons",
+          "emoji": "🥉",
+          "assetKey": "explorer/pengar_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Handelsmärke Silver",
+          "emoji": "🥈",
+          "assetKey": "explorer/pengar_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Handelsmärke Guld",
+          "emoji": "🥇",
+          "assetKey": "explorer/pengar_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_kanslor_1",
+      "world": "explorer",
+      "branch": "kanslor",
+      "slot": 1,
+      "color": "#F43F5E",
+      "personality": "Radion som håller kontakten med hela teamet.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Walkie-talkie",
+          "emoji": "📻",
+          "assetKey": "explorer/kanslor_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Basradio",
+          "emoji": "📡",
+          "assetKey": "explorer/kanslor_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Kommunikationscentral Echo",
+          "emoji": "🛰️",
+          "assetKey": "explorer/kanslor_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_kanslor_2",
+      "world": "explorer",
+      "branch": "kanslor",
+      "slot": 2,
+      "color": "#6366F1",
+      "personality": "Märket för den som är en riktig lagkamrat.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Lagkamratsmärke",
+          "emoji": "🎖️",
+          "assetKey": "explorer/kanslor_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Teamledarmärke",
+          "emoji": "🏅",
+          "assetKey": "explorer/kanslor_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Kaptensmärke",
+          "emoji": "⭐",
+          "assetKey": "explorer/kanslor_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_kanslor_3",
+      "world": "explorer",
+      "branch": "kanslor",
+      "slot": 3,
+      "color": "#14B8A6",
+      "personality": "Ett hjärta av titan, starkt men mjukt inuti.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Vänskapsband",
+          "emoji": "🤝",
+          "assetKey": "explorer/kanslor_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Vänskapssköld",
+          "emoji": "🛡️",
+          "assetKey": "explorer/kanslor_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Hjärtat av Titan",
+          "emoji": "💎",
+          "assetKey": "explorer/kanslor_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_mod_1",
+      "world": "explorer",
+      "branch": "mod",
+      "slot": 1,
+      "color": "#F97316",
+      "personality": "Raketen som tar dig dit ingen har varit förut.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Modellraket",
+          "emoji": "🚀",
+          "assetKey": "explorer/mod_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Testraket",
+          "emoji": "🚀",
+          "assetKey": "explorer/mod_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Rymdraket Ikaros",
+          "emoji": "🌌",
+          "assetKey": "explorer/mod_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_mod_2",
+      "world": "explorer",
+      "branch": "mod",
+      "slot": 2,
+      "color": "#0EA5E9",
+      "personality": "Dykutrustning för de djupaste uppdragen.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Snorkel",
+          "emoji": "🤿",
+          "assetKey": "explorer/mod_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Dykmask",
+          "emoji": "🤿",
+          "assetKey": "explorer/mod_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Ubåt Abyss",
+          "emoji": "🌊",
+          "assetKey": "explorer/mod_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_mod_3",
+      "world": "explorer",
+      "branch": "mod",
+      "slot": 3,
+      "color": "#475569",
+      "personality": "Rangen för den som vågar mest.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Rekryt",
+          "emoji": "🎒",
+          "assetKey": "explorer/mod_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Utforskare",
+          "emoji": "🗺️",
+          "assetKey": "explorer/mod_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Kommendör",
+          "emoji": "🧑‍🚀",
+          "assetKey": "explorer/mod_3_s3"
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "id": "valley_special_m5",
+      "world": "valley",
+      "name": "Stjärnkycklingen",
+      "emoji": "🐣",
+      "assetKey": "valley/special_m5",
+      "personality": "Kläcktes ur en stjärna, precis som dina första fem.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m5"
+      }
+    },
+    {
+      "id": "valley_special_m10",
+      "world": "valley",
+      "name": "Regnbågsenhörningen",
+      "emoji": "🦄",
+      "assetKey": "valley/special_m10",
+      "personality": "Galopperar på regnbågar över dalen.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m10"
+      }
+    },
+    {
+      "id": "valley_special_m25",
+      "world": "valley",
+      "name": "Molnlammet",
+      "emoji": "🐑",
+      "assetKey": "valley/special_m25",
+      "personality": "Svävar runt på mjuka moln och bräker glatt.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m25"
+      }
+    },
+    {
+      "id": "valley_special_m50",
+      "world": "valley",
+      "name": "Månkaninen",
+      "emoji": "🐰",
+      "assetKey": "valley/special_m50",
+      "personality": "Hoppar ända upp till månen och tillbaka.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m50"
+      }
+    },
+    {
+      "id": "valley_special_m100",
+      "world": "valley",
+      "name": "Guldfjärilen",
+      "emoji": "🦋",
+      "assetKey": "valley/special_m100",
+      "personality": "Vingarna glittrar av hundra stjärnor.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m100"
+      }
+    },
+    {
+      "id": "valley_special_m200",
+      "world": "valley",
+      "name": "Kristalldraken Pip",
+      "emoji": "🐲",
+      "assetKey": "valley/special_m200",
+      "personality": "En liten drake av ren kristall som piper när den är glad.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m200"
+      }
+    },
+    {
+      "id": "valley_special_m365",
+      "world": "valley",
+      "name": "Äggdalens väktare",
+      "emoji": "👑",
+      "assetKey": "valley/special_m365",
+      "personality": "Ett helt års stjärnor har väckt dalens väktare!",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m365"
+      }
+    },
+    {
+      "id": "valley_special_first_spark",
+      "world": "valley",
+      "name": "Glödis",
+      "emoji": "🔥",
+      "assetKey": "valley/special_first_spark",
+      "personality": "Föddes första gången du försökte.",
+      "unlock": {
+        "type": "first_spark"
+      }
+    },
+    {
+      "id": "valley_special_family_goal",
+      "world": "valley",
+      "name": "Familjefågeln",
+      "emoji": "🐦",
+      "assetKey": "valley/special_family_goal",
+      "personality": "Flyger bara när hela familjen hjälps åt.",
+      "unlock": {
+        "type": "family_goal"
+      }
+    },
+    {
+      "id": "valley_special_graduation",
+      "world": "valley",
+      "name": "Examensugglan",
+      "emoji": "🦉",
+      "assetKey": "valley/special_graduation",
+      "personality": "Har klarat Äggdalen och är redo för nya äventyr.",
+      "unlock": {
+        "type": "graduation"
+      }
+    },
+    {
+      "id": "dino_special_m5",
+      "world": "dino",
+      "name": "Lilla fossilfyndet",
+      "emoji": "🦴",
+      "assetKey": "dino/special_m5",
+      "personality": "Ditt allra första stora fynd i Dinodalen.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m5"
+      }
+    },
+    {
+      "id": "dino_special_m10",
+      "world": "dino",
+      "name": "Kristallraptorn",
+      "emoji": "💎",
+      "assetKey": "dino/special_m10",
+      "personality": "Glittrar i solen och springer snabbare än ljuset.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m10"
+      }
+    },
+    {
+      "id": "dino_special_m25",
+      "world": "dino",
+      "name": "Vulkanväktaren",
+      "emoji": "🌋",
+      "assetKey": "dino/special_m25",
+      "personality": "Håller vakt vid den stora vulkanen.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m25"
+      }
+    },
+    {
+      "id": "dino_special_m50",
+      "world": "dino",
+      "name": "Meteorhornet",
+      "emoji": "☄️",
+      "assetKey": "dino/special_m50",
+      "personality": "Har ett horn av stjärnsten från rymden.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m50"
+      }
+    },
+    {
+      "id": "dino_special_m100",
+      "world": "dino",
+      "name": "Guldrexen",
+      "emoji": "🦖",
+      "assetKey": "dino/special_m100",
+      "personality": "Den mest sällsynta dinon i hela dalen.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m100"
+      }
+    },
+    {
+      "id": "dino_special_m200",
+      "world": "dino",
+      "name": "Urtidsdraken",
+      "emoji": "🐉",
+      "assetKey": "dino/special_m200",
+      "personality": "Har sovit i en miljon år och vaknade för dig.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m200"
+      }
+    },
+    {
+      "id": "dino_special_m365",
+      "world": "dino",
+      "name": "Dinodalens kejsare",
+      "emoji": "👑",
+      "assetKey": "dino/special_m365",
+      "personality": "Ett helt års stjärnor har gjort dig till dalens hjälte!",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m365"
+      }
+    },
+    {
+      "id": "dino_special_first_spark",
+      "world": "dino",
+      "name": "Glödägget",
+      "emoji": "🥚",
+      "assetKey": "dino/special_first_spark",
+      "personality": "Började glöda första gången du försökte.",
+      "unlock": {
+        "type": "first_spark"
+      }
+    },
+    {
+      "id": "dino_special_family_goal",
+      "world": "dino",
+      "name": "Flockledaren",
+      "emoji": "🦕",
+      "assetKey": "dino/special_family_goal",
+      "personality": "Leder flocken när hela familjen hjälps åt.",
+      "unlock": {
+        "type": "family_goal"
+      }
+    },
+    {
+      "id": "dino_special_graduation",
+      "world": "dino",
+      "name": "Fossilmedaljen",
+      "emoji": "🏅",
+      "assetKey": "dino/special_graduation",
+      "personality": "Bevis på att du har utforskat hela Dinodalen.",
+      "unlock": {
+        "type": "graduation"
+      }
+    },
+    {
+      "id": "explorer_special_m5",
+      "world": "explorer",
+      "name": "Bronsstjärnan",
+      "emoji": "⭐",
+      "assetKey": "explorer/special_m5",
+      "personality": "Ditt första utmärkelsetecken på basen.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m5"
+      }
+    },
+    {
+      "id": "explorer_special_m10",
+      "world": "explorer",
+      "name": "Silverkompassen",
+      "emoji": "🧭",
+      "assetKey": "explorer/special_m10",
+      "personality": "Pekar alltid mot nästa äventyr.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m10"
+      }
+    },
+    {
+      "id": "explorer_special_m25",
+      "world": "explorer",
+      "name": "Guldmärket",
+      "emoji": "🏅",
+      "assetKey": "explorer/special_m25",
+      "personality": "Bärs bara av basens mest självständiga utforskare.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m25"
+      }
+    },
+    {
+      "id": "explorer_special_m50",
+      "world": "explorer",
+      "name": "Satelliten",
+      "emoji": "🛰️",
+      "assetKey": "explorer/special_m50",
+      "personality": "Din egen satellit i omloppsbana.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m50"
+      }
+    },
+    {
+      "id": "explorer_special_m100",
+      "world": "explorer",
+      "name": "Rymdstationen",
+      "emoji": "🛸",
+      "assetKey": "explorer/special_m100",
+      "personality": "Hundra stjärnor gav dig en egen rymdstation.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m100"
+      }
+    },
+    {
+      "id": "explorer_special_m200",
+      "world": "explorer",
+      "name": "Kometjägaren",
+      "emoji": "☄️",
+      "assetKey": "explorer/special_m200",
+      "personality": "Ett skepp som kan följa efter kometer.",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m200"
+      }
+    },
+    {
+      "id": "explorer_special_m365",
+      "world": "explorer",
+      "name": "Legendarisk utforskare",
+      "emoji": "🏆",
+      "assetKey": "explorer/special_m365",
+      "personality": "Ett helt års stjärnor. Din rang är legendarisk!",
+      "unlock": {
+        "type": "milestone",
+        "milestoneId": "m365"
+      }
+    },
+    {
+      "id": "explorer_special_first_spark",
+      "world": "explorer",
+      "name": "Första gnistan",
+      "emoji": "🔥",
+      "assetKey": "explorer/special_first_spark",
+      "personality": "Tändes första gången du försökte.",
+      "unlock": {
+        "type": "first_spark"
+      }
+    },
+    {
+      "id": "explorer_special_family_goal",
+      "world": "explorer",
+      "name": "Basens flagga",
+      "emoji": "🚩",
+      "assetKey": "explorer/special_family_goal",
+      "personality": "Hissas när hela familjen når målet tillsammans.",
+      "unlock": {
+        "type": "family_goal"
+      }
+    },
+    {
+      "id": "explorer_special_graduation",
+      "world": "explorer",
+      "name": "Utforskardiplomet",
+      "emoji": "📜",
+      "assetKey": "explorer/special_graduation",
+      "personality": "Bevis på att du har klarat hela basen.",
+      "unlock": {
+        "type": "graduation"
+      }
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+/**
+ * Calendar helpers. Day keys are 'YYYY-MM-DD' strings in the family's time zone,
+ * which compare correctly as plain strings.
+ */
+
+interface LocalParts {
+  year: number;
+  month: number;
+  day: number;
+  hour: number;
+}
+
+const formatterCache = new Map<string, Intl.DateTimeFormat>();
+
+function formatterFor(timeZone: string): Intl.DateTimeFormat | null {
+  const cached = formatterCache.get(timeZone);
+  if (cached) return cached;
+  try {
+    const formatter = new Intl.DateTimeFormat('en-US', {
+      timeZone,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      hourCycle: 'h23',
+    });
+    formatterCache.set(timeZone, formatter);
+    return formatter;
+  } catch {
+    return null;
+  }
+}
+
+export function localParts(iso: string, timeZone: string): LocalParts {
+  const date = new Date(iso);
+  const formatter = formatterFor(timeZone);
+  if (formatter) {
+    const parts = formatter.formatToParts(date);
+    const get = (type: string): number => Number(parts.find((p) => p.type === type)?.value ?? NaN);
+    const result = { year: get('year'), month: get('month'), day: get('day'), hour: get('hour') % 24 };
+    if (!Number.isNaN(result.year) && !Number.isNaN(result.day)) return result;
+  }
+  // Fallback for engines without full Intl time zone support: device local time.
+  return {
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
+    day: date.getDate(),
+    hour: date.getHours(),
+  };
+}
+
+function pad(n: number): string {
+  return n < 10 ? `0${n}` : String(n);
+}
+
+export function toDayKey(year: number, month: number, day: number): string {
+  return `${year}-${pad(month)}-${pad(day)}`;
+}
+
+export function dayKey(iso: string, timeZone: string): string {
+  const p = localParts(iso, timeZone);
+  return toDayKey(p.year, p.month, p.day);
+}
+
+function parseDayKey(key: string): { year: number; month: number; day: number } {
+  const [year, month, day] = key.split('-').map(Number);
+  return { year, month, day };
+}
+
+export function addDays(key: string, days: number): string {
+  const { year, month, day } = parseDayKey(key);
+  const date = new Date(Date.UTC(year, month - 1, day + days));
+  return toDayKey(date.getUTCFullYear(), date.getUTCMonth() + 1, date.getUTCDate());
+}
+
+/** 0 = Monday ... 6 = Sunday */
+export function weekdayIndex(key: string): number {
+  const { year, month, day } = parseDayKey(key);
+  const jsDay = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
+  return (jsDay + 6) % 7;
+}
+
+/** Monday of the week containing the given instant. */
+export function weekStartKey(iso: string, timeZone: string): string {
+  const key = dayKey(iso, timeZone);
+  return addDays(key, -weekdayIndex(key));
+}
+
+export function isInWeek(iso: string, weekStart: string, timeZone: string): boolean {
+  const key = dayKey(iso, timeZone);
+  return key >= weekStart && key < addDays(weekStart, 7);
+}
+
+/** True when the week has reached Sunday evening (or later) in the family time zone. */
+export function isWeekClosed(weekStart: string, nowIso: string, timeZone: string, rollupHour: number): boolean {
+  const today = dayKey(nowIso, timeZone);
+  const sunday = addDays(weekStart, 6);
+  if (today > sunday) return true;
+  if (today < sunday) return false;
+  return localParts(nowIso, timeZone).hour >= rollupHour;
+}
+
+export function daysBetween(fromIso: string, toIso: string): number {
+  return (new Date(toIso).getTime() - new Date(fromIso).getTime()) / 86_400_000;
+}

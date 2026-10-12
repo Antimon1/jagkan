@@ -1,56 +1,75 @@
-# Welcome to your Expo app 👋
+# JagKan!
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+En app där barn 4–13 år blir mer självständiga genom vardagsutmaningar. Barnet
+värmer ett ägg med försök (gnistor 🔥), klarar utmaningen och får en stjärna ⭐
+när en vuxen godkänner. Stjärnorna kläcker och utvecklar varelser, och kan bytas
+mot belöningar som föräldern bestämmer. Hela specifikationen finns i
+[docs/JagKan_spec.md](docs/JagKan_spec.md).
 
-## Get started
+## Prova
 
-1. Install dependencies
+- **Webbförhandsvisning:** <https://antimon1.github.io/jagkan/> – välj
+  "Utforska med en exempelfamilj". Allt sparas bara i webbläsaren.
+- **Lokalt:**
 
-   ```bash
-   npm install
-   ```
+  ```bash
+  npm install
+  npx expo start        # tryck w för webben, eller skanna QR-koden
+  ```
 
-2. Start the app
+  Kamera, notiser och köp kräver en development build (`npx expo run:ios|android`
+  eller `npx eas-cli build --profile development`).
 
-   ```bash
-   npx expo start
-   ```
+## Läget
 
-In the output, you'll find options to open the app in a
+| Del | Status |
+|---|---|
+| Spelmotor (gnistor, stjärnor, kläckning, milstolpar, belöningar, tävlingar, världar) | Klar, ~94 % testtäckning |
+| Föräldravy, barnvy, onboarding, parkoppling, album, inställningar | Klar |
+| Uppläsning (sv-SE), ljud, animationer, föräldraspärr (PIN) | Klar |
+| Backend: Supabase-schema, RLS, edge functions, AI (Claude), RevenueCat-webhook | Klar i koden, behöver ett Supabase-projekt ([docs/backend.md](docs/backend.md)) |
+| Grafik | Platshållare (vektor) tills riktig grafik tas fram |
+| App Store / Google Play | Kräver utvecklarkonton, EAS och listningar |
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Utan Supabase körs appen i **lokalt läge**: allt på en enhet, där barn och
+föräldrar delar enheten och föräldraläget skyddas med PIN.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Kommandon
 
-## Get a fresh project
+| Kommando | Vad |
+|---|---|
+| `npx expo start` | Startar utvecklingsservern |
+| `npm test` | Enhetstester (Jest) |
+| `npm run test:db` | Databastester mot riktig Postgres (PGlite) |
+| `npm run typecheck` / `npm run lint` | Typkontroll och lint |
+| `npm run verify` | Allt ovan, plus kontroll av genererade filer |
+| `npm run sync:shared` | Kopierar motorn till edge functions (efter ändringar i `src/domain` eller `src/backend`) |
+| `npm run seed:sql -- --new` | Ny katalogmigration efter ändringar i `seed/*.json` |
+| `npm run build:web` | Webbexport till `dist/` |
 
-When you're ready, run:
+## Struktur
 
-```bash
-npm run reset-project
+```
+src/app/          skärmar (Expo Router): welcome, onboarding, parent, child, pair
+src/domain/       spelmotorn – ren TypeScript, körs både i appen och på servern
+src/backend/      serverlogik utan Deno-beroenden (commit, AI-prompter, notiser, RevenueCat)
+src/features/     funktioner per område (barn, varelser, album, AI …)
+src/state/        lokal och molnbaserad backend, offline-kö
+src/lib/          i18n (svenska), lagring, tal, ljud, media, Supabase-klient
+seed/             utmaningsbibliotek, varelser, milstolpar, belöningsförslag
+supabase/         migrationer, edge functions och databastester
+docs/             specifikation och backend-guide
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Utveckla från mobilen
 
-### Other setup steps
+Repot är kopplat till Claude Code. Öppna <https://claude.ai/code>, välj repot
+`jagkan` och beskriv ändringen. Claude arbetar i en egen gren och öppnar en pull
+request; CI kör alla tester, och när du slår ihop till `main` byggs
+webbförhandsvisningen om automatiskt.
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+## Integritet
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Foton och videor av barnen sparas bara på enheten där de togs och laddas aldrig
+upp. Barn har inga konton: bara förnamn och födelsemånad. Ingen reklam och ingen
+tredjepartsanalys.

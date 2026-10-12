@@ -1,42 +1,92 @@
 {
   "expo": {
-    "name": "jagkan",
+    "name": "JagKan!",
     "slug": "jagkan",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "jagkan",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#FBF7F0",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "bundleIdentifier": "se.jagkan.app",
+      "supportsTablet": true,
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
+      "package": "se.jagkan.app",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#FFE1EC",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "blockedPermissions": ["android.permission.RECORD_AUDIO"]
     },
     "web": {
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "output": "single",
+      "favicon": "./assets/images/favicon.png",
+      "name": "JagKan!",
+      "shortName": "JagKan!",
+      "lang": "sv",
+      "themeColor": "#5B3FD9",
+      "backgroundColor": "#FBF7F0"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#FFF4E8",
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "imageWidth": 180
+        }
+      ],
+      "expo-audio",
+      "expo-sharing",
+      "expo-secure-store",
+      "expo-localization",
+      "expo-apple-authentication",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "JagKan! använder kameran för att skanna kopplingskoden och ta foton till samlarkorten. Fotona sparas bara på den här enheten.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "JagKan! behöver dina bilder för att lägga till foton på samlarkorten. Bilderna lämnar aldrig enheten.",
+          "cameraPermission": "JagKan! använder kameran för att ta foton till samlarkorten. Fotona sparas bara på den här enheten.",
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "JagKan! behöver åtkomst för att spara albumets foton i ditt bildbibliotek.",
+          "savePhotosPermission": "JagKan! sparar albumets foton i ditt bildbibliotek när du ber om det.",
+          "isAccessMediaLocationEnabled": false
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#5B3FD9"
         }
       ]
     ],
     "experiments": {
-      "typedRoutes": true,
+      "typedRoutes": false,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {}
     }
   }
 }

@@ -1,0 +1,119 @@
+import type { Command } from '../commands';
+import { cleanIcon, cleanText, fail, isIntInRange, type HandlerResult } from '../guards';
+import { familyLimits } from '../plan';
+import { availableStars, spendableStars } from '../stars';
+import { celebrate, emit, patchState, replaceById, type Tx } from '../tx';
+import type { EngineContext, Reward, RewardRequest, StarEntry } from '../types';
+
+type Cmd<T extends Command['type']> = Extract<Command, { type: T }>;
+
+const TITLE_MAX = 60;
+const COST_MAX = 1000;
+
+export function createReward(tx: Tx, cmd: Cmd<'createReward'>, ctx: EngineContext): HandlerResult {
+  const { state } = tx;
+  const title = cleanText(cmd.title, TITLE_MAX);
+  const icon = cleanIcon(cmd.icon);
+  if (!title || !icon || !isIntInRange(cmd.costStars, 1, COST_MAX)) return fail('invalid_input');
+  if (cmd.childId !== null && !state.children.some((c) => c.id === cmd.childId)) return fail('not_found', 'child');
+  const activeRewards = state.rewards.filter((r) => r.active).length;
+  if (activeRewards >= familyLimits(state).maxRewards) return fail('plus_required');
+  const reward: Reward = {
+    id: ctx.newId(),
+    familyId: state.family.id,
+    title,
+    icon,
+    costStars: cmd.costStars,
+    childId: cmd.childId,
+    active: true,
+    createdAt: ctx.now,
+  };
+  return patchState(tx, { rewards: [...state.rewards, reward] });
+}
+
+export function updateReward(tx: Tx, cmd: Cmd<'updateReward'>): HandlerResult {
+  const reward = tx.state.rewards.find((r) => r.id === cmd.rewardId);
+  if (!reward) return fail('not_found');
+  const title = cmd.title === undefined ? reward.title : cleanText(cmd.title, TITLE_MAX);
+  const icon = cmd.icon === undefined ? reward.icon : cleanIcon(cmd.icon);
+  const costStars = cmd.costStars ?? reward.costStars;
+  const childId = cmd.childId === undefined ? reward.childId : cmd.childId;
+  if (!title || !icon || !isIntInRange(costStars, 1, COST_MAX)) return fail('invalid_input');
+  if (childId !== null && !tx.state.children.some((c) => c.id === childId)) return fail('not_found', 'child');
+  return patchState(tx, { rewards: replaceById(tx.state.rewards, reward.id, { title, icon, costStars, childId }) });
+}
+
+export function archiveReward(tx: Tx, cmd: Cmd<'archiveReward'>): HandlerResult {
+  if (!tx.state.rewards.some((r) => r.id === cmd.rewardId)) return fail('not_found');
+  return patchState(tx, {
+    rewards: replaceById(tx.state.rewards, cmd.rewardId, { active: false }),
+    rewardRequests: tx.state.rewardRequests.map((r) =>
+      r.rewardId === cmd.rewardId && r.status === 'requested' ? { ...r, status: 'declined' } : r,
+    ),
+  });
+}
+
+/** Child taps "Jag vill ha den här!" (spec 7). Stars are reserved until a parent confirms. */
+export function requestReward(tx: Tx, cmd: Cmd<'requestReward'>, ctx: EngineContext): HandlerResult {
+  const { state } = tx;
+  const reward = state.rewards.find((r) => r.id === cmd.rewardId && r.active);
+  if (!reward) return fail('not_found');
+  if (!state.children.some((c) => c.id === cmd.childId)) return fail('not_found', 'child');
+  if (reward.childId !== null && reward.childId !== cmd.childId) return fail('forbidden');
+  const pending = state.rewardRequests.some(
+    (r) => r.rewardId === reward.id && r.childId === cmd.childId && r.status === 'requested',
+  );
+  if (pending) return fail('already_requested');
+  if (availableStars(state, cmd.childId) < reward.costStars) return fail('not_enough_stars');
+  const request: RewardRequest = {
+    id: ctx.newId(),
+    familyId: state.family.id,
+    rewardId: reward.id,
+    childId: cmd.childId,
+    costStars: reward.costStars,
+    status: 'requested',
+    createdAt: ctx.now,
+    resolvedAt: null,
+  };
+  const result = patchState(tx, { rewardRequests: [...state.rewardRequests, request] });
+  return emit(result, { type: 'reward_requested', childId: cmd.childId, requestId: request.id });
+}
+
+export function resolveRewardRequest(tx: Tx, cmd: Cmd<'resolveRewardRequest'>, ctx: EngineContext): HandlerResult {
+  const { state } = tx;
+  const request = state.rewardRequests.find((r) => r.id === cmd.requestId);
+  if (!request) return fail('not_found');
+  if (request.status !== 'requested') return fail('invalid_status');
+
+  if (!cmd.confirm) {
+    const declined = patchState(tx, {
+      rewardRequests: replaceById(state.rewardRequests, request.id, { status: 'declined', resolvedAt: ctx.now }),
+    });
+    return emit(declined, { type: 'reward_resolved', childId: request.childId, requestId: request.id, confirmed: false });
+  }
+
+  if (spendableStars(state, request.childId) < request.costStars) return fail('not_enough_stars');
+  const reward = state.rewards.find((r) => r.id === request.rewardId);
+  const entry: StarEntry = {
+    id: ctx.newId(),
+    familyId: state.family.id,
+    childId: request.childId,
+    delta: -request.costStars,
+    reason: 'reward_redeem',
+    refId: request.id,
+    branch: null,
+    world: null,
+    note: reward?.title ?? null,
+    createdAt: ctx.now,
+  };
+  let result = patchState(tx, {
+    ledger: [...state.ledger, entry],
+    rewardRequests: replaceById(state.rewardRequests, request.id, { status: 'confirmed', resolvedAt: ctx.now }),
+  });
+  result = celebrate(result, ctx, request.childId, 'reward_confirmed', {
+    rewardId: request.rewardId,
+    title: reward?.title ?? '',
+    icon: reward?.icon ?? '🎁',
+  });
+  return emit(result, { type: 'reward_resolved', childId: request.childId, requestId: request.id, confirmed: true });
+}

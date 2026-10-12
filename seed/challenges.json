@@ -1,0 +1,3078 @@
+[
+  {
+    "id": "kropp_blixtlas_01",
+    "branch": "kropp",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Dra upp blixtlåset själv",
+    "titleParent": "Dra upp blixtlåset på jackan själv",
+    "icon": "🧥",
+    "parentTip": "Visa hur man hakar i nederdelen först. Beröm försöken!",
+    "repeatable": false,
+    "tags": [
+      "påklädning",
+      "finmotorik"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "kropp_kla_pa_01",
+    "branch": "kropp",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 2,
+    "titleChild": "Klä på mig själv på morgonen",
+    "titleParent": "Klä på sig själv på morgonen med framlagda kläder",
+    "icon": "👕",
+    "parentTip": "Lägg fram kläderna i rätt ordning kvällen innan. Hjälp bara till med det allra svåraste.",
+    "repeatable": false,
+    "tags": [
+      "påklädning",
+      "morgon"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "kropp_borsta_tander_01",
+    "branch": "kropp",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Borsta tänderna själv",
+    "titleParent": "Borsta tänderna själv, förälder kollar efteråt",
+    "icon": "🪥",
+    "parentTip": "Låt barnet borsta först och \"kontrollborsta\" sedan. En låt eller ett timglas gör två minuter roligare.",
+    "repeatable": false,
+    "tags": [
+      "hygien",
+      "tänder"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_tvatta_hander_01",
+    "branch": "kropp",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Tvätta händerna utan påminnelse",
+    "titleParent": "Tvätta händerna före maten utan att någon påminner",
+    "icon": "🧼",
+    "parentTip": "Sjung en kort sång medan händerna tvålas in, då blir det lagom länge. Beröm när det sker av sig självt!",
+    "repeatable": true,
+    "tags": [
+      "hygien",
+      "vana"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_skor_kardborre_01",
+    "branch": "kropp",
+    "ageMin": 4,
+    "ageMax": 5,
+    "difficulty": 1,
+    "titleChild": "Ta på mig skorna själv",
+    "titleParent": "Ta på sig skor med kardborre själv",
+    "icon": "👟",
+    "parentTip": "Klipp en bild på mitten och lägg en halva i varje sko, så syns det lätt vilken sko som är höger och vänster.",
+    "repeatable": false,
+    "tags": [
+      "påklädning"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_snyta_01",
+    "branch": "kropp",
+    "ageMin": 4,
+    "ageMax": 5,
+    "difficulty": 1,
+    "titleChild": "Snyta mig själv",
+    "titleParent": "Snyta sig själv och slänga pappret",
+    "icon": "🤧",
+    "parentTip": "Öva först att blåsa ut luft genom näsan som en liten drake. Ha papper där barnet når.",
+    "repeatable": false,
+    "tags": [
+      "hygien"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_dricka_vatten_01",
+    "branch": "kropp",
+    "ageMin": 4,
+    "ageMax": 5,
+    "difficulty": 1,
+    "titleChild": "Dricka vatten själv ur glas",
+    "titleParent": "Hämta och dricka vatten ur ett vanligt glas",
+    "icon": "💧",
+    "parentTip": "Ställ en liten kanna och ett glas på barnets höjd. Lite spill hör till!",
+    "repeatable": false,
+    "tags": [
+      "självständighet",
+      "dryck"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_kamma_har_01",
+    "branch": "kropp",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Borsta mitt hår",
+    "titleParent": "Borsta eller kamma håret själv",
+    "icon": "💇",
+    "parentTip": "Börja längst ner så trasslar det mindre. Fixa resten tillsammans och beröm försöket.",
+    "repeatable": false,
+    "tags": [
+      "hygien",
+      "hår"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_jacktricket_01",
+    "branch": "kropp",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 2,
+    "titleChild": "Ta på mig jackan själv",
+    "titleParent": "Ta på sig jackan med \"jacktricket\"",
+    "icon": "🙆",
+    "parentTip": "Lägg jackan på golvet med insidan upp, stoppa in armarna och sväng den över huvudet. Magiskt!",
+    "repeatable": false,
+    "tags": [
+      "påklädning",
+      "finmotorik"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_toa_sjalv_01",
+    "branch": "kropp",
+    "ageMin": 4,
+    "ageMax": 5,
+    "difficulty": 2,
+    "titleChild": "Gå på toa helt själv",
+    "titleParent": "Gå på toaletten, torka sig och spola själv",
+    "icon": "🚽",
+    "parentTip": "En pall vid toaletten hjälper. Visa ungefär hur mycket papper som behövs.",
+    "repeatable": false,
+    "tags": [
+      "hygien",
+      "toalett"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_pyjamas_01",
+    "branch": "kropp",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Byta om till pyjamas själv",
+    "titleParent": "Byta om till pyjamas och lägga dagkläderna på plats",
+    "icon": "🌙",
+    "parentTip": "Gör det till en del av kvällsrutinen. En bild på rutinen på väggen hjälper den som inte kan läsa.",
+    "repeatable": false,
+    "tags": [
+      "kväll",
+      "påklädning"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_bre_smorgas_01",
+    "branch": "mat",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Bre min egen smörgås",
+    "titleParent": "Bre smör på sin smörgås med smörkniv",
+    "icon": "🥪",
+    "parentTip": "Använd en smörkniv utan udd och mjukt smör. Det får bli lite ojämnt!",
+    "repeatable": false,
+    "tags": [
+      "frukost",
+      "finmotorik"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "mat_halla_mjolk_01",
+    "branch": "mat",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Hälla upp mjölk utan att spilla",
+    "titleParent": "Hälla upp mjölk ur en liten kanna",
+    "icon": "🥛",
+    "parentTip": "Börja med en liten kanna med lite i. Spill är en del av träningen, ha en trasa redo.",
+    "repeatable": false,
+    "tags": [
+      "dryck",
+      "finmotorik"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "mat_duka_tallrik_01",
+    "branch": "mat",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Duka fram min tallrik",
+    "titleParent": "Duka fram sin egen tallrik, sitt glas och sina bestick",
+    "icon": "🍽️",
+    "parentTip": "Ha barnets porslin i en låg låda eller hylla så att barnet når själv.",
+    "repeatable": false,
+    "tags": [
+      "måltid"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_skala_frukt_01",
+    "branch": "mat",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Skala en banan eller mandarin",
+    "titleParent": "Skala en banan eller en mandarin själv",
+    "icon": "🍌",
+    "parentTip": "Gör ett litet hack i skalet för att komma igång. Resten klarar barnet!",
+    "repeatable": false,
+    "tags": [
+      "frukt",
+      "finmotorik"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_kniv_gaffel_01",
+    "branch": "mat",
+    "ageMin": 5,
+    "ageMax": 6,
+    "difficulty": 2,
+    "titleChild": "Äta med kniv och gaffel",
+    "titleParent": "Äta en hel måltid med kniv och gaffel",
+    "icon": "🍴",
+    "parentTip": "Visa \"kniven i den starka handen\". Mjuk mat som fiskpinnar är bra att öva på.",
+    "repeatable": false,
+    "tags": [
+      "måltid",
+      "finmotorik"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_stalla_in_disk_01",
+    "branch": "mat",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Ställa in disken",
+    "titleParent": "Ställa in sin tallrik i diskmaskinen eller på diskbänken",
+    "icon": "🧽",
+    "parentTip": "Tacka för hjälpen och visa var allt ska stå.",
+    "repeatable": false,
+    "tags": [
+      "måltid",
+      "ordning"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_skolja_frukt_01",
+    "branch": "mat",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Skölja frukt och grönsaker",
+    "titleParent": "Skölja frukt och grönsaker under kranen",
+    "icon": "🍎",
+    "parentTip": "Låt barnet stå på en pall vid diskhon och skölja i en skål.",
+    "repeatable": false,
+    "tags": [
+      "frukt"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_flingor_01",
+    "branch": "mat",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Hälla upp flingor själv",
+    "titleParent": "Hälla flingor och mjölk i skålen själv",
+    "icon": "🥣",
+    "parentTip": "Häll över flingorna i en burk med lock som är lätt att hantera.",
+    "repeatable": false,
+    "tags": [
+      "frukost"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_rora_smet_01",
+    "branch": "mat",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Röra i smeten",
+    "titleParent": "Hjälpa till att mäta och röra när ni bakar",
+    "icon": "🧁",
+    "parentTip": "Låt barnet hälla i det som redan är avmätt. Ugnen sköter den vuxna.",
+    "repeatable": false,
+    "tags": [
+      "bakning"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_fram_ur_kylen_01",
+    "branch": "mat",
+    "ageMin": 5,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Ta fram frukost ur kylen",
+    "titleParent": "Plocka fram frukostsakerna ur kylskåpet",
+    "icon": "🧀",
+    "parentTip": "Placera frukostsakerna på en hylla i barnets höjd.",
+    "repeatable": false,
+    "tags": [
+      "frukost",
+      "ordning"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_plocka_leksaker_01",
+    "branch": "hem",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Plocka undan mina leksaker",
+    "titleParent": "Plocka undan sina leksaker efter leken",
+    "icon": "🧸",
+    "parentTip": "Lådor med bilder på vad som ska ligga i dem gör det lätt. Plocka gärna tillsammans första gångerna.",
+    "repeatable": false,
+    "tags": [
+      "ordning",
+      "lek"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "hem_hanga_jacka_01",
+    "branch": "hem",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Hänga upp jackan",
+    "titleParent": "Hänga upp jackan på sin egen krok",
+    "icon": "🪝",
+    "parentTip": "Sätt upp en krok på barnets höjd, gärna med barnets bild bredvid.",
+    "repeatable": false,
+    "tags": [
+      "ordning",
+      "hall"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "hem_smutstvatt_01",
+    "branch": "hem",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Lägga smutstvätt i korgen",
+    "titleParent": "Lägga smutsiga kläder i tvättkorgen",
+    "icon": "🧺",
+    "parentTip": "Ställ korgen där barnet byter om. Basket i tvättkorgen är tillåtet!",
+    "repeatable": false,
+    "tags": [
+      "tvätt",
+      "ordning"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_badda_sang_01",
+    "branch": "hem",
+    "ageMin": 5,
+    "ageMax": 6,
+    "difficulty": 2,
+    "titleChild": "Bädda sängen",
+    "titleParent": "Bädda sängen enkelt: dra upp täcket och lägga kudden",
+    "icon": "🛏️",
+    "parentTip": "Det behöver inte vara perfekt. Ett slätt täcke räcker gott.",
+    "repeatable": false,
+    "tags": [
+      "ordning",
+      "morgon"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_stalla_skor_01",
+    "branch": "hem",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Ställa skorna på plats",
+    "titleParent": "Ställa skorna där de ska stå i hallen",
+    "icon": "👞",
+    "parentTip": "Tejpa en ruta eller sätt en bild där skorna ska stå.",
+    "repeatable": false,
+    "tags": [
+      "ordning",
+      "hall"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_vattna_blomma_01",
+    "branch": "hem",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Vattna en blomma",
+    "titleParent": "Vattna en krukväxt med en liten kanna",
+    "icon": "🪴",
+    "parentTip": "Ge barnet en egen växt att ta hand om. Känn tillsammans om jorden är torr.",
+    "repeatable": false,
+    "tags": [
+      "växter",
+      "ansvar"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_para_strumpor_01",
+    "branch": "hem",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Para ihop strumpor",
+    "titleParent": "Hitta par bland de tvättade strumporna",
+    "icon": "🧦",
+    "parentTip": "Gör det till ett memoryspel!",
+    "repeatable": false,
+    "tags": [
+      "tvätt",
+      "lek"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_torka_bord_01",
+    "branch": "hem",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Torka av bordet",
+    "titleParent": "Torka av bordet efter maten med en trasa",
+    "icon": "🧽",
+    "parentTip": "Vrid ur trasan tillsammans och visa hur man torkar mot sig.",
+    "repeatable": false,
+    "tags": [
+      "måltid",
+      "ordning"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_mata_husdjur_01",
+    "branch": "hem",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Ge husdjuret mat",
+    "titleParent": "Ge husdjuret mat med en vuxen som hjälper till",
+    "icon": "🐟",
+    "parentTip": "Mät upp maten i förväg så att det blir lagom mycket.",
+    "repeatable": false,
+    "tags": [
+      "djur",
+      "ansvar"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_cykla_utan_stodhjul_01",
+    "branch": "ute",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 3,
+    "titleChild": "Cykla utan stödhjul",
+    "titleParent": "Cykla en bit utan stödhjul",
+    "icon": "🚲",
+    "parentTip": "Ta av pedalerna och låt barnet sparka sig fram först, det tränar balansen. Hjälm på!",
+    "repeatable": false,
+    "tags": [
+      "cykel",
+      "balans"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_titta_overgang_01",
+    "branch": "ute",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Titta åt båda hållen vid övergångsstället",
+    "titleParent": "Stanna, titta och lyssna vid övergångsstället",
+    "icon": "🚸",
+    "parentTip": "Säg ramsan \"stanna, titta, lyssna\" tillsammans varje gång ni går över.",
+    "repeatable": false,
+    "tags": [
+      "trafik",
+      "säkerhet"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "ute_ga_till_grannen_01",
+    "branch": "ute",
+    "ageMin": 5,
+    "ageMax": 6,
+    "difficulty": 2,
+    "titleChild": "Gå själv till grannen",
+    "titleParent": "Gå själv till grannen medan en vuxen tittar",
+    "icon": "🏡",
+    "parentTip": "Stå kvar och vinka tills barnet har kommit fram. Prata med grannen i förväg.",
+    "repeatable": false,
+    "tags": [
+      "självständighet",
+      "närområde"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_sparkcykel_01",
+    "branch": "ute",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Åka sparkcykel med hjälm",
+    "titleParent": "Ta på hjälmen själv och åka sparkcykel",
+    "icon": "🛴",
+    "parentTip": "Öva på en lugn plats utan bilar först.",
+    "repeatable": false,
+    "tags": [
+      "trafik",
+      "balans"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "ute_regnklader_01",
+    "branch": "ute",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Ta på regnkläder själv",
+    "titleParent": "Ta på regnbyxor och stövlar själv",
+    "icon": "🌧️",
+    "parentTip": "Sätt dig ner bredvid och peka ut vilket ben som ska i först.",
+    "repeatable": false,
+    "tags": [
+      "påklädning",
+      "väder"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_visa_vagen_01",
+    "branch": "ute",
+    "ageMin": 5,
+    "ageMax": 6,
+    "difficulty": 2,
+    "titleChild": "Visa vägen hem från lekplatsen",
+    "titleParent": "Visa vägen hem från lekplatsen eller förskolan",
+    "icon": "🗺️",
+    "parentTip": "Låt barnet gå först och välja väg, du följer efter.",
+    "repeatable": false,
+    "tags": [
+      "närområde",
+      "orientering"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_hjalm_01",
+    "branch": "ute",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Spänna fast hjälmen själv",
+    "titleParent": "Ta på och spänna fast cykelhjälmen själv",
+    "icon": "⛑️",
+    "parentTip": "Kolla att två fingrar får plats under hakbandet.",
+    "repeatable": false,
+    "tags": [
+      "säkerhet",
+      "cykel"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_bara_vaska_01",
+    "branch": "ute",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Bära min egen väska",
+    "titleParent": "Bära sin egen ryggsäck på utflykten",
+    "icon": "🎒",
+    "parentTip": "Låt barnet packa något eget i väskan, då blir den roligare att bära.",
+    "repeatable": false,
+    "tags": [
+      "utflykt",
+      "ansvar"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_trafikljus_01",
+    "branch": "ute",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Förstå trafikljusen",
+    "titleParent": "Berätta vad röd och grön gubbe betyder",
+    "icon": "🚦",
+    "parentTip": "Fråga barnet vid varje trafikljus: \"Får vi gå nu?\"",
+    "repeatable": false,
+    "tags": [
+      "trafik",
+      "säkerhet"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_spargris_01",
+    "branch": "pengar",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Lägga pengar i spargrisen",
+    "titleParent": "Lägga mynt i spargrisen och räkna dem",
+    "icon": "🐷",
+    "parentTip": "Räkna mynten tillsammans och prata om vad man kan spara till.",
+    "repeatable": false,
+    "tags": [
+      "spara"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "pengar_betala_kassan_01",
+    "branch": "pengar",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 2,
+    "titleChild": "Betala själv i kassan",
+    "titleParent": "Betala själv i kassan med lite hjälp",
+    "icon": "🛒",
+    "parentTip": "Förbered barnet: \"Du säger hej, ger pengarna och tar kvittot.\"",
+    "repeatable": false,
+    "tags": [
+      "handla",
+      "mod"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "pengar_kanna_mynt_01",
+    "branch": "pengar",
+    "ageMin": 5,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Känna igen mynten",
+    "titleParent": "Känna igen och sortera mynt",
+    "icon": "🪙",
+    "parentTip": "Lägg mynten i högar efter sort och jämför storlek och bild.",
+    "repeatable": false,
+    "tags": [
+      "pengar",
+      "sortera"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_leka_affar_01",
+    "branch": "pengar",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Leka affär",
+    "titleParent": "Leka affär hemma med riktiga eller låtsaspengar",
+    "icon": "🏪",
+    "parentTip": "Turas om att vara kund och den som säljer.",
+    "repeatable": false,
+    "tags": [
+      "lek",
+      "handla"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_valja_mellan_tva_01",
+    "branch": "pengar",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 2,
+    "titleChild": "Välja mellan två saker",
+    "titleParent": "Välja en av två saker att köpa för sin peng",
+    "icon": "🤔",
+    "parentTip": "Låt barnet själv bestämma, och prata om valet efteråt.",
+    "repeatable": false,
+    "tags": [
+      "beslut",
+      "handla"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_spara_till_sak_01",
+    "branch": "pengar",
+    "ageMin": 5,
+    "ageMax": 6,
+    "difficulty": 3,
+    "titleChild": "Spara till något litet",
+    "titleParent": "Spara till något litet i några veckor",
+    "icon": "🎯",
+    "parentTip": "Rita en sparstege på papper och fyll i ett steg för varje mynt.",
+    "repeatable": false,
+    "tags": [
+      "spara",
+      "tålamod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_fraga_pris_01",
+    "branch": "pengar",
+    "ageMin": 5,
+    "ageMax": 6,
+    "difficulty": 2,
+    "titleChild": "Fråga vad något kostar",
+    "titleParent": "Fråga personalen vad en sak kostar",
+    "icon": "🏷️",
+    "parentTip": "Stå bredvid och låt barnet ställa frågan själv.",
+    "repeatable": false,
+    "tags": [
+      "handla",
+      "mod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_saga_hej_01",
+    "branch": "kanslor",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Säga hej och mitt namn",
+    "titleParent": "Säga \"hej\" och sitt namn till en ny vuxen",
+    "icon": "👋",
+    "parentTip": "Öva hemma med gosedjur först. Det räcker att titta upp och vinka i början.",
+    "repeatable": false,
+    "tags": [
+      "socialt",
+      "mod"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "kanslor_saga_forlat_01",
+    "branch": "kanslor",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 2,
+    "titleChild": "Säga förlåt själv",
+    "titleParent": "Säga förlåt själv efter ett bråk",
+    "icon": "🤗",
+    "parentTip": "Vänta tills alla är lugna. Visa själv hur man säger förlåt.",
+    "repeatable": false,
+    "tags": [
+      "socialt",
+      "känslor"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "kanslor_berata_kanslor_01",
+    "branch": "kanslor",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Berätta hur jag känner mig",
+    "titleParent": "Berätta med ord hur man känner sig",
+    "icon": "💬",
+    "parentTip": "Använd ansikten eller känslokort: glad, ledsen, arg, rädd.",
+    "repeatable": false,
+    "tags": [
+      "känslor"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_hjalpa_syskon_01",
+    "branch": "kanslor",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Hjälpa ett syskon eller en kompis",
+    "titleParent": "Hjälpa ett syskon eller en kompis utan att bli tillfrågad",
+    "icon": "🤝",
+    "parentTip": "Lägg märke till det och säg vad du såg: \"Vad snällt att du hjälpte till!\"",
+    "repeatable": false,
+    "tags": [
+      "omtanke",
+      "socialt"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_vanta_pa_tur_01",
+    "branch": "kanslor",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Vänta på min tur",
+    "titleParent": "Vänta på sin tur i ett spel",
+    "icon": "⏳",
+    "parentTip": "Spela enkla turordningsspel och beröm väntandet.",
+    "repeatable": false,
+    "tags": [
+      "tålamod",
+      "spel"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_saga_tack_01",
+    "branch": "kanslor",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Säga tack utan påminnelse",
+    "titleParent": "Säga tack utan att någon påminner",
+    "icon": "🙏",
+    "parentTip": "Var själv ett exempel och lägg märke till när det händer.",
+    "repeatable": true,
+    "tags": [
+      "socialt",
+      "vana"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_trosta_01",
+    "branch": "kanslor",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Trösta någon som är ledsen",
+    "titleParent": "Trösta någon som är ledsen",
+    "icon": "💛",
+    "parentTip": "Prata om vad man kan göra: fråga, krama eller hämta en vuxen.",
+    "repeatable": false,
+    "tags": [
+      "omtanke",
+      "känslor"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_lugna_mig_01",
+    "branch": "kanslor",
+    "ageMin": 5,
+    "ageMax": 6,
+    "difficulty": 2,
+    "titleChild": "Lugna mig när jag är arg",
+    "titleParent": "Använda ett lugna-ner-knep, till exempel djupa andetag, när man är arg",
+    "icon": "🌬️",
+    "parentTip": "Öva \"blås ut ljuset\" när alla är lugna, så finns knepet där när det behövs.",
+    "repeatable": false,
+    "tags": [
+      "känslor",
+      "självkontroll"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_dela_01",
+    "branch": "kanslor",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Dela med mig",
+    "titleParent": "Dela med sig av en leksak eller något gott",
+    "icon": "🧩",
+    "parentTip": "Beröm barnet när det delar av sig själv, utan att tvinga.",
+    "repeatable": false,
+    "tags": [
+      "socialt",
+      "omtanke"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_smaka_ny_mat_01",
+    "branch": "mod",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Smaka en ny mat",
+    "titleParent": "Smaka på en ny maträtt",
+    "icon": "😋",
+    "parentTip": "Det räcker att smaka en liten bit. Det är modet som räknas, inte om det var gott.",
+    "repeatable": false,
+    "tags": [
+      "mat",
+      "mod"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "mod_doppa_huvudet_01",
+    "branch": "mod",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 2,
+    "titleChild": "Doppa huvudet under vattnet",
+    "titleParent": "Doppa huvudet under vattnet i badet eller simhallen",
+    "icon": "🏊",
+    "parentTip": "Börja med att blåsa bubblor i vattnet. Ingen brådska!",
+    "repeatable": false,
+    "tags": [
+      "vatten",
+      "mod"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "mod_sova_egen_sang_01",
+    "branch": "mod",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 2,
+    "titleChild": "Sova i egen säng hela natten",
+    "titleParent": "Sova i sin egen säng hela natten",
+    "icon": "🛌",
+    "parentTip": "En nattlampa och ett gosedjur gör det tryggare.",
+    "repeatable": false,
+    "tags": [
+      "sömn",
+      "trygghet"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_klappa_djur_01",
+    "branch": "mod",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Klappa ett snällt djur",
+    "titleParent": "Klappa ett lugnt djur med ägarens lov",
+    "icon": "🐶",
+    "parentTip": "Fråga alltid ägaren först och visa hur man låter djuret nosa på handen.",
+    "repeatable": false,
+    "tags": [
+      "djur",
+      "mod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_morkt_rum_01",
+    "branch": "mod",
+    "ageMin": 5,
+    "ageMax": 6,
+    "difficulty": 2,
+    "titleChild": "Hämta något i ett mörkt rum",
+    "titleParent": "Gå in och hämta något i ett rum där lampan är släckt",
+    "icon": "🔦",
+    "parentTip": "Låt barnet ta med en ficklampa första gångerna.",
+    "repeatable": false,
+    "tags": [
+      "mörker",
+      "mod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_klattra_01",
+    "branch": "mod",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 2,
+    "titleChild": "Klättra i klätterställningen",
+    "titleParent": "Klättra upp i klätterställningen själv",
+    "icon": "🧗",
+    "parentTip": "Stå nära men låt barnet hitta greppen själv.",
+    "repeatable": false,
+    "tags": [
+      "motorik",
+      "mod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_sjunga_01",
+    "branch": "mod",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Sjunga en sång för familjen",
+    "titleParent": "Sjunga eller visa något för familjen",
+    "icon": "🎤",
+    "parentTip": "Klappa och jubla! Publiken är den bästa belöningen.",
+    "repeatable": false,
+    "tags": [
+      "scen",
+      "mod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_frisoren_01",
+    "branch": "mod",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Sitta still hos frisören",
+    "titleParent": "Klippa håret hos frisören",
+    "icon": "💈",
+    "parentTip": "Berätta i förväg vad som ska hända och ta med något att titta på.",
+    "repeatable": false,
+    "tags": [
+      "nytt",
+      "trygghet"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_tandlakaren_01",
+    "branch": "mod",
+    "ageMin": 4,
+    "ageMax": 6,
+    "difficulty": 1,
+    "titleChild": "Visa tänderna för tandläkaren",
+    "titleParent": "Öppna munnen och visa tänderna hos tandläkaren",
+    "icon": "🦷",
+    "parentTip": "Lek tandläkare hemma med en spegel och tandborste innan besöket.",
+    "repeatable": false,
+    "tags": [
+      "vård",
+      "trygghet"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_knyta_skor_01",
+    "branch": "kropp",
+    "ageMin": 6,
+    "ageMax": 8,
+    "difficulty": 2,
+    "titleChild": "Knyta skorna",
+    "titleParent": "Knyta skorosetter själv",
+    "icon": "👟",
+    "parentTip": "Prova \"kaninöron\"-metoden. Öva på en sko i knät först.",
+    "repeatable": false,
+    "tags": [
+      "påklädning",
+      "finmotorik"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "kropp_duscha_sjalv_01",
+    "branch": "kropp",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Duscha och tvätta håret själv",
+    "titleParent": "Duscha och tvätta håret helt själv",
+    "icon": "🚿",
+    "parentTip": "Ha schampot där barnet når och visa hur man sköljer bort allt.",
+    "repeatable": false,
+    "tags": [
+      "hygien"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "kropp_klippa_naglar_01",
+    "branch": "kropp",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Klippa naglarna själv",
+    "titleParent": "Klippa fingernaglarna själv med en vuxen bredvid",
+    "icon": "✂️",
+    "parentTip": "Använd en nagelklippare med rundade kanter. Den vuxna kan ta tånaglarna.",
+    "repeatable": false,
+    "tags": [
+      "hygien",
+      "finmotorik"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_tander_7_dagar_01",
+    "branch": "kropp",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Borsta tänderna utan påminnelse 7 dagar i rad",
+    "titleParent": "Borsta tänderna morgon och kväll utan påminnelse sju dagar i rad",
+    "icon": "🪥",
+    "parentTip": "Sätt upp en enkel bocklista vid handfatet.",
+    "repeatable": true,
+    "tags": [
+      "hygien",
+      "vana"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_klader_vader_01",
+    "branch": "kropp",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Välja kläder efter vädret",
+    "titleParent": "Kolla vädret och välja lämpliga kläder själv",
+    "icon": "🌦️",
+    "parentTip": "Titta på väderappen tillsammans på morgonen och prata om valet.",
+    "repeatable": false,
+    "tags": [
+      "påklädning",
+      "väder"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_gympapase_01",
+    "branch": "kropp",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Packa gympapåsen själv",
+    "titleParent": "Packa gympapåsen själv inför idrotten",
+    "icon": "🩳",
+    "parentTip": "Gör en bildlista som sitter på påsen: kläder, skor, handduk.",
+    "repeatable": false,
+    "tags": [
+      "skola",
+      "planering"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_fixa_haret_01",
+    "branch": "kropp",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Fixa mitt hår själv",
+    "titleParent": "Sätta upp håret eller fixa frisyren själv",
+    "icon": "🎀",
+    "parentTip": "Öva framför spegeln en helgmorgon när det inte är bråttom.",
+    "repeatable": false,
+    "tags": [
+      "hygien",
+      "finmotorik"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_tandtrad_01",
+    "branch": "kropp",
+    "ageMin": 8,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Använda tandtråd",
+    "titleParent": "Använda tandtråd eller tandstickor själv",
+    "icon": "🦷",
+    "parentTip": "Tandtrådsbyglar är lättare att börja med än vanlig tråd.",
+    "repeatable": false,
+    "tags": [
+      "hygien",
+      "tänder"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_solkram_01",
+    "branch": "kropp",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Smörja in mig med solkräm",
+    "titleParent": "Smörja in sig med solkräm själv",
+    "icon": "🧴",
+    "parentTip": "Påminn om öron, nacke och näsa, de glöms lätt.",
+    "repeatable": false,
+    "tags": [
+      "hälsa",
+      "sommar"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_gora_frukost_01",
+    "branch": "mat",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Göra frukost själv",
+    "titleParent": "Göra en enkel frukost själv",
+    "icon": "🍞",
+    "parentTip": "Ha frukostsakerna på samma ställe varje dag så blir det lättare.",
+    "repeatable": false,
+    "tags": [
+      "frukost",
+      "självständighet"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "mat_koka_agg_01",
+    "branch": "mat",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Koka ägg med vuxen nära",
+    "titleParent": "Koka ägg på spisen med en vuxen nära",
+    "icon": "🥚",
+    "parentTip": "Använd timer och visa hur man häller av vattnet försiktigt. Stanna i köket.",
+    "repeatable": false,
+    "tags": [
+      "matlagning",
+      "spis"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "mat_folja_recept_01",
+    "branch": "mat",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Följa ett enkelt recept",
+    "titleParent": "Följa ett enkelt recept, till exempel en smoothie",
+    "icon": "📖",
+    "parentTip": "Välj ett recept med få steg och bilder. Låt barnet läsa högt.",
+    "repeatable": false,
+    "tags": [
+      "matlagning",
+      "läsa"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_skara_gronsaker_01",
+    "branch": "mat",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Skära grönsaker",
+    "titleParent": "Skära gurka eller frukt med en barnkniv och vuxen bredvid",
+    "icon": "🥒",
+    "parentTip": "Visa \"klon\": fingertopparna inböjda. Börja med mjuka grönsaker.",
+    "repeatable": false,
+    "tags": [
+      "matlagning",
+      "kniv"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_packa_mellanmal_01",
+    "branch": "mat",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Packa mitt mellanmål",
+    "titleParent": "Packa sitt eget mellanmål till utflykt eller träning",
+    "icon": "🍎",
+    "parentTip": "Gör en lista med bra mellanmål att välja bland.",
+    "repeatable": false,
+    "tags": [
+      "planering",
+      "mat"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_duka_bordet_01",
+    "branch": "mat",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Duka hela bordet",
+    "titleParent": "Duka bordet för hela familjen",
+    "icon": "🍽️",
+    "parentTip": "Låt barnet bestämma placeringen och kanske tända ett ljus.",
+    "repeatable": false,
+    "tags": [
+      "måltid",
+      "familj"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_diska_for_hand_01",
+    "branch": "mat",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Diska för hand",
+    "titleParent": "Diska några saker för hand",
+    "icon": "🫧",
+    "parentTip": "Börja med plast och bestick. Varmt vatten och mycket skum är roligt!",
+    "repeatable": false,
+    "tags": [
+      "köket",
+      "ordning"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_mellanmal_at_nagon_01",
+    "branch": "mat",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Göra mellanmål åt någon annan",
+    "titleParent": "Göra en smörgås eller ett mellanmål åt ett syskon eller en förälder",
+    "icon": "🥪",
+    "parentTip": "Fråga gärna \"vem vill du överraska?\"",
+    "repeatable": false,
+    "tags": [
+      "omtanke",
+      "matlagning"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_baka_01",
+    "branch": "mat",
+    "ageMin": 8,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Baka med recept",
+    "titleParent": "Baka något enkelt efter recept, med en vuxen vid ugnen",
+    "icon": "🧁",
+    "parentTip": "Låt barnet mäta allt själv. Den vuxna sätter in och tar ut ur ugnen.",
+    "repeatable": false,
+    "tags": [
+      "bakning",
+      "matte"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_packa_skolvaskan_01",
+    "branch": "hem",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Packa skolväskan kvällen före",
+    "titleParent": "Packa skolväskan kvällen före",
+    "icon": "🎒",
+    "parentTip": "Ett schema på kylskåpet visar vad som behövs vilken dag.",
+    "repeatable": false,
+    "tags": [
+      "skola",
+      "planering"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "hem_stada_rum_01",
+    "branch": "hem",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Städa mitt rum",
+    "titleParent": "Städa sitt rum: plocka undan och dammsuga golvet",
+    "icon": "🧹",
+    "parentTip": "Dela upp städningen i små steg: först kläder, sedan leksaker, sedan golvet.",
+    "repeatable": false,
+    "tags": [
+      "ordning",
+      "städning"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "hem_vika_klader_01",
+    "branch": "hem",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Vika och lägga in kläder",
+    "titleParent": "Vika sina rena kläder och lägga in dem",
+    "icon": "👚",
+    "parentTip": "Visa ett enkelt sätt att vika t-shirts. Det behöver inte vara butiksfint.",
+    "repeatable": false,
+    "tags": [
+      "tvätt",
+      "ordning"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_byta_paslakan_01",
+    "branch": "hem",
+    "ageMin": 8,
+    "ageMax": 9,
+    "difficulty": 3,
+    "titleChild": "Byta påslakan",
+    "titleParent": "Byta påslakan med lite hjälp",
+    "icon": "🛏️",
+    "parentTip": "Prova \"burrito-metoden\": vänd påslakanet ut och in först.",
+    "repeatable": false,
+    "tags": [
+      "ordning",
+      "finmotorik"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_dammsuga_01",
+    "branch": "hem",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Dammsuga mitt rum",
+    "titleParent": "Dammsuga golvet i sitt rum",
+    "icon": "🌀",
+    "parentTip": "Plocka upp småsaker från golvet först så att de inte åker in i dammsugaren.",
+    "repeatable": false,
+    "tags": [
+      "städning"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_soporna_01",
+    "branch": "hem",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Gå ut med soporna",
+    "titleParent": "Bära ut soporna och slänga dem rätt",
+    "icon": "🗑️",
+    "parentTip": "Gå med de första gångerna och visa vilken tunna som är vilken.",
+    "repeatable": false,
+    "tags": [
+      "ansvar",
+      "miljö"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_atervinning_01",
+    "branch": "hem",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Sortera förpackningar",
+    "titleParent": "Sortera plast, papper och metall i återvinningen",
+    "icon": "♻️",
+    "parentTip": "Gör det till en tävling: hur många förpackningar hittar vi rätt plats för?",
+    "repeatable": false,
+    "tags": [
+      "miljö",
+      "sortera"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_vattna_vaxterna_01",
+    "branch": "hem",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Vattna växterna en vecka",
+    "titleParent": "Ansvara för att vattna växterna i en vecka",
+    "icon": "🌱",
+    "parentTip": "En lapp med dagar att bocka av gör det lättare att komma ihåg.",
+    "repeatable": false,
+    "tags": [
+      "växter",
+      "ansvar"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_vackarklocka_01",
+    "branch": "hem",
+    "ageMin": 8,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Vakna med väckarklocka",
+    "titleParent": "Vakna själv med egen väckarklocka",
+    "icon": "⏰",
+    "parentTip": "Låt barnet ställa klockan själv kvällen före.",
+    "repeatable": false,
+    "tags": [
+      "morgon",
+      "ansvar"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_ga_till_skolan_01",
+    "branch": "ute",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 3,
+    "titleChild": "Gå till skolan själv",
+    "titleParent": "Gå till skolan själv",
+    "icon": "🏫",
+    "parentTip": "Gå vägen tillsammans flera gånger först och prata om de svåra ställena.",
+    "repeatable": false,
+    "tags": [
+      "trafik",
+      "självständighet"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "ute_cykla_till_kompis_01",
+    "branch": "ute",
+    "ageMin": 8,
+    "ageMax": 9,
+    "difficulty": 3,
+    "titleChild": "Cykla till kompis själv",
+    "titleParent": "Cykla själv till en kompis i närheten",
+    "icon": "🚲",
+    "parentTip": "Be kompisens förälder höra av sig när barnet har kommit fram.",
+    "repeatable": false,
+    "tags": [
+      "cykel",
+      "trafik"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "ute_adress_telefon_01",
+    "branch": "ute",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Kunna adress och telefonnummer utantill",
+    "titleParent": "Kunna sin adress och en förälders telefonnummer utantill",
+    "icon": "🏠",
+    "parentTip": "Gör en ramsa eller sång av numret.",
+    "repeatable": false,
+    "tags": [
+      "säkerhet",
+      "minne"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_tecken_cykel_01",
+    "branch": "ute",
+    "ageMin": 8,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Visa när jag svänger på cykeln",
+    "titleParent": "Visa med armen när man svänger på cykeln",
+    "icon": "🚴",
+    "parentTip": "Öva på en tom parkering eller gård först.",
+    "repeatable": false,
+    "tags": [
+      "cykel",
+      "trafik"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_karta_01",
+    "branch": "ute",
+    "ageMin": 8,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Hitta med en karta",
+    "titleParent": "Hitta till ett ställe i närheten med hjälp av en karta",
+    "icon": "🗺️",
+    "parentTip": "Gör en skattjakt i närområdet med en enkel karta.",
+    "repeatable": false,
+    "tags": [
+      "orientering"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_buss_med_vuxen_01",
+    "branch": "ute",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Hitta rätt buss",
+    "titleParent": "Hitta rätt busshållplats och buss tillsammans med en vuxen",
+    "icon": "🚌",
+    "parentTip": "Låt barnet leda resan medan du följer med.",
+    "repeatable": false,
+    "tags": [
+      "kollektivtrafik"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_packa_utflykt_01",
+    "branch": "ute",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Packa för en utflykt",
+    "titleParent": "Packa ryggsäck med vatten, mat och kläder inför en utflykt",
+    "icon": "🥾",
+    "parentTip": "Gör en packlista tillsammans som barnet bockar av.",
+    "repeatable": false,
+    "tags": [
+      "utflykt",
+      "planering"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_ringa_112_01",
+    "branch": "ute",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Veta när man ringer 112",
+    "titleParent": "Kunna berätta när och hur man ringer 112",
+    "icon": "🚑",
+    "parentTip": "Prata om vad som är en nödsituation, utan att skrämma.",
+    "repeatable": false,
+    "tags": [
+      "säkerhet"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_reflex_01",
+    "branch": "ute",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Komma ihåg reflexen en hel vecka",
+    "titleParent": "Komma ihåg reflexen när det är mörkt en hel vecka",
+    "icon": "🦺",
+    "parentTip": "Häng reflexen på jackan eller väskan så att den alltid följer med.",
+    "repeatable": true,
+    "tags": [
+      "trafik",
+      "vana"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_handla_sjalv_01",
+    "branch": "pengar",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Handla en sak själv i affären",
+    "titleParent": "Handla en sak själv i affären",
+    "icon": "🛍️",
+    "parentTip": "Vänta utanför eller vid ingången. Ge exakt summa första gången.",
+    "repeatable": false,
+    "tags": [
+      "handla",
+      "självständighet"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "pengar_spara_4_veckor_01",
+    "branch": "pengar",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 3,
+    "titleChild": "Spara till något i 4 veckor",
+    "titleParent": "Spara till något i fyra veckor",
+    "icon": "🐷",
+    "parentTip": "Rita en sparmätare och fyll i den varje vecka.",
+    "repeatable": false,
+    "tags": [
+      "spara",
+      "tålamod"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "pengar_vaxel_01",
+    "branch": "pengar",
+    "ageMin": 8,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Räkna växel",
+    "titleParent": "Räkna ut och kontrollera växeln",
+    "icon": "🧮",
+    "parentTip": "Öva hemma med riktiga mynt och låtsasköp.",
+    "repeatable": false,
+    "tags": [
+      "matte",
+      "handla"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_tva_priser_01",
+    "branch": "pengar",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Jämföra två priser",
+    "titleParent": "Se vilken av två varor som är billigast",
+    "icon": "⚖️",
+    "parentTip": "Låt barnet hitta prislapparna och avgöra själv.",
+    "repeatable": false,
+    "tags": [
+      "handla",
+      "matte"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_inkopslista_01",
+    "branch": "pengar",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Handla efter inköpslista",
+    "titleParent": "Hämta varorna på en kort inköpslista i affären",
+    "icon": "📝",
+    "parentTip": "Börja med tre saker och var i närheten i butiken.",
+    "repeatable": false,
+    "tags": [
+      "handla",
+      "planering"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_godisbudget_01",
+    "branch": "pengar",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Hålla en godisbudget",
+    "titleParent": "Välja lördagsgodis för en bestämd summa",
+    "icon": "🍬",
+    "parentTip": "Låt barnet väga och räkna själv. Det är okej om det blir lite fel.",
+    "repeatable": false,
+    "tags": [
+      "budget",
+      "matte"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_ge_en_slant_01",
+    "branch": "pengar",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Ge en slant till något gott",
+    "titleParent": "Välja att ge en del av sina pengar till ett gott ändamål",
+    "icon": "💝",
+    "parentTip": "Prata om olika sätt att hjälpa och låt barnet välja.",
+    "repeatable": false,
+    "tags": [
+      "omtanke",
+      "pengar"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_loppis_01",
+    "branch": "pengar",
+    "ageMin": 8,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Sälja på loppis",
+    "titleParent": "Sälja gamla leksaker på loppis eller second hand",
+    "icon": "🏷️",
+    "parentTip": "Låt barnet sätta priser och sköta pengarna, du finns bredvid.",
+    "repeatable": false,
+    "tags": [
+      "pengar",
+      "mod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_ringa_slakting_01",
+    "branch": "kanslor",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Ringa en släkting själv",
+    "titleParent": "Ringa en släkting, till exempel farmor eller morfar, själv",
+    "icon": "📞",
+    "parentTip": "Skriv upp numret och kanske några saker att berätta.",
+    "repeatable": false,
+    "tags": [
+      "socialt",
+      "telefon"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "kanslor_bestalla_sjalv_01",
+    "branch": "kanslor",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Beställa själv på café eller restaurang",
+    "titleParent": "Beställa själv på café eller restaurang",
+    "icon": "☕",
+    "parentTip": "Bestäm i förväg vad barnet ska beställa och låt barnet prata själv.",
+    "repeatable": false,
+    "tags": [
+      "socialt",
+      "mod"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "kanslor_losa_konflikt_01",
+    "branch": "kanslor",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 3,
+    "titleChild": "Lösa en konflikt utan vuxen",
+    "titleParent": "Lösa en konflikt med syskon eller kompis utan vuxen",
+    "icon": "🕊️",
+    "parentTip": "Öva på att säga \"jag känner ... när du ...\" och att föreslå en lösning.",
+    "repeatable": false,
+    "tags": [
+      "socialt",
+      "känslor"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_bjuda_hem_01",
+    "branch": "kanslor",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Bjuda hem en kompis",
+    "titleParent": "Fråga en kompis om hen vill komma hem och leka",
+    "icon": "💌",
+    "parentTip": "Öva frågan hemma och prata om att ett nej inte är farligt.",
+    "repeatable": false,
+    "tags": [
+      "vänskap",
+      "mod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_komplimang_01",
+    "branch": "kanslor",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Ge någon en komplimang",
+    "titleParent": "Ge en kompis eller ett syskon en ärlig komplimang",
+    "icon": "🌟",
+    "parentTip": "Prata om vad som gör en komplimang äkta.",
+    "repeatable": false,
+    "tags": [
+      "omtanke",
+      "socialt"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_saga_nej_01",
+    "branch": "kanslor",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Säga nej på ett snällt sätt",
+    "titleParent": "Säga nej när något känns fel, tydligt och vänligt",
+    "icon": "✋",
+    "parentTip": "Rollspela olika situationer hemma.",
+    "repeatable": false,
+    "tags": [
+      "gränser",
+      "känslor"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_be_om_hjalp_01",
+    "branch": "kanslor",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Be om hjälp i skolan",
+    "titleParent": "Be läraren om hjälp när något är svårt",
+    "icon": "🙋",
+    "parentTip": "Påminn om att alla behöver hjälp ibland, även vuxna.",
+    "repeatable": false,
+    "tags": [
+      "skola",
+      "mod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_skriva_kort_01",
+    "branch": "kanslor",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Skriva ett kort till någon",
+    "titleParent": "Skriva och skicka ett kort eller brev till någon",
+    "icon": "✉️",
+    "parentTip": "Låt barnet sätta på frimärket och lägga det i brevlådan.",
+    "repeatable": false,
+    "tags": [
+      "omtanke",
+      "skriva"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_lyssna_klart_01",
+    "branch": "kanslor",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Lyssna utan att avbryta",
+    "titleParent": "Lyssna klart när någon pratar, utan att avbryta",
+    "icon": "👂",
+    "parentTip": "Prova en \"pratsten\": den som håller stenen pratar.",
+    "repeatable": false,
+    "tags": [
+      "socialt",
+      "tålamod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_simma_25_01",
+    "branch": "mod",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 3,
+    "titleChild": "Simma 25 meter",
+    "titleParent": "Simma 25 meter",
+    "icon": "🏊",
+    "parentTip": "Fira varje meter på vägen. Simskola eller simborgarmärket kan vara ett bra mål.",
+    "repeatable": false,
+    "tags": [
+      "vatten",
+      "motorik"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "mod_sova_borta_01",
+    "branch": "mod",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Sova borta hos en kompis",
+    "titleParent": "Sova över hos en kompis",
+    "icon": "🏕️",
+    "parentTip": "Packa tillsammans och kom överens om att barnet alltid får ringa hem.",
+    "repeatable": false,
+    "tags": [
+      "sömn",
+      "trygghet"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "mod_lasa_bok_01",
+    "branch": "mod",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Läsa en hel bok själv",
+    "titleParent": "Läsa en hel bok själv",
+    "icon": "📚",
+    "parentTip": "Låt barnet välja bok själv på biblioteket.",
+    "repeatable": false,
+    "tags": [
+      "läsa",
+      "uthållighet"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_ny_sport_01",
+    "branch": "mod",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Prova en ny lek eller sport",
+    "titleParent": "Prova på en ny lek, sport eller aktivitet",
+    "icon": "⚽",
+    "parentTip": "Prata om att det är modigt att vara nybörjare.",
+    "repeatable": false,
+    "tags": [
+      "nytt",
+      "rörelse"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_hoppa_fran_kanten_01",
+    "branch": "mod",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Hoppa från kanten i simhallen",
+    "titleParent": "Hoppa i från bassängkanten",
+    "icon": "🤿",
+    "parentTip": "Stå i vattnet och ta emot de första gångerna.",
+    "repeatable": false,
+    "tags": [
+      "vatten",
+      "mod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_fraga_personalen_01",
+    "branch": "mod",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 1,
+    "titleChild": "Fråga personalen var något finns",
+    "titleParent": "Fråga en anställd i affären var en vara finns",
+    "icon": "🛒",
+    "parentTip": "Följ med till rätt avdelning men låt barnet fråga.",
+    "repeatable": false,
+    "tags": [
+      "socialt",
+      "mod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_visa_for_klassen_01",
+    "branch": "mod",
+    "ageMin": 8,
+    "ageMax": 9,
+    "difficulty": 3,
+    "titleChild": "Visa något för klassen",
+    "titleParent": "Berätta om eller visa något inför klassen",
+    "icon": "🎙️",
+    "parentTip": "Öva hemma framför familjen eller gosedjuren.",
+    "repeatable": false,
+    "tags": [
+      "scen",
+      "skola"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_tre_nya_ratter_01",
+    "branch": "mod",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Smaka tre nya maträtter",
+    "titleParent": "Smaka tre nya maträtter under en månad",
+    "icon": "🍣",
+    "parentTip": "Laga något från ett annat land tillsammans.",
+    "repeatable": false,
+    "tags": [
+      "mat",
+      "nytt"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_morker_ute_01",
+    "branch": "mod",
+    "ageMin": 7,
+    "ageMax": 9,
+    "difficulty": 2,
+    "titleChild": "Gå ut i mörkret med ficklampa",
+    "titleParent": "Gå ut på gården eller i trädgården i mörkret med ficklampa",
+    "icon": "🔦",
+    "parentTip": "Gör en ficklampsskattjakt med små saker att hitta.",
+    "repeatable": false,
+    "tags": [
+      "mörker",
+      "mod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_hygienrutin_01",
+    "branch": "kropp",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Sköta min hygienrutin hela veckan",
+    "titleParent": "Ta hand om sin egen hygienrutin hela veckan utan påminnelse",
+    "icon": "🧴",
+    "parentTip": "Prata om vad rutinen ska innehålla och låt barnet själv hålla koll.",
+    "repeatable": true,
+    "tags": [
+      "hygien",
+      "vana"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "kropp_traningsvaska_01",
+    "branch": "kropp",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 1,
+    "titleChild": "Packa min egen träningsväska",
+    "titleParent": "Packa sin egen träningsväska",
+    "icon": "🏋️",
+    "parentTip": "Låt barnet göra en egen packlista i mobilen eller på papper.",
+    "repeatable": false,
+    "tags": [
+      "planering",
+      "sport"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "kropp_sovtider_01",
+    "branch": "kropp",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Lägga mig i tid en hel vecka",
+    "titleParent": "Gå och lägga sig på överenskommen tid utan påminnelse en vecka",
+    "icon": "😴",
+    "parentTip": "Kom överens om tiden tillsammans och prata om varför sömn är viktigt.",
+    "repeatable": true,
+    "tags": [
+      "sömn",
+      "vana"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_hudvard_01",
+    "branch": "kropp",
+    "ageMin": 11,
+    "ageMax": 13,
+    "difficulty": 1,
+    "titleChild": "Ha en egen hudvårdsrutin",
+    "titleParent": "Tvätta ansiktet morgon och kväll",
+    "icon": "🫧",
+    "parentTip": "En mild tvål räcker. Låt barnet själv bestämma rutinen.",
+    "repeatable": false,
+    "tags": [
+      "hygien"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_sy_knapp_01",
+    "branch": "kropp",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Sy i en knapp",
+    "titleParent": "Sy fast en knapp som har lossnat",
+    "icon": "🪡",
+    "parentTip": "Visa en gång och låt sedan barnet prova själv på en gammal tröja.",
+    "repeatable": false,
+    "tags": [
+      "kläder",
+      "finmotorik"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_flackar_01",
+    "branch": "kropp",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 1,
+    "titleChild": "Ta bort en fläck",
+    "titleParent": "Behandla en fläck på kläderna före tvätt",
+    "icon": "🧽",
+    "parentTip": "Visa fläckborttagning och att kallt vatten ofta funkar bäst.",
+    "repeatable": false,
+    "tags": [
+      "kläder",
+      "tvätt"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_forsta_hjalpen_01",
+    "branch": "kropp",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Kunna enkel första hjälpen",
+    "titleParent": "Kunna sätta på plåster, kyla en bula och veta när man ska hämta hjälp",
+    "icon": "🩹",
+    "parentTip": "Gå igenom första hjälpen-lådan tillsammans.",
+    "repeatable": false,
+    "tags": [
+      "säkerhet",
+      "hälsa"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kropp_kladkop_01",
+    "branch": "kropp",
+    "ageMin": 11,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Välja egna kläder i butik",
+    "titleParent": "Prova och välja egna kläder i en butik inom en budget",
+    "icon": "👖",
+    "parentTip": "Bestäm budgeten i förväg och låt barnet välja inom den.",
+    "repeatable": false,
+    "tags": [
+      "kläder",
+      "budget"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_laga_middag_01",
+    "branch": "mat",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 3,
+    "titleChild": "Laga middag till familjen",
+    "titleParent": "Laga middag till hela familjen",
+    "icon": "🍲",
+    "parentTip": "Välj en rätt barnet tycker om. Var i närheten men låt barnet styra.",
+    "repeatable": false,
+    "tags": [
+      "matlagning",
+      "familj"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "mat_planera_handla_01",
+    "branch": "mat",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 3,
+    "titleChild": "Planera och handla till en måltid",
+    "titleParent": "Planera och handla till en måltid",
+    "icon": "🛒",
+    "parentTip": "Ge en budget och låt barnet skriva inköpslistan.",
+    "repeatable": false,
+    "tags": [
+      "planering",
+      "handla"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "mat_baka_brod_01",
+    "branch": "mat",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Baka bröd eller bullar själv",
+    "titleParent": "Baka bröd eller bullar själv",
+    "icon": "🥖",
+    "parentTip": "Jäsning tar tid. Planera en lugn helgdag.",
+    "repeatable": false,
+    "tags": [
+      "bakning"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_matlada_01",
+    "branch": "mat",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 1,
+    "titleChild": "Packa min matlåda",
+    "titleParent": "Packa sin egen matlåda eller lunch",
+    "icon": "🥡",
+    "parentTip": "Prata om vad som gör en matlåda mättande och god.",
+    "repeatable": false,
+    "tags": [
+      "planering",
+      "mat"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_hacka_01",
+    "branch": "mat",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Hacka lök och grönsaker",
+    "titleParent": "Hacka grönsaker säkert med kockkniv",
+    "icon": "🔪",
+    "parentTip": "Visa \"klon\" och att man skär från sig. En vass kniv är säkrare än en slö.",
+    "repeatable": false,
+    "tags": [
+      "matlagning",
+      "kniv"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_ugnen_01",
+    "branch": "mat",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Använda ugnen själv",
+    "titleParent": "Använda ugnen själv och ta ut med grytlappar",
+    "icon": "🍕",
+    "parentTip": "Visa hur man stänger av ugnen och var grytlapparna finns.",
+    "repeatable": false,
+    "tags": [
+      "matlagning",
+      "säkerhet"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_veckomeny_01",
+    "branch": "mat",
+    "ageMin": 11,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Planera en veckomeny",
+    "titleParent": "Planera familjens middagar för en vecka",
+    "icon": "📅",
+    "parentTip": "Låt barnet fråga alla i familjen om önskemål.",
+    "repeatable": false,
+    "tags": [
+      "planering",
+      "familj"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mat_fika_gaster_01",
+    "branch": "mat",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 1,
+    "titleChild": "Bjuda gäster på fika",
+    "titleParent": "Duka fram och bjuda gäster på fika själv",
+    "icon": "☕",
+    "parentTip": "Låt barnet ta emot gästerna och servera.",
+    "repeatable": false,
+    "tags": [
+      "socialt",
+      "värd"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_egen_tvatt_01",
+    "branch": "hem",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Tvätta min egen tvätt",
+    "titleParent": "Tvätta sin egen tvätt från start till slut",
+    "icon": "🧺",
+    "parentTip": "Gå igenom tvättsymbolerna och sortera färger tillsammans första gången.",
+    "repeatable": false,
+    "tags": [
+      "tvätt",
+      "ansvar"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "hem_husdjur_vecka_01",
+    "branch": "hem",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Ha hand om ett husdjur en vecka",
+    "titleParent": "Ha hand om ett husdjur en vecka",
+    "icon": "🐕",
+    "parentTip": "Gör ett schema för mat, vatten och promenader.",
+    "repeatable": false,
+    "tags": [
+      "djur",
+      "ansvar"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "hem_stada_badrum_01",
+    "branch": "hem",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Städa badrummet",
+    "titleParent": "Städa badrummet",
+    "icon": "🚿",
+    "parentTip": "Visa vilka medel som används till vad och använd handskar.",
+    "repeatable": false,
+    "tags": [
+      "städning"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_glodlampa_01",
+    "branch": "hem",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 1,
+    "titleChild": "Byta en glödlampa",
+    "titleParent": "Byta en glödlampa med strömbrytaren avstängd",
+    "icon": "💡",
+    "parentTip": "Visa att lampan ska svalna först och att strömbrytaren ska vara av.",
+    "repeatable": false,
+    "tags": [
+      "hemfix"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_punktering_01",
+    "branch": "hem",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 3,
+    "titleChild": "Laga en punktering",
+    "titleParent": "Laga en punktering på cykeln",
+    "icon": "🔧",
+    "parentTip": "Titta på en instruktionsfilm tillsammans och laga första gången ihop.",
+    "repeatable": false,
+    "tags": [
+      "cykel",
+      "hemfix"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_komma_ivag_01",
+    "branch": "hem",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Komma iväg till skolan själv",
+    "titleParent": "Vakna, äta frukost och komma iväg till skolan helt själv",
+    "icon": "⏰",
+    "parentTip": "Prova en morgon när du finns hemma men håller dig i bakgrunden.",
+    "repeatable": false,
+    "tags": [
+      "morgon",
+      "självständighet"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_passa_syskon_01",
+    "branch": "hem",
+    "ageMin": 11,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Ta hand om ett yngre syskon en stund",
+    "titleParent": "Ta hand om ett yngre syskon en kortare stund med en vuxen nära till hands",
+    "icon": "🧒",
+    "parentTip": "Kom överens om vad som gäller och var du finns.",
+    "repeatable": false,
+    "tags": [
+      "ansvar",
+      "familj"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "hem_skrivbord_01",
+    "branch": "hem",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 1,
+    "titleChild": "Organisera mitt skrivbord",
+    "titleParent": "Sortera och organisera sitt skrivbord",
+    "icon": "🗂️",
+    "parentTip": "Låt barnet själv bestämma ordningen.",
+    "repeatable": false,
+    "tags": [
+      "ordning",
+      "skola"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_kollektivtrafik_01",
+    "branch": "ute",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 3,
+    "titleChild": "Åka kollektivtrafik själv",
+    "titleParent": "Åka buss, tåg eller tunnelbana själv",
+    "icon": "🚌",
+    "parentTip": "Åk sträckan tillsammans först och kom överens om att barnet hör av sig.",
+    "repeatable": false,
+    "tags": [
+      "kollektivtrafik",
+      "självständighet"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "ute_tidtabell_01",
+    "branch": "ute",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Läsa en tidtabell och planera en resa",
+    "titleParent": "Läsa en tidtabell och planera en resa",
+    "icon": "🕒",
+    "parentTip": "Använd reseappen tillsammans och låt barnet planera en riktig utflykt.",
+    "repeatable": false,
+    "tags": [
+      "planering",
+      "kollektivtrafik"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "ute_till_affaren_01",
+    "branch": "ute",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Gå till affären själv",
+    "titleParent": "Gå till affären själv och handla",
+    "icon": "🏪",
+    "parentTip": "Börja med en kort lista och en butik i närheten.",
+    "repeatable": false,
+    "tags": [
+      "handla",
+      "självständighet"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_hemma_ensam_01",
+    "branch": "ute",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Vara hemma ensam en stund",
+    "titleParent": "Vara hemma ensam en kortare stund",
+    "icon": "🏡",
+    "parentTip": "Kom överens om regler: vem man ringer, och att inte öppna för okända.",
+    "repeatable": false,
+    "tags": [
+      "trygghet",
+      "självständighet"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_cykla_traningen_01",
+    "branch": "ute",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Cykla till träningen själv",
+    "titleParent": "Cykla själv till träningen eller aktiviteten",
+    "icon": "🚴",
+    "parentTip": "Gå igenom vägen och de svåra korsningarna tillsammans.",
+    "repeatable": false,
+    "tags": [
+      "cykel",
+      "trafik"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_kompass_01",
+    "branch": "ute",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Hitta med kompass eller kartapp",
+    "titleParent": "Hitta till en plats med kompass eller kartapp",
+    "icon": "🧭",
+    "parentTip": "Prova orientering eller en geocaching-runda tillsammans.",
+    "repeatable": false,
+    "tags": [
+      "orientering"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_hora_av_mig_01",
+    "branch": "ute",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 1,
+    "titleChild": "Höra av mig när jag kommer fram",
+    "titleParent": "Höra av sig när man kommer fram eller blir sen",
+    "icon": "📱",
+    "parentTip": "Kom överens om ett enkelt meddelande, till exempel en emoji.",
+    "repeatable": true,
+    "tags": [
+      "ansvar",
+      "vana"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "ute_grillplats_01",
+    "branch": "ute",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Tända en brasa med vuxen",
+    "titleParent": "Tända en brasa på en grillplats tillsammans med en vuxen",
+    "icon": "🔥",
+    "parentTip": "Gå igenom eldningsförbud, vatten i närheten och hur man släcker.",
+    "repeatable": false,
+    "tags": [
+      "friluftsliv",
+      "säkerhet"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_veckopeng_manad_01",
+    "branch": "pengar",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Hantera min veckopeng en månad",
+    "titleParent": "Hantera sin egen veckopeng en hel månad",
+    "icon": "💰",
+    "parentTip": "Låt barnet göra egna val, även misstag. Det är så man lär sig.",
+    "repeatable": false,
+    "tags": [
+      "budget",
+      "ansvar"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "pengar_jamfora_priser_01",
+    "branch": "pengar",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Jämföra priser och välja bästa köp",
+    "titleParent": "Jämföra priser och välja det bästa köpet",
+    "icon": "⚖️",
+    "parentTip": "Jämför samma vara i två butiker eller på nätet.",
+    "repeatable": false,
+    "tags": [
+      "handla",
+      "matte"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "pengar_jamforpris_01",
+    "branch": "pengar",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 1,
+    "titleChild": "Förstå jämförpris",
+    "titleParent": "Använda jämförpris (kr per kg) i affären",
+    "icon": "🏷️",
+    "parentTip": "Visa var jämförpriset står på hyllkanten.",
+    "repeatable": false,
+    "tags": [
+      "handla",
+      "matte"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_sparmal_01",
+    "branch": "pengar",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Sätta ett sparmål",
+    "titleParent": "Sätta upp ett sparmål och följa det",
+    "icon": "🎯",
+    "parentTip": "Rita eller gör ett kalkylark som visar hur nära målet barnet är.",
+    "repeatable": false,
+    "tags": [
+      "spara",
+      "planering"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_kvitto_01",
+    "branch": "pengar",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 1,
+    "titleChild": "Kontrollera ett kvitto",
+    "titleParent": "Läsa och kontrollera ett kvitto",
+    "icon": "🧾",
+    "parentTip": "Gå igenom ett kvitto efter handlingen tillsammans.",
+    "repeatable": false,
+    "tags": [
+      "handla",
+      "matte"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_betala_digitalt_01",
+    "branch": "pengar",
+    "ageMin": 11,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Betala med kort eller app",
+    "titleParent": "Betala med kort eller mobil med förälderns koll",
+    "icon": "💳",
+    "parentTip": "Prata om att digitala pengar är riktiga pengar.",
+    "repeatable": false,
+    "tags": [
+      "pengar",
+      "digitalt"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_tjana_pengar_01",
+    "branch": "pengar",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 3,
+    "titleChild": "Tjäna egna pengar",
+    "titleParent": "Tjäna egna pengar, till exempel genom att sälja saker",
+    "icon": "💪",
+    "parentTip": "Hjälp till att hitta en idé, men låt barnet driva den.",
+    "repeatable": false,
+    "tags": [
+      "entreprenör",
+      "pengar"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "pengar_budget_utflykt_01",
+    "branch": "pengar",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Göra en budget för en utflykt",
+    "titleParent": "Göra en budget för en familjeutflykt",
+    "icon": "📊",
+    "parentTip": "Ge en summa och låt barnet planera vad den räcker till.",
+    "repeatable": false,
+    "tags": [
+      "budget",
+      "planering"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_boka_tid_01",
+    "branch": "kanslor",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Boka en egen tid",
+    "titleParent": "Boka en egen tid, till exempel hos frisören",
+    "icon": "📅",
+    "parentTip": "Skriv ner vad barnet ska säga om det känns svårt.",
+    "repeatable": false,
+    "tags": [
+      "socialt",
+      "telefon"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "kanslor_halla_lofte_01",
+    "branch": "kanslor",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Hålla ett löfte en hel vecka",
+    "titleParent": "Hålla ett löfte en hel vecka",
+    "icon": "🤞",
+    "parentTip": "Låt barnet själv välja löftet.",
+    "repeatable": false,
+    "tags": [
+      "ansvar",
+      "tillit"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "kanslor_ringa_och_fraga_01",
+    "branch": "kanslor",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Ringa och fråga om något",
+    "titleParent": "Ringa till en butik eller förening och fråga om något",
+    "icon": "☎️",
+    "parentTip": "Förbered frågan tillsammans och sitt bredvid första gången.",
+    "repeatable": false,
+    "tags": [
+      "telefon",
+      "mod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_hjalpa_yngre_01",
+    "branch": "kanslor",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 1,
+    "titleChild": "Hjälpa någon yngre",
+    "titleParent": "Hjälpa en yngre elev eller ett syskon med läxa eller lek",
+    "icon": "🧑‍🏫",
+    "parentTip": "Beröm tålamodet och omtanken.",
+    "repeatable": false,
+    "tags": [
+      "omtanke",
+      "ansvar"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_stalla_till_ratta_01",
+    "branch": "kanslor",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Be om ursäkt och ställa till rätta",
+    "titleParent": "Be om ursäkt och göra något för att ställa till rätta",
+    "icon": "🤝",
+    "parentTip": "Prata om skillnaden mellan att säga förlåt och att laga det som gick sönder.",
+    "repeatable": false,
+    "tags": [
+      "socialt",
+      "ansvar"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_mejla_lararen_01",
+    "branch": "kanslor",
+    "ageMin": 11,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Skriva ett mejl till läraren",
+    "titleParent": "Skriva ett mejl till läraren och fråga något",
+    "icon": "📧",
+    "parentTip": "Gå igenom hälsning, fråga och avslutning.",
+    "repeatable": false,
+    "tags": [
+      "skola",
+      "skriva"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_ta_emot_feedback_01",
+    "branch": "kanslor",
+    "ageMin": 11,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Ta emot feedback lugnt",
+    "titleParent": "Lyssna på feedback utan att bli arg",
+    "icon": "🧘",
+    "parentTip": "Visa själv hur du tar emot feedback.",
+    "repeatable": false,
+    "tags": [
+      "känslor",
+      "självkontroll"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "kanslor_skarmgranser_01",
+    "branch": "kanslor",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Sätta egna skärmgränser en vecka",
+    "titleParent": "Själv stänga av skärmen vid överenskommen tid en vecka",
+    "icon": "📵",
+    "parentTip": "Kom överens om tiden tillsammans. Låt barnet själv hålla koll.",
+    "repeatable": true,
+    "tags": [
+      "skärm",
+      "självkontroll"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_ny_aktivitet_01",
+    "branch": "mod",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Prova en ny aktivitet eller sport",
+    "titleParent": "Prova en ny aktivitet eller sport",
+    "icon": "🏄",
+    "parentTip": "Det är modigt att vara nybörjare. Prata om det!",
+    "repeatable": false,
+    "tags": [
+      "nytt",
+      "rörelse"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "mod_presentation_01",
+    "branch": "mod",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Hålla en kort presentation för familjen",
+    "titleParent": "Hålla en kort presentation för familjen",
+    "icon": "🎙️",
+    "parentTip": "Låt barnet välja ämne helt själv och ge publiken uppgiften att ställa en fråga.",
+    "repeatable": false,
+    "tags": [
+      "scen",
+      "tala"
+    ],
+    "isPlus": false
+  },
+  {
+    "id": "mod_lager_01",
+    "branch": "mod",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 3,
+    "titleChild": "Åka på läger",
+    "titleParent": "Åka på läger eller övernattning med en förening",
+    "icon": "⛺",
+    "parentTip": "Packa tillsammans och prata om hur man gör om man längtar hem.",
+    "repeatable": false,
+    "tags": [
+      "nytt",
+      "trygghet"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_upptrada_01",
+    "branch": "mod",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 3,
+    "titleChild": "Uppträda inför publik",
+    "titleParent": "Uppträda inför publik, till exempel på en skolavslutning",
+    "icon": "🎭",
+    "parentTip": "Öva många gånger hemma och fira efteråt oavsett hur det gick.",
+    "repeatable": false,
+    "tags": [
+      "scen",
+      "mod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_hopptorn_01",
+    "branch": "mod",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 3,
+    "titleChild": "Hoppa från hopptornet",
+    "titleParent": "Hoppa från ett hopptorn i simhallen",
+    "icon": "🤸",
+    "parentTip": "Börja från en låg höjd. Inget tvång.",
+    "repeatable": false,
+    "tags": [
+      "vatten",
+      "mod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_prata_med_ny_01",
+    "branch": "mod",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Prata med någon ny i skolan",
+    "titleParent": "Ta kontakt med någon ny i skolan",
+    "icon": "👋",
+    "parentTip": "Prata om enkla sätt att börja: fråga om något ni båda gillar.",
+    "repeatable": false,
+    "tags": [
+      "vänskap",
+      "mod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_asikt_i_grupp_01",
+    "branch": "mod",
+    "ageMin": 11,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Säga min åsikt i en grupp",
+    "titleParent": "Säga sin åsikt i en grupp, till exempel i klassrådet",
+    "icon": "🗣️",
+    "parentTip": "Beröm modet att säga något, oavsett vad gruppen tycker.",
+    "repeatable": false,
+    "tags": [
+      "tala",
+      "mod"
+    ],
+    "isPlus": true
+  },
+  {
+    "id": "mod_lara_nytt_01",
+    "branch": "mod",
+    "ageMin": 10,
+    "ageMax": 13,
+    "difficulty": 2,
+    "titleChild": "Lära mig något nytt själv",
+    "titleParent": "Lära sig något nytt själv med instruktioner eller film",
+    "icon": "🎸",
+    "parentTip": "Fråga vad barnet vill lära sig och hjälp till att hitta material.",
+    "repeatable": false,
+    "tags": [
+      "lärande",
+      "uthållighet"
+    ],
+    "isPlus": true
+  }
+]

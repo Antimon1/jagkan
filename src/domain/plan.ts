@@ -1,0 +1,52 @@
+import { FREE_LIMITS } from './constants';
+import type { FamilyState } from './types';
+
+/** Feature flags per plan (spec 13). The `plus` entitlement comes from RevenueCat. */
+export interface PlanLimits {
+  plus: boolean;
+  maxChildren: number;
+  maxRewards: number;
+  fullLibrary: boolean;
+  allWorlds: boolean;
+  familyGoal: boolean;
+  siblingDuel: boolean;
+  selfMode: boolean;
+  aiSuggestions: boolean;
+  aiCardText: boolean;
+  albumExport: boolean;
+}
+
+export function planLimits(plusActive: boolean): PlanLimits {
+  if (plusActive) {
+    return {
+      plus: true,
+      maxChildren: Number.POSITIVE_INFINITY,
+      maxRewards: Number.POSITIVE_INFINITY,
+      fullLibrary: true,
+      allWorlds: true,
+      familyGoal: true,
+      siblingDuel: true,
+      selfMode: true,
+      aiSuggestions: true,
+      aiCardText: true,
+      albumExport: true,
+    };
+  }
+  return {
+    plus: false,
+    maxChildren: FREE_LIMITS.maxChildren,
+    maxRewards: FREE_LIMITS.maxRewards,
+    fullLibrary: false,
+    allWorlds: false,
+    familyGoal: false,
+    siblingDuel: false,
+    selfMode: true,
+    aiSuggestions: false,
+    aiCardText: false,
+    albumExport: false,
+  };
+}
+
+export function familyLimits(state: FamilyState): PlanLimits {
+  return planLimits(state.family.plusActive);
+}

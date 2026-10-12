@@ -1,0 +1,37 @@
+# Supabase CLI configuration (local development with `supabase start`).
+# Create the hosted project in an EU region (spec 12) and see docs/backend.md.
+project_id = "jagkan"
+
+[api]
+enabled = true
+schemas = ["public"]
+
+[db]
+major_version = 17
+
+[realtime]
+enabled = true
+
+[auth]
+enabled = true
+site_url = "http://localhost:8081"
+# Child devices sign in anonymously before pairing (spec 11).
+enable_anonymous_sign_ins = true
+enable_signup = true
+
+[auth.email]
+enable_signup = true
+# Parents log in with a 6-digit code (the e-mail template must include {{ .Token }}).
+otp_length = 6
+otp_expiry = 600
+
+# These functions check their own secrets (cron jobs and the RevenueCat webhook
+# do not send a Supabase user JWT). All functions verify callers in code as well.
+[functions.ai-weekly-suggestions]
+verify_jwt = false
+
+[functions.weekly-rollup]
+verify_jwt = false
+
+[functions.revenuecat-webhook]
+verify_jwt = false
