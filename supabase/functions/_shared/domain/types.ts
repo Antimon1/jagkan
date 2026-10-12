@@ -7,7 +7,7 @@
  * Edge Functions (Deno). Keep it that way: no react, no expo, no npm packages.
  */
 
-export type BranchId = 'kropp' | 'mat' | 'hem' | 'ute' | 'pengar' | 'kanslor' | 'mod';
+export type BranchId = 'kropp' | 'mat' | 'hem' | 'tid' | 'ute' | 'pengar' | 'kanslor' | 'omtanke' | 'mod';
 export type WorldId = 'valley' | 'dino' | 'explorer';
 export type AgeBand = 1 | 2 | 3;
 export type Difficulty = 1 | 2 | 3;
@@ -45,6 +45,11 @@ export interface ChallengeTemplate {
   reward: ChallengeReward;
   tags: string[];
   isPlus: boolean;
+  /**
+   * Hidden from the library and suggestions (for example pure chores), but kept so
+   * that challenges families already use keep working.
+   */
+  retired: boolean;
 }
 
 export interface WorldInfo {

@@ -54,7 +54,7 @@ export function activateTemplate(tx: Tx, cmd: Cmd<'activateTemplate'>, ctx: Engi
   const { state } = tx;
   if (!state.children.some((c) => c.id === cmd.childId)) return fail('not_found', 'child');
   const template = findTemplate(ctx.catalog, cmd.templateId);
-  if (!template) return fail('not_found', 'template');
+  if (!template || template.retired) return fail('not_found', 'template');
   if (template.isPlus && !familyLimits(state).fullLibrary) return fail('plus_required');
   const duplicate = state.challenges.some(
     (c) => c.childId === cmd.childId && c.templateId === template.id && c.status !== 'archived',

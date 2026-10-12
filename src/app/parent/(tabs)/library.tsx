@@ -9,10 +9,10 @@ import { Card } from '@/components/Card';
 import { Chip, ChipRow, TextField } from '@/components/forms';
 import { catalog } from '@/data/catalog';
 import { childAge } from '@/domain/age';
-import { BRANCH_ICONS, BRANCHES } from '@/domain/constants';
+import { BAND_AGES, BRANCH_ICONS, BRANCHES } from '@/domain/constants';
 import { searchLibrary } from '@/domain/library';
 import { familyLimits } from '@/domain/plan';
-import type { BranchId, ChallengeTemplate, FamilyState } from '@/domain/types';
+import type { AgeBand, BranchId, ChallengeTemplate, FamilyState } from '@/domain/types';
 import { useT } from '@/lib/i18n';
 import { useFamily } from '@/state/game';
 import { useDispatch, useNow } from '@/state/hooks';
@@ -26,6 +26,7 @@ export default function Library() {
   const [query, setQuery] = useState('');
   const [branch, setBranch] = useState<BranchId | null>(null);
   const [childFilter, setChildFilter] = useState<string | null>(params.child ?? state.children[0]?.id ?? null);
+  const [band, setBand] = useState<AgeBand | null>(null);
   const [difficulty, setDifficulty] = useState<1 | 2 | 3 | null>(null);
   const limits = familyLimits(state);
   const tz = state.family.settings.timeZone;
@@ -33,8 +34,8 @@ export default function Library() {
   const age = filterChild ? childAge(filterChild, now, tz) : null;
 
   const results = useMemo(
-    () => searchLibrary(catalog, { query, branch, age, difficulty, includePlus: true }),
-    [query, branch, age, difficulty],
+    () => searchLibrary(catalog, { query, branch, age, band, difficulty, includePlus: true }),
+    [query, branch, age, band, difficulty],
   );
 
   return (
@@ -52,13 +53,34 @@ export default function Library() {
             </AppText>
             <TextField label={t('parent.library.search')} value={query} onChangeText={setQuery} placeholder="🔍" />
             <ChipRow>
-              <Chip label={t('parent.library.anyAge')} selected={childFilter === null} onPress={() => setChildFilter(null)} />
+              <Chip
+                label={t('parent.library.anyAge')}
+                selected={childFilter === null && band === null}
+                onPress={() => {
+                  setChildFilter(null);
+                  setBand(null);
+                }}
+              />
               {state.children.map((child) => (
                 <Chip
                   key={child.id}
                   label={`${child.firstName} (${childAge(child, now, tz)})`}
                   selected={childFilter === child.id}
-                  onPress={() => setChildFilter(child.id)}
+                  onPress={() => {
+                    setChildFilter(child.id);
+                    setBand(null);
+                  }}
+                />
+              ))}
+              {([1, 2, 3] as const).map((b) => (
+                <Chip
+                  key={b}
+                  label={t('parent.library.ages', { min: BAND_AGES[b].min, max: BAND_AGES[b].max })}
+                  selected={band === b}
+                  onPress={() => {
+                    setBand(band === b ? null : b);
+                    setChildFilter(null);
+                  }}
                 />
               ))}
             </ChipRow>

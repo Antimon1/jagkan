@@ -8,7 +8,7 @@ import { newId } from '@/lib/ids';
 const DAY = 86_400_000;
 
 function firstTemplate(branch: BranchId, ageMax: number, skip: string[] = []): string {
-  const t = catalog.templates.find((x) => x.branch === branch && x.ageMax <= ageMax && !skip.includes(x.id));
+  const t = catalog.templates.find((x) => x.branch === branch && x.ageMax <= ageMax && !x.retired && !skip.includes(x.id));
   return t?.id ?? catalog.templates[0].id;
 }
 

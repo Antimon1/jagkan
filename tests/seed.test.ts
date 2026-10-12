@@ -4,7 +4,7 @@ import challenges from '../seed/challenges.json';
 import creatures from '../seed/creatures.json';
 import milestones from '../seed/milestones.json';
 import rewardSuggestions from '../seed/reward_suggestions.json';
-import { BRANCHES, WORLDS } from '@/domain/constants';
+import { BAND_AGES, BRANCHES, WORLDS } from '@/domain/constants';
 
 const branch = z.enum(BRANCHES as [string, ...string[]]);
 const world = z.enum(WORLDS as [string, ...string[]]);
@@ -25,6 +25,7 @@ const challengeSchema = z
     reward: z.enum(['star', 'praise']),
     tags: z.array(z.string()).min(1).max(3),
     isPlus: z.boolean(),
+    retired: z.boolean(),
   })
   .strict()
   .refine((c) => c.ageMin <= c.ageMax, 'ageMin <= ageMax');
@@ -51,7 +52,7 @@ const creaturesSchema = z.object({
         stages: z.array(stage).length(3),
       }),
     )
-    .length(63),
+    .length(WORLDS.length * BRANCHES.length * 3),
   specials: z
     .array(
       z.object({
@@ -70,31 +71,55 @@ const creaturesSchema = z.object({
     .length(30),
 });
 
+const active = challenges.filter((c) => !c.retired);
+
+/** Active challenges a child in each branch and age band can get (spec 6.4). */
+function cells() {
+  return BRANCHES.flatMap((branch) =>
+    ([1, 2, 3] as const).map((band) => {
+      const { min, max } = BAND_AGES[band];
+      const list = active.filter((c) => c.branch === branch && c.ageMax >= min && c.ageMin <= max);
+      return { cell: `${branch} ${min}-${max}`, count: list.length, free: list.filter((c) => !c.isPlus).length };
+    }),
+  );
+}
+
+/** Knives, heat, water, traffic and tools (idépanelen: never without a grown-up for the age). */
+const RISKY =
+  /kockkniv|vass kniv|barnkniv|\bskära|hacka|\bspis|\bugn|stekpanna|grill|brasa|\beld|tändsticka|\bbada\b|badplats|simm|simhall|hopptorn|kanot|snorkl|\bisen?\b|skridsko|fiska|trafik|gatan|övergångsställ|korsning|\bcykla|\bbuss|\btåg|eluttag|elcentral|strykjärn|symaskin|hammare|\bborr|sågen|svamp|i vattnet|under vattnet|öppet vatten|klätter|klättra/i;
+const GROWN_UP = /vuxen|vuxna|tillsammans|bredvid|instruktör|livräddning|badvakt/i;
+
 describe('seed data (spec 6.4 and 5)', () => {
-  it('has at least 150 valid, unique challenges', () => {
+  it('has at least 500 valid, unique challenges', () => {
     const parsed = z.array(challengeSchema).parse(challenges);
-    expect(parsed.length).toBeGreaterThanOrEqual(150);
+    expect(active.length).toBeGreaterThanOrEqual(500);
     expect(new Set(parsed.map((c) => c.id)).size).toBe(parsed.length);
   });
 
-  it('covers every branch in every age band', () => {
-    const bands: [number, number][] = [
-      [4, 6],
-      [7, 9],
-      [10, 13],
-    ];
-    for (const [min, max] of bands) {
-      for (const b of BRANCHES) {
-        const count = challenges.filter((c) => c.branch === b && c.ageMax >= min && c.ageMin <= max).length;
-        expect({ band: `${min}-${max}`, branch: b, ok: count >= 6 }).toEqual({ band: `${min}-${max}`, branch: b, ok: true });
-      }
-    }
+  it('has at least 20 challenges in every branch and age band', () => {
+    expect(cells().filter((c) => c.count < 20)).toEqual([]);
   });
 
-  it('has a free basic selection of about 40 (spec 13)', () => {
-    const free = challenges.filter((c) => !c.isPlus).length;
-    expect(free).toBeGreaterThanOrEqual(35);
-    expect(free).toBeLessThanOrEqual(45);
+  it('has at least two free challenges in every branch and age band (spec 13)', () => {
+    expect(cells().filter((c) => c.free < 2)).toEqual([]);
+  });
+
+  it('has no duplicate child titles among active challenges', () => {
+    const titles = active.map((c) => c.titleChild.toLocaleLowerCase('sv-SE').replace(/[!.]+$/, ''));
+    expect(titles.filter((title, i) => titles.indexOf(title) !== i)).toEqual([]);
+  });
+
+  it('asks for a grown-up whenever a challenge involves knives, heat, water, traffic or tools', () => {
+    const unsafe = active
+      .filter((c) => RISKY.test([c.titleChild, c.titleParent, ...c.tags].join(' ')))
+      .filter((c) => !GROWN_UP.test(`${c.titleParent} ${c.parentTip}`))
+      .map((c) => c.id);
+    expect(unsafe).toEqual([]);
+  });
+
+  it('keeps praise cards for emotion and kindness branches', () => {
+    const branches = new Set(active.filter((c) => c.reward === 'praise').map((c) => c.branch));
+    expect([...branches].sort()).toEqual(['kanslor', 'omtanke']);
   });
 
   it('includes the examples from the spec', () => {
@@ -104,7 +129,7 @@ describe('seed data (spec 6.4 and 5)', () => {
     }
   });
 
-  it('has 3 worlds × 7 branches × 3 creatures and 10 specials per world', () => {
+  it('has 3 creatures per branch in every world and 10 specials per world', () => {
     const parsed = creaturesSchema.parse(creatures);
     for (const w of WORLDS) {
       for (const b of BRANCHES) {

@@ -50,9 +50,11 @@ export const sv = {
     kropp: 'Kropp & hygien',
     mat: 'Mat & kök',
     hem: 'Hem & ordning',
+    tid: 'Tid & planering',
     ute: 'Ute & trafik',
     pengar: 'Pengar',
     kanslor: 'Känslor & socialt',
+    omtanke: 'Omtanke',
     mod: 'Mod & nytt',
   },
   worlds: {
@@ -352,7 +354,7 @@ export const sv = {
       subtitle: 'Mer att upptäcka för hela familjen',
       features: {
         children: 'Obegränsat antal barn',
-        library: 'Hela biblioteket med över 180 utmaningar',
+        library: 'Hela biblioteket med över 500 utmaningar',
         worlds: 'Alla världar och specialvarelser',
         rewards: 'Obegränsat med belöningar',
         competitions: 'Familjemål och syskonduell',

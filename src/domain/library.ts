@@ -1,11 +1,13 @@
 import { childAge } from './age';
-import { BRANCHES } from './constants';
-import type { BranchId, Catalog, ChallengeTemplate, Child, FamilyState } from './types';
+import { BAND_AGES, BRANCHES } from './constants';
+import type { AgeBand, BranchId, Catalog, ChallengeTemplate, Child, FamilyState } from './types';
 
 export interface LibraryFilter {
   query?: string;
   branch?: BranchId | null;
   age?: number | null;
+  /** Age band (4–6, 7–9, 10–13) when no particular child is chosen. */
+  band?: AgeBand | null;
   difficulty?: 1 | 2 | 3 | null;
   /** When false, only the free "grundurval" is returned. */
   includePlus?: boolean;
@@ -17,8 +19,11 @@ function normalize(text: string): string {
 
 export function searchLibrary(catalog: Catalog, filter: LibraryFilter): ChallengeTemplate[] {
   const query = filter.query ? normalize(filter.query.trim()) : '';
+  const band = filter.band ? BAND_AGES[filter.band] : null;
   return catalog.templates.filter((t) => {
+    if (t.retired) return false;
     if (filter.branch && t.branch !== filter.branch) return false;
+    if (band && (t.ageMax < band.min || t.ageMin > band.max)) return false;
     if (filter.difficulty && t.difficulty !== filter.difficulty) return false;
     if (filter.age !== undefined && filter.age !== null && (filter.age < t.ageMin || filter.age > t.ageMax)) {
       return false;

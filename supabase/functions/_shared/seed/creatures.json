@@ -289,6 +289,90 @@
       ]
     },
     {
+      "id": "valley_tid_1",
+      "world": "valley",
+      "branch": "tid",
+      "slot": 1,
+      "color": "#C9D3FF",
+      "personality": "Tickar mjukt och vet alltid när det är dags för frukost.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Ticki",
+          "emoji": "⏰",
+          "assetKey": "valley/tid_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Tickelina",
+          "emoji": "🕰️",
+          "assetKey": "valley/tid_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Klockfén Tickelina",
+          "emoji": "✨",
+          "assetKey": "valley/tid_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_tid_2",
+      "world": "valley",
+      "branch": "tid",
+      "slot": 2,
+      "color": "#FFE4B8",
+      "personality": "Vaknar först av alla och väcker solen med en gäspning.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Morgis",
+          "emoji": "🌅",
+          "assetKey": "valley/tid_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Morgonsol",
+          "emoji": "☀️",
+          "assetKey": "valley/tid_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Gryningsväktaren",
+          "emoji": "🌄",
+          "assetKey": "valley/tid_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_tid_3",
+      "world": "valley",
+      "branch": "tid",
+      "slot": 3,
+      "color": "#D5F2C4",
+      "personality": "Ritar små planer i sanden och bockar av dem en efter en.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Planis",
+          "emoji": "📋",
+          "assetKey": "valley/tid_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Planelina",
+          "emoji": "🗓️",
+          "assetKey": "valley/tid_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Kalendermästaren Planelina",
+          "emoji": "📅",
+          "assetKey": "valley/tid_3_s3"
+        }
+      ]
+    },
+    {
       "id": "valley_ute_1",
       "world": "valley",
       "branch": "ute",
@@ -537,6 +621,90 @@
           "name": "Vänskapsväktaren",
           "emoji": "🫶",
           "assetKey": "valley/kanslor_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_omtanke_1",
+      "world": "valley",
+      "branch": "omtanke",
+      "slot": 1,
+      "color": "#BFEFE8",
+      "personality": "Märker direkt när någon behöver en hjälpande tass.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Hjälpis",
+          "emoji": "🤝",
+          "assetKey": "valley/omtanke_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Hjälpelina",
+          "emoji": "💞",
+          "assetKey": "valley/omtanke_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Omtankefén Hjälpelina",
+          "emoji": "🌸",
+          "assetKey": "valley/omtanke_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_omtanke_2",
+      "world": "valley",
+      "branch": "omtanke",
+      "slot": 2,
+      "color": "#FFD8C2",
+      "personality": "Har alltid en mjuk famn till den som är ledsen.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Nallis",
+          "emoji": "🧸",
+          "assetKey": "valley/omtanke_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Gosebjörn",
+          "emoji": "🐻",
+          "assetKey": "valley/omtanke_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Tröstbjörnen Gosa",
+          "emoji": "💛",
+          "assetKey": "valley/omtanke_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "valley_omtanke_3",
+      "world": "valley",
+      "branch": "omtanke",
+      "slot": 3,
+      "color": "#D9F0B5",
+      "personality": "Tar hand om små plantor och vänliga djur i dalen.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Knoppis",
+          "emoji": "🌱",
+          "assetKey": "valley/omtanke_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Grönelina",
+          "emoji": "🌿",
+          "assetKey": "valley/omtanke_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Skogsväktaren Grönelina",
+          "emoji": "🌳",
+          "assetKey": "valley/omtanke_3_s3"
         }
       ]
     },
@@ -877,6 +1045,90 @@
       ]
     },
     {
+      "id": "dino_tid_1",
+      "world": "dino",
+      "branch": "tid",
+      "slot": 1,
+      "color": "#5C6BC0",
+      "personality": "Har ett timglas på svansen och kommer aldrig för sent.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Ticko",
+          "emoji": "🦕",
+          "assetKey": "dino/tid_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Tickosaurus",
+          "emoji": "🦕",
+          "assetKey": "dino/tid_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Tidsdraken Ticko",
+          "emoji": "⏳",
+          "assetKey": "dino/tid_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_tid_2",
+      "world": "dino",
+      "branch": "tid",
+      "slot": 2,
+      "color": "#FF8A65",
+      "personality": "Springer upp på berget varje morgon för att se solen gå upp.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Gryis",
+          "emoji": "🦖",
+          "assetKey": "dino/tid_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Gryningoraptor",
+          "emoji": "🦖",
+          "assetKey": "dino/tid_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Soluppgångsdraken",
+          "emoji": "🌄",
+          "assetKey": "dino/tid_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_tid_3",
+      "world": "dino",
+      "branch": "tid",
+      "slot": 3,
+      "color": "#43A047",
+      "personality": "Ritar kartor över veckans äventyr innan de börjar.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Kartis",
+          "emoji": "🐉",
+          "assetKey": "dino/tid_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Kartosaurus",
+          "emoji": "🗺️",
+          "assetKey": "dino/tid_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Planeringsmästaren Kartos",
+          "emoji": "📜",
+          "assetKey": "dino/tid_3_s3"
+        }
+      ]
+    },
+    {
       "id": "dino_ute_1",
       "world": "dino",
       "branch": "ute",
@@ -1125,6 +1377,90 @@
           "name": "Vänskapsdraken",
           "emoji": "🐉",
           "assetKey": "dino/kanslor_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_omtanke_1",
+      "world": "dino",
+      "branch": "omtanke",
+      "slot": 1,
+      "color": "#26C6DA",
+      "personality": "Bär de minsta dinoungarna på ryggen över floden.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Vårdis",
+          "emoji": "🦕",
+          "assetKey": "dino/omtanke_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Vårdodocus",
+          "emoji": "🦕",
+          "assetKey": "dino/omtanke_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Dalens beskyddare",
+          "emoji": "🛡️",
+          "assetKey": "dino/omtanke_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_omtanke_2",
+      "world": "dino",
+      "branch": "omtanke",
+      "slot": 2,
+      "color": "#9CCC65",
+      "personality": "Planterar nya träd där andra dinosaurier har ätit.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Bladis",
+          "emoji": "🦕",
+          "assetKey": "dino/omtanke_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Bladoceratops",
+          "emoji": "🌿",
+          "assetKey": "dino/omtanke_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Skogsfridens väktare",
+          "emoji": "🌳",
+          "assetKey": "dino/omtanke_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "dino_omtanke_3",
+      "world": "dino",
+      "branch": "omtanke",
+      "slot": 3,
+      "color": "#FFCA28",
+      "personality": "Flyger dit där någon behöver hjälp.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Hjälpo",
+          "emoji": "🐉",
+          "assetKey": "dino/omtanke_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Hjälpodactyl",
+          "emoji": "🪽",
+          "assetKey": "dino/omtanke_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Räddningsdraken Hjälpo",
+          "emoji": "🚁",
+          "assetKey": "dino/omtanke_3_s3"
         }
       ]
     },
@@ -1465,6 +1801,90 @@
       ]
     },
     {
+      "id": "explorer_tid_1",
+      "world": "explorer",
+      "branch": "tid",
+      "slot": 1,
+      "color": "#6366F1",
+      "personality": "Klockan som håller hela expeditionen i takt.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Armbandsur",
+          "emoji": "⌚",
+          "assetKey": "explorer/tid_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Expeditionsklocka",
+          "emoji": "⏱️",
+          "assetKey": "explorer/tid_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Kronometer Tempus",
+          "emoji": "🕰️",
+          "assetKey": "explorer/tid_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_tid_2",
+      "world": "explorer",
+      "branch": "tid",
+      "slot": 2,
+      "color": "#0EA5E9",
+      "personality": "Planerar varje uppdrag i minsta detalj.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Loggbok",
+          "emoji": "📓",
+          "assetKey": "explorer/tid_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Uppdragsplan",
+          "emoji": "🗂️",
+          "assetKey": "explorer/tid_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Missionskontroll Vega",
+          "emoji": "🛰️",
+          "assetKey": "explorer/tid_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_tid_3",
+      "world": "explorer",
+      "branch": "tid",
+      "slot": 3,
+      "color": "#F97316",
+      "personality": "Räknar ner till varje start, på sekunden.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Startknapp",
+          "emoji": "🔘",
+          "assetKey": "explorer/tid_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Nedräknare",
+          "emoji": "⏲️",
+          "assetKey": "explorer/tid_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Uppskjutningsramp Zenit",
+          "emoji": "🚀",
+          "assetKey": "explorer/tid_3_s3"
+        }
+      ]
+    },
+    {
       "id": "explorer_ute_1",
       "world": "explorer",
       "branch": "ute",
@@ -1713,6 +2133,90 @@
           "name": "Hjärtat av Titan",
           "emoji": "💎",
           "assetKey": "explorer/kanslor_3_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_omtanke_1",
+      "world": "explorer",
+      "branch": "omtanke",
+      "slot": 1,
+      "color": "#10B981",
+      "personality": "Finns alltid till hands när en lagkamrat behöver hjälp.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Första hjälpen-kit",
+          "emoji": "🩹",
+          "assetKey": "explorer/omtanke_1_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Sjukvårdsmodul",
+          "emoji": "🧰",
+          "assetKey": "explorer/omtanke_1_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Räddningsstation Hope",
+          "emoji": "🏥",
+          "assetKey": "explorer/omtanke_1_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_omtanke_2",
+      "world": "explorer",
+      "branch": "omtanke",
+      "slot": 2,
+      "color": "#84CC16",
+      "personality": "Tar hand om livet ombord, från frön till träd.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Frökapsel",
+          "emoji": "🌱",
+          "assetKey": "explorer/omtanke_2_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Växthusmodul",
+          "emoji": "🪴",
+          "assetKey": "explorer/omtanke_2_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Biodom Gaia",
+          "emoji": "🌍",
+          "assetKey": "explorer/omtanke_2_s3"
+        }
+      ]
+    },
+    {
+      "id": "explorer_omtanke_3",
+      "world": "explorer",
+      "branch": "omtanke",
+      "slot": 3,
+      "color": "#EC4899",
+      "personality": "Märket för den som ser till att ingen blir lämnad ensam.",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "Hjälparmärke Brons",
+          "emoji": "🥉",
+          "assetKey": "explorer/omtanke_3_s1"
+        },
+        {
+          "stage": 2,
+          "name": "Hjälparmärke Silver",
+          "emoji": "🥈",
+          "assetKey": "explorer/omtanke_3_s2"
+        },
+        {
+          "stage": 3,
+          "name": "Hjälparmärke Guld",
+          "emoji": "🥇",
+          "assetKey": "explorer/omtanke_3_s3"
         }
       ]
     },

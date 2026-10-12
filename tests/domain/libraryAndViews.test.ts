@@ -1,4 +1,5 @@
 import { catalog } from '@/data/catalog';
+import { BRANCHES } from '@/domain/constants';
 import { templateCardText } from '@/domain/cardText';
 import { searchLibrary, suggestFromLibrary } from '@/domain/library';
 import {
@@ -27,8 +28,32 @@ describe('challenge library (spec 6.1)', () => {
   });
 
   it('hides Plus challenges for free families', () => {
-    expect(searchLibrary(catalog, { includePlus: false }).every((t) => !t.isPlus)).toBe(true);
-    expect(searchLibrary(catalog, { includePlus: false })).toHaveLength(42);
+    const free = searchLibrary(catalog, { includePlus: false });
+    expect(free.every((t) => !t.isPlus)).toBe(true);
+    expect(free.length).toBeGreaterThanOrEqual(54);
+  });
+
+  it('filters by age band without a particular child', () => {
+    const results = searchLibrary(catalog, { band: 2, includePlus: true });
+    expect(results.length).toBeGreaterThanOrEqual(9 * 20);
+    expect(results.every((t) => t.ageMax >= 7 && t.ageMin <= 9)).toBe(true);
+  });
+
+  it('hides retired challenges but keeps them working for families that use them', () => {
+    const retiredId = 'hem_stada_badrum_01';
+    expect(catalog.templates.find((t) => t.id === retiredId)?.retired).toBe(true);
+    expect(searchLibrary(catalog, { includePlus: true }).some((t) => t.retired)).toBe(false);
+
+    const d = new Driver();
+    d.run({ type: 'setPlus', active: true }, SYSTEM);
+    const child = d.addChild('Rafael', 2014, 8);
+    expect(d.try({ type: 'activateTemplate', childId: child, templateId: retiredId })).toMatchObject({ error: 'not_found' });
+
+    // A challenge activated before the template was retired.
+    const id = d.activate(child, freeTemplate('hem', 13));
+    d.state = { ...d.state, challenges: d.state.challenges.map((c) => (c.id === id ? { ...c, templateId: retiredId } : c)) };
+    d.run({ type: 'approveCompletion', challengeId: id });
+    expect(albumFor(d.state, catalog, child)[0].title).toBe('Städa badrummet');
   });
 
   it('suggests unused, age-appropriate challenges spread over branches', () => {
@@ -85,7 +110,7 @@ describe('selectors for the child and parent views', () => {
   it('builds the collection with silhouettes, specials and trophy worlds', () => {
     const { d, child } = setup();
     const collection = collectionFor(d.state, catalog, child, 'valley');
-    expect(collection).toHaveLength(7);
+    expect(collection).toHaveLength(BRANCHES.length);
     const mat = collection.find((b) => b.branch === 'mat');
     expect(mat?.slots[0].owned).not.toBeNull();
     expect(mat?.slots[1].owned).toBeNull();

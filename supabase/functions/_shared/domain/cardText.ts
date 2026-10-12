@@ -28,10 +28,12 @@ const EFFORT: readonly string[] = [
 const BRANCH_LINES: Readonly<Record<BranchId, string>> = {
   kropp: 'Ett stort steg mot att klara sig själv.',
   mat: 'Snart är det {name} som lagar maten!',
-  hem: 'Hemmet blev lite finare tack vare {name}.',
+  hem: 'Ett steg närmare att klara sig själv hemma.',
+  tid: 'Nu har {name} lite mer koll på tiden.',
   ute: 'Världen utanför dörren blev lite större idag.',
   pengar: 'Smart med pengar, precis som en riktig vuxen.',
   kanslor: 'Det där kräver både hjärta och mod.',
+  omtanke: 'Världen blev lite varmare tack vare {name}.',
   mod: 'Det var riktigt modigt gjort!',
 };
 

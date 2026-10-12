@@ -59,7 +59,7 @@ describe('JagKan! database', () => {
       (select count(*)::int from public.challenge_templates) as templates,
       (select count(*)::int from public.creatures) as creatures,
       (select count(*)::int from public.milestones) as milestones`);
-    assert.deepEqual(rows[0], { templates: catalog.templates.length, creatures: 219, milestones: catalog.milestones.length });
+    assert.deepEqual(rows[0], { templates: catalog.templates.length, creatures: catalog.species.length * 3 + catalog.specials.length, milestones: catalog.milestones.length });
     const praise = await db.query(`select array_agg(id order by id) as ids from public.challenge_templates where reward = 'praise'`);
     assert.deepEqual(praise.rows[0].ids, catalog.templates.filter((t) => t.reward === 'praise').map((t) => t.id).sort());
   });

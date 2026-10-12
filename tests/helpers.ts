@@ -106,13 +106,15 @@ export class Driver {
 }
 
 export function freeTemplate(branch?: string, ageMax = 6): string {
-  const t = catalog.templates.find((x) => !x.isPlus && x.ageMax <= ageMax && (!branch || x.branch === branch));
+  const t = catalog.templates.find(
+    (x) => !x.isPlus && !x.retired && x.reward === 'star' && x.ageMax <= ageMax && (!branch || x.branch === branch),
+  );
   if (!t) throw new Error('no free template');
   return t.id;
 }
 
 export function plusTemplate(ageMax = 6): string {
-  const t = catalog.templates.find((x) => x.isPlus && x.ageMax <= ageMax);
+  const t = catalog.templates.find((x) => x.isPlus && !x.retired && x.reward === 'star' && x.ageMax <= ageMax);
   if (!t) throw new Error('no plus template');
   return t.id;
 }

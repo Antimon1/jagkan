@@ -80,7 +80,9 @@ Föräldern godkänner (1 tryck, valfritt foto + kommentar)
 | Ute & trafik | 🚲 | Cykla utan stödhjul, gå till kompis själv, åka buss |
 | Pengar | 🪙 | Betala själv i kassan, spara till något, förstå pris |
 | Känslor & socialt | 💛 | Säga förlåt, presentera sig, ringa farmor själv |
+| Omtanke | 🤝 | Trösta, hjälpa en granne, ta hand om djur och natur |
 | Mod & nytt | 🦁 | Smaka ny mat, simma 5 m, sova borta |
+| Tid & planering | ⏰ | Läsa klockan, packa själv, planera veckan |
 
 ### 3.4 Milstolpar och avatarer
 
@@ -119,7 +121,7 @@ Spelmekaniken är densamma i alla världar. Det som skiljer dem åt är utseende
 - Världen väljs automatiskt efter barnets ålder, men **föräldern eller barnet kan byta** till en annan värld.
 - **Uppflyttning:** När barnet fyller år och hamnar i ett nytt åldersband föreslår appen en "examen", med en animation och texten "Du är redo för nästa värld!". Barnet bestämmer själv när det byter.
 - **Samlingen följer med.** Varelser från tidigare världar finns kvar som en trofésamling (en flik per värld).
-- **Antal varelser per värld:** 7 grenar × 3 varelser × 3 utvecklingssteg = 63 bilder, plus cirka 10 specialvarelser för milstolparna.
+- **Antal varelser per värld:** 9 grenar × 3 varelser × 3 utvecklingssteg = 81 bilder, plus cirka 10 specialvarelser för milstolparna.
 
 ### 5.1 Grafik
 
@@ -164,7 +166,15 @@ active → (attempts…) → requested → completed
 
 ### 6.4 Startbibliotek (seed)
 
-Claude Code skapar `seed/challenges.json` med **minst 150 utmaningar** fördelade över grenar och åldersband. Exemplen nedan är en startpunkt.
+`seed/challenges.json` är ett handskrivet bibliotek med **minst 500 utmaningar**, och det ersätter AI-förslagen (avsnitt 8).
+
+- **Täckning:** minst 20 aktiva utmaningar per gren och åldersband (4–6, 7–9 och 10–13 år), varav minst 2 gratis.
+- **Förmågor, inte sysslor.** Rena hushållssysslor, som "Städa badrummet", är pensionerade (`retired`). De syns inte i biblioteket men fortsätter att fungera för familjer som redan använder dem.
+- **Säkerhet:** allt som rör kniv, värme, vatten, trafik eller verktyg nämner en vuxen i föräldratiteln eller föräldratipset.
+- **Barntexter** är korta, går att läsa upp och nämner aldrig att misslyckas. Inga dubbletter, och svårigheten ökar med åldern inom varje gren.
+- `tests/seed.test.ts` kontrollerar täckning, unika id:n, obligatoriska fält, dubbletter och säkerhetsregeln.
+
+Exemplen nedan var startpunkten.
 
 **Band 1 (4–6 år)**
 
@@ -175,7 +185,9 @@ Claude Code skapar `seed/challenges.json` med **minst 150 utmaningar** fördelad
 | Hem & ordning | Plocka undan mina leksaker · Hänga upp jackan · Lägga smutstvätt i korgen · Bädda sängen (enkelt) |
 | Ute & trafik | Cykla utan stödhjul · Titta åt båda hållen vid övergångsstället · Gå själv till grannen (med förälder som tittar) |
 | Pengar | Lägga pengar i spargrisen · Betala själv i kassan (med hjälp) |
-| Känslor & socialt | Säga "hej" och mitt namn till en ny vuxen · Säga förlåt själv · Berätta hur jag känner mig · Hjälpa ett syskon |
+| Känslor & socialt | Säga "hej" och mitt namn till en ny vuxen · Säga förlåt själv · Berätta hur jag känner mig |
+| Omtanke | Hjälpa ett syskon · Trösta någon som är ledsen · Mata fåglarna på vintern |
+| Tid & planering | Veta när det är morgon, lunch och kväll · Kunna veckodagarna |
 | Mod & nytt | Smaka en ny mat · Doppa huvudet under vattnet · Sova i egen säng hela natten · Klappa ett snällt djur |
 
 **Band 2 (7–9 år)**
@@ -184,10 +196,12 @@ Claude Code skapar `seed/challenges.json` med **minst 150 utmaningar** fördelad
 |---|---|
 | Kropp & hygien | Knyta skorna · Duscha och tvätta håret själv · Klippa naglarna (med hjälp) |
 | Mat & kök | Göra frukost själv · Koka ägg (med vuxen nära) · Följa ett enkelt recept |
-| Hem & ordning | Packa skolväskan kvällen före · Städa mitt rum · Vika och lägga in kläder |
+| Hem & ordning | Göra ordning i mitt rum · Vika och lägga in kläder · Låsa ytterdörren själv |
 | Ute & trafik | Gå till skolan själv · Cykla till kompis själv · Kunna adress och telefonnummer utantill |
 | Pengar | Handla en sak själv i affären · Spara till något i 4 veckor |
 | Känslor & socialt | Ringa en släkting själv · Beställa själv på café/restaurang · Lösa en konflikt utan vuxen |
+| Omtanke | Ge någon en komplimang · Vattna växterna en vecka · Odla något från frö till skörd |
+| Tid & planering | Packa skolväskan kvällen före · Läsa klockan på hel, halv och kvart |
 | Mod & nytt | Simma 25 m · Sova borta hos kompis · Läsa en hel bok själv |
 
 **Band 3 (10–13 år)**
@@ -196,10 +210,12 @@ Claude Code skapar `seed/challenges.json` med **minst 150 utmaningar** fördelad
 |---|---|
 | Kropp & hygien | Ta hand om egen hygienrutin hela veckan · Packa egen träningsväska |
 | Mat & kök | Laga middag till familjen · Planera och handla till en måltid |
-| Hem & ordning | Tvätta egen tvätt · Ha hand om ett husdjur en vecka |
+| Hem & ordning | Tvätta egen tvätt · Montera en möbel efter instruktion |
 | Ute & trafik | Åka kollektivtrafik själv · Läsa en tidtabell och planera en resa |
 | Pengar | Hantera egen veckopeng en månad · Jämföra priser och välja bästa köp |
 | Känslor & socialt | Boka en egen tid (t.ex. frisör) · Hålla ett löfte en hel vecka |
+| Omtanke | Ha hand om ett husdjur en vecka · Gå en kurs i första hjälpen |
+| Tid & planering | Planera min vecka · Komma iväg till skolan själv |
 | Mod & nytt | Prova en ny aktivitet/sport · Hålla en kort presentation för familjen |
 
 **Fält per utmaning i JSON:**
@@ -215,9 +231,14 @@ Claude Code skapar `seed/challenges.json` med **minst 150 utmaningar** fördelad
   "icon": "🧥",
   "parentTip": "Visa hur man hakar i nederdelen först. Beröm försöken!",
   "repeatable": false,
-  "tags": ["påklädning", "finmotorik"]
+  "reward": "star",
+  "tags": ["påklädning", "finmotorik"],
+  "isPlus": false,
+  "retired": false
 }
 ```
+
+`reward` är `star` eller `praise` (berömkort, se 3.2). `isPlus` styr gratisurvalet och `retired` döljer utmaningen i biblioteket.
 
 ---
 
@@ -259,7 +280,7 @@ I stället gäller:
 1. **Onboarding:** konto (e-post eller Sign in with Apple/Google), familjens namn, lägga till barn (förnamn, födelseår och månad, valfri profilbild som är en varelse och inte ett foto), val av tävlingslägen.
 2. **Översikt:** väntande godkännanden överst, sedan ett kort per barn med stjärnor denna vecka, aktiva utmaningar och nästa milstolpe.
 3. **Barnets sida:** aktiva utmaningar, förslag ur biblioteket, klarade utmaningar, statistik per gren, album och inställningar för världen.
-4. **Utmaningsbiblioteket:** sök och filtrera på gren, ålder och svårighet. Föräldern lägger till med ett tryck.
+4. **Utmaningsbiblioteket:** sök och filtrera på gren, barnets ålder eller åldersband och svårighet. Föräldern lägger till med ett tryck.
 5. **Skapa egen utmaning.**
 6. **Belöningar:** skapa, redigera och se förfrågningar och historik.
 7. **Tävlingar:** familjemål, syskonduell (med handikapp) och mot mig själv.
@@ -300,7 +321,7 @@ I stället gäller:
 | Funktion | Gratis | Plus |
 |---|---|---|
 | Antal barn | 1 | Obegränsat |
-| Utmaningsbibliotek | Grundurval (cirka 40) | Hela biblioteket |
+| Utmaningsbibliotek | Grundurval (2 per gren och åldersband, cirka 55) | Hela biblioteket (över 500) |
 | Egna utmaningar | ✅ | ✅ |
 | Gnistor, stjärnor, kläckning | ✅ | ✅ |
 | Världar | Den värld som passar barnets ålder | Alla världar och specialvarelser |
@@ -338,7 +359,7 @@ children            (id, family_id, first_name, birth_year, birth_month, world_o
 child_devices       (id, family_id, device_token_hash, child_ids uuid[], created_at, last_seen)
 pairing_codes       (code, family_id, child_ids, expires_at)
 
-challenge_templates (id, branch, age_min, age_max, difficulty, title_child, title_parent, icon, parent_tip, repeatable, tags, is_plus, reward: star|praise)
+challenge_templates (id, branch, age_min, age_max, difficulty, title_child, title_parent, icon, parent_tip, repeatable, tags, is_plus, reward: star|praise, retired)
 child_challenges    (id, child_id, template_id null, custom_title, custom_icon, branch, status, source: library|custom,
                      sparks int, repeat_count, created_at, activated_at, requested_at, completed_at)
 attempts            (id, child_challenge_id, created_at, source: child|parent)
