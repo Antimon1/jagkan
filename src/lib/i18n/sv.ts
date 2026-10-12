@@ -413,7 +413,7 @@ export const sv = {
     sparkGot: 'Bra kämpat! Du fick en gnista! 🔥',
     sparkTomorrow: 'Bra kämpat! Nästa gnista kan du få imorgon. 🔥',
     bonusStar: 'Tre gnistor blev en bonusstjärna! ⭐',
-    sentToParent: 'Nu får en vuxen titta. ⏳',
+    sentToParent: 'Nu får en vuxen titta.',
     alreadySent: 'En vuxen ska titta snart!',
     nav: {
       home: 'Hem',
