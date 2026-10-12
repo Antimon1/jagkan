@@ -4,14 +4,14 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import { AppText } from '@/components/AppText';
 import { ProgressBar } from '@/components/forms';
 import { SpeakButton } from '@/components/SpeakButton';
-import { duelScores, selfStats, weekMessage } from '@/domain/competitions';
 import type { ChallengeView, GoalView } from '@/domain/selectors';
-import { weekStartKey } from '@/domain/time';
 import type { FamilyState, WorldId } from '@/domain/types';
 import { EggArt } from '@/features/creatures/EggArt';
 import { useT } from '@/lib/i18n';
 import { radius, shadow, space } from '@/theme/tokens';
 import type { WorldTheme } from '@/theme/worlds';
+
+import { childWeekLines } from './weekLines';
 
 export function EggTile({ view, world, theme, width }: { view: ChallengeView; world: WorldId; theme: WorldTheme; width: number }) {
   const t = useT();
@@ -65,33 +65,10 @@ export function GoalMeter({ goal, theme }: { goal: GoalView; theme: WorldTheme }
   );
 }
 
-/** Week summary with only positive phrasing (spec 4). */
+/** Week summary with only positive phrasing and only the child's own numbers (spec 4). */
 export function WeekCard({ state, childId, now, theme }: { state: FamilyState; childId: string; now: string; theme: WorldTheme }) {
   const t = useT();
-  const { competitions } = state;
-  const stats = selfStats(state, childId, now);
-  const lines: string[] = [];
-
-  if (competitions.selfModeEnabled) {
-    lines.push(t('child.week.mine', { count: stats.thisWeek }));
-    if (stats.isNewRecord) lines.push(t('child.week.newRecord'));
-    else if (stats.record > 0) lines.push(t('child.week.toRecord', { count: stats.toRecord }));
-  }
-
-  if (competitions.siblingDuelEnabled && state.children.length > 1 && state.family.plusActive) {
-    const scores = duelScores(state, weekStartKey(now, state.family.settings.timeZone));
-    const leader = scores[0];
-    const leaderChild = leader && leader.score > 0 ? state.children.find((c) => c.id === leader.childId) : undefined;
-    if (leaderChild) lines.push(t('child.week.leader', { name: leaderChild.firstName }));
-    const last = [...state.weeklyResults].sort((a, b) => b.weekStart.localeCompare(a.weekStart))[0];
-    const mine = last?.results.find((r) => r.childId === childId);
-    if (last?.duel && mine) {
-      const message = weekMessage(mine);
-      const name = state.children.find((c) => c.id === childId)?.firstName ?? '';
-      if (message.kind === 'winner') lines.push(t('child.week.winner', { name }));
-    }
-  }
-
+  const lines = childWeekLines(state, childId, now).map((line) => t(line.key, 'count' in line ? { count: line.count } : undefined));
   if (lines.length === 0) return null;
   const text = lines.join(' ');
   return (

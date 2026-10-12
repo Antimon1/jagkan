@@ -49,7 +49,7 @@ export function buildDemoFamily(now: Date = new Date()): FamilyState {
   run({ type: 'addChild', firstName: 'Evelyn', birthYear: year - 6, birthMonth: 1 }, 20);
   run({ type: 'addChild', firstName: 'Rafael', birthYear: year - 5, birthMonth: 1 }, 20);
   const [evelyn, rafael] = state.children.map((c) => c.id);
-  run({ type: 'updateCompetitions', siblingDuelEnabled: true, selfModeEnabled: true, handicaps: { [rafael]: 1.5 } }, 20);
+  run({ type: 'updateCompetitions', selfModeEnabled: true }, 20);
 
   const lastChallenge = () => state.challenges[state.challenges.length - 1]?.id ?? '';
   const completeTemplate = (childId: string, branch: BranchId, daysAgo: number, tries = 1) => {

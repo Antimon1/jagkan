@@ -16,13 +16,13 @@ import { radius, space } from '@/theme/tokens';
 import type { WorldTheme } from '@/theme/worlds';
 
 import { Confetti } from './Confetti';
+import { CONFETTI_CELEBRATIONS } from './feedback';
 
 const HATCH_SHAKE_MS = 1100;
 
 interface Visual {
   text: string;
   sound: SoundName;
-  confetti: boolean;
   creature?: { id: string; stage: Stage; world: WorldId; special: boolean };
   emoji?: string;
   hatch?: boolean;
@@ -47,45 +47,44 @@ function describe(c: Celebration, state: FamilyState, world: WorldId, t: TFuncti
             ? t('child.celebrate.hatchExplorer', { name: display?.name ?? '' })
             : t('child.celebrate.hatch', { egg: t(`worlds.${world}Egg`), name: display?.name ?? '' }),
         sound: 'hatch',
-        confetti: true,
         creature: creature ? { ...creature, stage: 1 } : undefined,
         hatch: true,
       };
+    case 'praise':
+      return { text: t('child.celebrate.praise'), sound: 'chime', emoji: '💛' };
     case 'grow':
-      return { text: t('child.celebrate.grow'), sound: 'spark', confetti: false, emoji: '⭐' };
+      return { text: t('child.celebrate.grow'), sound: 'spark', emoji: '⭐' };
     case 'evolve':
-      return { text: t('child.celebrate.evolve', { name: display?.name ?? '' }), sound: 'chime', confetti: true, creature };
+      return { text: t('child.celebrate.evolve', { name: display?.name ?? '' }), sound: 'chime', creature };
     case 'bonus_star':
-      return { text: t('child.celebrate.bonus'), sound: 'spark', confetti: false, emoji: '🔥⭐' };
+      return { text: t('child.celebrate.bonus'), sound: 'spark', emoji: '🔥⭐' };
     case 'milestone': {
       const specialId = str(c.payload.specialId);
       return {
         text: t('child.celebrate.milestone', { title: str(c.payload.title), count: Number(c.payload.threshold ?? 0) }),
         sound: 'fanfare',
-        confetti: true,
         creature: specialId ? { id: specialId, stage: 1, world, special: true } : undefined,
         emoji: specialId ? undefined : '🌟',
       };
     }
     case 'special':
-      return { text: t('child.celebrate.special', { name: display?.name ?? '' }), sound: 'fanfare', confetti: true, creature: creature ? { ...creature, special: true } : undefined };
+      return { text: t('child.celebrate.special', { name: display?.name ?? '' }), sound: 'fanfare', creature: creature ? { ...creature, special: true } : undefined };
     case 'branch_master':
       return {
         text: t('child.celebrate.branchMaster', { branch: t(`branches.${str(c.payload.branch) as BranchId}`) }),
         sound: 'fanfare',
-        confetti: true,
         emoji: '🥇',
       };
     case 'family_goal':
-      return { text: t('child.celebrate.familyGoal', { title: str(c.payload.title) }), sound: 'fanfare', confetti: true, emoji: '🎉' };
+      return { text: t('child.celebrate.familyGoal', { title: str(c.payload.title) }), sound: 'fanfare', emoji: '🎉' };
     case 'week_trophy':
-      return { text: t('child.celebrate.trophy'), sound: 'fanfare', confetti: true, emoji: '🏆' };
+      return { text: t('child.celebrate.trophy'), sound: 'fanfare', emoji: '🏆' };
     case 'self_record':
-      return { text: t('child.celebrate.record', { count: Number(c.payload.stars ?? 0) }), sound: 'fanfare', confetti: true, emoji: '📈' };
+      return { text: t('child.celebrate.record', { count: Number(c.payload.stars ?? 0) }), sound: 'fanfare', emoji: '📈' };
     case 'reward_confirmed':
-      return { text: t('child.celebrate.reward', { title: str(c.payload.title) }), sound: 'coin', confetti: true, emoji: str(c.payload.icon) || '🎁' };
+      return { text: t('child.celebrate.reward', { title: str(c.payload.title) }), sound: 'coin', emoji: str(c.payload.icon) || '🎁' };
     default:
-      return { text: '', sound: 'chime', confetti: false, emoji: '⭐' };
+      return { text: '', sound: 'chime', emoji: '⭐' };
   }
 }
 
@@ -165,7 +164,7 @@ function CelebrationItem({ celebration, position, total, state, world, theme, on
       accessibilityLabel={`${visual.text}. ${t('child.celebrate.tapToContinue')}`}
       onPress={() => cracked && onNext()}
       style={[styles.backdrop, { backgroundColor: theme.dark ? 'rgba(5,12,24,0.92)' : 'rgba(255,248,240,0.96)' }]}>
-      <Confetti playKey={cracked && visual.confetti ? position + 1 : 0} />
+      <Confetti playKey={cracked && CONFETTI_CELEBRATIONS.has(celebration.type) ? position + 1 : 0} />
       <View style={styles.center}>
         {!cracked && visual.hatch ? (
           <EggArt world={visual.creature?.world ?? world} charge={3} waiting size={180} />

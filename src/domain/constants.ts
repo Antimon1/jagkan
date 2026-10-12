@@ -38,6 +38,12 @@ export const STAGE_THRESHOLDS: Readonly<Record<Stage, number>> = { 1: 0, 2: 3, 3
 /** Sparks on one challenge that give a bonus star (spec 3.2). */
 export const SPARKS_PER_BONUS_STAR = 3;
 
+/**
+ * Bonus stars one egg can give before a parent approves it (idépanelen: tries must
+ * not replace doing). A repeatable challenge gets a new bonus after each approval.
+ */
+export const MAX_BONUS_STARS_PER_ROUND = 1;
+
 export const DEFAULT_MAX_ACTIVE = 5;
 export const MAX_ACTIVE_LIMIT = 10;
 

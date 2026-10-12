@@ -46,19 +46,22 @@ Barnet ser utmaningen som ett ÄGG (eller motsvarande per värld) i sin vy
         ↓
 Barnet försöker → trycker "Jag försökte!" → +1 gnista (ägget värms/spricker lite)
         ↓
-Barnet klarar det → trycker "Jag klarade det!" → förfrågan till föräldern
+Barnet klarar det → trycker "Jag klarade det!" → lugnt besked: "Nu får en vuxen titta ⏳"
         ↓
 Föräldern godkänner (1 tryck, valfritt foto + kommentar)
         ↓
-+1 stjärna, ägget kläcks → varelse till samlingen + samlarkort i albumet
++1 stjärna, ägget kläcks (med konfetti) → varelse till samlingen + samlarkort i albumet
 ```
+
+- **Konfetti först efter godkännandet.** Föräldern kan ge en gnista i stället för att godkänna. Då ska barnet inte ha firat i förväg, så "Jag klarade det!" ger bara ett lugnt besked.
 
 ### 3.2 Valutor och regler
 
 | Element | Hur man får det | Regler |
 |---|---|---|
-| **Gnista 🔥** | Barnet trycker "Jag försökte!" på en aktiv utmaning. Föräldern kan också ge gnistor direkt. | Max 1 gnista per utmaning och dag. Gnistorna syns som laddning på ägget. **3 gnistor ger 1 bonusstjärna** (kan stängas av i inställningarna). |
+| **Gnista 🔥** | Barnet trycker "Jag försökte!" på en aktiv utmaning. Föräldern kan också ge gnistor direkt. | Max 1 gnista per utmaning och dag. Gnistorna syns som laddning på ägget. **3 gnistor ger 1 bonusstjärna**, men **högst en bonusstjärna per ägg** (för återkommande utmaningar: en per varv, alltså mellan två godkännanden). Därefter står ägget fullt tills en vuxen godkänner. Bonusstjärnan kan stängas av i inställningarna. |
 | **Stjärna ⭐** | En godkänd utmaning ger 1 stjärna. | Varje utmaning ger 1 stjärna, oavsett svårighet. Rättvisan kommer av att utmaningarna anpassas efter ålder. |
+| **Berömkort 💛** | En godkänd känslo- eller värderingshandling, till exempel säga förlåt, trösta, dela, tacka eller lugna sig. | Ger ett berömkort i albumet, men ingen stjärna, ingen bonusstjärna och ingen varelse. Barnet ska inte lära sig att byta känslor mot stjärnor. Biblioteket anger per utmaning vad den ger (`reward`). Sociala förmågor, som att ringa eller beställa, ger stjärna som vanligt. |
 | **Varelse** | Kläcks när en utmaning är klarad. Varje utmaning hör till en gren, och grenen avgör vilken varelsefamilj den kläckta varelsen tillhör. | Se avsnitt 5. |
 | **Utveckling** | Varelsen utvecklas när barnet samlar stjärnor i en gren: **3 stjärnor ger steg 2 och 10 stjärnor ger steg 3**. | Utvecklingen visas med en animation. |
 
@@ -94,10 +97,10 @@ Föräldern väljer vilka lägen som är aktiva. Flera kan vara aktiva samtidigt
 | Läge | Hur det fungerar | Visning |
 |---|---|---|
 | **Familjemål** | Alla barns stjärnor räknas ihop mot ett gemensamt mål som föräldern sätter, till exempel "40 stjärnor = bio". | Gemensam mätare på barnens hemskärm och i föräldravyn. Firas med animation när målet nås. |
-| **Syskonduell** | Barnen tävlar under en vecka (mån–sön) om flest stjärnor. Barnen har olika svåra utmaningar, så alla tävlar på sin egen nivå. Föräldern kan ge ett **handikapp**, till exempel att ett barns stjärnor räknas ×1,5. | Topplista, där vinnaren får en veckopokal i samlingen. Alla får en "Bra kämpat"-gnista. |
+| **Syskonduell** | Barnen tävlar under en vecka (mån–sön) om flest stjärnor. Barnen har olika svåra utmaningar, så alla tävlar på sin egen nivå. Föräldern kan ge ett **handikapp**, till exempel att ett barns stjärnor räknas ×1,5. **Avstängd som standard.** | Topplistan visas bara för föräldrarna. Barnet ser bara sin egen veckosiffra, aldrig vem som leder. Vinnaren får en veckopokal i samlingen, och alla får en "Bra kämpat"-gnista. |
 | **Mot mig själv** | Barnet jämför veckan med sitt eget rekord och med förra veckan. | "Nytt rekord!"-firande och en tillväxtkurva över tid. |
 
-**Regel:** Ett barn ska aldrig se en text som säger att det har förlorat. Formuleringarna ska alltid vara positiva, till exempel "Evelyn vann veckan! Rafael: 2 stjärnor kvar till ditt rekord".
+**Regel:** Ett barn ska aldrig se en text som säger att det har förlorat, och aldrig syskonens siffror. Formuleringarna ska alltid vara positiva, till exempel "Den här veckan: ⭐ 4" och "2 stjärnor kvar till ditt rekord!".
 
 ---
 
@@ -335,7 +338,7 @@ children            (id, family_id, first_name, birth_year, birth_month, world_o
 child_devices       (id, family_id, device_token_hash, child_ids uuid[], created_at, last_seen)
 pairing_codes       (code, family_id, child_ids, expires_at)
 
-challenge_templates (id, branch, age_min, age_max, difficulty, title_child, title_parent, icon, parent_tip, repeatable, tags, is_plus)
+challenge_templates (id, branch, age_min, age_max, difficulty, title_child, title_parent, icon, parent_tip, repeatable, tags, is_plus, reward: star|praise)
 child_challenges    (id, child_id, template_id null, custom_title, custom_icon, branch, status, source: library|custom,
                      sparks int, repeat_count, created_at, activated_at, requested_at, completed_at)
 attempts            (id, child_challenge_id, created_at, source: child|parent)

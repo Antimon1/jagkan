@@ -6,6 +6,7 @@
 export const sv = {
   common: {
     appName: 'JagKan!',
+    praiseCard: 'Berömkort',
     save: 'Spara',
     cancel: 'Avbryt',
     close: 'Stäng',
@@ -81,7 +82,7 @@ export const sv = {
   onboarding: {
     familyTitle: 'Er familj',
     familyName: 'Familjens namn',
-    familyPlaceholder: 'Till exempel Familjen Bandak',
+    familyPlaceholder: 'Till exempel Stjärnfamiljen',
     yourName: 'Ditt namn',
     yourNamePlaceholder: 'Mamma, pappa eller ditt förnamn',
     childrenTitle: 'Lägg till barn',
@@ -209,6 +210,7 @@ export const sv = {
       tip: 'Tips till dig',
       ages: '{{min}}–{{max}} år',
       plusLocked: 'Hela biblioteket ingår i Plus',
+      praise: 'Berömkort',
       createOwn: 'Skapa egen utmaning',
     },
     custom: {
@@ -234,8 +236,9 @@ export const sv = {
       sparkInstead: 'Ge en gnista i stället 🔥',
       sparkHint: 'Bra försök, nästan där!',
       approved: 'Godkänt! {{name}} fick en stjärna.',
-      cardTitle: 'Samlarkortet',
-      writing: 'Skriver samlarkortet…',
+      approvePraise: 'Godkänn 💛',
+      approvedPraise: 'Godkänt! {{name}} fick ett berömkort. 💛',
+      praiseHint: 'Ger ett berömkort i albumet, utan stjärna. Känslor och omtanke byts inte mot stjärnor.',
     },
     rewards: {
       title: 'Belöningar',
@@ -383,7 +386,7 @@ export const sv = {
     sparkGot: 'Bra kämpat! Du fick en gnista! 🔥',
     sparkTomorrow: 'Bra kämpat! Nästa gnista kan du få imorgon. 🔥',
     bonusStar: 'Tre gnistor blev en bonusstjärna! ⭐',
-    sentToParent: 'Toppen! Nu får en vuxen titta. ⭐',
+    sentToParent: 'Nu får en vuxen titta. ⏳',
     alreadySent: 'En vuxen ska titta snart!',
     nav: {
       home: 'Hem',
@@ -402,11 +405,9 @@ export const sv = {
       newRecord: 'Nytt rekord! 🎉',
       toRecord_one: '{{count}} stjärna kvar till ditt rekord!',
       toRecord_other: '{{count}} stjärnor kvar till ditt rekord!',
-      winner: '{{name}} vann veckan! 🏆',
       effort_one: '{{name}}: {{count}} stjärna – bra kämpat!',
       effort_other: '{{name}}: {{count}} stjärnor – bra kämpat!',
       start: '{{name}}: en ny vecka att börja på!',
-      leader: '{{name}} leder just nu!',
     },
     collection: {
       title: 'Min samling',
@@ -440,6 +441,7 @@ export const sv = {
       hatch: 'Ett {{egg}} kläcktes! Det är {{name}}!',
       hatchExplorer: 'Lådan öppnades! Du fick {{name}}!',
       grow: 'En stjärna till! Dina varelser växer!',
+      praise: 'Du fick ett berömkort! 💛',
       evolve: '{{name}} har vuxit!',
       bonus: 'Bonusstjärna! Tre gnistor blev en stjärna!',
       milestone: 'Du är nu "{{title}}"! {{count}} stjärnor!',

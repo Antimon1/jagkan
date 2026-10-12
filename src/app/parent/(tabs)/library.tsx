@@ -110,6 +110,7 @@ function LibraryItem({ template, state, locked }: { template: ChallengeTemplate;
           <AppText variant="caption" color={palette.inkSoft}>
             {t('parent.library.ages', { min: template.ageMin, max: template.ageMax })} · {t(`difficulty.${template.difficulty}`)}
             {template.repeatable ? ' · 🔁' : ''}
+            {template.reward === 'praise' ? ` · 💛 ${t('parent.library.praise')}` : ''}
           </AppText>
         </View>
         {locked ? (

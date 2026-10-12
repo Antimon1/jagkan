@@ -1,6 +1,7 @@
 import type {
   BranchId,
   Catalog,
+  ChallengeReward,
   ChallengeTemplate,
   CreatureSpecies,
   Milestone,
@@ -34,6 +35,11 @@ function index(catalog: Catalog): CatalogIndex {
 
 export function findTemplate(catalog: Catalog, id: string | null): ChallengeTemplate | undefined {
   return id ? index(catalog).templates.get(id) : undefined;
+}
+
+/** Custom challenges always give a star. */
+export function challengeReward(catalog: Catalog, challenge: { templateId: string | null }): ChallengeReward {
+  return findTemplate(catalog, challenge.templateId)?.reward ?? 'star';
 }
 
 export function findSpecies(catalog: Catalog, id: string): CreatureSpecies | undefined {

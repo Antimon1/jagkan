@@ -53,7 +53,7 @@ export function buildCatalogSql() {
   const templateRows = challenges.map((t) => [
     sqlText(t.id), sqlText(t.branch), sqlInt(t.ageMin), sqlInt(t.ageMax), sqlInt(t.difficulty), sqlText(t.titleChild),
     sqlText(t.titleParent), sqlText(t.icon), sqlText(t.parentTip), sqlBool(t.repeatable), sqlTextArray(t.tags ?? []),
-    sqlBool(t.isPlus),
+    sqlBool(t.isPlus), sqlText(t.reward),
   ]);
   const creatureRows = [
     ...creatures.species.flatMap((s) =>
@@ -76,7 +76,7 @@ export function buildCatalogSql() {
     '',
     upsert(
       'challenge_templates',
-      ['id', 'branch', 'age_min', 'age_max', 'difficulty', 'title_child', 'title_parent', 'icon', 'parent_tip', 'repeatable', 'tags', 'is_plus'],
+      ['id', 'branch', 'age_min', 'age_max', 'difficulty', 'title_child', 'title_parent', 'icon', 'parent_tip', 'repeatable', 'tags', 'is_plus', 'reward'],
       templateRows,
     ),
     upsert(

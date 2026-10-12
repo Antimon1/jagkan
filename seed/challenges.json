@@ -10,6 +10,7 @@
     "icon": "🧥",
     "parentTip": "Visa hur man hakar i nederdelen först. Beröm försöken!",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "påklädning",
       "finmotorik"
@@ -27,6 +28,7 @@
     "icon": "👕",
     "parentTip": "Lägg fram kläderna i rätt ordning kvällen innan. Hjälp bara till med det allra svåraste.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "påklädning",
       "morgon"
@@ -44,6 +46,7 @@
     "icon": "🪥",
     "parentTip": "Låt barnet borsta först och \"kontrollborsta\" sedan. En låt eller ett timglas gör två minuter roligare.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "hygien",
       "tänder"
@@ -61,6 +64,7 @@
     "icon": "🧼",
     "parentTip": "Sjung en kort sång medan händerna tvålas in, då blir det lagom länge. Beröm när det sker av sig självt!",
     "repeatable": true,
+    "reward": "star",
     "tags": [
       "hygien",
       "vana"
@@ -78,6 +82,7 @@
     "icon": "👟",
     "parentTip": "Klipp en bild på mitten och lägg en halva i varje sko, så syns det lätt vilken sko som är höger och vänster.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "påklädning"
     ],
@@ -94,6 +99,7 @@
     "icon": "🤧",
     "parentTip": "Öva först att blåsa ut luft genom näsan som en liten drake. Ha papper där barnet når.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "hygien"
     ],
@@ -110,6 +116,7 @@
     "icon": "💧",
     "parentTip": "Ställ en liten kanna och ett glas på barnets höjd. Lite spill hör till!",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "självständighet",
       "dryck"
@@ -127,6 +134,7 @@
     "icon": "💇",
     "parentTip": "Börja längst ner så trasslar det mindre. Fixa resten tillsammans och beröm försöket.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "hygien",
       "hår"
@@ -144,6 +152,7 @@
     "icon": "🙆",
     "parentTip": "Lägg jackan på golvet med insidan upp, stoppa in armarna och sväng den över huvudet. Magiskt!",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "påklädning",
       "finmotorik"
@@ -161,6 +170,7 @@
     "icon": "🚽",
     "parentTip": "En pall vid toaletten hjälper. Visa ungefär hur mycket papper som behövs.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "hygien",
       "toalett"
@@ -178,6 +188,7 @@
     "icon": "🌙",
     "parentTip": "Gör det till en del av kvällsrutinen. En bild på rutinen på väggen hjälper den som inte kan läsa.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "kväll",
       "påklädning"
@@ -195,6 +206,7 @@
     "icon": "🥪",
     "parentTip": "Använd en smörkniv utan udd och mjukt smör. Det får bli lite ojämnt!",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "frukost",
       "finmotorik"
@@ -212,6 +224,7 @@
     "icon": "🥛",
     "parentTip": "Börja med en liten kanna med lite i. Spill är en del av träningen, ha en trasa redo.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "dryck",
       "finmotorik"
@@ -229,6 +242,7 @@
     "icon": "🍽️",
     "parentTip": "Ha barnets porslin i en låg låda eller hylla så att barnet når själv.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "måltid"
     ],
@@ -245,6 +259,7 @@
     "icon": "🍌",
     "parentTip": "Gör ett litet hack i skalet för att komma igång. Resten klarar barnet!",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "frukt",
       "finmotorik"
@@ -262,6 +277,7 @@
     "icon": "🍴",
     "parentTip": "Visa \"kniven i den starka handen\". Mjuk mat som fiskpinnar är bra att öva på.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "måltid",
       "finmotorik"
@@ -279,6 +295,7 @@
     "icon": "🧽",
     "parentTip": "Tacka för hjälpen och visa var allt ska stå.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "måltid",
       "ordning"
@@ -296,6 +313,7 @@
     "icon": "🍎",
     "parentTip": "Låt barnet stå på en pall vid diskhon och skölja i en skål.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "frukt"
     ],
@@ -312,6 +330,7 @@
     "icon": "🥣",
     "parentTip": "Häll över flingorna i en burk med lock som är lätt att hantera.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "frukost"
     ],
@@ -328,6 +347,7 @@
     "icon": "🧁",
     "parentTip": "Låt barnet hälla i det som redan är avmätt. Ugnen sköter den vuxna.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "bakning"
     ],
@@ -344,6 +364,7 @@
     "icon": "🧀",
     "parentTip": "Placera frukostsakerna på en hylla i barnets höjd.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "frukost",
       "ordning"
@@ -361,6 +382,7 @@
     "icon": "🧸",
     "parentTip": "Lådor med bilder på vad som ska ligga i dem gör det lätt. Plocka gärna tillsammans första gångerna.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "ordning",
       "lek"
@@ -378,6 +400,7 @@
     "icon": "🪝",
     "parentTip": "Sätt upp en krok på barnets höjd, gärna med barnets bild bredvid.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "ordning",
       "hall"
@@ -395,6 +418,7 @@
     "icon": "🧺",
     "parentTip": "Ställ korgen där barnet byter om. Basket i tvättkorgen är tillåtet!",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "tvätt",
       "ordning"
@@ -412,6 +436,7 @@
     "icon": "🛏️",
     "parentTip": "Det behöver inte vara perfekt. Ett slätt täcke räcker gott.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "ordning",
       "morgon"
@@ -429,6 +454,7 @@
     "icon": "👞",
     "parentTip": "Tejpa en ruta eller sätt en bild där skorna ska stå.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "ordning",
       "hall"
@@ -446,6 +472,7 @@
     "icon": "🪴",
     "parentTip": "Ge barnet en egen växt att ta hand om. Känn tillsammans om jorden är torr.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "växter",
       "ansvar"
@@ -463,6 +490,7 @@
     "icon": "🧦",
     "parentTip": "Gör det till ett memoryspel!",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "tvätt",
       "lek"
@@ -480,6 +508,7 @@
     "icon": "🧽",
     "parentTip": "Vrid ur trasan tillsammans och visa hur man torkar mot sig.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "måltid",
       "ordning"
@@ -497,6 +526,7 @@
     "icon": "🐟",
     "parentTip": "Mät upp maten i förväg så att det blir lagom mycket.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "djur",
       "ansvar"
@@ -514,6 +544,7 @@
     "icon": "🚲",
     "parentTip": "Ta av pedalerna och låt barnet sparka sig fram först, det tränar balansen. Hjälm på!",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "cykel",
       "balans"
@@ -531,6 +562,7 @@
     "icon": "🚸",
     "parentTip": "Säg ramsan \"stanna, titta, lyssna\" tillsammans varje gång ni går över.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "trafik",
       "säkerhet"
@@ -548,6 +580,7 @@
     "icon": "🏡",
     "parentTip": "Stå kvar och vinka tills barnet har kommit fram. Prata med grannen i förväg.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "självständighet",
       "närområde"
@@ -565,6 +598,7 @@
     "icon": "🛴",
     "parentTip": "Öva på en lugn plats utan bilar först.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "trafik",
       "balans"
@@ -582,6 +616,7 @@
     "icon": "🌧️",
     "parentTip": "Sätt dig ner bredvid och peka ut vilket ben som ska i först.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "påklädning",
       "väder"
@@ -599,6 +634,7 @@
     "icon": "🗺️",
     "parentTip": "Låt barnet gå först och välja väg, du följer efter.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "närområde",
       "orientering"
@@ -616,6 +652,7 @@
     "icon": "⛑️",
     "parentTip": "Kolla att två fingrar får plats under hakbandet.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "säkerhet",
       "cykel"
@@ -633,6 +670,7 @@
     "icon": "🎒",
     "parentTip": "Låt barnet packa något eget i väskan, då blir den roligare att bära.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "utflykt",
       "ansvar"
@@ -650,6 +688,7 @@
     "icon": "🚦",
     "parentTip": "Fråga barnet vid varje trafikljus: \"Får vi gå nu?\"",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "trafik",
       "säkerhet"
@@ -667,6 +706,7 @@
     "icon": "🐷",
     "parentTip": "Räkna mynten tillsammans och prata om vad man kan spara till.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "spara"
     ],
@@ -683,6 +723,7 @@
     "icon": "🛒",
     "parentTip": "Förbered barnet: \"Du säger hej, ger pengarna och tar kvittot.\"",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "handla",
       "mod"
@@ -700,6 +741,7 @@
     "icon": "🪙",
     "parentTip": "Lägg mynten i högar efter sort och jämför storlek och bild.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "pengar",
       "sortera"
@@ -717,6 +759,7 @@
     "icon": "🏪",
     "parentTip": "Turas om att vara kund och den som säljer.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "lek",
       "handla"
@@ -734,6 +777,7 @@
     "icon": "🤔",
     "parentTip": "Låt barnet själv bestämma, och prata om valet efteråt.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "beslut",
       "handla"
@@ -751,6 +795,7 @@
     "icon": "🎯",
     "parentTip": "Rita en sparstege på papper och fyll i ett steg för varje mynt.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "spara",
       "tålamod"
@@ -768,6 +813,7 @@
     "icon": "🏷️",
     "parentTip": "Stå bredvid och låt barnet ställa frågan själv.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "handla",
       "mod"
@@ -785,6 +831,7 @@
     "icon": "👋",
     "parentTip": "Öva hemma med gosedjur först. Det räcker att titta upp och vinka i början.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "socialt",
       "mod"
@@ -802,6 +849,7 @@
     "icon": "🤗",
     "parentTip": "Vänta tills alla är lugna. Visa själv hur man säger förlåt.",
     "repeatable": false,
+    "reward": "praise",
     "tags": [
       "socialt",
       "känslor"
@@ -819,6 +867,7 @@
     "icon": "💬",
     "parentTip": "Använd ansikten eller känslokort: glad, ledsen, arg, rädd.",
     "repeatable": false,
+    "reward": "praise",
     "tags": [
       "känslor"
     ],
@@ -835,6 +884,7 @@
     "icon": "🤝",
     "parentTip": "Lägg märke till det och säg vad du såg: \"Vad snällt att du hjälpte till!\"",
     "repeatable": false,
+    "reward": "praise",
     "tags": [
       "omtanke",
       "socialt"
@@ -852,6 +902,7 @@
     "icon": "⏳",
     "parentTip": "Spela enkla turordningsspel och beröm väntandet.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "tålamod",
       "spel"
@@ -869,6 +920,7 @@
     "icon": "🙏",
     "parentTip": "Var själv ett exempel och lägg märke till när det händer.",
     "repeatable": true,
+    "reward": "praise",
     "tags": [
       "socialt",
       "vana"
@@ -886,6 +938,7 @@
     "icon": "💛",
     "parentTip": "Prata om vad man kan göra: fråga, krama eller hämta en vuxen.",
     "repeatable": false,
+    "reward": "praise",
     "tags": [
       "omtanke",
       "känslor"
@@ -903,6 +956,7 @@
     "icon": "🌬️",
     "parentTip": "Öva \"blås ut ljuset\" när alla är lugna, så finns knepet där när det behövs.",
     "repeatable": false,
+    "reward": "praise",
     "tags": [
       "känslor",
       "självkontroll"
@@ -920,6 +974,7 @@
     "icon": "🧩",
     "parentTip": "Beröm barnet när det delar av sig själv, utan att tvinga.",
     "repeatable": false,
+    "reward": "praise",
     "tags": [
       "socialt",
       "omtanke"
@@ -937,6 +992,7 @@
     "icon": "😋",
     "parentTip": "Det räcker att smaka en liten bit. Det är modet som räknas, inte om det var gott.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "mat",
       "mod"
@@ -954,6 +1010,7 @@
     "icon": "🏊",
     "parentTip": "Börja med att blåsa bubblor i vattnet. Ingen brådska!",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "vatten",
       "mod"
@@ -971,6 +1028,7 @@
     "icon": "🛌",
     "parentTip": "En nattlampa och ett gosedjur gör det tryggare.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "sömn",
       "trygghet"
@@ -988,6 +1046,7 @@
     "icon": "🐶",
     "parentTip": "Fråga alltid ägaren först och visa hur man låter djuret nosa på handen.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "djur",
       "mod"
@@ -1005,6 +1064,7 @@
     "icon": "🔦",
     "parentTip": "Låt barnet ta med en ficklampa första gångerna.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "mörker",
       "mod"
@@ -1022,6 +1082,7 @@
     "icon": "🧗",
     "parentTip": "Stå nära men låt barnet hitta greppen själv.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "motorik",
       "mod"
@@ -1039,6 +1100,7 @@
     "icon": "🎤",
     "parentTip": "Klappa och jubla! Publiken är den bästa belöningen.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "scen",
       "mod"
@@ -1056,6 +1118,7 @@
     "icon": "💈",
     "parentTip": "Berätta i förväg vad som ska hända och ta med något att titta på.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "nytt",
       "trygghet"
@@ -1073,6 +1136,7 @@
     "icon": "🦷",
     "parentTip": "Lek tandläkare hemma med en spegel och tandborste innan besöket.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "vård",
       "trygghet"
@@ -1090,6 +1154,7 @@
     "icon": "👟",
     "parentTip": "Prova \"kaninöron\"-metoden. Öva på en sko i knät först.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "påklädning",
       "finmotorik"
@@ -1107,6 +1172,7 @@
     "icon": "🚿",
     "parentTip": "Ha schampot där barnet når och visa hur man sköljer bort allt.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "hygien"
     ],
@@ -1123,6 +1189,7 @@
     "icon": "✂️",
     "parentTip": "Använd en nagelklippare med rundade kanter. Den vuxna kan ta tånaglarna.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "hygien",
       "finmotorik"
@@ -1140,6 +1207,7 @@
     "icon": "🪥",
     "parentTip": "Sätt upp en enkel bocklista vid handfatet.",
     "repeatable": true,
+    "reward": "star",
     "tags": [
       "hygien",
       "vana"
@@ -1157,6 +1225,7 @@
     "icon": "🌦️",
     "parentTip": "Titta på väderappen tillsammans på morgonen och prata om valet.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "påklädning",
       "väder"
@@ -1174,6 +1243,7 @@
     "icon": "🩳",
     "parentTip": "Gör en bildlista som sitter på påsen: kläder, skor, handduk.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "skola",
       "planering"
@@ -1191,6 +1261,7 @@
     "icon": "🎀",
     "parentTip": "Öva framför spegeln en helgmorgon när det inte är bråttom.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "hygien",
       "finmotorik"
@@ -1208,6 +1279,7 @@
     "icon": "🦷",
     "parentTip": "Tandtrådsbyglar är lättare att börja med än vanlig tråd.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "hygien",
       "tänder"
@@ -1225,6 +1297,7 @@
     "icon": "🧴",
     "parentTip": "Påminn om öron, nacke och näsa, de glöms lätt.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "hälsa",
       "sommar"
@@ -1242,6 +1315,7 @@
     "icon": "🍞",
     "parentTip": "Ha frukostsakerna på samma ställe varje dag så blir det lättare.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "frukost",
       "självständighet"
@@ -1259,6 +1333,7 @@
     "icon": "🥚",
     "parentTip": "Använd timer och visa hur man häller av vattnet försiktigt. Stanna i köket.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "matlagning",
       "spis"
@@ -1276,6 +1351,7 @@
     "icon": "📖",
     "parentTip": "Välj ett recept med få steg och bilder. Låt barnet läsa högt.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "matlagning",
       "läsa"
@@ -1293,6 +1369,7 @@
     "icon": "🥒",
     "parentTip": "Visa \"klon\": fingertopparna inböjda. Börja med mjuka grönsaker.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "matlagning",
       "kniv"
@@ -1310,6 +1387,7 @@
     "icon": "🍎",
     "parentTip": "Gör en lista med bra mellanmål att välja bland.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "planering",
       "mat"
@@ -1327,6 +1405,7 @@
     "icon": "🍽️",
     "parentTip": "Låt barnet bestämma placeringen och kanske tända ett ljus.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "måltid",
       "familj"
@@ -1344,6 +1423,7 @@
     "icon": "🫧",
     "parentTip": "Börja med plast och bestick. Varmt vatten och mycket skum är roligt!",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "köket",
       "ordning"
@@ -1361,6 +1441,7 @@
     "icon": "🥪",
     "parentTip": "Fråga gärna \"vem vill du överraska?\"",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "omtanke",
       "matlagning"
@@ -1378,6 +1459,7 @@
     "icon": "🧁",
     "parentTip": "Låt barnet mäta allt själv. Den vuxna sätter in och tar ut ur ugnen.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "bakning",
       "matte"
@@ -1395,6 +1477,7 @@
     "icon": "🎒",
     "parentTip": "Ett schema på kylskåpet visar vad som behövs vilken dag.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "skola",
       "planering"
@@ -1412,6 +1495,7 @@
     "icon": "🧹",
     "parentTip": "Dela upp städningen i små steg: först kläder, sedan leksaker, sedan golvet.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "ordning",
       "städning"
@@ -1429,6 +1513,7 @@
     "icon": "👚",
     "parentTip": "Visa ett enkelt sätt att vika t-shirts. Det behöver inte vara butiksfint.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "tvätt",
       "ordning"
@@ -1446,6 +1531,7 @@
     "icon": "🛏️",
     "parentTip": "Prova \"burrito-metoden\": vänd påslakanet ut och in först.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "ordning",
       "finmotorik"
@@ -1463,6 +1549,7 @@
     "icon": "🌀",
     "parentTip": "Plocka upp småsaker från golvet först så att de inte åker in i dammsugaren.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "städning"
     ],
@@ -1479,6 +1566,7 @@
     "icon": "🗑️",
     "parentTip": "Gå med de första gångerna och visa vilken tunna som är vilken.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "ansvar",
       "miljö"
@@ -1496,6 +1584,7 @@
     "icon": "♻️",
     "parentTip": "Gör det till en tävling: hur många förpackningar hittar vi rätt plats för?",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "miljö",
       "sortera"
@@ -1513,6 +1602,7 @@
     "icon": "🌱",
     "parentTip": "En lapp med dagar att bocka av gör det lättare att komma ihåg.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "växter",
       "ansvar"
@@ -1530,6 +1620,7 @@
     "icon": "⏰",
     "parentTip": "Låt barnet ställa klockan själv kvällen före.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "morgon",
       "ansvar"
@@ -1547,6 +1638,7 @@
     "icon": "🏫",
     "parentTip": "Gå vägen tillsammans flera gånger först och prata om de svåra ställena.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "trafik",
       "självständighet"
@@ -1564,6 +1656,7 @@
     "icon": "🚲",
     "parentTip": "Be kompisens förälder höra av sig när barnet har kommit fram.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "cykel",
       "trafik"
@@ -1581,6 +1674,7 @@
     "icon": "🏠",
     "parentTip": "Gör en ramsa eller sång av numret.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "säkerhet",
       "minne"
@@ -1598,6 +1692,7 @@
     "icon": "🚴",
     "parentTip": "Öva på en tom parkering eller gård först.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "cykel",
       "trafik"
@@ -1615,6 +1710,7 @@
     "icon": "🗺️",
     "parentTip": "Gör en skattjakt i närområdet med en enkel karta.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "orientering"
     ],
@@ -1631,6 +1727,7 @@
     "icon": "🚌",
     "parentTip": "Låt barnet leda resan medan du följer med.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "kollektivtrafik"
     ],
@@ -1647,6 +1744,7 @@
     "icon": "🥾",
     "parentTip": "Gör en packlista tillsammans som barnet bockar av.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "utflykt",
       "planering"
@@ -1664,6 +1762,7 @@
     "icon": "🚑",
     "parentTip": "Prata om vad som är en nödsituation, utan att skrämma.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "säkerhet"
     ],
@@ -1680,6 +1779,7 @@
     "icon": "🦺",
     "parentTip": "Häng reflexen på jackan eller väskan så att den alltid följer med.",
     "repeatable": true,
+    "reward": "star",
     "tags": [
       "trafik",
       "vana"
@@ -1697,6 +1797,7 @@
     "icon": "🛍️",
     "parentTip": "Vänta utanför eller vid ingången. Ge exakt summa första gången.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "handla",
       "självständighet"
@@ -1714,6 +1815,7 @@
     "icon": "🐷",
     "parentTip": "Rita en sparmätare och fyll i den varje vecka.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "spara",
       "tålamod"
@@ -1731,6 +1833,7 @@
     "icon": "🧮",
     "parentTip": "Öva hemma med riktiga mynt och låtsasköp.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "matte",
       "handla"
@@ -1748,6 +1851,7 @@
     "icon": "⚖️",
     "parentTip": "Låt barnet hitta prislapparna och avgöra själv.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "handla",
       "matte"
@@ -1765,6 +1869,7 @@
     "icon": "📝",
     "parentTip": "Börja med tre saker och var i närheten i butiken.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "handla",
       "planering"
@@ -1782,6 +1887,7 @@
     "icon": "🍬",
     "parentTip": "Låt barnet väga och räkna själv. Det är okej om det blir lite fel.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "budget",
       "matte"
@@ -1799,6 +1905,7 @@
     "icon": "💝",
     "parentTip": "Prata om olika sätt att hjälpa och låt barnet välja.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "omtanke",
       "pengar"
@@ -1816,6 +1923,7 @@
     "icon": "🏷️",
     "parentTip": "Låt barnet sätta priser och sköta pengarna, du finns bredvid.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "pengar",
       "mod"
@@ -1833,6 +1941,7 @@
     "icon": "📞",
     "parentTip": "Skriv upp numret och kanske några saker att berätta.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "socialt",
       "telefon"
@@ -1850,6 +1959,7 @@
     "icon": "☕",
     "parentTip": "Bestäm i förväg vad barnet ska beställa och låt barnet prata själv.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "socialt",
       "mod"
@@ -1867,6 +1977,7 @@
     "icon": "🕊️",
     "parentTip": "Öva på att säga \"jag känner ... när du ...\" och att föreslå en lösning.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "socialt",
       "känslor"
@@ -1884,6 +1995,7 @@
     "icon": "💌",
     "parentTip": "Öva frågan hemma och prata om att ett nej inte är farligt.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "vänskap",
       "mod"
@@ -1901,6 +2013,7 @@
     "icon": "🌟",
     "parentTip": "Prata om vad som gör en komplimang äkta.",
     "repeatable": false,
+    "reward": "praise",
     "tags": [
       "omtanke",
       "socialt"
@@ -1918,6 +2031,7 @@
     "icon": "✋",
     "parentTip": "Rollspela olika situationer hemma.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "gränser",
       "känslor"
@@ -1935,6 +2049,7 @@
     "icon": "🙋",
     "parentTip": "Påminn om att alla behöver hjälp ibland, även vuxna.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "skola",
       "mod"
@@ -1952,6 +2067,7 @@
     "icon": "✉️",
     "parentTip": "Låt barnet sätta på frimärket och lägga det i brevlådan.",
     "repeatable": false,
+    "reward": "praise",
     "tags": [
       "omtanke",
       "skriva"
@@ -1969,6 +2085,7 @@
     "icon": "👂",
     "parentTip": "Prova en \"pratsten\": den som håller stenen pratar.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "socialt",
       "tålamod"
@@ -1986,6 +2103,7 @@
     "icon": "🏊",
     "parentTip": "Fira varje meter på vägen. Simskola eller simborgarmärket kan vara ett bra mål.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "vatten",
       "motorik"
@@ -2003,6 +2121,7 @@
     "icon": "🏕️",
     "parentTip": "Packa tillsammans och kom överens om att barnet alltid får ringa hem.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "sömn",
       "trygghet"
@@ -2020,6 +2139,7 @@
     "icon": "📚",
     "parentTip": "Låt barnet välja bok själv på biblioteket.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "läsa",
       "uthållighet"
@@ -2037,6 +2157,7 @@
     "icon": "⚽",
     "parentTip": "Prata om att det är modigt att vara nybörjare.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "nytt",
       "rörelse"
@@ -2054,6 +2175,7 @@
     "icon": "🤿",
     "parentTip": "Stå i vattnet och ta emot de första gångerna.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "vatten",
       "mod"
@@ -2071,6 +2193,7 @@
     "icon": "🛒",
     "parentTip": "Följ med till rätt avdelning men låt barnet fråga.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "socialt",
       "mod"
@@ -2088,6 +2211,7 @@
     "icon": "🎙️",
     "parentTip": "Öva hemma framför familjen eller gosedjuren.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "scen",
       "skola"
@@ -2105,6 +2229,7 @@
     "icon": "🍣",
     "parentTip": "Laga något från ett annat land tillsammans.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "mat",
       "nytt"
@@ -2122,6 +2247,7 @@
     "icon": "🔦",
     "parentTip": "Gör en ficklampsskattjakt med små saker att hitta.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "mörker",
       "mod"
@@ -2139,6 +2265,7 @@
     "icon": "🧴",
     "parentTip": "Prata om vad rutinen ska innehålla och låt barnet själv hålla koll.",
     "repeatable": true,
+    "reward": "star",
     "tags": [
       "hygien",
       "vana"
@@ -2156,6 +2283,7 @@
     "icon": "🏋️",
     "parentTip": "Låt barnet göra en egen packlista i mobilen eller på papper.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "planering",
       "sport"
@@ -2173,6 +2301,7 @@
     "icon": "😴",
     "parentTip": "Kom överens om tiden tillsammans och prata om varför sömn är viktigt.",
     "repeatable": true,
+    "reward": "star",
     "tags": [
       "sömn",
       "vana"
@@ -2190,6 +2319,7 @@
     "icon": "🫧",
     "parentTip": "En mild tvål räcker. Låt barnet själv bestämma rutinen.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "hygien"
     ],
@@ -2206,6 +2336,7 @@
     "icon": "🪡",
     "parentTip": "Visa en gång och låt sedan barnet prova själv på en gammal tröja.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "kläder",
       "finmotorik"
@@ -2223,6 +2354,7 @@
     "icon": "🧽",
     "parentTip": "Visa fläckborttagning och att kallt vatten ofta funkar bäst.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "kläder",
       "tvätt"
@@ -2240,6 +2372,7 @@
     "icon": "🩹",
     "parentTip": "Gå igenom första hjälpen-lådan tillsammans.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "säkerhet",
       "hälsa"
@@ -2257,6 +2390,7 @@
     "icon": "👖",
     "parentTip": "Bestäm budgeten i förväg och låt barnet välja inom den.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "kläder",
       "budget"
@@ -2274,6 +2408,7 @@
     "icon": "🍲",
     "parentTip": "Välj en rätt barnet tycker om. Var i närheten men låt barnet styra.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "matlagning",
       "familj"
@@ -2291,6 +2426,7 @@
     "icon": "🛒",
     "parentTip": "Ge en budget och låt barnet skriva inköpslistan.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "planering",
       "handla"
@@ -2308,6 +2444,7 @@
     "icon": "🥖",
     "parentTip": "Jäsning tar tid. Planera en lugn helgdag.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "bakning"
     ],
@@ -2324,6 +2461,7 @@
     "icon": "🥡",
     "parentTip": "Prata om vad som gör en matlåda mättande och god.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "planering",
       "mat"
@@ -2341,6 +2479,7 @@
     "icon": "🔪",
     "parentTip": "Visa \"klon\" och att man skär från sig. En vass kniv är säkrare än en slö.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "matlagning",
       "kniv"
@@ -2358,6 +2497,7 @@
     "icon": "🍕",
     "parentTip": "Visa hur man stänger av ugnen och var grytlapparna finns.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "matlagning",
       "säkerhet"
@@ -2375,6 +2515,7 @@
     "icon": "📅",
     "parentTip": "Låt barnet fråga alla i familjen om önskemål.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "planering",
       "familj"
@@ -2392,6 +2533,7 @@
     "icon": "☕",
     "parentTip": "Låt barnet ta emot gästerna och servera.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "socialt",
       "värd"
@@ -2409,6 +2551,7 @@
     "icon": "🧺",
     "parentTip": "Gå igenom tvättsymbolerna och sortera färger tillsammans första gången.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "tvätt",
       "ansvar"
@@ -2426,6 +2569,7 @@
     "icon": "🐕",
     "parentTip": "Gör ett schema för mat, vatten och promenader.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "djur",
       "ansvar"
@@ -2443,6 +2587,7 @@
     "icon": "🚿",
     "parentTip": "Visa vilka medel som används till vad och använd handskar.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "städning"
     ],
@@ -2459,6 +2604,7 @@
     "icon": "💡",
     "parentTip": "Visa att lampan ska svalna först och att strömbrytaren ska vara av.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "hemfix"
     ],
@@ -2475,6 +2621,7 @@
     "icon": "🔧",
     "parentTip": "Titta på en instruktionsfilm tillsammans och laga första gången ihop.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "cykel",
       "hemfix"
@@ -2492,6 +2639,7 @@
     "icon": "⏰",
     "parentTip": "Prova en morgon när du finns hemma men håller dig i bakgrunden.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "morgon",
       "självständighet"
@@ -2509,6 +2657,7 @@
     "icon": "🧒",
     "parentTip": "Kom överens om vad som gäller och var du finns.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "ansvar",
       "familj"
@@ -2526,6 +2675,7 @@
     "icon": "🗂️",
     "parentTip": "Låt barnet själv bestämma ordningen.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "ordning",
       "skola"
@@ -2543,6 +2693,7 @@
     "icon": "🚌",
     "parentTip": "Åk sträckan tillsammans först och kom överens om att barnet hör av sig.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "kollektivtrafik",
       "självständighet"
@@ -2560,6 +2711,7 @@
     "icon": "🕒",
     "parentTip": "Använd reseappen tillsammans och låt barnet planera en riktig utflykt.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "planering",
       "kollektivtrafik"
@@ -2577,6 +2729,7 @@
     "icon": "🏪",
     "parentTip": "Börja med en kort lista och en butik i närheten.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "handla",
       "självständighet"
@@ -2594,6 +2747,7 @@
     "icon": "🏡",
     "parentTip": "Kom överens om regler: vem man ringer, och att inte öppna för okända.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "trygghet",
       "självständighet"
@@ -2611,6 +2765,7 @@
     "icon": "🚴",
     "parentTip": "Gå igenom vägen och de svåra korsningarna tillsammans.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "cykel",
       "trafik"
@@ -2628,6 +2783,7 @@
     "icon": "🧭",
     "parentTip": "Prova orientering eller en geocaching-runda tillsammans.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "orientering"
     ],
@@ -2644,6 +2800,7 @@
     "icon": "📱",
     "parentTip": "Kom överens om ett enkelt meddelande, till exempel en emoji.",
     "repeatable": true,
+    "reward": "star",
     "tags": [
       "ansvar",
       "vana"
@@ -2661,6 +2818,7 @@
     "icon": "🔥",
     "parentTip": "Gå igenom eldningsförbud, vatten i närheten och hur man släcker.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "friluftsliv",
       "säkerhet"
@@ -2678,6 +2836,7 @@
     "icon": "💰",
     "parentTip": "Låt barnet göra egna val, även misstag. Det är så man lär sig.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "budget",
       "ansvar"
@@ -2695,6 +2854,7 @@
     "icon": "⚖️",
     "parentTip": "Jämför samma vara i två butiker eller på nätet.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "handla",
       "matte"
@@ -2712,6 +2872,7 @@
     "icon": "🏷️",
     "parentTip": "Visa var jämförpriset står på hyllkanten.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "handla",
       "matte"
@@ -2729,6 +2890,7 @@
     "icon": "🎯",
     "parentTip": "Rita eller gör ett kalkylark som visar hur nära målet barnet är.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "spara",
       "planering"
@@ -2746,6 +2908,7 @@
     "icon": "🧾",
     "parentTip": "Gå igenom ett kvitto efter handlingen tillsammans.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "handla",
       "matte"
@@ -2763,6 +2926,7 @@
     "icon": "💳",
     "parentTip": "Prata om att digitala pengar är riktiga pengar.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "pengar",
       "digitalt"
@@ -2780,6 +2944,7 @@
     "icon": "💪",
     "parentTip": "Hjälp till att hitta en idé, men låt barnet driva den.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "entreprenör",
       "pengar"
@@ -2797,6 +2962,7 @@
     "icon": "📊",
     "parentTip": "Ge en summa och låt barnet planera vad den räcker till.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "budget",
       "planering"
@@ -2814,6 +2980,7 @@
     "icon": "📅",
     "parentTip": "Skriv ner vad barnet ska säga om det känns svårt.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "socialt",
       "telefon"
@@ -2831,6 +2998,7 @@
     "icon": "🤞",
     "parentTip": "Låt barnet själv välja löftet.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "ansvar",
       "tillit"
@@ -2848,6 +3016,7 @@
     "icon": "☎️",
     "parentTip": "Förbered frågan tillsammans och sitt bredvid första gången.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "telefon",
       "mod"
@@ -2865,6 +3034,7 @@
     "icon": "🧑‍🏫",
     "parentTip": "Beröm tålamodet och omtanken.",
     "repeatable": false,
+    "reward": "praise",
     "tags": [
       "omtanke",
       "ansvar"
@@ -2882,6 +3052,7 @@
     "icon": "🤝",
     "parentTip": "Prata om skillnaden mellan att säga förlåt och att laga det som gick sönder.",
     "repeatable": false,
+    "reward": "praise",
     "tags": [
       "socialt",
       "ansvar"
@@ -2899,6 +3070,7 @@
     "icon": "📧",
     "parentTip": "Gå igenom hälsning, fråga och avslutning.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "skola",
       "skriva"
@@ -2916,6 +3088,7 @@
     "icon": "🧘",
     "parentTip": "Visa själv hur du tar emot feedback.",
     "repeatable": false,
+    "reward": "praise",
     "tags": [
       "känslor",
       "självkontroll"
@@ -2933,6 +3106,7 @@
     "icon": "📵",
     "parentTip": "Kom överens om tiden tillsammans. Låt barnet själv hålla koll.",
     "repeatable": true,
+    "reward": "star",
     "tags": [
       "skärm",
       "självkontroll"
@@ -2950,6 +3124,7 @@
     "icon": "🏄",
     "parentTip": "Det är modigt att vara nybörjare. Prata om det!",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "nytt",
       "rörelse"
@@ -2967,6 +3142,7 @@
     "icon": "🎙️",
     "parentTip": "Låt barnet välja ämne helt själv och ge publiken uppgiften att ställa en fråga.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "scen",
       "tala"
@@ -2984,6 +3160,7 @@
     "icon": "⛺",
     "parentTip": "Packa tillsammans och prata om hur man gör om man längtar hem.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "nytt",
       "trygghet"
@@ -3001,6 +3178,7 @@
     "icon": "🎭",
     "parentTip": "Öva många gånger hemma och fira efteråt oavsett hur det gick.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "scen",
       "mod"
@@ -3018,6 +3196,7 @@
     "icon": "🤸",
     "parentTip": "Börja från en låg höjd. Inget tvång.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "vatten",
       "mod"
@@ -3035,6 +3214,7 @@
     "icon": "👋",
     "parentTip": "Prata om enkla sätt att börja: fråga om något ni båda gillar.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "vänskap",
       "mod"
@@ -3052,6 +3232,7 @@
     "icon": "🗣️",
     "parentTip": "Beröm modet att säga något, oavsett vad gruppen tycker.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "tala",
       "mod"
@@ -3069,6 +3250,7 @@
     "icon": "🎸",
     "parentTip": "Fråga vad barnet vill lära sig och hjälp till att hitta material.",
     "repeatable": false,
+    "reward": "star",
     "tags": [
       "lärande",
       "uthållighet"

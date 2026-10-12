@@ -24,6 +24,13 @@ export type AttemptSource = 'child' | 'parent' | 'duel';
 // Catalog (static seed data, read from seed/*.json)
 // ---------------------------------------------------------------------------
 
+/**
+ * What approving a challenge gives. Pure emotion and value acts (saying sorry,
+ * comforting, sharing, thanking, calming down) give a praise card without a star,
+ * so a child never trades feelings for stars (idépanelen).
+ */
+export type ChallengeReward = 'star' | 'praise';
+
 export interface ChallengeTemplate {
   id: string;
   branch: BranchId;
@@ -35,6 +42,7 @@ export interface ChallengeTemplate {
   icon: string;
   parentTip: string;
   repeatable: boolean;
+  reward: ChallengeReward;
   tags: string[];
   isPlus: boolean;
 }
@@ -317,6 +325,7 @@ export interface WeeklyResult {
 export type CelebrationType =
   | 'hatch'
   | 'grow'
+  | 'praise'
   | 'evolve'
   | 'bonus_star'
   | 'milestone'

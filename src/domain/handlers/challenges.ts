@@ -1,4 +1,4 @@
-import { findTemplate } from '../catalog';
+import { challengeReward, findTemplate } from '../catalog';
 import { templateCardText } from '../cardText';
 import type { Command } from '../commands';
 import { SPARKS_PER_BONUS_STAR } from '../constants';
@@ -15,6 +15,7 @@ import {
 } from '../guards';
 import { familyLimits } from '../plan';
 import { awardStar } from '../progress';
+import { canEarnBonusStar } from '../stars';
 import { dayKey } from '../time';
 import { celebrate, emit, patchState, replaceById, type Tx } from '../tx';
 import type { Attempt, AttemptSource, ChildChallenge, Completion, EngineContext } from '../types';
@@ -126,6 +127,7 @@ function addSpark(tx: Tx, ctx: EngineContext, challenge: ChildChallenge, source:
   // (YYYY-MM-DD) sort as strings, so lastSparkDay can only move forward.
   const limited = source === 'child' && challenge.lastSparkDay !== null && challenge.lastSparkDay >= day;
   const hadSparkBefore = tx.state.attempts.some((a) => a.childId === challenge.childId && a.sparkAwarded);
+  const bonusAvailable = canEarnBonusStar(tx.state, ctx.catalog, challenge);
 
   const attempt: Attempt = {
     id: ctx.newId(),
@@ -156,7 +158,7 @@ function addSpark(tx: Tx, ctx: EngineContext, challenge: ChildChallenge, source:
   if (!hadSparkBefore) {
     result = unlockSpecial(result, ctx, child.id, child.world, { type: 'first_spark' }, { celebrate: true }).tx;
   }
-  if (result.state.family.settings.sparkBonusEnabled && sparks % SPARKS_PER_BONUS_STAR === 0) {
+  if (bonusAvailable && sparks % SPARKS_PER_BONUS_STAR === 0) {
     result = awardStar(result, ctx, {
       childId: child.id,
       reason: 'spark_bonus',
@@ -205,7 +207,8 @@ export function requestCompletion(tx: Tx, cmd: Cmd<'requestCompletion'>, ctx: En
 
 /**
  * Approve (or directly register) a completed challenge: +1 star, hatch the next
- * creature of the branch, create the collector card (spec 3.1 and 6.3).
+ * creature of the branch, create the collector card (spec 3.1 and 6.3). A praise
+ * challenge only gives the card: no star and no creature.
  */
 export function approveCompletion(tx: Tx, cmd: Cmd<'approveCompletion'>, ctx: EngineContext, parentId: string | null): HandlerResult {
   const challenge = findChallenge(tx.state, cmd.challengeId);
@@ -217,6 +220,7 @@ export function approveCompletion(tx: Tx, cmd: Cmd<'approveCompletion'>, ctx: En
   if (note === undefined) return fail('invalid_input');
 
   const isFirst = !tx.state.completions.some((c) => c.childChallengeId === challenge.id);
+  const praise = challengeReward(ctx.catalog, challenge) === 'praise';
   const attemptsCount = tx.state.attempts.filter((a) => a.childChallengeId === challenge.id).length;
   const providedText = optionalText(cmd.cardText, CARD_MAX);
   const cardText =
@@ -231,7 +235,7 @@ export function approveCompletion(tx: Tx, cmd: Cmd<'approveCompletion'>, ctx: En
 
   let result = tx;
   let creatureId: string | null = null;
-  if (isFirst) {
+  if (isFirst && !praise) {
     const hatched = hatchNext(result, ctx, child.id, child.world, challenge.branch);
     result = hatched.tx;
     creatureId = hatched.creatureId;
@@ -264,19 +268,21 @@ export function approveCompletion(tx: Tx, cmd: Cmd<'approveCompletion'>, ctx: En
   });
 
   // The celebration comes before the star so the child sees "hatch" before "evolve/milestone".
-  result = celebrate(result, ctx, child.id, creatureId ? 'hatch' : 'grow', {
+  result = celebrate(result, ctx, child.id, praise ? 'praise' : creatureId ? 'hatch' : 'grow', {
     completionId: completion.id,
     challengeId: challenge.id,
     creatureId,
     branch: challenge.branch,
   });
-  result = awardStar(result, ctx, {
-    childId: child.id,
-    reason: 'completion',
-    refId: completion.id,
-    branch: challenge.branch,
-    world: child.world,
-  });
+  if (!praise) {
+    result = awardStar(result, ctx, {
+      childId: child.id,
+      reason: 'completion',
+      refId: completion.id,
+      branch: challenge.branch,
+      world: child.world,
+    });
+  }
   return emit(result, {
     type: 'challenge_completed',
     childId: child.id,

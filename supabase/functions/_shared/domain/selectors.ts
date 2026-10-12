@@ -4,11 +4,12 @@ import { branchSpecies, creatureDisplay, findTemplate, milestonesAscending } fro
 import { BRANCHES, SPARKS_PER_BONUS_STAR } from './constants.ts';
 import { starsToNextStage } from './creatures.ts';
 import { activeGoal, goalProgress } from './progress.ts';
-import { availableStars, totalStars } from './stars.ts';
+import { availableStars, canEarnBonusStar, totalStars } from './stars.ts';
 import type {
   BranchId,
   Catalog,
   Celebration,
+  ChallengeReward,
   Child,
   ChildChallenge,
   ChildCreature,
@@ -36,15 +37,21 @@ export interface ChallengeView {
   difficulty: number | null;
   /** 0..3 charge shown on the egg. */
   charge: number;
+  reward: ChallengeReward;
 }
 
-export function challengeView(catalog: Catalog, challenge: ChildChallenge, sparkBonusEnabled = true): ChallengeView {
+/**
+ * `bonusAvailable` (see canEarnBonusStar): the egg fills up towards a bonus star and
+ * starts over. Without a bonus to earn it stays full until a parent approves.
+ */
+export function challengeView(catalog: Catalog, challenge: ChildChallenge, bonusAvailable = true): ChallengeView {
   const template = findTemplate(catalog, challenge.templateId);
-  const charge = sparkBonusEnabled
+  const charge = bonusAvailable
     ? challenge.sparks % SPARKS_PER_BONUS_STAR
     : Math.min(challenge.sparks, SPARKS_PER_BONUS_STAR);
   return {
     challenge,
+    reward: template?.reward ?? 'star',
     title: template?.titleChild ?? challenge.customTitle ?? '',
     parentTitle: template?.titleParent ?? challenge.customTitle ?? '',
     icon: template?.icon ?? challenge.customIcon ?? '⭐',
@@ -55,7 +62,7 @@ export function challengeView(catalog: Catalog, challenge: ChildChallenge, spark
 }
 
 function views(state: FamilyState, catalog: Catalog, list: ChildChallenge[]): ChallengeView[] {
-  return list.map((c) => challengeView(catalog, c, state.family.settings.sparkBonusEnabled));
+  return list.map((c) => challengeView(catalog, c, canEarnBonusStar(state, catalog, c)));
 }
 
 /** Eggs on the child's home screen: active and waiting-for-parent challenges. */
@@ -94,7 +101,7 @@ export function pendingApprovals(state: FamilyState, catalog: Catalog): PendingA
     .sort((a, b) => (a.requestedAt ?? '').localeCompare(b.requestedAt ?? ''))
     .flatMap((c) => {
       const child = findChild(state, c.childId);
-      return child ? [{ child, view: challengeView(catalog, c, state.family.settings.sparkBonusEnabled) }] : [];
+      return child ? [{ child, view: challengeView(catalog, c, canEarnBonusStar(state, catalog, c)) }] : [];
     });
 }
 
@@ -251,6 +258,7 @@ export interface AlbumEntry {
   title: string;
   icon: string;
   creature: { name: string; emoji: string; color: string } | null;
+  praise: boolean;
 }
 
 export function albumFor(state: FamilyState, catalog: Catalog, childId: string): AlbumEntry[] {
@@ -271,6 +279,7 @@ export function albumFor(state: FamilyState, catalog: Catalog, childId: string):
         title: view?.title ?? '',
         icon: view?.icon ?? '⭐',
         creature: display ? { name: display.name, emoji: display.emoji, color: display.color } : null,
+        praise: view?.reward === 'praise',
       };
     });
 }

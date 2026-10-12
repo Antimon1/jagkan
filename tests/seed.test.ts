@@ -22,6 +22,7 @@ const challengeSchema = z
     icon: z.string().min(1).max(16),
     parentTip: z.string().min(10).max(300),
     repeatable: z.boolean(),
+    reward: z.enum(['star', 'praise']),
     tags: z.array(z.string()).min(1).max(3),
     isPlus: z.boolean(),
   })
