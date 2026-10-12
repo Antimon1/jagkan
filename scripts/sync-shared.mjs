@@ -46,6 +46,7 @@ import creatures from './seed/creatures.json' with { type: 'json' };
 import milestones from './seed/milestones.json' with { type: 'json' };
 import rewardSuggestions from './seed/reward_suggestions.json' with { type: 'json' };
 
+import { GAME_SCOPE } from './domain/launch.ts';
 import type {
   Catalog,
   ChallengeTemplate,
@@ -57,6 +58,7 @@ import type {
 } from './domain/types.ts';
 
 export const catalog: Catalog = {
+  scope: GAME_SCOPE,
   templates: challenges as unknown as ChallengeTemplate[],
   worlds: creatures.worlds as unknown as WorldInfo[],
   species: creatures.species as unknown as CreatureSpecies[],

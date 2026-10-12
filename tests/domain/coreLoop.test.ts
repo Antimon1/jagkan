@@ -13,7 +13,7 @@ describe('core loop: spark → request → approve → star → hatch', () => {
   });
 
   it('puts a 8-year-old in Dinodalen and a 11-year-old in Utforskarbasen', () => {
-    const d = new Driver();
+    const d = new Driver().fullGame();
     d.run({ type: 'setPlus', active: true }, SYSTEM);
     const a = d.addChild('Alva', 2018, 5);
     const b = d.addChild('Bo', 2015, 1);
@@ -61,7 +61,7 @@ describe('core loop: spark → request → approve → star → hatch', () => {
     );
     const types = d.state.celebrations.map((c) => c.type);
     expect(types).toContain('hatch');
-    expect(types).toContain('special'); // first spark special
+    expect(types).not.toContain('special'); // specials are frozen in the beta
   });
 
   it('lets the parent register a completion directly without a request', () => {
@@ -195,7 +195,7 @@ describe('sparks (spec 3.2)', () => {
   });
 
   it('unlocks the first-spark special only once', () => {
-    const d = new Driver();
+    const d = new Driver().fullGame();
     const child = d.addChild('Evelyn', 2020, 3);
     const a = d.activate(child, freeTemplate('kropp'));
     const b = d.activate(child, freeTemplate('mat'));

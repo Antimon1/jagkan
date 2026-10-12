@@ -1,4 +1,5 @@
-import { ageAt, childAge, graduationTarget, worldForAge } from '../age';
+import { ageAt, childAge, graduationTarget, playableWorldForAge } from '../age';
+import { isPlayableWorld } from '../catalog';
 import type { Command } from '../commands';
 import { MAX_ACTIVE_LIMIT, MAX_AGE } from '../constants';
 import { unlockSpecial } from '../creatures';
@@ -84,7 +85,7 @@ export function addChild(tx: Tx, cmd: Cmd<'addChild'>, ctx: EngineContext): Hand
     firstName,
     birthYear: cmd.birthYear,
     birthMonth: cmd.birthMonth,
-    world: worldForAge(ageAt(cmd.birthYear, cmd.birthMonth, ctx.now, tz)),
+    world: playableWorldForAge(ctx.catalog, ageAt(cmd.birthYear, cmd.birthMonth, ctx.now, tz)),
     avatarCreatureId: null,
     graduationSnoozedAt: null,
     createdAt: ctx.now,
@@ -135,17 +136,19 @@ export function removeChild(tx: Tx, cmd: Cmd<'removeChild'>): HandlerResult {
 /**
  * Switch world. Free plan: only the world that fits the child's age (spec 13).
  * Moving up from the previous band is the "examen" and unlocks a diploma creature.
+ * Frozen worlds (src/domain/launch.ts) cannot be chosen.
  */
 export function changeWorld(tx: Tx, cmd: Cmd<'changeWorld'>, ctx: EngineContext): HandlerResult {
   const child = tx.state.children.find((c) => c.id === cmd.childId);
   if (!child) return fail('not_found');
-  if (!isWorld(cmd.world)) return fail('invalid_input');
+  if (!isWorld(cmd.world) || !isPlayableWorld(ctx.catalog, cmd.world)) return fail('invalid_input');
   if (child.world === cmd.world) return tx;
   const tz = tx.state.family.settings.timeZone;
-  const ageWorld = worldForAge(childAge(child, ctx.now, tz));
+  const ageWorld = playableWorldForAge(ctx.catalog, childAge(child, ctx.now, tz));
   if (!familyLimits(tx.state).allWorlds && cmd.world !== ageWorld) return fail('plus_required');
 
-  const isGraduation = graduationTarget({ ...child, graduationSnoozedAt: null }, ctx.now, tz) === cmd.world;
+  const isGraduation =
+    graduationTarget({ ...child, graduationSnoozedAt: null }, ctx.now, tz, ctx.catalog.scope.worlds) === cmd.world;
   let result = tx;
   if (isGraduation) {
     result = unlockSpecial(result, ctx, child.id, child.world, { type: 'graduation' }, { celebrate: true }).tx;

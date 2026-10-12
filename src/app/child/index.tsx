@@ -89,7 +89,7 @@ function Home({ active }: { active: ActiveChild }) {
   const [dismissed, setDismissed] = useState<string[]>([]);
   const eggs = eggsForChild(state, catalog, child.id);
   const goal = familyGoalView(state, now);
-  const graduation = graduationFor(state, child.id, now);
+  const graduation = graduationFor(state, catalog, child.id, now);
   const celebrations = unseenCelebrations(state, child.id).filter((c) => !dismissed.includes(c.id));
   const columns = width >= 700 ? 3 : 2;
   const contentWidth = Math.min(width, 900) - space.lg * 2;

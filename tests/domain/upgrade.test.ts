@@ -1,5 +1,5 @@
 import { upgradeState } from '@/domain/upgrade';
-import { Driver, freeTemplate } from '../helpers';
+import { Driver, freeTemplate, SYSTEM } from '../helpers';
 
 /** A family saved on the device by a version that still had AI suggestions. */
 function legacyFamily() {
@@ -28,6 +28,18 @@ describe('upgradeState', () => {
       ['custom', 'paused'],
       ['library', 'active'],
     ]);
+  });
+
+  it('moves a child from a frozen world to Äggdalen and keeps its creatures', () => {
+    const d = new Driver().fullGame();
+    d.run({ type: 'setPlus', active: true }, SYSTEM);
+    const child = d.addChild('Bo', 2014, 1);
+    d.completeIn(child, 'ute');
+    expect(d.state.children[0].world).toBe('explorer');
+
+    const upgraded = upgradeState(d.state);
+    expect(upgraded?.children[0].world).toBe('valley');
+    expect(upgraded?.creatures.map((c) => c.creatureId)).toEqual(['explorer_ute_1']);
   });
 
   it('leaves a current family unchanged', () => {

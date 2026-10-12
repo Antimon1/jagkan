@@ -1,8 +1,10 @@
 import { useId } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import Svg, { Circle, Defs, Ellipse, G, Path, Polygon, RadialGradient, Stop } from 'react-native-svg';
 
 import type { Stage, WorldId } from '@/domain/types';
+
+import { creatureArtwork } from './artwork';
 
 export interface CreatureArtProps {
   world: WorldId;
@@ -12,14 +14,28 @@ export interface CreatureArtProps {
   size?: number;
   locked?: boolean;
   special?: boolean;
+  /** Real artwork when it exists (./artwork.ts); otherwise the placeholder is drawn. */
+  assetKey?: string;
 }
 
 /**
- * Placeholder creature art (spec 5.1): a simple SVG figure in the creature's
- * color, one shape language per world. Real artwork replaces this by assetKey.
+ * Creature art (spec 5.1). Shows the finished image for `assetKey` when there is
+ * one, as a silhouette while locked. Otherwise a placeholder: a simple SVG figure
+ * in the creature's color, one shape language per world.
  */
-export function CreatureArt({ world, color, stage, emoji, size = 96, locked = false, special = false }: CreatureArtProps) {
+export function CreatureArt({ world, color, stage, emoji, size = 96, locked = false, special = false, assetKey }: CreatureArtProps) {
   const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
+  const artwork = creatureArtwork(assetKey);
+  if (artwork) {
+    return (
+      <Image
+        source={artwork}
+        accessibilityIgnoresInvertColors
+        resizeMode="contain"
+        style={[{ width: size, height: size }, locked ? styles.silhouette : null]}
+      />
+    );
+  }
   const bodyId = `body${uid}`;
   const scale = [0.8, 0.9, 1][stage - 1];
   const fill = locked ? (world === 'explorer' ? '#2B3F5A' : '#CFC6BA') : `url(#${bodyId})`;
@@ -159,4 +175,5 @@ const styles = StyleSheet.create({
   center: { alignItems: 'center', justifyContent: 'center' },
   bellyEmoji: { paddingTop: '46%' },
   badgeEmoji: { paddingTop: '4%' },
+  silhouette: { tintColor: '#CFC6BA' },
 });

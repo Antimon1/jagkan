@@ -16,7 +16,7 @@ import {
   unseenCelebrations,
   worldsWithCollection,
 } from '@/domain/selectors';
-import { Driver, freeTemplate, SYSTEM } from '../helpers';
+import { Driver, freeTemplate, fullGameCatalog, SYSTEM } from '../helpers';
 
 describe('challenge library (spec 6.1)', () => {
   it('filters by branch, age, difficulty and text', () => {
@@ -107,16 +107,32 @@ describe('selectors for the child and parent views', () => {
     expect(pending[0].child.firstName).toBe('Evelyn');
   });
 
-  it('builds the collection with silhouettes, specials and trophy worlds', () => {
+  it('builds the beta collection: one creature per branch and no locked specials', () => {
     const { d, child } = setup();
     const collection = collectionFor(d.state, catalog, child, 'valley');
     expect(collection).toHaveLength(BRANCHES.length);
+    expect(collection.every((b) => b.slots.length === 1)).toBe(true);
     const mat = collection.find((b) => b.branch === 'mat');
     expect(mat?.slots[0].owned).not.toBeNull();
-    expect(mat?.slots[1].owned).toBeNull();
     expect(mat?.slots[0].toNextStage).toBe(2);
-    expect(specialsFor(d.state, catalog, child, 'valley')).toHaveLength(10);
+    expect(specialsFor(d.state, catalog, child, 'valley')).toEqual([]);
     expect(worldsWithCollection(d.state, child, 'valley')).toEqual(['valley']);
+  });
+
+  it('builds the full-game collection with silhouettes and specials', () => {
+    const { d, child } = setup();
+    const collection = collectionFor(d.state, fullGameCatalog, child, 'valley');
+    const mat = collection.find((b) => b.branch === 'mat');
+    expect(mat?.slots.map((s) => s.owned !== null)).toEqual([true, false, false]);
+    expect(specialsFor(d.state, fullGameCatalog, child, 'valley')).toHaveLength(10);
+  });
+
+  it('still shows creatures a child owns in a frozen world', () => {
+    const { d, child } = setup();
+    const dino = { ...d.state.creatures[0], id: 'old', creatureId: 'dino_mat_2', world: 'dino' as const };
+    const state = { ...d.state, creatures: [...d.state.creatures, dino] };
+    const mat = collectionFor(state, catalog, child, 'dino').find((b) => b.branch === 'mat');
+    expect(mat?.slots.map((s) => s.species.id)).toEqual(['dino_mat_2']);
   });
 
   it('computes milestone progress, album, branch stats and the shop', () => {

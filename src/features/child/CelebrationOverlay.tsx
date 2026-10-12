@@ -176,6 +176,7 @@ function CelebrationItem({ celebration, position, total, state, world, theme, on
                 color={creatureInfo.color}
                 stage={visual.creature.stage}
                 emoji={creatureInfo.emoji}
+                assetKey={creatureInfo.assetKey}
                 special={visual.creature.special}
                 size={200}
               />

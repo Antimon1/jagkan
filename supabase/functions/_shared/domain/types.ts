@@ -114,7 +114,16 @@ export interface RewardSuggestion {
   ageMax: number;
 }
 
+/** What the game offers (src/domain/launch.ts): worlds, creatures per branch and specials. */
+export interface GameScope {
+  worlds: readonly WorldId[];
+  slotsPerBranch: 1 | 2 | 3;
+  specials: boolean;
+}
+
 export interface Catalog {
+  /** The part of the content the game runs on. The rest stays in the catalog, frozen. */
+  scope: GameScope;
   templates: ChallengeTemplate[];
   worlds: WorldInfo[];
   species: CreatureSpecies[];

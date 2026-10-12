@@ -35,7 +35,7 @@ export function CollectorCard({ entry, world, media, compact }: CollectorCardPro
         {showPhoto ? (
           <Image source={{ uri: media.uri }} style={styles.photo} accessibilityIgnoresInvertColors />
         ) : entry.creature ? (
-          <CreatureArt world={entry.completion.world ?? world} color={entry.creature.color} stage={1} emoji={entry.creature.emoji} size={compact ? 96 : 120} />
+          <CreatureArt world={entry.completion.world ?? world} color={entry.creature.color} stage={1} emoji={entry.creature.emoji} assetKey={entry.creature.assetKey} size={compact ? 96 : 120} />
         ) : (
           <AppText style={styles.bigIcon}>{entry.icon}</AppText>
         )}

@@ -7,6 +7,7 @@ import { Card } from '@/components/Card';
 import { requestParentAccess } from '@/components/ParentGate';
 import { goBack, Screen } from '@/components/Screen';
 import { showToast } from '@/components/Toast';
+import { catalog } from '@/data/catalog';
 import { useT } from '@/lib/i18n';
 import {
   configurePurchases,
@@ -19,8 +20,10 @@ import {
 import { useFamily, useGameStore } from '@/state/game';
 import { palette, radius, space } from '@/theme/tokens';
 
-const FEATURES = ['children', 'library', 'worlds', 'rewards', 'competitions', 'export'] as const;
-const FEATURE_ICONS: Record<(typeof FEATURES)[number], string> = {
+const ALL_FEATURES = ['children', 'library', 'worlds', 'rewards', 'competitions', 'export'] as const;
+/** "Alla världar och specialvarelser" is only offered once that content is no longer frozen. */
+const FEATURES = ALL_FEATURES.filter((key) => key !== 'worlds' || catalog.scope.worlds.length > 1);
+const FEATURE_ICONS: Record<(typeof ALL_FEATURES)[number], string> = {
   children: '👨‍👩‍👧‍👦',
   library: '📚',
   worlds: '🌍',

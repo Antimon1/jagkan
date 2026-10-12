@@ -22,6 +22,7 @@ interface Selected {
   personality: string;
   color: string;
   emoji: string;
+  assetKey: string;
   stage: Stage;
   world: WorldId;
   special: boolean;
@@ -89,6 +90,7 @@ function CollectionView({ active }: { active: ActiveChild }) {
                     personality: slot.owned ? slot.species.personality : t('child.collection.locked'),
                     color: slot.color,
                     emoji: slot.emoji,
+                    assetKey: slot.assetKey,
                     stage: slot.stage,
                     world,
                     special: false,
@@ -97,7 +99,7 @@ function CollectionView({ active }: { active: ActiveChild }) {
                   })
                 }
                 style={styles.slot}>
-                <CreatureArt world={world} color={slot.color} stage={slot.stage} emoji={slot.emoji} locked={!slot.owned} size={92} />
+                <CreatureArt world={world} color={slot.color} stage={slot.stage} emoji={slot.emoji} assetKey={slot.assetKey} locked={!slot.owned} size={92} />
                 <AppText variant="label" color={wt.inkSoft} align="center" numberOfLines={1}>
                   {slot.owned ? slot.name : '?'}
                 </AppText>
@@ -114,35 +116,38 @@ function CollectionView({ active }: { active: ActiveChild }) {
         </View>
       ))}
 
-      <View style={[styles.branch, { backgroundColor: wt.surface }]}>
-        <AppText variant="heading" color={wt.ink}>
-          ✨ {t('child.collection.specials')}
-        </AppText>
-        <View style={styles.specials}>
-          {specials.map(({ special, owned }) => (
-            <Pressable
-              key={special.id}
-              accessibilityRole="button"
-              accessibilityLabel={owned ? special.name : t('child.collection.specialLocked')}
-              onPress={() =>
-                setSelected({
-                  name: owned ? special.name : '???',
-                  personality: owned ? special.personality : t('child.collection.specialLocked'),
-                  color: '#F5B800',
-                  emoji: special.emoji,
-                  stage: 1,
-                  world,
-                  special: true,
-                  owned,
-                  toNext: null,
-                })
-              }
-              style={styles.special}>
-              <CreatureArt world={world} color="#FFD45C" stage={2} emoji={special.emoji} locked={!owned} special={Boolean(owned)} size={72} />
-            </Pressable>
-          ))}
+      {specials.length > 0 ? (
+        <View style={[styles.branch, { backgroundColor: wt.surface }]}>
+          <AppText variant="heading" color={wt.ink}>
+            ✨ {t('child.collection.specials')}
+          </AppText>
+          <View style={styles.specials}>
+            {specials.map(({ special, owned }) => (
+              <Pressable
+                key={special.id}
+                accessibilityRole="button"
+                accessibilityLabel={owned ? special.name : t('child.collection.specialLocked')}
+                onPress={() =>
+                  setSelected({
+                    name: owned ? special.name : '???',
+                    personality: owned ? special.personality : t('child.collection.specialLocked'),
+                    color: '#F5B800',
+                    emoji: special.emoji,
+                    assetKey: special.assetKey,
+                    stage: 1,
+                    world,
+                    special: true,
+                    owned,
+                    toNext: null,
+                  })
+                }
+                style={styles.special}>
+                <CreatureArt world={world} color="#FFD45C" stage={2} emoji={special.emoji} assetKey={special.assetKey} locked={!owned} special={Boolean(owned)} size={72} />
+              </Pressable>
+            ))}
+          </View>
         </View>
-      </View>
+      ) : null}
 
       {selected ? <CreatureModal active={active} selected={selected} onClose={() => setSelected(null)} /> : null}
     </ChildChrome>
@@ -173,6 +178,7 @@ function CreatureModal({ active, selected, onClose }: { active: ActiveChild; sel
             color={selected.color}
             stage={selected.stage}
             emoji={selected.emoji}
+            assetKey={selected.assetKey}
             locked={!selected.owned}
             special={selected.special && Boolean(selected.owned)}
             size={180}

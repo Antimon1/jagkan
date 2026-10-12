@@ -9,9 +9,9 @@ import { Card } from '@/components/Card';
 import { Chip, ChipRow, SectionHeader } from '@/components/forms';
 import { Screen } from '@/components/Screen';
 import { catalog } from '@/data/catalog';
-import { childAge, worldForAge } from '@/domain/age';
+import { childAge, playableWorldForAge } from '@/domain/age';
 import { weeklyHistory } from '@/domain/competitions';
-import { BRANCHES, WORLDS } from '@/domain/constants';
+import { BRANCHES } from '@/domain/constants';
 import { suggestFromLibrary } from '@/domain/library';
 import { familyLimits } from '@/domain/plan';
 import { albumFor, branchStats, challengesByStatus, findChild, ownedCount } from '@/domain/selectors';
@@ -197,28 +197,30 @@ function ChildDetails({ state, childId }: { state: FamilyState; childId: string 
               }))}
             />
           </Card>
-          <Card style={styles.gap}>
-            <SectionHeader title={t('parent.child.world')} />
-            <ChipRow>
-              {WORLDS.map((world: WorldId) => {
-                const allowed = limits.allWorlds || world === worldForAge(age);
-                return (
-                  <Chip
-                    key={world}
-                    label={t(`worlds.${world}`)}
-                    selected={child.world === world}
-                    disabled={!allowed}
-                    onPress={() => dispatch({ type: 'changeWorld', childId: child.id, world })}
-                  />
-                );
-              })}
-            </ChipRow>
-            {!limits.allWorlds ? (
-              <AppText variant="caption" color={palette.inkFaint}>
-                {t('parent.child.worldFree')}
-              </AppText>
-            ) : null}
-          </Card>
+          {catalog.scope.worlds.length > 1 ? (
+            <Card style={styles.gap}>
+              <SectionHeader title={t('parent.child.world')} />
+              <ChipRow>
+                {catalog.scope.worlds.map((world: WorldId) => {
+                  const allowed = limits.allWorlds || world === playableWorldForAge(catalog, age);
+                  return (
+                    <Chip
+                      key={world}
+                      label={t(`worlds.${world}`)}
+                      selected={child.world === world}
+                      disabled={!allowed}
+                      onPress={() => dispatch({ type: 'changeWorld', childId: child.id, world })}
+                    />
+                  );
+                })}
+              </ChipRow>
+              {!limits.allWorlds ? (
+                <AppText variant="caption" color={palette.inkFaint}>
+                  {t('parent.child.worldFree')}
+                </AppText>
+              ) : null}
+            </Card>
+          ) : null}
           {editing ? (
             <Card>
               <ChildForm

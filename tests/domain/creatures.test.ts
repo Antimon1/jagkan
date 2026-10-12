@@ -14,8 +14,19 @@ describe('creature growth (spec 3.2)', () => {
     expect(starsToNextStage(12)).toBeNull();
   });
 
-  it('hatches slot 1, 2, 3 of a branch and then only feeds them', () => {
+  it('hatches one creature per branch in the beta and then only feeds it', () => {
     const d = new Driver();
+    const child = d.addChild('Evelyn', 2020, 3);
+    d.completeIn(child, 'mat');
+    d.completeIn(child, 'mat');
+    d.completeIn(child, 'mat');
+
+    expect(d.state.creatures.map((c) => [c.creatureId, c.stage])).toEqual([['valley_mat_1', 2]]);
+    expect(d.state.completions.map((c) => c.creatureId)).toEqual(['valley_mat_1', null, null]);
+  });
+
+  it('hatches slot 1, 2, 3 of a branch in the full game and then only feeds them', () => {
+    const d = new Driver().fullGame();
     const child = d.addChild('Evelyn', 2020, 3);
     d.completeIn(child, 'mat');
     d.completeIn(child, 'mat');
@@ -53,8 +64,18 @@ describe('creature growth (spec 3.2)', () => {
     expect(d.state.creatures.find((c) => c.creatureId === 'valley_kropp_1')?.growth).toBe(1);
   });
 
-  it('awards branch master when all three creatures reach stage 3', () => {
+  it('awards branch master in the beta when the creature of the branch reaches stage 3', () => {
     const d = new Driver();
+    d.run({ type: 'setPlus', active: true }, SYSTEM);
+    const child = d.addChild('Evelyn', 2020, 3);
+    for (let i = 0; i < 9; i += 1) d.completeIn(child, 'mod');
+    expect(d.state.celebrations.some((c) => c.type === 'branch_master')).toBe(false);
+    d.completeIn(child, 'mod');
+    expect(d.state.celebrations.filter((c) => c.type === 'branch_master')).toHaveLength(1);
+  });
+
+  it('awards branch master in the full game when all three creatures reach stage 3', () => {
+    const d = new Driver().fullGame();
     d.run({ type: 'setPlus', active: true }, SYSTEM);
     d.run({ type: 'updateSettings', settings: { maxActiveChallenges: 10 } });
     const child = d.addChild('Evelyn', 2020, 3);
@@ -81,8 +102,18 @@ describe('creature growth (spec 3.2)', () => {
 });
 
 describe('milestones (spec 3.4)', () => {
-  it('reaches the 5-star milestone and unlocks the special creature', () => {
+  it('reaches the 5-star milestone with a title but no special creature in the beta', () => {
     const d = new Driver();
+    const child = d.addChild('Evelyn', 2020, 3);
+    for (let i = 0; i < 5; i += 1) d.completeIn(child, 'kropp');
+    expect(d.state.milestones.map((m) => m.milestoneId)).toEqual(['m5']);
+    expect(d.state.creatures.some((c) => c.isSpecial)).toBe(false);
+    const celebration = d.state.celebrations.find((c) => c.type === 'milestone');
+    expect(celebration?.payload).toMatchObject({ milestoneId: 'm5', title: 'Lilla hjälten', specialId: null });
+  });
+
+  it('reaches the 5-star milestone and unlocks the special creature in the full game', () => {
+    const d = new Driver().fullGame();
     const child = d.addChild('Evelyn', 2020, 3);
     for (let i = 0; i < 4; i += 1) d.completeIn(child, 'kropp');
     expect(d.state.milestones).toHaveLength(0);

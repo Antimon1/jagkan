@@ -110,6 +110,8 @@ Föräldern väljer vilka lägen som är aktiva. Flera kan vara aktiva samtidigt
 
 Spelmekaniken är densamma i alla världar. Det som skiljer dem åt är utseendet, berättelsen och tonen.
 
+> **Betan: bara Äggdalen.** Enligt idépanelen (`docs/idepanel-helhetsanalys.md`) lanseras bara Äggdalen, med **en varelse per gren**. Varje gren kläcker sin varelse en gång, och sedan växer den (steg 2 vid 3 stjärnor, steg 3 vid 10). Alla barn, 4–13 år, spelar i Äggdalen. Dinodalen, Utforskarbasen, varelse 2–3 i varje gren och specialvarelserna finns kvar i `creatures.json` men är frysta bakom flaggan `FULL_GAME_ENABLED` i `src/domain/launch.ts`. Medan de är frysta finns ingen examen och inget byte av värld, och milstolparna ger titlar men inga specialvarelser. Grafiken beställs enligt `docs/grafik-brief-aggdalen.md` (9 varelser × 3 steg = 27 bilder).
+
 | Band | Ålder (standard) | Värld | "Ägg"-objekt | Försök (gnista) | Klarat | Ton |
 |---|---|---|---|---|---|---|
 | **1** | 4–6 | **Äggdalen**: gulliga, runda varelser | Ägg | Ägget värms och glöder | Ägget kläcks och en varelse kommer ut | Mjuk, lekfull, mycket ljud och animation |
@@ -128,6 +130,7 @@ Spelmekaniken är densamma i alla världar. Det som skiljer dem åt är utseende
 - **Färdig samling, inte unik per barn.** All grafik ritas en gång, till exempel med AI-bildverktyg, och kurateras manuellt. Bilderna läggs i appen eller på ett CDN.
 - **Stil:** Varje värld har sin egen enhetliga stil. Exempel: Äggdalen i pastell och 3D-lera, Dinodalen i kraftigare färger, Utforskarbasen i flat/isometrisk stil.
 - **Under utveckling** används placeholders, till exempel emoji eller enkla SVG-figurer i grenens färg. Koden ska läsa bilderna från en manifestfil (`creatures.json`) så att de kan bytas ut utan kodändringar.
+- **Färdiga bilder** läggs i `assets/creatures/<värld>/` och registreras per `assetKey` i `src/features/creatures/artwork.ts`. Varelser utan bild visas med platshållaren.
 - Specifikationen för grafiken (namn, gren, steg, personlighet) finns i `creatures.json`. Claude Code skapar en första version med placeholders.
 
 ---
