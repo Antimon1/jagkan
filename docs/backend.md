@@ -97,6 +97,30 @@ select cron.schedule('jagkan-weekly-rollup', '30 18 * * 0', $$ select public.jk_
 select cron.schedule('jagkan-weekly-rollup-catchup', '0 4 * * 1', $$ select public.jk_call_function('weekly-rollup') $$);
 ```
 
+## Beta statistics
+
+Run this in the SQL editor to follow the beta (docs/idepanel-helhetsanalys.md):
+how many families are active each week, whether parents still approve, and
+whether the collection grows. It returns weekly totals only, never names, and
+only the service role (the SQL editor) can run it.
+
+```sql
+select * from public.jk_beta_stats(8);  -- the last 8 weeks
+```
+
+Parents see their own family's numbers in the app (Mer → Statistik), counted from
+the family's data on the device. Nothing extra is tracked.
+
+## Roles and pairing
+
+- **Admin only:** removing a child (engine, `ADMIN_COMMANDS`), removing a device
+  (`jk_remove_device`), inviting and removing co-parents (`jk_create_invite`,
+  `jk_remove_coparent`), buying Plus (app) and deleting the family (`delete-family`).
+  Removing a co-parent deletes the account, which ends all of its sessions.
+- **Pairing:** the QR code carries a 32-character token that cannot be guessed and is
+  never rate limited. The six-digit code is limited to 10 failures per device and
+  15 minutes; 300 failed guesses within 10 minutes pause manual entry for everyone.
+
 ## RevenueCat
 
 Webhook URL: `https://<ref>.supabase.co/functions/v1/revenuecat-webhook`,
@@ -107,7 +131,7 @@ family id as RevenueCat app user id and the entitlement `plus`.
 
 - `npm test`: engine and server logic (Jest).
 - `npm run test:db`: every migration in PGlite (Postgres in WebAssembly) with a
-  stand-in for Supabase auth: RLS, pairing, invites, and a full
+  stand-in for Supabase auth: RLS, pairing, invites, roles, statistics, and a full
   engine → `jk_apply_diff` → snapshot round trip.
 - `deno check supabase/functions/*/index.ts`: Edge Function types (CI).
 
@@ -117,5 +141,6 @@ family id as RevenueCat app user id and the entitlement `plus`.
 - Seed data: edit `seed/*.json`, then `npm run seed:sql -- --new` to add a new catalog
   migration (never edit an applied migration), and `npm run sync:shared`.
 - Schema: add a new migration file; keep columns in step with `src/domain/types.ts`
-  (the round-trip test catches mismatches). New functions get default grants in
-  Supabase, so revoke what clients should not call.
+  (the round-trip test catches mismatches). Postgres gives PUBLIC execute on every
+  new function, so each new function needs `revoke all ... from public, anon,
+  authenticated` and explicit grants (see `20261012160000_roles_pairing_stats.sql`).

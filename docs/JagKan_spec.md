@@ -26,7 +26,7 @@
 | Roll | Beskrivning | Enhet |
 |---|---|---|
 | **Förälder (admin)** | Skapar familjen, lägger till barn, väljer utmaningar, godkänner, sätter belöningar och betalar Plus. | Egen mobil |
-| **Medförälder** | Har samma rättigheter som admin, men kan inte hantera prenumerationen. Bjuds in via länk eller kod. | Egen mobil |
+| **Medförälder** | Kan göra allt i vardagen: godkänna, välja utmaningar, sätta belöningar och koppla enheter. Kan inte ta bort barn, enheter eller föräldrar, bjuda in, hantera prenumerationen eller radera familjen. Bjuds in via kod, och admin kan ta bort medföräldern (kontot raderas och alla inloggningar avslutas). | Egen mobil |
 | **Barn** | Ser sina utmaningar, trycker "Jag klarade det!" eller "Jag försökte!", tittar på sin samling och sina belöningar. | Surfplatta eller mobil (egen eller delad) |
 
 - **Åldersspann:** 4–13 år, i tre åldersband (se avsnitt 5).
@@ -296,7 +296,7 @@ I stället gäller:
 - **Föräldrar** har riktiga konton.
 - **Barn har inga konton och ingen e-post.** Barnet kopplas till en enhet.
 - **Parkoppling:**
-  1. Föräldern väljer "Lägg till barnets enhet", väljer barn och får en QR-kod och en sexsiffrig kod som gäller i 10 minuter.
+  1. Föräldern väljer "Lägg till barnets enhet", väljer barn och får en QR-kod och en sexsiffrig kod som gäller i 10 minuter. QR-koden innehåller en lång hemlig token som inte går att gissa, så den fungerar alltid. Den sexsiffriga koden har en spärr mot gissning: 10 fel per enhet och kvart, och om många enheter gissar fel samtidigt pausas manuell inmatning en stund.
   2. Barnets enhet installerar appen, väljer "Jag är ett barn" och skannar koden eller skriver in den.
   3. Barnets enhet får en **device-token** som bara har behörighet till det barnets data, plus familjens gemensamma data (familjemål och belöningar).
 - **Delad enhet:** En surfplatta kan kopplas till flera barn. Då visas en profilväljare med avatarer på startskärmen.
@@ -310,7 +310,7 @@ I stället gäller:
 | Spel-data (stjärnor, utmaningar, varelser, belöningar) | Backend i **EU-region** | Behövs för synk mellan förälderns och barnets enhet. |
 | Barnets uppgifter | Förnamn, födelseår och månad | Inget efternamn, ingen exakt födelsedag, ingen plats. |
 | Push-notiser | Går via Expo, Apple och Google, utanför EU | Neutrala texter utan namn, titlar eller belöningar. Detaljerna visas i appen. |
-| Analys | Bara anonym, egen statistik på första parts-nivå | **Ingen reklam och ingen tredjepartsanalys i barnvyn** (krav för Apple Kids Category och Google Play Families). |
+| Analys | Bara egen statistik, räknad ur familjens data | **Ingen reklam och ingen tredjepartsanalys** (krav för Apple Kids Category och Google Play Families). Föräldern ser familjens statistik under Mer → Statistik. Ägaren ser bara veckosummor för alla familjer (`jk_beta_stats`, se `docs/backend.md`), aldrig namn. |
 
 - **Inga uppgifter om barnen lämnar EU.** Appen använder inga AI-tjänster, och push-notiserna är neutrala (se tabellen).
 - Funktionerna **Exportera all data** (JSON) och **Radera familjen** finns i inställningarna.

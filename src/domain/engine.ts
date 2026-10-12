@@ -1,4 +1,4 @@
-import { CHILD_COMMANDS, SYSTEM_COMMANDS, type Command } from './commands';
+import { ADMIN_COMMANDS, CHILD_COMMANDS, SYSTEM_COMMANDS, type Command } from './commands';
 import { fail, isFailure, type Failure, type HandlerResult } from './guards';
 import {
   activateTemplate,
@@ -56,7 +56,9 @@ export function authorize(state: FamilyState, command: Command, actor: Actor): F
   if (actor.kind === 'system') return null;
   if (SYSTEM_COMMANDS.has(command.type)) return fail('forbidden');
   if (actor.kind === 'parent') {
-    return state.parents.some((p) => p.id === actor.parentId) ? null : fail('forbidden');
+    const parent = state.parents.find((p) => p.id === actor.parentId);
+    if (!parent) return fail('forbidden');
+    return ADMIN_COMMANDS.has(command.type) && parent.role !== 'admin' ? fail('forbidden', 'admin_only') : null;
   }
   if (!CHILD_COMMANDS.has(command.type)) return fail('forbidden');
   const target = targetChildId(state, command);

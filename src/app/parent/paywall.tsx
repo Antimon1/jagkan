@@ -18,6 +18,7 @@ import {
   type PlusOffer,
 } from '@/lib/purchases';
 import { useFamily, useGameStore } from '@/state/game';
+import { useIsAdmin } from '@/state/hooks';
 import { palette, radius, space } from '@/theme/tokens';
 
 const ALL_FEATURES = ['children', 'library', 'worlds', 'rewards', 'competitions', 'export'] as const;
@@ -40,6 +41,7 @@ export default function Paywall() {
   const [offers, setOffers] = useState<PlusOffer[]>([]);
   const [busy, setBusy] = useState(false);
   const canBuy = purchasesAvailable();
+  const isAdmin = useIsAdmin();
 
   useEffect(() => {
     if (!canBuy) return;
@@ -60,7 +62,7 @@ export default function Paywall() {
     setBusy(false);
     if (ok) {
       await activate(true);
-      showToast(t('paywall.thanks'), 'success');
+      showToast(t('parent.paywall.thanks'), 'success');
       goBack('/parent');
     }
   };
@@ -72,18 +74,18 @@ export default function Paywall() {
     setBusy(false);
     if (ok) {
       await activate(true);
-      showToast(t('paywall.thanks'), 'success');
+      showToast(t('parent.paywall.thanks'), 'success');
     }
   };
 
   return (
-    <Screen back="/parent/more" title={t('paywall.title')} subtitle={t('paywall.subtitle')}>
+    <Screen back="/parent/more" title={t('parent.paywall.title')} subtitle={t('parent.paywall.subtitle')}>
       <Card tone="plus" style={styles.features}>
         {FEATURES.map((key) => (
           <View key={key} style={styles.feature}>
             <AppText style={styles.icon}>{FEATURE_ICONS[key]}</AppText>
             <AppText variant="bodyStrong" style={styles.flex}>
-              {t(`paywall.features.${key}`)}
+              {t(`parent.paywall.features.${key}`)}
             </AppText>
           </View>
         ))}
@@ -97,29 +99,34 @@ export default function Paywall() {
         </Card>
       ) : null}
 
-      {canBuy && offers.length > 0
+      {canBuy && !isAdmin ? (
+        <AppText variant="caption" color={palette.inkSoft} align="center">
+          {t('parent.paywall.adminOnly')}
+        </AppText>
+      ) : null}
+      {canBuy && isAdmin && offers.length > 0
         ? offers.map((offer) => (
             <Button
               key={offer.pkg.identifier}
               variant="plus"
               size="lg"
               loading={busy}
-              label={`${t('paywall.buy')} · ${offer.priceString}${offer.period === 'month' ? '/mån' : offer.period === 'year' ? '/år' : ''}`}
+              label={`${t('parent.paywall.buy')} · ${offer.priceString}${offer.period === 'month' ? '/mån' : offer.period === 'year' ? '/år' : ''}`}
               onPress={() => buy(offer)}
             />
           ))
         : null}
-      {canBuy ? <Button variant="ghost" label={t('paywall.restore')} onPress={restore} loading={busy} /> : null}
+      {canBuy && isAdmin ? <Button variant="ghost" label={t('parent.paywall.restore')} onPress={restore} loading={busy} /> : null}
 
       {!canBuy ? (
         <View style={styles.demo}>
           <AppText variant="caption" color={palette.inkSoft} align="center">
-            {t('paywall.notAvailable')}
+            {t('parent.paywall.notAvailable')}
           </AppText>
           {backendKind === 'local' ? (
             <Button
               variant={state.family.plusActive ? 'secondary' : 'plus'}
-              label={state.family.plusActive ? `${t('parent.settings.demoPlus')}: ${t('common.yes')}` : t('paywall.demoToggle')}
+              label={state.family.plusActive ? `${t('parent.settings.demoPlus')}: ${t('common.yes')}` : t('parent.paywall.demoToggle')}
               onPress={async () => {
                 if (!(await requestParentAccess())) return;
                 await activate(!state.family.plusActive);

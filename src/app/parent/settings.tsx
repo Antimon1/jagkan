@@ -11,7 +11,8 @@ import { PinPad } from '@/components/PinPad';
 import { Screen } from '@/components/Screen';
 import { showToast } from '@/components/Toast';
 import { MAX_ACTIVE_LIMIT } from '@/domain/constants';
-import { createInvite, deleteCloudFamily, signOut } from '@/lib/api';
+import type { Parent } from '@/domain/types';
+import { createInvite, deleteCloudFamily, removeCoparent, signOut } from '@/lib/api';
 import { confirmAsync } from '@/lib/confirm';
 import { exportFamilyData } from '@/lib/exportData';
 import { useT } from '@/lib/i18n';
@@ -21,7 +22,7 @@ import { cancelDailyReminder, scheduleDailyReminder } from '@/lib/notifications'
 import { clearPin, hasPin, PIN_LENGTH, setPin } from '@/lib/pin';
 import { useDeviceStore } from '@/state/device';
 import { useFamily, useGameStore } from '@/state/game';
-import { useDispatch } from '@/state/hooks';
+import { useDispatch, useIsAdmin } from '@/state/hooks';
 import { palette, space } from '@/theme/tokens';
 
 export default function Settings() {
@@ -29,6 +30,7 @@ export default function Settings() {
   const state = useFamily();
   const dispatch = useDispatch();
   const isCloud = useGameStore((s) => s.backend?.kind === 'cloud');
+  const isAdmin = useIsAdmin();
   const { settings } = state.family;
   const [name, setName] = useState(state.family.name);
   const [pinExists, setPinExists] = useState(false);
@@ -69,6 +71,19 @@ export default function Settings() {
       router.replace('/welcome');
     } catch (error) {
       logError('settings.delete', error);
+      showToast(t('common.somethingWrong'), 'error');
+    }
+  };
+
+  const removeParent = async (parent: Parent) => {
+    const question = t('parent.settings.removeCoparentConfirm', { name: parent.displayName });
+    if (!(await confirmAsync(question, t('parent.settings.removeCoparent'), t('common.cancel')))) return;
+    try {
+      await removeCoparent(parent.id);
+      await useGameStore.getState().refresh();
+      showToast(t('parent.settings.removedCoparent', { name: parent.displayName }), 'success');
+    } catch (error) {
+      logError('settings.removeCoparent', error);
       showToast(t('common.somethingWrong'), 'error');
     }
   };
@@ -167,9 +182,26 @@ export default function Settings() {
         <Button size="sm" variant="plus" label={t('parent.settings.getPlus')} onPress={() => router.push('/parent/paywall')} />
       </Card>
 
-      <SectionHeader title={t('parent.settings.coParent')} />
+      <SectionHeader title={t('parent.settings.parents')} />
       <Card style={styles.gap}>
-        {isCloud ? (
+        {state.parents.map((parent) => (
+          <View key={parent.id} style={styles.member}>
+            <AppText variant="bodyStrong" style={styles.flex}>
+              {parent.displayName}
+            </AppText>
+            <AppText variant="caption" color={palette.inkSoft}>
+              {t(parent.role === 'admin' ? 'parent.settings.roleAdmin' : 'parent.settings.roleCoparent')}
+            </AppText>
+            {isAdmin && isCloud && parent.role === 'coparent' ? (
+              <Button size="sm" variant="danger" label={t('parent.settings.removeCoparent')} onPress={() => removeParent(parent)} />
+            ) : null}
+          </View>
+        ))}
+        {isCloud && !isAdmin ? (
+          <AppText variant="caption" color={palette.inkSoft}>
+            {t('parent.settings.adminOnly')}
+          </AppText>
+        ) : isCloud ? (
           <>
             <AppText variant="caption" color={palette.inkSoft}>
               {t('parent.settings.coParentHint')}
@@ -205,7 +237,7 @@ export default function Settings() {
           {t('parent.settings.storage')}: {isCloud ? t('parent.settings.storageCloud') : t('parent.settings.storageLocal')}
         </AppText>
         <Button size="sm" variant="secondary" label={t('parent.settings.export')} onPress={() => exportFamilyData(state)} />
-        <Button size="sm" variant="danger" label={t('parent.settings.deleteFamily')} onPress={deleteFamily} />
+        {isAdmin ? <Button size="sm" variant="danger" label={t('parent.settings.deleteFamily')} onPress={deleteFamily} /> : null}
         {isCloud ? (
           <Button
             size="sm"
@@ -238,4 +270,6 @@ const styles = StyleSheet.create({
   gap: { gap: space.md },
   row: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
   code: { letterSpacing: 4 },
+  flex: { flex: 1 },
+  member: { flexDirection: 'row', alignItems: 'center', gap: space.md },
 });

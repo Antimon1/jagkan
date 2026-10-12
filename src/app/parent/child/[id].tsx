@@ -24,7 +24,7 @@ import { startChildMode } from '@/features/parent/handoff';
 import { confirmAsync } from '@/lib/confirm';
 import { useT } from '@/lib/i18n';
 import { useFamily } from '@/state/game';
-import { useDispatch, useNow } from '@/state/hooks';
+import { useDispatch, useIsAdmin, useNow } from '@/state/hooks';
 import { BRANCH_COLORS, palette, space } from '@/theme/tokens';
 
 type Tab = 'active' | 'ideas' | 'completed' | 'stats';
@@ -69,6 +69,7 @@ function Missing() {
 function ChildDetails({ state, childId }: { state: FamilyState; childId: string }) {
   const t = useT();
   const dispatch = useDispatch();
+  const isAdmin = useIsAdmin();
   const now = useNow();
   const [tab, setTab] = useState<Tab>('active');
   const [editing, setEditing] = useState(false);
@@ -235,15 +236,17 @@ function ChildDetails({ state, childId }: { state: FamilyState; childId: string 
           ) : (
             <Button variant="secondary" label={t('parent.child.edit')} onPress={() => setEditing(true)} />
           )}
-          <Button
-            variant="danger"
-            label={t('parent.child.remove')}
-            onPress={async () => {
-              if (!(await confirmAsync(t('parent.child.removeConfirm', { name: child.firstName })))) return;
-              const ok = await dispatch({ type: 'removeChild', childId: child.id });
-              if (ok) router.replace('/parent/children');
-            }}
-          />
+          {isAdmin ? (
+            <Button
+              variant="danger"
+              label={t('parent.child.remove')}
+              onPress={async () => {
+                if (!(await confirmAsync(t('parent.child.removeConfirm', { name: child.firstName })))) return;
+                const ok = await dispatch({ type: 'removeChild', childId: child.id });
+                if (ok) router.replace('/parent/children');
+              }}
+            />
+          ) : null}
         </View>
       ) : null}
     </Screen>

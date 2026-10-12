@@ -8,11 +8,13 @@ import { Card } from '@/components/Card';
 import { Chip, ChipRow, SectionHeader } from '@/components/forms';
 import { Screen } from '@/components/Screen';
 import { showToast } from '@/components/Toast';
+import { pairingLink } from '@/features/pairing/pairingLink';
 import { startChildMode } from '@/features/parent/handoff';
 import { createPairingCode, listDevices, removeDevice, type DeviceRow, type PairingCode } from '@/lib/api';
 import { useT } from '@/lib/i18n';
 import { logError } from '@/lib/log';
 import { useFamily, useGameStore } from '@/state/game';
+import { useIsAdmin } from '@/state/hooks';
 import { palette, space } from '@/theme/tokens';
 
 export default function Devices() {
@@ -43,6 +45,7 @@ export default function Devices() {
 
 function CloudDevices() {
   const t = useT();
+  const isAdmin = useIsAdmin();
   const state = useFamily();
   const [selected, setSelected] = useState<string[]>(state.children.map((c) => c.id));
   const [code, setCode] = useState<PairingCode | null>(null);
@@ -90,7 +93,7 @@ function CloudDevices() {
         <Button label={t('parent.devices.createCode')} onPress={create} loading={busy} disabled={selected.length === 0} />
         {code ? (
           <View style={styles.code}>
-            <QRCode value={`jagkan://pair?code=${code.code}`} size={180} />
+            <QRCode value={pairingLink(code.token)} size={180} />
             <AppText variant="hero" style={styles.digits} accessibilityLabel={code.code.split('').join(' ')}>
               {code.code.slice(0, 3)} {code.code.slice(3)}
             </AppText>
@@ -114,20 +117,22 @@ function CloudDevices() {
               })}
             </AppText>
           </View>
-          <Button
-            size="sm"
-            variant="danger"
-            label={t('parent.devices.remove')}
-            onPress={async () => {
-              try {
-                await removeDevice(device.id);
-                refresh();
-              } catch (error) {
-                logError('devices.remove', error);
-                showToast(t('common.somethingWrong'), 'error');
-              }
-            }}
-          />
+          {isAdmin ? (
+            <Button
+              size="sm"
+              variant="danger"
+              label={t('parent.devices.remove')}
+              onPress={async () => {
+                try {
+                  await removeDevice(device.id);
+                  refresh();
+                } catch (error) {
+                  logError('devices.remove', error);
+                  showToast(t('common.somethingWrong'), 'error');
+                }
+              }}
+            />
+          ) : null}
         </Card>
       ))}
     </Screen>

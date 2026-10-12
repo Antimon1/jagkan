@@ -22,6 +22,7 @@ export default function More() {
   const items: Item[] = [
     { emoji: '🏆', label: t('parent.more.competitions'), onPress: go('/parent/competitions'), tone: palette.starSoft },
     { emoji: '📸', label: t('parent.more.album'), onPress: go('/parent/album'), tone: palette.sparkSoft },
+    { emoji: '📊', label: t('parent.more.stats'), onPress: go('/parent/stats'), tone: palette.primarySoft },
     { emoji: '📱', label: t('parent.more.devices'), onPress: go('/parent/devices'), tone: palette.successSoft },
     { emoji: '⚙️', label: t('parent.more.settings'), onPress: go('/parent/settings'), tone: palette.surfaceSunk },
     { emoji: '💎', label: t('parent.more.plus'), onPress: go('/parent/paywall'), tone: palette.plusSoft },

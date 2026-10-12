@@ -77,5 +77,11 @@ export const CHILD_COMMANDS: ReadonlySet<CommandType> = new Set<CommandType>([
   'rollupWeeks',
 ]);
 
+/**
+ * Destructive commands only the admin parent may send. A co-parent can do
+ * everything else (idépanelen: a co-parent must not be able to erase a child).
+ */
+export const ADMIN_COMMANDS: ReadonlySet<CommandType> = new Set<CommandType>(['removeChild']);
+
 /** Commands only trusted server code may send (RevenueCat webhook, demo mode). */
 export const SYSTEM_COMMANDS: ReadonlySet<CommandType> = new Set<CommandType>(['setPlus']);

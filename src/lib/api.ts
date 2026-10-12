@@ -59,6 +59,12 @@ export async function createInvite(): Promise<{ code: string; expiresAt: string 
   return { code: rows[0].code, expiresAt: rows[0].expires_at };
 }
 
+/** Admin only: deletes the co-parent's account, which ends all of its sessions. */
+export async function removeCoparent(parentId: string): Promise<void> {
+  const { error } = await requireSupabase().rpc('jk_remove_coparent', { p_parent_id: parentId });
+  if (error) throw new Error(error.message);
+}
+
 /** Throws 'invalid_code' for an unknown, used or expired code. */
 export async function acceptInvite(code: string, displayName: string): Promise<string> {
   const { data, error } = await requireSupabase().rpc('jk_accept_invite', { p_code: code, p_display_name: displayName });
@@ -70,17 +76,24 @@ export async function acceptInvite(code: string, displayName: string): Promise<s
 // --- Child devices (spec 11) -----------------------------------------------
 
 export interface PairingCode {
+  /** Six digits to type in. */
   code: string;
+  /** Long secret for the QR code: it cannot be guessed, so it is never rate limited. */
+  token: string;
   expiresAt: string;
 }
 
 export async function createPairingCode(childIds: string[]): Promise<PairingCode> {
   const rows = check(await requireSupabase().rpc('jk_create_pairing_code', { p_child_ids: childIds })) as {
     code: string;
+    token: string;
     expires_at: string;
   }[];
-  return { code: rows[0].code, expiresAt: rows[0].expires_at };
+  return { code: rows[0].code, token: rows[0].token, expiresAt: rows[0].expires_at };
 }
+
+/** What a child device sends to pair: the typed code or the scanned QR token. */
+export type PairSecret = { code: string } | { token: string };
 
 export interface PairResult {
   familyId: string;
@@ -88,7 +101,7 @@ export interface PairResult {
 }
 
 /** Child device: anonymous session + pairing code = a device token for the paired children only. */
-export async function pairDevice(code: string): Promise<PairResult> {
+export async function pairDevice(secret: PairSecret): Promise<PairResult> {
   const supabase = requireSupabase();
   const { data: session } = await supabase.auth.getSession();
   if (!session.session) {
@@ -96,7 +109,7 @@ export async function pairDevice(code: string): Promise<PairResult> {
     if (error) throw new Error(error.message);
   }
   const { data, error } = await supabase.functions.invoke<PairResult>('pair-device', {
-    body: { code, platform: Platform.OS },
+    body: { ...secret, platform: Platform.OS },
   });
   if (error || !data) throw new Error(error?.message ?? 'pairing failed');
   await supabase.auth.refreshSession();

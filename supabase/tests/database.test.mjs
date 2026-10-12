@@ -109,9 +109,9 @@ describe('JagKan! database', () => {
     before(async () => {
       device = await createUser(db, { anonymous: true });
       const { rows } = await asUser(db, family.parent, 'select * from public.jk_create_pairing_code($1::uuid[])', [[family.evelyn]]);
-      const paired = await asService(db, 'select public.jk_pair_device($1, $2, $3) as r', [device.id, rows[0].code, 'ios']);
+      const paired = await asService(db, 'select public.jk_pair_device($1, $2, null, $3) as r', [device.id, rows[0].code, 'ios']);
       assert.deepEqual(paired.rows[0].r, { ok: true, familyId: family.familyId, childIds: [family.evelyn] });
-      const reuse = await asService(db, 'select public.jk_pair_device($1, $2, $3) as r', [device.id, rows[0].code, 'ios']);
+      const reuse = await asService(db, 'select public.jk_pair_device($1, $2, null, $3) as r', [device.id, rows[0].code, 'ios']);
       assert.equal(reuse.rows[0].r.error, 'invalid_code');
     });
 
@@ -145,10 +145,10 @@ describe('JagKan! database', () => {
       const guesser = await createUser(db, { anonymous: true });
       let last;
       for (let i = 0; i < 11; i += 1) {
-        last = (await asService(db, 'select public.jk_pair_device($1, $2, $3) as r', [guesser.id, '000000', 'web'])).rows[0].r;
+        last = (await asService(db, 'select public.jk_pair_device($1, $2, null, $3) as r', [guesser.id, '000000', 'web'])).rows[0].r;
       }
       assert.equal(last.error, 'rate_limited');
-      const parentTry = await asService(db, 'select public.jk_pair_device($1, $2, $3) as r', [family.parent.id, '123456', 'web']);
+      const parentTry = await asService(db, 'select public.jk_pair_device($1, $2, null, $3) as r', [family.parent.id, '123456', 'web']);
       assert.equal(parentTry.rows[0].r.error, 'forbidden');
     });
 
@@ -157,6 +157,20 @@ describe('JagKan! database', () => {
       const { rows } = await asService(db, 'select family_id, device_id is not null as is_device from public.push_tokens');
       assert.deepEqual(rows, [{ family_id: family.familyId, is_device: true }]);
       assert.match(await errorOf(asUser(db, device, 'select public.jk_register_push_token($1, $2)', ['hej', 'ios'])), /invalid_input/);
+    });
+
+    test('pair with the QR token, which works even while manual entry is paused', async () => {
+      const { rows } = await asUser(db, family.parent, 'select * from public.jk_create_pairing_code($1::uuid[])', [[family.rafael]]);
+      assert.match(rows[0].token, /^[A-Z2-9]{32}$/);
+      await asService(db, `insert into public.code_failures (auth_user_id, kind) select gen_random_uuid(), 'pairing' from generate_series(1, 300)`);
+      const tablet = await createUser(db, { anonymous: true });
+      const byCode = await asService(db, 'select public.jk_pair_device($1, $2, null, $3) as r', [tablet.id, rows[0].code, 'ios']);
+      assert.equal(byCode.rows[0].r.error, 'rate_limited');
+      const byToken = await asService(db, 'select public.jk_pair_device($1, null, $2, $3) as r', [tablet.id, rows[0].token, 'ios']);
+      assert.deepEqual(byToken.rows[0].r, { ok: true, familyId: family.familyId, childIds: [family.rafael] });
+      const wrong = await asService(db, 'select public.jk_pair_device($1, null, $2, $3) as r', [tablet.id, 'A'.repeat(32), 'ios']);
+      assert.equal(wrong.rows[0].r.error, 'invalid_code');
+      await asService(db, `delete from public.code_failures`);
     });
 
     test('removing a device revokes it', async () => {
@@ -212,6 +226,61 @@ describe('JagKan! database', () => {
     });
   });
 
+  describe('roles', () => {
+    let coparent;
+
+    before(async () => {
+      const { rows } = await asUser(db, family.parent, 'select * from public.jk_create_invite()');
+      coparent = await createUser(db);
+      await asUser(db, coparent, 'select public.jk_accept_invite($1, $2)', [rows[0].code, 'Bonuspappa']);
+    });
+
+    test('a co-parent cannot remove devices or other parents', async () => {
+      const tablet = await createUser(db, { anonymous: true });
+      const { rows } = await asUser(db, family.parent, 'select * from public.jk_create_pairing_code($1::uuid[])', [[family.evelyn]]);
+      await asService(db, 'select public.jk_pair_device($1, $2, null, $3)', [tablet.id, rows[0].code, 'ios']);
+      const device = await asService(db, 'select id from public.child_devices where auth_user_id = $1', [tablet.id]);
+      assert.match(await errorOf(asUser(db, coparent, 'select public.jk_remove_device($1)', [device.rows[0].id])), /forbidden/);
+      assert.match(await errorOf(asUser(db, coparent, 'select public.jk_remove_coparent($1)', [family.parent.id])), /forbidden/);
+    });
+
+    test('the admin removes a co-parent, which deletes the account and its access', async () => {
+      const before = (await asService(db, 'select revision from public.families where id = $1', [family.familyId])).rows[0].revision;
+      assert.match(await errorOf(asUser(db, family.parent, 'select public.jk_remove_coparent($1)', [family.parent.id])), /not_found/);
+      await asUser(db, family.parent, 'select public.jk_remove_coparent($1)', [coparent.id]);
+
+      const left = await db.query('select (select count(*)::int from public.parents where id = $1) as parents, (select count(*)::int from auth.users where id = $1) as users', [coparent.id]);
+      assert.deepEqual(left.rows[0], { parents: 0, users: 0 });
+      const after = (await asService(db, 'select revision from public.families where id = $1', [family.familyId])).rows[0].revision;
+      assert.ok(Number(after) > Number(before));
+      const snap = await asUser(db, coparent, 'select public.jk_my_snapshot() as s');
+      assert.equal(snap.rows[0].s, null);
+    });
+  });
+
+  describe('owner statistics', () => {
+    test('weekly totals without names, for the service role only', async () => {
+      const { rows } = await asService(db, 'select * from public.jk_beta_stats(2)');
+      assert.equal(rows.length, 2);
+      assert.deepEqual(Object.keys(rows[0]), ['week_start', 'families', 'active_families', 'paired_devices', 'attempts', 'approvals', 'hatched']);
+      const thisWeek = rows[1];
+      assert.ok(thisWeek.families >= 1 && thisWeek.active_families >= 1);
+      assert.ok(thisWeek.attempts >= 1 && thisWeek.approvals >= 1 && thisWeek.hatched >= 1);
+      assert.match(await errorOf(asUser(db, family.parent, 'select * from public.jk_beta_stats()')), /permission denied/);
+    });
+
+    test('clients cannot call the service-only functions created after the first migrations', async () => {
+      const device = await createUser(db, { anonymous: true });
+      for (const sql of [
+        'select public.jk_pair_device($1, null, null, null)',
+        'select public.jk_beta_stats(1) where $1::uuid is not null',
+      ]) {
+        assert.match(await errorOf(asUser(db, family.parent, sql, [device.id])), /permission denied/, sql);
+        assert.match(await errorOf(asUser(db, device, sql, [device.id])), /permission denied/, sql);
+      }
+    });
+  });
+
   describe('hardening', () => {
     test('invite guessing is limited per account', async () => {
       const guesser = await createUser(db);
@@ -239,10 +308,10 @@ describe('JagKan! database', () => {
       assert.equal(live.rows[0].n, 5);
     });
 
-    test('many failed pairings from many devices pause pairing for everyone', async () => {
+    test('many failed guesses from many devices pause manual code entry', async () => {
       await asService(db, `insert into public.code_failures (auth_user_id, kind) select gen_random_uuid(), 'pairing' from generate_series(1, 300)`);
       const device = await createUser(db, { anonymous: true });
-      const { rows } = await asService(db, 'select public.jk_pair_device($1, $2, $3) as r', [device.id, '123456', 'web']);
+      const { rows } = await asService(db, 'select public.jk_pair_device($1, $2, null, $3) as r', [device.id, '123456', 'web']);
       assert.equal(rows[0].r.error, 'rate_limited');
       await asService(db, `delete from public.code_failures where kind = 'pairing'`);
     });

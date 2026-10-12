@@ -26,6 +26,15 @@ export function useDispatch() {
   );
 }
 
+/**
+ * True for the family's admin parent, who alone may remove children, devices and
+ * co-parents, invite, buy Plus and delete the family. In local mode there is only
+ * one parent, the admin.
+ */
+export function useIsAdmin(): boolean {
+  return useGameStore((s) => s.family?.parents.find((p) => p.id === s.parentId)?.role === 'admin');
+}
+
 /** Current time, refreshed every minute (for week/day boundaries in the UI). */
 export function useNow(intervalMs = 60_000): string {
   const [now, setNow] = useState(() => new Date().toISOString());
