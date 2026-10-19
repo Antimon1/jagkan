@@ -48,7 +48,7 @@ export function ApprovalCard({ item, state }: { item: PendingApproval; state: Fa
           onPress={async () => {
             const result = await dispatch(
               { type: 'approveCompletion', challengeId: view.challenge.id },
-              { success: t('parent.approve.approved', { name: child.firstName }) },
+              { success: t(view.reward === 'praise' ? 'parent.approve.approvedPraise' : 'parent.approve.approved', { name: child.firstName }) },
             );
             if (result) playSound('chime');
           }}

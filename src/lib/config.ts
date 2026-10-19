@@ -1,8 +1,8 @@
 /**
  * Runtime configuration from EXPO_PUBLIC_* environment variables (see .env.example).
  * Only public values belong here: the Supabase anon key and RevenueCat public SDK keys
- * are designed to ship in apps. Secret keys (Anthropic, service role) live only in
- * Supabase Edge Function secrets.
+ * are designed to ship in apps. Secret keys (service role, webhook and cron secrets)
+ * live only in Supabase Edge Function secrets.
  */
 export interface AppConfig {
   supabaseUrl: string | null;

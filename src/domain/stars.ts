@@ -1,5 +1,7 @@
+import { challengeReward } from './catalog';
+import { MAX_BONUS_STARS_PER_ROUND } from './constants';
 import { isInWeek } from './time';
-import type { FamilyState, StarEntry } from './types';
+import type { Catalog, ChildChallenge, FamilyState, StarEntry } from './types';
 
 /** Positive "earned" entries: completions and spark bonuses (spec 14.1: adjust does not count). */
 export function isEarned(entry: StarEntry): boolean {
@@ -44,5 +46,28 @@ export function earnedSince(state: FamilyState, childId: string, sinceIso: strin
   return entriesFor(state, childId).reduce(
     (sum, e) => (isEarned(e) && new Date(e.createdAt).getTime() >= since ? sum + e.delta : sum),
     0,
+  );
+}
+
+/**
+ * Bonus stars a challenge has given since its latest approval. The ledger is in
+ * the order the engine wrote it, so this does not depend on device clocks.
+ */
+export function bonusStarsThisRound(state: FamilyState, challenge: ChildChallenge): number {
+  const completionIds = new Set(state.completions.filter((c) => c.childChallengeId === challenge.id).map((c) => c.id));
+  let count = 0;
+  for (const entry of state.ledger) {
+    if (entry.reason === 'completion' && entry.refId !== null && completionIds.has(entry.refId)) count = 0;
+    else if (entry.reason === 'spark_bonus' && entry.refId === challenge.id) count += 1;
+  }
+  return count;
+}
+
+/** Whether the next full egg gives a bonus star. Praise-card challenges never give stars. */
+export function canEarnBonusStar(state: FamilyState, catalog: Catalog, challenge: ChildChallenge): boolean {
+  return (
+    state.family.settings.sparkBonusEnabled &&
+    challengeReward(catalog, challenge) === 'star' &&
+    bonusStarsThisRound(state, challenge) < MAX_BONUS_STARS_PER_ROUND
   );
 }

@@ -6,29 +6,29 @@
  * Edge Functions (Deno). Keep it that way: no react, no expo, no npm packages.
  */
 
-export type BranchId = 'kropp' | 'mat' | 'hem' | 'ute' | 'pengar' | 'kanslor' | 'mod';
+export type BranchId = 'kropp' | 'mat' | 'hem' | 'tid' | 'ute' | 'pengar' | 'kanslor' | 'omtanke' | 'mod';
 export type WorldId = 'valley' | 'dino' | 'explorer';
 export type AgeBand = 1 | 2 | 3;
 export type Difficulty = 1 | 2 | 3;
 export type Stage = 1 | 2 | 3;
 
-export type ChallengeStatus =
-  | 'suggested'
-  | 'active'
-  | 'requested'
-  | 'completed'
-  | 'paused'
-  | 'archived';
-export type ChallengeSource = 'library' | 'custom' | 'ai';
+export type ChallengeStatus = 'active' | 'requested' | 'completed' | 'paused' | 'archived';
+export type ChallengeSource = 'library' | 'custom';
 export type ParentRole = 'admin' | 'coparent';
 export type LedgerReason = 'completion' | 'spark_bonus' | 'reward_redeem' | 'adjust';
 export type RewardRequestStatus = 'requested' | 'confirmed' | 'declined';
-export type AiSuggestionStatus = 'new' | 'accepted' | 'dismissed';
 export type AttemptSource = 'child' | 'parent' | 'duel';
 
 // ---------------------------------------------------------------------------
 // Catalog (static seed data, read from seed/*.json)
 // ---------------------------------------------------------------------------
+
+/**
+ * What approving a challenge gives. Pure emotion and value acts (saying sorry,
+ * comforting, sharing, thanking, calming down) give a praise card without a star,
+ * so a child never trades feelings for stars (idépanelen).
+ */
+export type ChallengeReward = 'star' | 'praise';
 
 export interface ChallengeTemplate {
   id: string;
@@ -41,8 +41,14 @@ export interface ChallengeTemplate {
   icon: string;
   parentTip: string;
   repeatable: boolean;
+  reward: ChallengeReward;
   tags: string[];
   isPlus: boolean;
+  /**
+   * Hidden from the library and suggestions (for example pure chores), but kept so
+   * that challenges families already use keep working.
+   */
+  retired: boolean;
 }
 
 export interface WorldInfo {
@@ -107,7 +113,16 @@ export interface RewardSuggestion {
   ageMax: number;
 }
 
+/** What the game offers (src/domain/launch.ts): worlds, creatures per branch and specials. */
+export interface GameScope {
+  worlds: readonly WorldId[];
+  slotsPerBranch: 1 | 2 | 3;
+  specials: boolean;
+}
+
 export interface Catalog {
+  /** The part of the content the game runs on. The rest stays in the catalog, frozen. */
+  scope: GameScope;
   templates: ChallengeTemplate[];
   worlds: WorldInfo[];
   species: CreatureSpecies[];
@@ -320,30 +335,10 @@ export interface WeeklyResult {
   createdAt: string;
 }
 
-export interface AiChallengePayload {
-  titleChild: string;
-  titleParent: string;
-  branch: BranchId;
-  icon: string;
-  parentTip: string;
-  difficulty: Difficulty;
-  repeatable: boolean;
-  ageMin: number;
-  ageMax: number;
-}
-
-export interface AiSuggestion {
-  id: string;
-  familyId: string;
-  childId: string;
-  payload: AiChallengePayload;
-  status: AiSuggestionStatus;
-  createdAt: string;
-}
-
 export type CelebrationType =
   | 'hatch'
   | 'grow'
+  | 'praise'
   | 'evolve'
   | 'bonus_star'
   | 'milestone'
@@ -380,7 +375,6 @@ export interface FamilyState {
   goals: FamilyGoal[];
   competitions: Competitions;
   weeklyResults: WeeklyResult[];
-  aiSuggestions: AiSuggestion[];
   celebrations: Celebration[];
 }
 

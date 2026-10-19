@@ -27,9 +27,6 @@ otp_expiry = 600
 
 # These functions check their own secrets (cron jobs and the RevenueCat webhook
 # do not send a Supabase user JWT). All functions verify callers in code as well.
-[functions.ai-weekly-suggestions]
-verify_jwt = false
-
 [functions.weekly-rollup]
 verify_jwt = false
 

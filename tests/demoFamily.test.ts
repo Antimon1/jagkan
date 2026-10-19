@@ -19,11 +19,11 @@ describe('demo family', () => {
     expect(state.weeklyResults.length).toBeGreaterThan(0);
   });
 
-  it('has a waiting approval, rewards, a family goal and suggestions', () => {
-    expect(pendingApprovals(state, catalog)).toHaveLength(1);
+  it('has waiting approvals from both children, rewards and a family goal', () => {
+    const waiting = pendingApprovals(state, catalog);
+    expect(waiting.map((item) => item.child.firstName).sort()).toEqual(['Evelyn', 'Rafael']);
     expect(state.rewards).toHaveLength(3);
     expect(state.goals).toHaveLength(1);
-    expect(state.aiSuggestions.length).toBeGreaterThan(0);
   });
 
   it('only keeps recent celebrations unseen', () => {

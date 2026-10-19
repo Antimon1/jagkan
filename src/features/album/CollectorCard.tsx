@@ -4,6 +4,7 @@ import { AppText } from '@/components/AppText';
 import type { AlbumEntry } from '@/domain/selectors';
 import type { WorldId } from '@/domain/types';
 import { CreatureArt } from '@/features/creatures/CreatureArt';
+import { useT } from '@/lib/i18n';
 import { mediaFileExists, type LocalMedia } from '@/lib/media';
 import { BRANCH_COLORS, palette, radius, shadow, space } from '@/theme/tokens';
 
@@ -17,6 +18,7 @@ export interface CollectorCardProps {
 
 /** Collector card (spec 6.3): title, date, creature, branch and a proud third-person text. */
 export function CollectorCard({ entry, world, media, compact }: CollectorCardProps) {
+  const t = useT();
   const showPhoto = media && media.type === 'image' && mediaFileExists(media);
   const color = BRANCH_COLORS[entry.completion.branch];
   return (
@@ -33,7 +35,7 @@ export function CollectorCard({ entry, world, media, compact }: CollectorCardPro
         {showPhoto ? (
           <Image source={{ uri: media.uri }} style={styles.photo} accessibilityIgnoresInvertColors />
         ) : entry.creature ? (
-          <CreatureArt world={entry.completion.world ?? world} color={entry.creature.color} stage={1} emoji={entry.creature.emoji} size={compact ? 96 : 120} />
+          <CreatureArt world={entry.completion.world ?? world} color={entry.creature.color} stage={1} emoji={entry.creature.emoji} assetKey={entry.creature.assetKey} size={compact ? 96 : 120} />
         ) : (
           <AppText style={styles.bigIcon}>{entry.icon}</AppText>
         )}
@@ -41,6 +43,10 @@ export function CollectorCard({ entry, world, media, compact }: CollectorCardPro
       {entry.creature ? (
         <AppText variant="heading" align="center">
           {entry.creature.name}
+        </AppText>
+      ) : entry.praise ? (
+        <AppText variant="heading" align="center">
+          💛 {t('common.praiseCard')}
         </AppText>
       ) : null}
       {!compact ? (

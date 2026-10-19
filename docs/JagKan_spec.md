@@ -14,8 +14,8 @@
 - **Försöket räknas.** Barnet belönas för att våga försöka, inte bara när det lyckas.
 - **Milstolpar, inte sysslor.** Appen handlar om självständighet, inte om veckopeng för disk.
 - **Växer med barnet.** Världen, utmaningarna och utseendet följer barnets ålder, och samlingen finns kvar hela barndomen.
-- **Lite jobb för föräldern.** Föräldern godkänner med ett tryck, AI föreslår nya utmaningar och påminnelser sker automatiskt.
-- **Integritet.** Foton och videor av barnen lämnar aldrig enheten.
+- **Lite jobb för föräldern.** Föräldern godkänner med ett tryck, biblioteket föreslår nya utmaningar efter barnets ålder och påminnelser sker automatiskt.
+- **Integritet.** Foton och videor av barnen lämnar aldrig enheten, och inga uppgifter om barnen lämnar EU.
 
 **Bakgrund:** Appen bygger på "Vuxen spelet". Det är ett stjärnspel på en A3-affisch som grundaren använder med sina barn (6 och 5 år). Barnen är engagerade och gillar att tävla. Problemen har varit att komma på nya prövningar, att komma ihåg spelet och att kunna dokumentera framgångar på ett roligt sätt. Appen ska lösa just de problemen.
 
@@ -26,7 +26,7 @@
 | Roll | Beskrivning | Enhet |
 |---|---|---|
 | **Förälder (admin)** | Skapar familjen, lägger till barn, väljer utmaningar, godkänner, sätter belöningar och betalar Plus. | Egen mobil |
-| **Medförälder** | Har samma rättigheter som admin, men kan inte hantera prenumerationen. Bjuds in via länk eller kod. | Egen mobil |
+| **Medförälder** | Kan göra allt i vardagen: godkänna, välja utmaningar, sätta belöningar och koppla enheter. Kan inte ta bort barn, enheter eller föräldrar, bjuda in, hantera prenumerationen eller radera familjen. Bjuds in via kod, och admin kan ta bort medföräldern (kontot raderas och alla inloggningar avslutas). | Egen mobil |
 | **Barn** | Ser sina utmaningar, trycker "Jag klarade det!" eller "Jag försökte!", tittar på sin samling och sina belöningar. | Surfplatta eller mobil (egen eller delad) |
 
 - **Åldersspann:** 4–13 år, i tre åldersband (se avsnitt 5).
@@ -46,19 +46,22 @@ Barnet ser utmaningen som ett ÄGG (eller motsvarande per värld) i sin vy
         ↓
 Barnet försöker → trycker "Jag försökte!" → +1 gnista (ägget värms/spricker lite)
         ↓
-Barnet klarar det → trycker "Jag klarade det!" → förfrågan till föräldern
+Barnet klarar det → trycker "Jag klarade det!" → lugnt besked: "Nu får en vuxen titta ⏳"
         ↓
 Föräldern godkänner (1 tryck, valfritt foto + kommentar)
         ↓
-+1 stjärna, ägget kläcks → varelse till samlingen + samlarkort i albumet
++1 stjärna, ägget kläcks (med konfetti) → varelse till samlingen + samlarkort i albumet
 ```
+
+- **Konfetti först efter godkännandet.** Föräldern kan ge en gnista i stället för att godkänna. Då ska barnet inte ha firat i förväg, så "Jag klarade det!" ger bara ett lugnt besked.
 
 ### 3.2 Valutor och regler
 
 | Element | Hur man får det | Regler |
 |---|---|---|
-| **Gnista 🔥** | Barnet trycker "Jag försökte!" på en aktiv utmaning. Föräldern kan också ge gnistor direkt. | Max 1 gnista per utmaning och dag. Gnistorna syns som laddning på ägget. **3 gnistor ger 1 bonusstjärna** (kan stängas av i inställningarna). |
+| **Gnista 🔥** | Barnet trycker "Jag försökte!" på en aktiv utmaning. Föräldern kan också ge gnistor direkt. | Max 1 gnista per utmaning och dag. Gnistorna syns som laddning på ägget. **3 gnistor ger 1 bonusstjärna**, men **högst en bonusstjärna per ägg** (för återkommande utmaningar: en per varv, alltså mellan två godkännanden). Därefter står ägget fullt tills en vuxen godkänner. Bonusstjärnan kan stängas av i inställningarna. |
 | **Stjärna ⭐** | En godkänd utmaning ger 1 stjärna. | Varje utmaning ger 1 stjärna, oavsett svårighet. Rättvisan kommer av att utmaningarna anpassas efter ålder. |
+| **Berömkort 💛** | En godkänd känslo- eller värderingshandling, till exempel säga förlåt, trösta, dela, tacka eller lugna sig. | Ger ett berömkort i albumet, men ingen stjärna, ingen bonusstjärna och ingen varelse. Barnet ska inte lära sig att byta känslor mot stjärnor. Biblioteket anger per utmaning vad den ger (`reward`). Sociala förmågor, som att ringa eller beställa, ger stjärna som vanligt. |
 | **Varelse** | Kläcks när en utmaning är klarad. Varje utmaning hör till en gren, och grenen avgör vilken varelsefamilj den kläckta varelsen tillhör. | Se avsnitt 5. |
 | **Utveckling** | Varelsen utvecklas när barnet samlar stjärnor i en gren: **3 stjärnor ger steg 2 och 10 stjärnor ger steg 3**. | Utvecklingen visas med en animation. |
 
@@ -77,7 +80,9 @@ Föräldern godkänner (1 tryck, valfritt foto + kommentar)
 | Ute & trafik | 🚲 | Cykla utan stödhjul, gå till kompis själv, åka buss |
 | Pengar | 🪙 | Betala själv i kassan, spara till något, förstå pris |
 | Känslor & socialt | 💛 | Säga förlåt, presentera sig, ringa farmor själv |
+| Omtanke | 🤝 | Trösta, hjälpa en granne, ta hand om djur och natur |
 | Mod & nytt | 🦁 | Smaka ny mat, simma 5 m, sova borta |
+| Tid & planering | ⏰ | Läsa klockan, packa själv, planera veckan |
 
 ### 3.4 Milstolpar och avatarer
 
@@ -94,16 +99,18 @@ Föräldern väljer vilka lägen som är aktiva. Flera kan vara aktiva samtidigt
 | Läge | Hur det fungerar | Visning |
 |---|---|---|
 | **Familjemål** | Alla barns stjärnor räknas ihop mot ett gemensamt mål som föräldern sätter, till exempel "40 stjärnor = bio". | Gemensam mätare på barnens hemskärm och i föräldravyn. Firas med animation när målet nås. |
-| **Syskonduell** | Barnen tävlar under en vecka (mån–sön) om flest stjärnor. Barnen har olika svåra utmaningar, så alla tävlar på sin egen nivå. Föräldern kan ge ett **handikapp**, till exempel att ett barns stjärnor räknas ×1,5. | Topplista, där vinnaren får en veckopokal i samlingen. Alla får en "Bra kämpat"-gnista. |
+| **Syskonduell** | Barnen tävlar under en vecka (mån–sön) om flest stjärnor. Barnen har olika svåra utmaningar, så alla tävlar på sin egen nivå. Föräldern kan ge ett **handikapp**, till exempel att ett barns stjärnor räknas ×1,5. **Avstängd som standard.** | Topplistan visas bara för föräldrarna. Barnet ser bara sin egen veckosiffra, aldrig vem som leder. Vinnaren får en veckopokal i samlingen, och alla får en "Bra kämpat"-gnista. |
 | **Mot mig själv** | Barnet jämför veckan med sitt eget rekord och med förra veckan. | "Nytt rekord!"-firande och en tillväxtkurva över tid. |
 
-**Regel:** Ett barn ska aldrig se en text som säger att det har förlorat. Formuleringarna ska alltid vara positiva, till exempel "Evelyn vann veckan! Rafael: 2 stjärnor kvar till ditt rekord".
+**Regel:** Ett barn ska aldrig se en text som säger att det har förlorat, och aldrig syskonens siffror. Formuleringarna ska alltid vara positiva, till exempel "Den här veckan: ⭐ 4" och "2 stjärnor kvar till ditt rekord!".
 
 ---
 
 ## 5. Världar efter ålder
 
 Spelmekaniken är densamma i alla världar. Det som skiljer dem åt är utseendet, berättelsen och tonen.
+
+> **Betan: bara Äggdalen.** Enligt idépanelen (`docs/idepanel-helhetsanalys.md`) lanseras bara Äggdalen, med **en varelse per gren**. Varje gren kläcker sin varelse en gång, och sedan växer den (steg 2 vid 3 stjärnor, steg 3 vid 10). Alla barn, 4–13 år, spelar i Äggdalen. Dinodalen, Utforskarbasen, varelse 2–3 i varje gren och specialvarelserna finns kvar i `creatures.json` men är frysta bakom flaggan `FULL_GAME_ENABLED` i `src/domain/launch.ts`. Medan de är frysta finns ingen examen och inget byte av värld, och milstolparna ger titlar men inga specialvarelser. Grafiken beställs enligt `docs/grafik-brief-aggdalen.md` (9 varelser × 3 steg = 27 bilder).
 
 | Band | Ålder (standard) | Värld | "Ägg"-objekt | Försök (gnista) | Klarat | Ton |
 |---|---|---|---|---|---|---|
@@ -116,13 +123,14 @@ Spelmekaniken är densamma i alla världar. Det som skiljer dem åt är utseende
 - Världen väljs automatiskt efter barnets ålder, men **föräldern eller barnet kan byta** till en annan värld.
 - **Uppflyttning:** När barnet fyller år och hamnar i ett nytt åldersband föreslår appen en "examen", med en animation och texten "Du är redo för nästa värld!". Barnet bestämmer själv när det byter.
 - **Samlingen följer med.** Varelser från tidigare världar finns kvar som en trofésamling (en flik per värld).
-- **Antal varelser per värld:** 7 grenar × 3 varelser × 3 utvecklingssteg = 63 bilder, plus cirka 10 specialvarelser för milstolparna.
+- **Antal varelser per värld:** 9 grenar × 3 varelser × 3 utvecklingssteg = 81 bilder, plus cirka 10 specialvarelser för milstolparna.
 
 ### 5.1 Grafik
 
 - **Färdig samling, inte unik per barn.** All grafik ritas en gång, till exempel med AI-bildverktyg, och kurateras manuellt. Bilderna läggs i appen eller på ett CDN.
 - **Stil:** Varje värld har sin egen enhetliga stil. Exempel: Äggdalen i pastell och 3D-lera, Dinodalen i kraftigare färger, Utforskarbasen i flat/isometrisk stil.
 - **Under utveckling** används placeholders, till exempel emoji eller enkla SVG-figurer i grenens färg. Koden ska läsa bilderna från en manifestfil (`creatures.json`) så att de kan bytas ut utan kodändringar.
+- **Färdiga bilder** läggs i `assets/creatures/<värld>/` och registreras per `assetKey` i `src/features/creatures/artwork.ts`. Varelser utan bild visas med platshållaren.
 - Specifikationen för grafiken (namn, gren, steg, personlighet) finns i `creatures.json`. Claude Code skapar en första version med placeholders.
 
 ---
@@ -133,16 +141,15 @@ Spelmekaniken är densamma i alla världar. Det som skiljer dem åt är utseende
 
 1. **Biblioteket:** En inbyggd, kurerad lista (seed-data i JSON, se 6.4). Varje post har gren, åldersspann, svårighet (1–3), barnvänlig titel, ikon, förälderbeskrivning och tips.
 2. **Egna utmaningar:** Föräldern skriver en egen titel och väljer gren och ikon.
-3. **AI-förslag (Plus):** Varje vecka föreslår AI 3 nya utmaningar per barn, se avsnitt 8.
+3. **Förslag ur biblioteket:** På barnets sida föreslår appen utmaningar som passar barnets ålder. Grenar som barnet inte har provat kommer först.
 
 ### 6.2 Utmaningens livscykel
 
 ```
-suggested → active → (attempts…) → requested → completed
-                 ↘ paused / archived
+active → (attempts…) → requested → completed
+     ↘ paused / archived
 ```
 
-- `suggested`: AI eller biblioteket har föreslagit utmaningen. Föräldern ser den och kan aktivera den.
 - `active`: utmaningen syns hos barnet som ett ägg. Rekommendation: **max 5 aktiva utmaningar per barn**, så att det inte blir rörigt.
 - `requested`: barnet har tryckt "Jag klarade det!" och väntar på att föräldern ska godkänna.
 - `completed`: föräldern har godkänt, barnet har fått en stjärna och varelsen har kläckts.
@@ -151,18 +158,26 @@ suggested → active → (attempts…) → requested → completed
 
 ### 6.3 Godkännandeflöde (förälder)
 
-1. Föräldern får en push-notis: "Evelyn säger: Jag drog upp blixtlåset själv! 🎉"
+1. Föräldern får en push-notis: "Ny förfrågan att godkänna 🎉". Notisen innehåller inga namn, titlar eller belöningar, eftersom push går via Expo, Apple och Google utanför EU (se 12). Detaljerna visas i appen.
 2. Föräldern öppnar notisen och ser kortet. Föräldern kan:
    - **Godkänn** (ett tryck)
    - **Godkänn med foto eller video.** Kameran öppnas och bilden sparas **lokalt** på föräldrarnas enhet.
    - **Ge en gnista i stället** ("Bra försök, nästan där!")
    - Lägga till en kort kommentar (valfritt)
-3. Appen skapar ett **samlarkort** med titel, datum, varelse, gren och en stolt text i tredje person, till exempel *"Evelyn har lärt sig dra upp blixtlåset helt själv. Hon kämpade i flera dagar och gav inte upp!"* I Plus skriver AI texten. I gratisversionen används en mall.
+3. Appen skapar ett **samlarkort** med titel, datum, varelse, gren och en stolt text i tredje person, till exempel *"Evelyn har lärt sig dra upp blixtlåset helt själv. Hon kämpade i flera dagar och gav inte upp!"* Texten byggs av en mall.
 4. Barnets enhet får en realtidsuppdatering och visar kläckningsanimationen nästa gång barnet öppnar appen. Om appen redan är öppen visas den direkt.
 
 ### 6.4 Startbibliotek (seed)
 
-Claude Code skapar `seed/challenges.json` med **minst 150 utmaningar** fördelade över grenar och åldersband. Exemplen nedan är en startpunkt.
+`seed/challenges.json` är ett handskrivet bibliotek med **minst 500 utmaningar**, och det ersätter AI-förslagen (avsnitt 8).
+
+- **Täckning:** minst 20 aktiva utmaningar per gren och åldersband (4–6, 7–9 och 10–13 år), varav minst 2 gratis.
+- **Förmågor, inte sysslor.** Rena hushållssysslor, som "Städa badrummet", är pensionerade (`retired`). De syns inte i biblioteket men fortsätter att fungera för familjer som redan använder dem.
+- **Säkerhet:** allt som rör kniv, värme, vatten, trafik eller verktyg nämner en vuxen i föräldratiteln eller föräldratipset.
+- **Barntexter** är korta, går att läsa upp och nämner aldrig att misslyckas. Inga dubbletter, och svårigheten ökar med åldern inom varje gren.
+- `tests/seed.test.ts` kontrollerar täckning, unika id:n, obligatoriska fält, dubbletter och säkerhetsregeln.
+
+Exemplen nedan var startpunkten.
 
 **Band 1 (4–6 år)**
 
@@ -173,7 +188,9 @@ Claude Code skapar `seed/challenges.json` med **minst 150 utmaningar** fördelad
 | Hem & ordning | Plocka undan mina leksaker · Hänga upp jackan · Lägga smutstvätt i korgen · Bädda sängen (enkelt) |
 | Ute & trafik | Cykla utan stödhjul · Titta åt båda hållen vid övergångsstället · Gå själv till grannen (med förälder som tittar) |
 | Pengar | Lägga pengar i spargrisen · Betala själv i kassan (med hjälp) |
-| Känslor & socialt | Säga "hej" och mitt namn till en ny vuxen · Säga förlåt själv · Berätta hur jag känner mig · Hjälpa ett syskon |
+| Känslor & socialt | Säga "hej" och mitt namn till en ny vuxen · Säga förlåt själv · Berätta hur jag känner mig |
+| Omtanke | Hjälpa ett syskon · Trösta någon som är ledsen · Mata fåglarna på vintern |
+| Tid & planering | Veta när det är morgon, lunch och kväll · Kunna veckodagarna |
 | Mod & nytt | Smaka en ny mat · Doppa huvudet under vattnet · Sova i egen säng hela natten · Klappa ett snällt djur |
 
 **Band 2 (7–9 år)**
@@ -182,10 +199,12 @@ Claude Code skapar `seed/challenges.json` med **minst 150 utmaningar** fördelad
 |---|---|
 | Kropp & hygien | Knyta skorna · Duscha och tvätta håret själv · Klippa naglarna (med hjälp) |
 | Mat & kök | Göra frukost själv · Koka ägg (med vuxen nära) · Följa ett enkelt recept |
-| Hem & ordning | Packa skolväskan kvällen före · Städa mitt rum · Vika och lägga in kläder |
+| Hem & ordning | Göra ordning i mitt rum · Vika och lägga in kläder · Låsa ytterdörren själv |
 | Ute & trafik | Gå till skolan själv · Cykla till kompis själv · Kunna adress och telefonnummer utantill |
 | Pengar | Handla en sak själv i affären · Spara till något i 4 veckor |
 | Känslor & socialt | Ringa en släkting själv · Beställa själv på café/restaurang · Lösa en konflikt utan vuxen |
+| Omtanke | Ge någon en komplimang · Vattna växterna en vecka · Odla något från frö till skörd |
+| Tid & planering | Packa skolväskan kvällen före · Läsa klockan på hel, halv och kvart |
 | Mod & nytt | Simma 25 m · Sova borta hos kompis · Läsa en hel bok själv |
 
 **Band 3 (10–13 år)**
@@ -194,10 +213,12 @@ Claude Code skapar `seed/challenges.json` med **minst 150 utmaningar** fördelad
 |---|---|
 | Kropp & hygien | Ta hand om egen hygienrutin hela veckan · Packa egen träningsväska |
 | Mat & kök | Laga middag till familjen · Planera och handla till en måltid |
-| Hem & ordning | Tvätta egen tvätt · Ha hand om ett husdjur en vecka |
+| Hem & ordning | Tvätta egen tvätt · Montera en möbel efter instruktion |
 | Ute & trafik | Åka kollektivtrafik själv · Läsa en tidtabell och planera en resa |
 | Pengar | Hantera egen veckopeng en månad · Jämföra priser och välja bästa köp |
 | Känslor & socialt | Boka en egen tid (t.ex. frisör) · Hålla ett löfte en hel vecka |
+| Omtanke | Ha hand om ett husdjur en vecka · Gå en kurs i första hjälpen |
+| Tid & planering | Planera min vecka · Komma iväg till skolan själv |
 | Mod & nytt | Prova en ny aktivitet/sport · Hålla en kort presentation för familjen |
 
 **Fält per utmaning i JSON:**
@@ -213,9 +234,14 @@ Claude Code skapar `seed/challenges.json` med **minst 150 utmaningar** fördelad
   "icon": "🧥",
   "parentTip": "Visa hur man hakar i nederdelen först. Beröm försöken!",
   "repeatable": false,
-  "tags": ["påklädning", "finmotorik"]
+  "reward": "star",
+  "tags": ["påklädning", "finmotorik"],
+  "isPlus": false,
+  "retired": false
 }
 ```
+
+`reward` är `star` eller `praise` (berömkort, se 3.2). `isPlus` styr gratisurvalet och `retired` döljer utmaningen i biblioteket.
 
 ---
 
@@ -229,23 +255,15 @@ Claude Code skapar `seed/challenges.json` med **minst 150 utmaningar** fördelad
 
 ---
 
-## 8. AI-funktioner (Plus)
+## 8. Ingen AI
 
-Alla AI-anrop går via backend (edge function). **API-nyckeln får aldrig ligga i appen.** Modell: Claude via Anthropic API. Välj en snabb och billig modell för textgenerering.
+JagKan! använder ingen AI. AI togs bort helt 2026-10-12 efter idépanelens helhetsanalys (`docs/idepanel-helhetsanalys.md`). Föräldrar betalar inte för AI, och AI var den största integritetsrisken, eftersom förnamn och förälderns fritext skickades till en tjänst i USA.
 
-| Funktion | Input | Output | Frekvens |
-|---|---|---|---|
-| **Veckoförslag** | Barnets ålder, värld, klarade utmaningar (bara titlar och grenar), aktiva utmaningar, grenar som saknas | 3 nya utmaningar i JSON-format enligt schemat i 6.4 | 1 gång per barn och vecka, samt "Ge mig fler" (max 3 gånger per dag) |
-| **Samlarkortstext** | Barnets förnamn, utmaningens titel, förälderns kommentar, antal försök | 2–3 meningar i tredje person, varm och stolt ton | Varje gång en utmaning godkänns |
-| **Egna utmaningar** | Förälderns fritext, till exempel "hon är rädd för att gå på toa själv i skolan" | Förslag på titel, gren, ikon och tips | Vid behov |
+I stället gäller:
 
-**Säkerhetsregler för AI**
-
-- Skicka **inga foton och inga efternamn** till AI. Skicka bara förnamn och ålder.
-- AI-förslag går **alltid via föräldern** innan barnet ser dem. Barnet ser aldrig opåverkad AI-text.
-- Systemprompten ska kräva utmaningar som är säkra, passar åldern och kan göras hemma. Den ska inte föreslå något farligt, till exempel spis eller kniv för de yngsta utan att en vuxen är med.
-- Validera utdata mot JSON-schemat. Om valideringen misslyckas används utmaningar ur biblioteket i stället.
-- Begränsa antalet anrop (rate limit) per familj för att kontrollera kostnaden.
+- **Ett stort, handskrivet bibliotek** (6.4) med förslag på handlingar för varje gren och åldersband.
+- **Förslag ur biblioteket** efter barnets ålder (6.1).
+- **Samlarkortstext från mallar** (6.3).
 
 ---
 
@@ -264,22 +282,21 @@ Alla AI-anrop går via backend (edge function). **API-nyckeln får aldrig ligga 
 
 1. **Onboarding:** konto (e-post eller Sign in with Apple/Google), familjens namn, lägga till barn (förnamn, födelseår och månad, valfri profilbild som är en varelse och inte ett foto), val av tävlingslägen.
 2. **Översikt:** väntande godkännanden överst, sedan ett kort per barn med stjärnor denna vecka, aktiva utmaningar och nästa milstolpe.
-3. **Barnets sida:** aktiva, föreslagna och klarade utmaningar, statistik per gren, album och inställningar för världen.
-4. **Utmaningsbiblioteket:** sök och filtrera på gren, ålder och svårighet. Föräldern lägger till med ett tryck.
-5. **AI-förslag (Plus):** en veckolista per barn där föräldern sveper för att aktivera eller avvisa.
-6. **Skapa egen utmaning.**
-7. **Belöningar:** skapa, redigera och se förfrågningar och historik.
-8. **Tävlingar:** familjemål, syskonduell (med handikapp) och mot mig själv.
-9. **Album:** foton och videor (lokala), samlarkort, delning (via systemets delningsfunktion, startad av föräldern) och export.
-10. **Enheter:** parkoppla barnets enhet och se eller ta bort kopplade enheter.
-11. **Inställningar:** notiser, gnista-till-stjärna-regeln, max antal aktiva utmaningar, PIN, prenumeration, export och radering av data, bjuda in medförälder.
+3. **Barnets sida:** aktiva utmaningar, förslag ur biblioteket, klarade utmaningar, statistik per gren, album och inställningar för världen.
+4. **Utmaningsbiblioteket:** sök och filtrera på gren, barnets ålder eller åldersband och svårighet. Föräldern lägger till med ett tryck.
+5. **Skapa egen utmaning.**
+6. **Belöningar:** skapa, redigera och se förfrågningar och historik.
+7. **Tävlingar:** familjemål, syskonduell (med handikapp) och mot mig själv.
+8. **Album:** foton och videor (lokala), samlarkort, delning (via systemets delningsfunktion, startad av föräldern) och export.
+9. **Enheter:** parkoppla barnets enhet och se eller ta bort kopplade enheter.
+10. **Inställningar:** notiser, gnista-till-stjärna-regeln, max antal aktiva utmaningar, PIN, prenumeration, export och radering av data, bjuda in medförälder.
 
 ## 11. Enheter, konton och parkoppling
 
 - **Föräldrar** har riktiga konton.
 - **Barn har inga konton och ingen e-post.** Barnet kopplas till en enhet.
 - **Parkoppling:**
-  1. Föräldern väljer "Lägg till barnets enhet", väljer barn och får en QR-kod och en sexsiffrig kod som gäller i 10 minuter.
+  1. Föräldern väljer "Lägg till barnets enhet", väljer barn och får en QR-kod och en sexsiffrig kod som gäller i 10 minuter. QR-koden innehåller en lång hemlig token som inte går att gissa, så den fungerar alltid. Den sexsiffriga koden har en spärr mot gissning: 10 fel per enhet och kvart, och om många enheter gissar fel samtidigt pausas manuell inmatning en stund.
   2. Barnets enhet installerar appen, väljer "Jag är ett barn" och skannar koden eller skriver in den.
   3. Barnets enhet får en **device-token** som bara har behörighet till det barnets data, plus familjens gemensamma data (familjemål och belöningar).
 - **Delad enhet:** En surfplatta kan kopplas till flera barn. Då visas en profilväljare med avatarer på startskärmen.
@@ -292,8 +309,10 @@ Alla AI-anrop går via backend (edge function). **API-nyckeln får aldrig ligga 
 | Foton och videor av barn | **Endast lokalt** på enheten där de togs (appens dokumentkatalog) | Laddas aldrig upp till servern. Exportknappen sparar till enhetens bildbibliotek eller till förälderns val av moln via systemets delningsfunktion. |
 | Spel-data (stjärnor, utmaningar, varelser, belöningar) | Backend i **EU-region** | Behövs för synk mellan förälderns och barnets enhet. |
 | Barnets uppgifter | Förnamn, födelseår och månad | Inget efternamn, ingen exakt födelsedag, ingen plats. |
-| Analys | Bara anonym, egen statistik på första parts-nivå | **Ingen reklam och ingen tredjepartsanalys i barnvyn** (krav för Apple Kids Category och Google Play Families). |
+| Push-notiser | Går via Expo, Apple och Google, utanför EU | Neutrala texter utan namn, titlar eller belöningar. Detaljerna visas i appen. |
+| Analys | Bara egen statistik, räknad ur familjens data | **Ingen reklam och ingen tredjepartsanalys** (krav för Apple Kids Category och Google Play Families). Föräldern ser familjens statistik under Mer → Statistik. Ägaren ser bara veckosummor för alla familjer (`jk_beta_stats`, se `docs/backend.md`), aldrig namn. |
 
+- **Inga uppgifter om barnen lämnar EU.** Appen använder inga AI-tjänster, och push-notiserna är neutrala (se tabellen).
 - Funktionerna **Exportera all data** (JSON) och **Radera familjen** finns i inställningarna.
 - Integritetspolicy och användarvillkor på svenska krävs före lansering. Det är en extern uppgift och ingår inte i kodbygget.
 - Lokala foton kopplas till samlarkortet via `localMediaId`. Om filen saknas, till exempel efter byte av telefon, visas den ritade varelsen i stället.
@@ -305,14 +324,12 @@ Alla AI-anrop går via backend (edge function). **API-nyckeln får aldrig ligga 
 | Funktion | Gratis | Plus |
 |---|---|---|
 | Antal barn | 1 | Obegränsat |
-| Utmaningsbibliotek | Grundurval (cirka 40) | Hela biblioteket |
+| Utmaningsbibliotek | Grundurval (2 per gren och åldersband, cirka 55) | Hela biblioteket (över 500) |
 | Egna utmaningar | ✅ | ✅ |
 | Gnistor, stjärnor, kläckning | ✅ | ✅ |
 | Världar | Den värld som passar barnets ålder | Alla världar och specialvarelser |
 | Belöningar | Max 3 | Obegränsat |
 | Tävlingslägen | Mot mig själv | Alla tre |
-| AI-veckoförslag | – | ✅ |
-| AI-samlarkortstext | Mall | ✅ AI-skriven |
 | Album-export | – | ✅ |
 
 - **Pris:** Ska bestämmas. Arbetsförslag är 49 kr/mån eller 399 kr/år med 14 dagars gratis provperiod. Priserna sätts i App Store och Play Console, inte i koden.
@@ -328,9 +345,8 @@ Alla AI-anrop går via backend (edge function). **API-nyckeln får aldrig ligga 
 | App | **Expo (React Native) + TypeScript**, Expo Router | En kodbas för iOS och Android, samt EAS Build och Submit |
 | State/data | TanStack Query + Zustand, MMKV för lokal cache | Fungerar offline och är enkel |
 | Backend | **Supabase** (Postgres, Auth, Realtime, Edge Functions, Storage endast för grafik) i EU-region | Snabbt att bygga, Row Level Security, realtidssynk |
-| AI | Anthropic API via Supabase Edge Function | Nyckeln skyddas, och kostnad och anrop kan begränsas |
 | Prenumeration | RevenueCat | Ett gemensamt API för båda appbutikerna |
-| Push | Expo Notifications | Notiser om godkännanden, veckoförslag och påminnelser |
+| Push | Expo Notifications | Neutrala notiser om godkännanden, belöningar, veckosammanfattning och påminnelser |
 | Media | expo-camera, expo-image-picker, expo-file-system, expo-media-library (för export) | Lokal lagring |
 | Animation | react-native-reanimated, lottie-react-native | Kläckning och firande |
 | Tal | expo-speech (sv-SE) | Uppläsning för barn som inte kan läsa |
@@ -346,8 +362,8 @@ children            (id, family_id, first_name, birth_year, birth_month, world_o
 child_devices       (id, family_id, device_token_hash, child_ids uuid[], created_at, last_seen)
 pairing_codes       (code, family_id, child_ids, expires_at)
 
-challenge_templates (id, branch, age_min, age_max, difficulty, title_child, title_parent, icon, parent_tip, repeatable, tags, is_plus)
-child_challenges    (id, child_id, template_id null, custom_title, custom_icon, branch, status, source: library|custom|ai,
+challenge_templates (id, branch, age_min, age_max, difficulty, title_child, title_parent, icon, parent_tip, repeatable, tags, is_plus, reward: star|praise, retired)
+child_challenges    (id, child_id, template_id null, custom_title, custom_icon, branch, status, source: library|custom,
                      sparks int, repeat_count, created_at, activated_at, requested_at, completed_at)
 attempts            (id, child_challenge_id, created_at, source: child|parent)
 completions         (id, child_challenge_id, approved_by, approved_at, parent_note, card_text, creature_id, local_media_id null)
@@ -364,9 +380,6 @@ reward_requests     (id, reward_id, child_id, status: requested|confirmed|declin
 family_goals        (id, family_id, title, target_stars, reward_text, start_at, end_at, reached_at)
 competitions        (family_id, sibling_duel_enabled, handicaps jsonb, self_mode_enabled)
 weekly_results      (id, family_id, week_start, results jsonb)
-
-ai_suggestions      (id, child_id, payload jsonb, status: new|accepted|dismissed, created_at)
-ai_usage            (family_id, day, calls)
 ```
 
 - Stjärnsaldot räknas fram från `star_ledger` (summa av delta). Totalt antal stjärnor räknas bara på positiva poster, utom `adjust`.
@@ -377,9 +390,6 @@ ai_usage            (family_id, day, calls)
 ### 14.2 Edge Functions
 
 - `pair-device`: validerar koden och utfärdar device-token
-- `ai-weekly-suggestions`: körs schemalagt (cron) varje söndag kväll för Plus-familjer, och kan också anropas manuellt
-- `ai-card-text`: anropas när föräldern godkänner
-- `ai-custom-challenge`
 - `approve-completion`: transaktion som sätter status till completed, skapar posten i star_ledger, kläcker varelsen, kontrollerar milstolpar och utveckling och skickar push
 - `weekly-rollup`: körs på söndag kväll, räknar fram veckoresultat och pokaler och skickar en veckosammanfattning till föräldrarna
 - `revenuecat-webhook`: uppdaterar `families.plus_active`
@@ -396,7 +406,7 @@ jagkan/
     components/
     features/
       challenges/  rewards/  creatures/  competitions/  album/  pairing/  subscription/
-    lib/ (supabase, ai, i18n, speech, media)
+    lib/ (supabase, i18n, speech, media)
     theme/ (world themes: valley, dino, explorer)
   assets/ creatures/ sounds/ lottie/
   seed/ challenges.json  creatures.json  milestones.json  reward_suggestions.json
@@ -417,7 +427,7 @@ Hela lanseringsversionen byggs, men i en ordning som gör att appen kan testas h
 | **2. Samling och belöningar** | Samling, utveckling, milstolpar, belöningsbutik, inlösen, samlarkort med mall-text, lokala foton, album, push-notiser, uppläsning | Familjen kan använda appen hemma i vardagen |
 | **3. Tävlingar** | Familjemål, syskonduell med handikapp, mot mig själv, veckosammanfattning | Alla tre lägena fungerar |
 | **4. Världar** | Dinodalen och Utforskarbasen (teman, grafik, animationer), uppflyttning och examen, trofésamling | Ett barn kan gå från värld 1 till värld 2 |
-| **5. AI och Plus** | Edge functions för AI, veckoförslag, AI-kortstext, egna utmaningar med AI, RevenueCat, styrning av Plus-funktioner, föräldraspärr | Plus-köp i sandbox fungerar och AI-förslag visas |
+| **5. Plus** | RevenueCat, styrning av Plus-funktioner, föräldraspärr | Plus-köp i sandbox fungerar |
 | **6. Lanseringsklar** | Riktig grafik, ljud, export och radering av data, polering av onboarding, tillgänglighet, E2E-tester, App Store- och Play-listningar, EAS Submit | Godkänd i TestFlight och intern testning på Play |
 
 **Acceptanskriterier för hela appen**

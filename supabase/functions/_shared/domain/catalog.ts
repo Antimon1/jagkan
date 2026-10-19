@@ -2,6 +2,7 @@
 import type {
   BranchId,
   Catalog,
+  ChallengeReward,
   ChallengeTemplate,
   CreatureSpecies,
   Milestone,
@@ -37,6 +38,11 @@ export function findTemplate(catalog: Catalog, id: string | null): ChallengeTemp
   return id ? index(catalog).templates.get(id) : undefined;
 }
 
+/** Custom challenges always give a star. */
+export function challengeReward(catalog: Catalog, challenge: { templateId: string | null }): ChallengeReward {
+  return findTemplate(catalog, challenge.templateId)?.reward ?? 'star';
+}
+
 export function findSpecies(catalog: Catalog, id: string): CreatureSpecies | undefined {
   return index(catalog).species.get(id);
 }
@@ -60,13 +66,25 @@ export function branchSpecies(catalog: Catalog, world: WorldId, branch: BranchId
     .sort((a, b) => a.slot - b.slot);
 }
 
+export function isPlayableWorld(catalog: Catalog, world: WorldId): boolean {
+  return catalog.scope.worlds.includes(world);
+}
+
+/** The species a child can hatch in a branch: those inside the game scope. */
+export function playableSpecies(catalog: Catalog, world: WorldId, branch: BranchId): CreatureSpecies[] {
+  if (!isPlayableWorld(catalog, world)) return [];
+  return branchSpecies(catalog, world, branch).filter((s) => s.slot <= catalog.scope.slotsPerBranch);
+}
+
 function unlockMatches(a: SpecialUnlock, b: SpecialUnlock): boolean {
   if (a.type !== b.type) return false;
   if (a.type === 'milestone' && b.type === 'milestone') return a.milestoneId === b.milestoneId;
   return true;
 }
 
+/** The special creature an unlock gives, or undefined while specials are frozen. */
 export function specialFor(catalog: Catalog, world: WorldId, unlock: SpecialUnlock): SpecialCreature | undefined {
+  if (!catalog.scope.specials) return undefined;
   return catalog.specials.find((s) => s.world === world && unlockMatches(s.unlock, unlock));
 }
 

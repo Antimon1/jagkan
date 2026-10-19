@@ -122,7 +122,7 @@ describe('family goal (spec 4)', () => {
     expect(d.events).toEqual(expect.arrayContaining([{ type: 'family_goal_reached', goalId: d.state.goals[0].id }]));
     const goalCelebrations = d.state.celebrations.filter((c) => c.type === 'family_goal');
     expect(goalCelebrations.map((c) => c.childId).sort()).toEqual([a, b].sort());
-    expect(d.state.creatures.filter((c) => c.creatureId === 'valley_special_family_goal')).toHaveLength(2);
+    expect(d.state.creatures.some((c) => c.isSpecial)).toBe(false); // specials are frozen in the beta
   });
 
   it('replaces a running goal with a new one and can cancel', () => {

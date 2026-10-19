@@ -1,5 +1,5 @@
 // Pairs a child device (spec 11): the device signs in anonymously, then trades the
-// six-digit code for access to the chosen children only.
+// six-digit code, or the token from the QR code, for access to the chosen children only.
 import { HttpError, json, readBody, serve } from '../_shared/http.ts';
 import { adminClient, requireUser } from '../_shared/supabase.ts';
 
@@ -18,11 +18,19 @@ serve('pair-device', async (req) => {
   if (!user.is_anonymous) throw new HttpError(403, 'forbidden');
 
   const body = await readBody(req);
-  const code = typeof body.code === 'string' ? body.code.replace(/\s/g, '') : '';
-  if (!/^\d{6}$/.test(code)) throw new HttpError(400, 'invalid_code');
+  const code = typeof body.code === 'string' ? body.code.replace(/\s/g, '') : null;
+  const token = typeof body.token === 'string' ? body.token.trim().toUpperCase() : null;
+  const validCode = code !== null && /^\d{6}$/.test(code);
+  const validToken = token !== null && /^[A-Z2-9]{32}$/.test(token);
+  if (!validCode && !validToken) throw new HttpError(400, 'invalid_code');
   const platform = typeof body.platform === 'string' ? body.platform.slice(0, 20) : null;
 
-  const { data, error } = await admin.rpc('jk_pair_device', { p_user_id: user.id, p_code: code, p_platform: platform });
+  const { data, error } = await admin.rpc('jk_pair_device', {
+    p_user_id: user.id,
+    p_code: validToken ? null : code,
+    p_token: validToken ? token : null,
+    p_platform: platform,
+  });
   if (error) throw new Error(error.message);
   const outcome = data as PairOutcome;
   if (!outcome.ok) {

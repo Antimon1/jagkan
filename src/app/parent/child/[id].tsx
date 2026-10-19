@@ -9,9 +9,9 @@ import { Card } from '@/components/Card';
 import { Chip, ChipRow, SectionHeader } from '@/components/forms';
 import { Screen } from '@/components/Screen';
 import { catalog } from '@/data/catalog';
-import { childAge, worldForAge } from '@/domain/age';
+import { childAge, playableWorldForAge } from '@/domain/age';
 import { weeklyHistory } from '@/domain/competitions';
-import { BRANCHES, WORLDS } from '@/domain/constants';
+import { BRANCHES } from '@/domain/constants';
 import { suggestFromLibrary } from '@/domain/library';
 import { familyLimits } from '@/domain/plan';
 import { albumFor, branchStats, challengesByStatus, findChild, ownedCount } from '@/domain/selectors';
@@ -24,10 +24,10 @@ import { startChildMode } from '@/features/parent/handoff';
 import { confirmAsync } from '@/lib/confirm';
 import { useT } from '@/lib/i18n';
 import { useFamily } from '@/state/game';
-import { useDispatch, useNow } from '@/state/hooks';
+import { useDispatch, useIsAdmin, useNow } from '@/state/hooks';
 import { BRANCH_COLORS, palette, space } from '@/theme/tokens';
 
-type Tab = 'active' | 'suggested' | 'completed' | 'stats';
+type Tab = 'active' | 'ideas' | 'completed' | 'stats';
 
 function NewChild() {
   const t = useT();
@@ -69,6 +69,7 @@ function Missing() {
 function ChildDetails({ state, childId }: { state: FamilyState; childId: string }) {
   const t = useT();
   const dispatch = useDispatch();
+  const isAdmin = useIsAdmin();
   const now = useNow();
   const [tab, setTab] = useState<Tab>('active');
   const [editing, setEditing] = useState(false);
@@ -82,7 +83,6 @@ function ChildDetails({ state, childId }: { state: FamilyState; childId: string 
   if (!child) return null;
 
   const active = challengesByStatus(state, catalog, child.id, ['requested', 'active', 'paused']);
-  const suggested = challengesByStatus(state, catalog, child.id, ['suggested']);
   const album = albumFor(state, catalog, child.id);
   const stats = branchStats(state, child.id);
   const history = weeklyHistory(state, child.id, now, 8);
@@ -90,7 +90,7 @@ function ChildDetails({ state, childId }: { state: FamilyState; childId: string 
 
   const tabs: { key: Tab; label: string }[] = [
     { key: 'active', label: `${t('parent.child.active')} (${active.length})` },
-    { key: 'suggested', label: t('parent.child.suggested') },
+    { key: 'ideas', label: t('parent.child.ideas') },
     { key: 'completed', label: `${t('parent.child.completed')} (${album.length})` },
     { key: 'stats', label: t('parent.child.stats') },
   ];
@@ -118,7 +118,6 @@ function ChildDetails({ state, childId }: { state: FamilyState; childId: string 
           <View style={styles.addRow}>
             <Button size="sm" label={`📚 ${t('parent.child.fromLibrary')}`} onPress={() => router.push({ pathname: '/parent/library', params: { child: child.id } })} />
             <Button size="sm" variant="secondary" label={`✏️ ${t('parent.child.custom')}`} onPress={() => router.push({ pathname: '/parent/custom', params: { child: child.id } })} />
-            <Button size="sm" variant="secondary" label={`✨ ${t('parent.child.ai')}`} onPress={() => router.push({ pathname: '/parent/ai', params: { child: child.id } })} />
           </View>
           {active.length === 0 ? <AppText color={palette.inkSoft}>{t('parent.overview.noChallenges')}</AppText> : null}
           {active.map((view) => (
@@ -127,11 +126,8 @@ function ChildDetails({ state, childId }: { state: FamilyState; childId: string 
         </View>
       ) : null}
 
-      {tab === 'suggested' ? (
+      {tab === 'ideas' ? (
         <View style={styles.list}>
-          {suggested.map((view) => (
-            <ChallengeRow key={view.challenge.id} view={view} childName={child.firstName} />
-          ))}
           <SectionHeader title={t('parent.child.suggestions')} />
           {libraryIdeas.map((template) => (
             <Card key={template.id} style={styles.idea}>
@@ -202,28 +198,30 @@ function ChildDetails({ state, childId }: { state: FamilyState; childId: string 
               }))}
             />
           </Card>
-          <Card style={styles.gap}>
-            <SectionHeader title={t('parent.child.world')} />
-            <ChipRow>
-              {WORLDS.map((world: WorldId) => {
-                const allowed = limits.allWorlds || world === worldForAge(age);
-                return (
-                  <Chip
-                    key={world}
-                    label={t(`worlds.${world}`)}
-                    selected={child.world === world}
-                    disabled={!allowed}
-                    onPress={() => dispatch({ type: 'changeWorld', childId: child.id, world })}
-                  />
-                );
-              })}
-            </ChipRow>
-            {!limits.allWorlds ? (
-              <AppText variant="caption" color={palette.inkFaint}>
-                {t('parent.child.worldFree')}
-              </AppText>
-            ) : null}
-          </Card>
+          {catalog.scope.worlds.length > 1 ? (
+            <Card style={styles.gap}>
+              <SectionHeader title={t('parent.child.world')} />
+              <ChipRow>
+                {catalog.scope.worlds.map((world: WorldId) => {
+                  const allowed = limits.allWorlds || world === playableWorldForAge(catalog, age);
+                  return (
+                    <Chip
+                      key={world}
+                      label={t(`worlds.${world}`)}
+                      selected={child.world === world}
+                      disabled={!allowed}
+                      onPress={() => dispatch({ type: 'changeWorld', childId: child.id, world })}
+                    />
+                  );
+                })}
+              </ChipRow>
+              {!limits.allWorlds ? (
+                <AppText variant="caption" color={palette.inkFaint}>
+                  {t('parent.child.worldFree')}
+                </AppText>
+              ) : null}
+            </Card>
+          ) : null}
           {editing ? (
             <Card>
               <ChildForm
@@ -238,15 +236,17 @@ function ChildDetails({ state, childId }: { state: FamilyState; childId: string 
           ) : (
             <Button variant="secondary" label={t('parent.child.edit')} onPress={() => setEditing(true)} />
           )}
-          <Button
-            variant="danger"
-            label={t('parent.child.remove')}
-            onPress={async () => {
-              if (!(await confirmAsync(t('parent.child.removeConfirm', { name: child.firstName })))) return;
-              const ok = await dispatch({ type: 'removeChild', childId: child.id });
-              if (ok) router.replace('/parent/children');
-            }}
-          />
+          {isAdmin ? (
+            <Button
+              variant="danger"
+              label={t('parent.child.remove')}
+              onPress={async () => {
+                if (!(await confirmAsync(t('parent.child.removeConfirm', { name: child.firstName })))) return;
+                const ok = await dispatch({ type: 'removeChild', childId: child.id });
+                if (ok) router.replace('/parent/children');
+              }}
+            />
+          ) : null}
         </View>
       ) : null}
     </Screen>

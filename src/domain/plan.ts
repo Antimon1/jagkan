@@ -11,8 +11,6 @@ export interface PlanLimits {
   familyGoal: boolean;
   siblingDuel: boolean;
   selfMode: boolean;
-  aiSuggestions: boolean;
-  aiCardText: boolean;
   albumExport: boolean;
 }
 
@@ -27,8 +25,6 @@ export function planLimits(plusActive: boolean): PlanLimits {
       familyGoal: true,
       siblingDuel: true,
       selfMode: true,
-      aiSuggestions: true,
-      aiCardText: true,
       albumExport: true,
     };
   }
@@ -41,8 +37,6 @@ export function planLimits(plusActive: boolean): PlanLimits {
     familyGoal: false,
     siblingDuel: false,
     selfMode: true,
-    aiSuggestions: false,
-    aiCardText: false,
     albumExport: false,
   };
 }

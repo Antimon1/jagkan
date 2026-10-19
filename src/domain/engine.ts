@@ -1,9 +1,9 @@
-import { CHILD_COMMANDS, SYSTEM_COMMANDS, type Command } from './commands';
+import { ADMIN_COMMANDS, CHILD_COMMANDS, SYSTEM_COMMANDS, type Command } from './commands';
 import { fail, isFailure, type Failure, type HandlerResult } from './guards';
-import { addAiSuggestions, resolveAiSuggestion } from './handlers/ai';
 import {
   activateTemplate,
   addCustomChallenge,
+  approveAll,
   approveCompletion,
   giveSpark,
   recordAttempt,
@@ -35,7 +35,6 @@ export function targetChildId(state: FamilyState, command: Command): string | nu
     case 'activateTemplate':
     case 'addCustomChallenge':
     case 'requestReward':
-    case 'addAiSuggestions':
     case 'markCelebrationsSeen':
     case 'setAvatar':
     case 'changeWorld':
@@ -49,8 +48,6 @@ export function targetChildId(state: FamilyState, command: Command): string | nu
       return state.challenges.find((c) => c.id === command.challengeId)?.childId ?? null;
     case 'resolveRewardRequest':
       return state.rewardRequests.find((r) => r.id === command.requestId)?.childId ?? null;
-    case 'resolveAiSuggestion':
-      return state.aiSuggestions.find((s) => s.id === command.suggestionId)?.childId ?? null;
     default:
       return null;
   }
@@ -60,7 +57,9 @@ export function authorize(state: FamilyState, command: Command, actor: Actor): F
   if (actor.kind === 'system') return null;
   if (SYSTEM_COMMANDS.has(command.type)) return fail('forbidden');
   if (actor.kind === 'parent') {
-    return state.parents.some((p) => p.id === actor.parentId) ? null : fail('forbidden');
+    const parent = state.parents.find((p) => p.id === actor.parentId);
+    if (!parent) return fail('forbidden');
+    return ADMIN_COMMANDS.has(command.type) && parent.role !== 'admin' ? fail('forbidden', 'admin_only') : null;
   }
   if (!CHILD_COMMANDS.has(command.type)) return fail('forbidden');
   const target = targetChildId(state, command);
@@ -93,6 +92,8 @@ function run(tx: Tx, command: Command, ctx: EngineContext, actor: Actor): Handle
       return setChallengeStatus(tx, command, ctx);
     case 'approveCompletion':
       return approveCompletion(tx, command, ctx, parentId);
+    case 'approveAll':
+      return approveAll(tx, command, ctx, parentId);
     case 'giveSpark':
       return giveSpark(tx, command, ctx);
     case 'recordAttempt':
@@ -117,10 +118,6 @@ function run(tx: Tx, command: Command, ctx: EngineContext, actor: Actor): Handle
       return updateCompetitions(tx, command);
     case 'rollupWeeks':
       return rollupWeeks(tx, command, ctx);
-    case 'addAiSuggestions':
-      return addAiSuggestions(tx, command, ctx);
-    case 'resolveAiSuggestion':
-      return resolveAiSuggestion(tx, command, ctx);
     case 'markCelebrationsSeen':
       return markCelebrationsSeen(tx, command, ctx);
     case 'setAvatar':

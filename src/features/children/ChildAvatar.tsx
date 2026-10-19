@@ -25,6 +25,7 @@ export function ChildAvatar({ child, state, size = 56 }: { child: Child; state: 
           color={display.color}
           stage={owned.stage}
           emoji={display.emoji}
+          assetKey={display.assetKey}
           size={size * 0.92}
           special={!species}
         />

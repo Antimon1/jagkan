@@ -110,7 +110,10 @@ export const useGameStore = create<GameStore>()((set, get) => {
 
     async replace(state) {
       const backend = get().backend;
-      set({ family: state, status: state ? 'ready' : 'empty', parentId: state?.parents[0]?.id ?? get().parentId });
+      // Keep the signed-in parent; a co-parent must not turn into the admin on a new state.
+      const current = get().parentId;
+      const parentId = state?.parents.some((p) => p.id === current) ? current : (state?.parents[0]?.id ?? current);
+      set({ family: state, status: state ? 'ready' : 'empty', parentId });
       if (state && backend?.kind === 'local') {
         await backend.commit({ type: 'rollupWeeks' }, state);
       }

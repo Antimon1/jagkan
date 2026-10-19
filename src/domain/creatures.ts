@@ -1,4 +1,4 @@
-import { branchSpecies, specialFor } from './catalog';
+import { playableSpecies, specialFor } from './catalog';
 import { STAGE_THRESHOLDS } from './constants';
 import { celebrate, emit, patchState, replaceById, type Tx } from './tx';
 import type {
@@ -42,7 +42,7 @@ export function hasCreature(state: FamilyState, childId: string, creatureId: str
 
 /**
  * Hatch the next creature of a branch (slot 1, then 2, then 3) in the child's world.
- * Returns the species id, or null when all three are already hatched.
+ * Returns the species id, or null when every playable species is already hatched.
  */
 export function hatchNext(
   tx: Tx,
@@ -52,7 +52,7 @@ export function hatchNext(
   branch: BranchId,
 ): { tx: Tx; creatureId: string | null } {
   const owned = new Set(childCreaturesIn(tx.state, childId, world, branch).map((c) => c.creatureId));
-  const next = branchSpecies(ctx.catalog, world, branch).find((s) => !owned.has(s.id));
+  const next = playableSpecies(ctx.catalog, world, branch).find((s) => !owned.has(s.id));
   if (!next) return { tx, creatureId: null };
 
   const creature: ChildCreature = {
@@ -90,7 +90,7 @@ export function feedBranch(tx: Tx, ctx: EngineContext, childId: string, world: W
   return result;
 }
 
-/** Branch master: all creatures of a branch in a world have reached stage 3. */
+/** Branch master: all playable creatures of a branch in a world have reached stage 3. */
 export function isBranchMaster(
   state: FamilyState,
   ctx: EngineContext,
@@ -98,7 +98,7 @@ export function isBranchMaster(
   world: WorldId,
   branch: BranchId,
 ): boolean {
-  const species = branchSpecies(ctx.catalog, world, branch);
+  const species = playableSpecies(ctx.catalog, world, branch);
   if (species.length === 0) return false;
   const owned = childCreaturesIn(state, childId, world, branch);
   return species.every((s) => owned.some((c) => c.creatureId === s.id && c.stage === 3));

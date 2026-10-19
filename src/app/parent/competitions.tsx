@@ -38,7 +38,7 @@ export default function Competitions() {
     <Screen back="/parent/more" title={t('parent.competitions.title')}>
       {!limits.plus ? (
         <Card tone="plus" onPress={() => router.push('/parent/paywall')}>
-          <AppText variant="body">🔓 {t('paywall.features.competitions')} – {t('common.plusOnly')}</AppText>
+          <AppText variant="body">🔓 {t('parent.paywall.features.competitions')} – {t('common.plusOnly')}</AppText>
         </Card>
       ) : null}
 

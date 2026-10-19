@@ -1,14 +1,16 @@
 import type { AgeBand, BranchId, Competitions, FamilySettings, Stage, WorldId } from './types';
 
-export const BRANCHES: readonly BranchId[] = ['kropp', 'mat', 'hem', 'ute', 'pengar', 'kanslor', 'mod'];
+export const BRANCHES: readonly BranchId[] = ['kropp', 'mat', 'hem', 'tid', 'ute', 'pengar', 'kanslor', 'omtanke', 'mod'];
 
 export const BRANCH_ICONS: Readonly<Record<BranchId, string>> = {
   kropp: '🪥',
   mat: '🍳',
   hem: '🏠',
+  tid: '⏰',
   ute: '🚲',
   pengar: '🪙',
   kanslor: '💛',
+  omtanke: '🤝',
   mod: '🦁',
 };
 
@@ -26,6 +28,13 @@ export const BAND_BY_WORLD: Readonly<Record<WorldId, AgeBand>> = {
   explorer: 3,
 };
 
+/** Ages of each band (spec 5). The library covers every branch in every band. */
+export const BAND_AGES: Readonly<Record<AgeBand, { min: number; max: number }>> = {
+  1: { min: 4, max: 6 },
+  2: { min: 7, max: 9 },
+  3: { min: 10, max: 13 },
+};
+
 export const MIN_AGE = 4;
 export const MAX_AGE = 13;
 
@@ -37,6 +46,12 @@ export const STAGE_THRESHOLDS: Readonly<Record<Stage, number>> = { 1: 0, 2: 3, 3
 
 /** Sparks on one challenge that give a bonus star (spec 3.2). */
 export const SPARKS_PER_BONUS_STAR = 3;
+
+/**
+ * Bonus stars one egg can give before a parent approves it (idépanelen: tries must
+ * not replace doing). A repeatable challenge gets a new bonus after each approval.
+ */
+export const MAX_BONUS_STARS_PER_ROUND = 1;
 
 export const DEFAULT_MAX_ACTIVE = 5;
 export const MAX_ACTIVE_LIMIT = 10;
@@ -51,9 +66,6 @@ export const GRADUATION_SNOOZE_DAYS = 7;
 
 /** Weekly rollup happens on Sunday evening (local time), spec 14.2. */
 export const WEEKLY_ROLLUP_HOUR = 19;
-
-export const AI_SUGGESTIONS_PER_WEEK = 3;
-export const AI_MORE_PER_DAY = 3;
 
 export const DEFAULT_SETTINGS: FamilySettings = {
   sparkBonusEnabled: true,

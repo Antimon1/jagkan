@@ -8,8 +8,10 @@ import { AppText } from '@/components/AppText';
 import { SpeakButton } from '@/components/SpeakButton';
 import { catalog } from '@/data/catalog';
 import { challengeView } from '@/domain/selectors';
+import { canEarnBonusStar } from '@/domain/stars';
+import type { DomainEvent } from '@/domain/types';
 import { BigButton } from '@/features/child/BigButton';
-import { Confetti } from '@/features/child/Confetti';
+import { actionFeedback } from '@/features/child/feedback';
 import { useActiveChild } from '@/features/child/useActiveChild';
 import { EggArt } from '@/features/creatures/EggArt';
 import { useT } from '@/lib/i18n';
@@ -27,9 +29,9 @@ export default function ChildChallenge() {
   const active = useActiveChild();
   const dispatch = useDispatch();
   const [feedback, setFeedback] = useState<Feedback>(null);
-  const [burst, setBurst] = useState(0);
+  const [shown, setShown] = useState(0);
   const challenge = active?.state.challenges.find((c) => c.id === id && c.childId === active.child.id);
-  const view = challenge && active ? challengeView(catalog, challenge, active.state.family.settings.sparkBonusEnabled) : null;
+  const view = challenge && active ? challengeView(catalog, challenge, canEarnBonusStar(active.state, catalog, challenge)) : null;
 
   useEffect(() => {
     if (view) speak(view.title);
@@ -44,44 +46,29 @@ export default function ChildChallenge() {
   const waiting = challenge.status === 'requested';
   const closed = challenge.status !== 'active' && !waiting;
 
-  const say = (text: string, emoji: string) => {
-    setFeedback({ text, emoji });
+  const respond = (action: 'tried' | 'did', events: DomainEvent[] | null) => {
+    const next = actionFeedback(action, events);
+    if (!next) return;
+    if (next.haptic) haptic(next.haptic);
+    if (next.sound) playSound(next.sound);
+    const text = t(next.textKey);
+    setFeedback({ text, emoji: next.emoji });
+    setShown((n) => n + 1);
     speak(text);
   };
 
   const tried = async () => {
     const result = await dispatch({ type: 'recordAttempt', challengeId: challenge.id });
-    if (!result) return;
-    if (result.events.some((e) => e.type === 'spark_already_today')) {
-      say(t('child.sparkTomorrow'), '🔥');
-      return;
-    }
-    haptic('success');
-    if (result.events.some((e) => e.type === 'bonus_star')) {
-      playSound('fanfare');
-      setBurst((b) => b + 1);
-      say(t('child.bonusStar'), '⭐');
-    } else {
-      playSound('spark');
-      say(t('child.sparkGot'), '🔥');
-    }
+    respond('tried', result ? result.events : null);
   };
 
   const did = async () => {
     const result = await dispatch({ type: 'requestCompletion', challengeId: challenge.id }, { quiet: true });
-    if (!result) {
-      say(t('child.alreadySent'), '⏳');
-      return;
-    }
-    haptic('success');
-    playSound('chime');
-    setBurst((b) => b + 1);
-    say(t('child.sentToParent'), '⭐');
+    respond('did', result ? result.events : null);
   };
 
   return (
     <SafeAreaView style={[styles.root, { backgroundColor: theme.bg }]}>
-      <Confetti playKey={burst} count={28} />
       <View style={styles.top}>
         <Pressable
           accessibilityRole="button"
@@ -113,7 +100,7 @@ export default function ChildChallenge() {
           ))}
         </View>
         {feedback ? (
-          <Animated.View key={feedback.text + burst} entering={BounceIn} style={[styles.feedback, { backgroundColor: theme.surface }]}>
+          <Animated.View key={feedback.text + shown} entering={BounceIn} style={[styles.feedback, { backgroundColor: theme.surface }]}>
             <AppText style={styles.feedbackEmoji}>{feedback.emoji}</AppText>
             <AppText variant="childBig" color={theme.ink} style={styles.flex}>
               {feedback.text}

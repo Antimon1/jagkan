@@ -6,6 +6,9 @@ när en vuxen godkänner. Stjärnorna kläcker och utvecklar varelser, och kan b
 mot belöningar som föräldern bestämmer. Hela specifikationen finns i
 [docs/JagKan_spec.md](docs/JagKan_spec.md).
 
+Appen använder ingen AI. Foton lämnar aldrig enheten, och inga uppgifter om
+barnen lämnar EU.
+
 ## Prova
 
 - **Webbförhandsvisning:** <https://antimon1.github.io/jagkan/> – välj
@@ -27,7 +30,7 @@ mot belöningar som föräldern bestämmer. Hela specifikationen finns i
 | Spelmotor (gnistor, stjärnor, kläckning, milstolpar, belöningar, tävlingar, världar) | Klar, ~94 % testtäckning |
 | Föräldravy, barnvy, onboarding, parkoppling, album, inställningar | Klar |
 | Uppläsning (sv-SE), ljud, animationer, föräldraspärr (PIN) | Klar |
-| Backend: Supabase-schema, RLS, edge functions, AI (Claude), RevenueCat-webhook | Klar i koden, behöver ett Supabase-projekt ([docs/backend.md](docs/backend.md)) |
+| Backend: Supabase-schema, RLS, edge functions, RevenueCat-webhook | Klar i koden, behöver ett Supabase-projekt ([docs/backend.md](docs/backend.md)) |
 | Grafik | Platshållare (vektor) tills riktig grafik tas fram |
 | App Store / Google Play | Kräver utvecklarkonton, EAS och listningar |
 
@@ -52,8 +55,8 @@ föräldrar delar enheten och föräldraläget skyddas med PIN.
 ```
 src/app/          skärmar (Expo Router): welcome, onboarding, parent, child, pair
 src/domain/       spelmotorn – ren TypeScript, körs både i appen och på servern
-src/backend/      serverlogik utan Deno-beroenden (commit, AI-prompter, notiser, RevenueCat)
-src/features/     funktioner per område (barn, varelser, album, AI …)
+src/backend/      serverlogik utan Deno-beroenden (commit, notiser, RevenueCat)
+src/features/     funktioner per område (barn, varelser, album, onboarding …)
 src/state/        lokal och molnbaserad backend, offline-kö
 src/lib/          i18n (svenska), lagring, tal, ljud, media, Supabase-klient
 seed/             utmaningsbibliotek, varelser, milstolpar, belöningsförslag

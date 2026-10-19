@@ -1,4 +1,6 @@
-import { ageAt, bandForAge, graduationTarget, isSupportedAge, worldForAge } from '@/domain/age';
+import { ageAt, bandForAge, graduationTarget, isSupportedAge, playableWorldForAge, worldForAge } from '@/domain/age';
+import { catalog } from '@/data/catalog';
+import { BETA_SCOPE, FULL_GAME_SCOPE } from '@/domain/launch';
 import { addDays, dayKey, isInWeek, isWeekClosed, weekdayIndex, weekStartKey } from '@/domain/time';
 import type { Child } from '@/domain/types';
 import { Driver, SYSTEM } from '../helpers';
@@ -62,16 +64,33 @@ describe('age and worlds (spec 5)', () => {
       createdAt: '2025-01-01T00:00:00.000Z',
     };
     const now = '2026-10-07T08:00:00.000Z';
-    expect(graduationTarget(child, now, TZ)).toBe('dino');
-    expect(graduationTarget({ ...child, graduationSnoozedAt: '2026-10-05T08:00:00.000Z' }, now, TZ)).toBeNull();
-    expect(graduationTarget({ ...child, graduationSnoozedAt: '2026-09-20T08:00:00.000Z' }, now, TZ)).toBe('dino');
-    expect(graduationTarget({ ...child, world: 'dino' }, now, TZ)).toBeNull();
+    const all = FULL_GAME_SCOPE.worlds;
+    expect(graduationTarget(child, now, TZ, all)).toBe('dino');
+    expect(graduationTarget({ ...child, graduationSnoozedAt: '2026-10-05T08:00:00.000Z' }, now, TZ, all)).toBeNull();
+    expect(graduationTarget({ ...child, graduationSnoozedAt: '2026-09-20T08:00:00.000Z' }, now, TZ, all)).toBe('dino');
+    expect(graduationTarget({ ...child, world: 'dino' }, now, TZ, all)).toBeNull();
+    expect(graduationTarget(child, now, TZ, BETA_SCOPE.worlds)).toBeNull();
+  });
+
+  it('puts every age in Äggdalen while the other worlds are frozen', () => {
+    const beta = { ...catalog, scope: BETA_SCOPE };
+    expect([4, 8, 13].map((age) => playableWorldForAge(beta, age))).toEqual(['valley', 'valley', 'valley']);
+    const full = { ...catalog, scope: FULL_GAME_SCOPE };
+    expect([4, 8, 13].map((age) => playableWorldForAge(full, age))).toEqual(['valley', 'dino', 'explorer']);
   });
 });
 
 describe('changing worlds', () => {
+  it('keeps everyone in Äggdalen in the beta', () => {
+    const d = new Driver();
+    d.run({ type: 'setPlus', active: true }, SYSTEM);
+    const child = d.addChild('Bo', 2014, 1); // 12 years old
+    expect(d.state.children[0].world).toBe('valley');
+    expect(d.try({ type: 'changeWorld', childId: child, world: 'explorer' })).toMatchObject({ error: 'invalid_input' });
+  });
+
   it('graduates a 7-year-old from Äggdalen to Dinodalen and keeps the collection', () => {
-    const d = new Driver(undefined, '2025-10-07T08:00:00.000Z');
+    const d = new Driver(undefined, '2025-10-07T08:00:00.000Z').fullGame();
     const child = d.addChild('Evelyn', 2019, 9); // 6 years old: Äggdalen
     d.completeIn(child, 'kropp');
     d.at('2026-10-07T08:00:00.000Z'); // now 7
@@ -85,7 +104,7 @@ describe('changing worlds', () => {
   });
 
   it('keeps free families in the world that fits the age', () => {
-    const d = new Driver();
+    const d = new Driver().fullGame();
     const child = d.addChild('Evelyn', 2020, 3);
     expect(d.try({ type: 'changeWorld', childId: child, world: 'explorer' })).toMatchObject({ error: 'plus_required' });
     d.run({ type: 'setPlus', active: true }, SYSTEM);

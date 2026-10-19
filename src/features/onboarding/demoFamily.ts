@@ -2,14 +2,13 @@ import { catalog } from '@/data/catalog';
 import type { Command } from '@/domain/commands';
 import { applyCommand } from '@/domain/engine';
 import { createFamilyState } from '@/domain/factory';
-import { suggestFromLibrary, templateToPayload } from '@/domain/library';
 import type { Actor, BranchId, FamilyState } from '@/domain/types';
 import { newId } from '@/lib/ids';
 
 const DAY = 86_400_000;
 
 function firstTemplate(branch: BranchId, ageMax: number, skip: string[] = []): string {
-  const t = catalog.templates.find((x) => x.branch === branch && x.ageMax <= ageMax && !skip.includes(x.id));
+  const t = catalog.templates.find((x) => x.branch === branch && x.ageMax <= ageMax && !x.retired && !skip.includes(x.id));
   return t?.id ?? catalog.templates[0].id;
 }
 
@@ -50,7 +49,7 @@ export function buildDemoFamily(now: Date = new Date()): FamilyState {
   run({ type: 'addChild', firstName: 'Evelyn', birthYear: year - 6, birthMonth: 1 }, 20);
   run({ type: 'addChild', firstName: 'Rafael', birthYear: year - 5, birthMonth: 1 }, 20);
   const [evelyn, rafael] = state.children.map((c) => c.id);
-  run({ type: 'updateCompetitions', siblingDuelEnabled: true, selfModeEnabled: true, handicaps: { [rafael]: 1.5 } }, 20);
+  run({ type: 'updateCompetitions', selfModeEnabled: true }, 20);
 
   const lastChallenge = () => state.challenges[state.challenges.length - 1]?.id ?? '';
   const completeTemplate = (childId: string, branch: BranchId, daysAgo: number, tries = 1) => {
@@ -86,21 +85,17 @@ export function buildDemoFamily(now: Date = new Date()): FamilyState {
   run({ type: 'createReward', title: 'Biokväll', icon: '🎬', costStars: 20, childId: null }, 9);
   run({ type: 'setFamilyGoal', title: 'Bio i helgen', targetStars: 15, rewardText: 'Bio med popcorn', endAt: null }, 5);
 
-  // Active eggs, one of them with sparks, one waiting for approval.
+  // Active eggs: one with sparks, and one per child waiting for approval (shows "Godkänn alla").
   run({ type: 'activateTemplate', childId: evelyn, templateId: firstTemplate('ute', 6) }, 2);
   run({ type: 'recordAttempt', challengeId: lastChallenge() }, 2, 'child');
   run({ type: 'recordAttempt', challengeId: lastChallenge() }, 1, 'child');
   run({ type: 'activateTemplate', childId: evelyn, templateId: firstTemplate('pengar', 6) }, 1);
   run({ type: 'requestCompletion', challengeId: lastChallenge() }, 0, 'child');
   run({ type: 'activateTemplate', childId: rafael, templateId: firstTemplate('kanslor', 6) }, 1);
+  run({ type: 'requestCompletion', challengeId: lastChallenge() }, 0, 'child');
   run({ type: 'activateTemplate', childId: rafael, templateId: firstTemplate('ute', 6) }, 0);
   run({ type: 'recordAttempt', challengeId: lastChallenge() }, 0, 'child');
 
-  const evelynChild = state.children.find((c) => c.id === evelyn);
-  if (evelynChild) {
-    const items = suggestFromLibrary(state, catalog, evelynChild, now.toISOString(), 3, true).map(templateToPayload);
-    if (items.length) run({ type: 'addAiSuggestions', childId: evelyn, items }, 0, 'system');
-  }
   run({ type: 'rollupWeeks' }, 0, 'system');
 
   // Do not replay two weeks of animations: only the newest ones stay unseen.

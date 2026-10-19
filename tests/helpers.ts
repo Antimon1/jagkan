@@ -2,7 +2,8 @@ import { catalog } from '@/data/catalog';
 import { applyCommand } from '@/domain/engine';
 import { createFamilyState } from '@/domain/factory';
 import type { Command } from '@/domain/commands';
-import type { Actor, BranchId, DomainEvent, EngineContext, FamilyState } from '@/domain/types';
+import { FULL_GAME_SCOPE } from '@/domain/launch';
+import type { Actor, BranchId, Catalog, DomainEvent, EngineContext, FamilyState } from '@/domain/types';
 
 export const PARENT_ID = 'parent-1';
 export const PARENT: Actor = { kind: 'parent', parentId: PARENT_ID };
@@ -11,7 +12,10 @@ export const SYSTEM: Actor = { kind: 'system' };
 /** Wednesday 2026-10-07 10:00 in Stockholm. */
 export const START = '2026-10-07T08:00:00.000Z';
 
-export function makeCtx(now: string = START, prefix = 'id'): EngineContext {
+/** The whole game, including the content frozen for the beta (src/domain/launch.ts). */
+export const fullGameCatalog: Catalog = { ...catalog, scope: FULL_GAME_SCOPE };
+
+export function makeCtx(now: string = START, prefix = 'id', gameCatalog: Catalog = catalog): EngineContext {
   let n = 0;
   return {
     now,
@@ -19,7 +23,7 @@ export function makeCtx(now: string = START, prefix = 'id'): EngineContext {
       n += 1;
       return `${prefix}-${n}`;
     },
-    catalog,
+    catalog: gameCatalog,
   };
 }
 
@@ -49,6 +53,7 @@ export class Driver {
   events: DomainEvent[] = [];
   private seq = 0;
   now: string;
+  catalog: Catalog = catalog;
 
   constructor(state: FamilyState = emptyFamily(), now: string = START) {
     this.state = state;
@@ -57,6 +62,12 @@ export class Driver {
 
   at(now: string): this {
     this.now = now;
+    return this;
+  }
+
+  /** Play with every world, all creature slots and the specials (frozen in the beta). */
+  fullGame(): this {
+    this.catalog = fullGameCatalog;
     return this;
   }
 
@@ -74,7 +85,7 @@ export class Driver {
 
   try(command: Command, actor: Actor = PARENT) {
     this.seq += 1;
-    const result = applyCommand(deepFreeze(this.state), command, actor, makeCtx(this.now, `c${this.seq}`));
+    const result = applyCommand(deepFreeze(this.state), command, actor, makeCtx(this.now, `c${this.seq}`, this.catalog));
     if (result.ok) {
       this.state = result.state;
       this.events = result.events;
@@ -106,13 +117,15 @@ export class Driver {
 }
 
 export function freeTemplate(branch?: string, ageMax = 6): string {
-  const t = catalog.templates.find((x) => !x.isPlus && x.ageMax <= ageMax && (!branch || x.branch === branch));
+  const t = catalog.templates.find(
+    (x) => !x.isPlus && !x.retired && x.reward === 'star' && x.ageMax <= ageMax && (!branch || x.branch === branch),
+  );
   if (!t) throw new Error('no free template');
   return t.id;
 }
 
 export function plusTemplate(ageMax = 6): string {
-  const t = catalog.templates.find((x) => x.isPlus && x.ageMax <= ageMax);
+  const t = catalog.templates.find((x) => x.isPlus && !x.retired && x.reward === 'star' && x.ageMax <= ageMax);
   if (!t) throw new Error('no plus template');
   return t.id;
 }

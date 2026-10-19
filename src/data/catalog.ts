@@ -3,6 +3,7 @@ import creatures from '../../seed/creatures.json';
 import milestones from '../../seed/milestones.json';
 import rewardSuggestions from '../../seed/reward_suggestions.json';
 
+import { GAME_SCOPE } from '@/domain/launch';
 import type {
   Catalog,
   ChallengeTemplate,
@@ -19,6 +20,7 @@ import type {
  * The JSON files are validated against the domain schema in tests/seed.test.ts.
  */
 export const catalog: Catalog = {
+  scope: GAME_SCOPE,
   templates: challenges as unknown as ChallengeTemplate[],
   worlds: creatures.worlds as unknown as WorldInfo[],
   species: creatures.species as unknown as CreatureSpecies[],

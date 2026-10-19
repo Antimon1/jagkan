@@ -1,7 +1,7 @@
 import { catalog } from '@/data/catalog';
+import { BRANCHES } from '@/domain/constants';
 import { templateCardText } from '@/domain/cardText';
-import { sanitizeAiChallenge } from '@/domain/handlers/ai';
-import { searchLibrary, suggestFromLibrary, templateToPayload } from '@/domain/library';
+import { searchLibrary, suggestFromLibrary } from '@/domain/library';
 import {
   albumFor,
   branchStats,
@@ -16,7 +16,7 @@ import {
   unseenCelebrations,
   worldsWithCollection,
 } from '@/domain/selectors';
-import { Driver, freeTemplate, SYSTEM } from '../helpers';
+import { Driver, freeTemplate, fullGameCatalog, SYSTEM } from '../helpers';
 
 describe('challenge library (spec 6.1)', () => {
   it('filters by branch, age, difficulty and text', () => {
@@ -28,8 +28,32 @@ describe('challenge library (spec 6.1)', () => {
   });
 
   it('hides Plus challenges for free families', () => {
-    expect(searchLibrary(catalog, { includePlus: false }).every((t) => !t.isPlus)).toBe(true);
-    expect(searchLibrary(catalog, { includePlus: false })).toHaveLength(42);
+    const free = searchLibrary(catalog, { includePlus: false });
+    expect(free.every((t) => !t.isPlus)).toBe(true);
+    expect(free.length).toBeGreaterThanOrEqual(54);
+  });
+
+  it('filters by age band without a particular child', () => {
+    const results = searchLibrary(catalog, { band: 2, includePlus: true });
+    expect(results.length).toBeGreaterThanOrEqual(9 * 20);
+    expect(results.every((t) => t.ageMax >= 7 && t.ageMin <= 9)).toBe(true);
+  });
+
+  it('hides retired challenges but keeps them working for families that use them', () => {
+    const retiredId = 'hem_stada_badrum_01';
+    expect(catalog.templates.find((t) => t.id === retiredId)?.retired).toBe(true);
+    expect(searchLibrary(catalog, { includePlus: true }).some((t) => t.retired)).toBe(false);
+
+    const d = new Driver();
+    d.run({ type: 'setPlus', active: true }, SYSTEM);
+    const child = d.addChild('Rafael', 2014, 8);
+    expect(d.try({ type: 'activateTemplate', childId: child, templateId: retiredId })).toMatchObject({ error: 'not_found' });
+
+    // A challenge activated before the template was retired.
+    const id = d.activate(child, freeTemplate('hem', 13));
+    d.state = { ...d.state, challenges: d.state.challenges.map((c) => (c.id === id ? { ...c, templateId: retiredId } : c)) };
+    d.run({ type: 'approveCompletion', challengeId: id });
+    expect(albumFor(d.state, catalog, child)[0].title).toBe('Städa badrummet');
   });
 
   it('suggests unused, age-appropriate challenges spread over branches', () => {
@@ -42,43 +66,6 @@ describe('challenge library (spec 6.1)', () => {
     expect(new Set(picks.map((p) => p.branch)).size).toBe(3);
     expect(picks.some((p) => p.branch === 'kropp')).toBe(false);
     expect(picks.every((p) => p.ageMin <= 6)).toBe(true);
-  });
-});
-
-describe('AI output validation (spec 8)', () => {
-  it('accepts a valid challenge and rejects broken ones', () => {
-    const valid = templateToPayload(catalog.templates[0]);
-    expect(sanitizeAiChallenge(valid)).toEqual(valid);
-    expect(sanitizeAiChallenge({ ...valid, branch: 'farligt' })).toBeNull();
-    expect(sanitizeAiChallenge({ ...valid, ageMin: 9, ageMax: 5 })).toBeNull();
-    expect(sanitizeAiChallenge({ ...valid, titleChild: '' })).toBeNull();
-    expect(sanitizeAiChallenge('nope')).toBeNull();
-  });
-
-  it('stores suggestions and turns accepted ones into challenges', () => {
-    const d = new Driver();
-    const child = d.addChild('Evelyn', 2020, 3);
-    const items = suggestFromLibrary(d.state, catalog, d.state.children[0], d.now, 2, true).map(templateToPayload);
-    d.run({ type: 'addAiSuggestions', childId: child, items }, SYSTEM);
-    expect(d.state.aiSuggestions).toHaveLength(2);
-    d.run({ type: 'resolveAiSuggestion', suggestionId: d.state.aiSuggestions[0].id, accept: true });
-    d.run({ type: 'resolveAiSuggestion', suggestionId: d.state.aiSuggestions[1].id, accept: false });
-    expect(d.state.challenges).toHaveLength(1);
-    expect(d.state.challenges[0]).toMatchObject({ source: 'ai', status: 'active' });
-    expect(d.state.aiSuggestions.map((s) => s.status)).toEqual(['accepted', 'dismissed']);
-    expect(d.try({ type: 'addAiSuggestions', childId: child, items: [{ bad: true } as never] }, SYSTEM)).toMatchObject({
-      error: 'invalid_input',
-    });
-  });
-
-  it('keeps an accepted suggestion as "suggested" when the child has too many eggs', () => {
-    const d = new Driver();
-    d.run({ type: 'updateSettings', settings: { maxActiveChallenges: 1 } });
-    const child = d.addChild('Evelyn', 2020, 3);
-    d.custom(child, 'kropp');
-    d.run({ type: 'addAiSuggestions', childId: child, items: [templateToPayload(catalog.templates[1])] }, SYSTEM);
-    d.run({ type: 'resolveAiSuggestion', suggestionId: d.state.aiSuggestions[0].id, accept: true });
-    expect(d.state.challenges[1].status).toBe('suggested');
   });
 });
 
@@ -120,16 +107,32 @@ describe('selectors for the child and parent views', () => {
     expect(pending[0].child.firstName).toBe('Evelyn');
   });
 
-  it('builds the collection with silhouettes, specials and trophy worlds', () => {
+  it('builds the beta collection: one creature per branch and no locked specials', () => {
     const { d, child } = setup();
     const collection = collectionFor(d.state, catalog, child, 'valley');
-    expect(collection).toHaveLength(7);
+    expect(collection).toHaveLength(BRANCHES.length);
+    expect(collection.every((b) => b.slots.length === 1)).toBe(true);
     const mat = collection.find((b) => b.branch === 'mat');
     expect(mat?.slots[0].owned).not.toBeNull();
-    expect(mat?.slots[1].owned).toBeNull();
     expect(mat?.slots[0].toNextStage).toBe(2);
-    expect(specialsFor(d.state, catalog, child, 'valley')).toHaveLength(10);
+    expect(specialsFor(d.state, catalog, child, 'valley')).toEqual([]);
     expect(worldsWithCollection(d.state, child, 'valley')).toEqual(['valley']);
+  });
+
+  it('builds the full-game collection with silhouettes and specials', () => {
+    const { d, child } = setup();
+    const collection = collectionFor(d.state, fullGameCatalog, child, 'valley');
+    const mat = collection.find((b) => b.branch === 'mat');
+    expect(mat?.slots.map((s) => s.owned !== null)).toEqual([true, false, false]);
+    expect(specialsFor(d.state, fullGameCatalog, child, 'valley')).toHaveLength(10);
+  });
+
+  it('still shows creatures a child owns in a frozen world', () => {
+    const { d, child } = setup();
+    const dino = { ...d.state.creatures[0], id: 'old', creatureId: 'dino_mat_2', world: 'dino' as const };
+    const state = { ...d.state, creatures: [...d.state.creatures, dino] };
+    const mat = collectionFor(state, catalog, child, 'dino').find((b) => b.branch === 'mat');
+    expect(mat?.slots.map((s) => s.species.id)).toEqual(['dino_mat_2']);
   });
 
   it('computes milestone progress, album, branch stats and the shop', () => {

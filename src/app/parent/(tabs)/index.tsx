@@ -12,8 +12,9 @@ import { familyGoalView, pendingApprovals, pendingRewardRequests } from '@/domai
 import { ApprovalCard, ChildSummaryCard, GoalCard, RewardRequestCard } from '@/features/parent/cards';
 import { startChildMode } from '@/features/parent/handoff';
 import { useT } from '@/lib/i18n';
+import { playSound } from '@/lib/sound';
 import { useFamily, useGameStore } from '@/state/game';
-import { useNow } from '@/state/hooks';
+import { useDispatch, useNow } from '@/state/hooks';
 import { palette, space } from '@/theme/tokens';
 
 export default function Overview() {
@@ -26,6 +27,16 @@ export default function Overview() {
   const approvals = pendingApprovals(state, catalog);
   const rewardRequests = pendingRewardRequests(state);
   const goal = familyGoalView(state, now);
+  const dispatch = useDispatch();
+
+  const approveAll = async () => {
+    const challengeIds = approvals.map((item) => item.view.challenge.id);
+    const result = await dispatch(
+      { type: 'approveAll', challengeIds },
+      { success: t('parent.overview.approvedAll', { count: challengeIds.length }) },
+    );
+    if (result) playSound('chime');
+  };
 
   return (
     <Screen
@@ -47,6 +58,15 @@ export default function Overview() {
             ✅ {t('parent.overview.nothingWaiting')}
           </AppText>
         </Card>
+      ) : null}
+      {approvals.length > 1 ? (
+        <Button
+          label={t('parent.overview.approveAll', { count: approvals.length })}
+          variant="star"
+          size="lg"
+          onPress={approveAll}
+          testID="approve-all"
+        />
       ) : null}
       {approvals.map((item, i) => (
         <Animated.View key={item.view.challenge.id} entering={FadeInDown.delay(i * 60)}>

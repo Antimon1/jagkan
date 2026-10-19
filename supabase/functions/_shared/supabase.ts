@@ -127,20 +127,3 @@ export async function snapshotFor(admin: SupabaseClient, caller: Caller): Promis
   if (error) throw new Error(error.message);
   return (data as FamilySnapshot | null) ?? null;
 }
-
-/** One AI call against the family/child daily limits (spec 8). */
-export async function takeAiCall(
-  admin: SupabaseClient,
-  familyId: string,
-  childId: string | null,
-  limits: { family: number; child: number | null },
-): Promise<boolean> {
-  const { data, error } = await admin.rpc('jk_ai_take', {
-    p_family_id: familyId,
-    p_child_id: childId,
-    p_family_limit: limits.family,
-    p_child_limit: limits.child,
-  });
-  if (error) throw new Error(error.message);
-  return data === true;
-}

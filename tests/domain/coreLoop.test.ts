@@ -1,3 +1,5 @@
+import { catalog } from '@/data/catalog';
+import { albumFor, eggsForChild } from '@/domain/selectors';
 import { totalStars, spendableStars } from '@/domain/stars';
 import { Driver, freeTemplate, plusTemplate, SYSTEM } from '../helpers';
 
@@ -11,7 +13,7 @@ describe('core loop: spark → request → approve → star → hatch', () => {
   });
 
   it('puts a 8-year-old in Dinodalen and a 11-year-old in Utforskarbasen', () => {
-    const d = new Driver();
+    const d = new Driver().fullGame();
     d.run({ type: 'setPlus', active: true }, SYSTEM);
     const a = d.addChild('Alva', 2018, 5);
     const b = d.addChild('Bo', 2015, 1);
@@ -59,7 +61,7 @@ describe('core loop: spark → request → approve → star → hatch', () => {
     );
     const types = d.state.celebrations.map((c) => c.type);
     expect(types).toContain('hatch');
-    expect(types).toContain('special'); // first spark special
+    expect(types).not.toContain('special'); // specials are frozen in the beta
   });
 
   it('lets the parent register a completion directly without a request', () => {
@@ -71,7 +73,7 @@ describe('core loop: spark → request → approve → star → hatch', () => {
     expect(d.state.completions[0].approvedBy).toBe('parent-1');
   });
 
-  it('uses the AI/parent card text when given', () => {
+  it('uses the parent card text when given', () => {
     const d = new Driver();
     const child = d.addChild('Rafael', 2021, 6);
     const id = d.activate(child, freeTemplate('mat'));
@@ -137,6 +139,33 @@ describe('sparks (spec 3.2)', () => {
     expect(d.events.map((e) => e.type)).toContain('bonus_star');
   });
 
+  it('gives at most one bonus star per egg, and the egg stays full', () => {
+    const d = new Driver();
+    const child = d.addChild('Evelyn', 2020, 3);
+    const id = d.activate(child, freeTemplate('kropp'));
+    for (let day = 0; day < 9; day += 1) d.addDays(1).run({ type: 'recordAttempt', challengeId: id });
+
+    expect(d.state.challenges[0].sparks).toBe(9);
+    expect(d.state.ledger.filter((e) => e.reason === 'spark_bonus')).toHaveLength(1);
+    expect(eggsForChild(d.state, catalog, child)[0].charge).toBe(3);
+  });
+
+  it('gives a repeatable challenge a new bonus star after each approval', () => {
+    const d = new Driver();
+    const child = d.addChild('Evelyn', 2020, 3);
+    const id = d.custom(child, 'kropp', 'Borsta tänderna', true);
+    const tryDays = (days: number) => {
+      for (let day = 0; day < days; day += 1) d.addDays(1).run({ type: 'recordAttempt', challengeId: id });
+    };
+    const bonusStars = () => d.state.ledger.filter((e) => e.reason === 'spark_bonus').length;
+
+    tryDays(6);
+    expect(bonusStars()).toBe(1);
+    d.run({ type: 'approveCompletion', challengeId: id });
+    tryDays(6);
+    expect(bonusStars()).toBe(2);
+  });
+
   it('can turn the bonus star rule off', () => {
     const d = new Driver();
     d.run({ type: 'updateSettings', settings: { sparkBonusEnabled: false } });
@@ -166,13 +195,49 @@ describe('sparks (spec 3.2)', () => {
   });
 
   it('unlocks the first-spark special only once', () => {
-    const d = new Driver();
+    const d = new Driver().fullGame();
     const child = d.addChild('Evelyn', 2020, 3);
     const a = d.activate(child, freeTemplate('kropp'));
     const b = d.activate(child, freeTemplate('mat'));
     d.run({ type: 'recordAttempt', challengeId: a });
     d.run({ type: 'recordAttempt', challengeId: b });
     expect(d.state.creatures.filter((c) => c.creatureId === 'valley_special_first_spark')).toHaveLength(1);
+  });
+});
+
+describe('praise cards (idépanelen)', () => {
+  const SORRY = 'kanslor_saga_forlat_01';
+
+  it('gives a praise card for an emotion challenge, without a star or a creature', () => {
+    const d = new Driver();
+    const child = d.addChild('Evelyn', 2020, 3);
+    const id = d.activate(child, SORRY);
+    d.run({ type: 'approveCompletion', challengeId: id });
+
+    expect(d.state.completions).toEqual([expect.objectContaining({ creatureId: null, cardText: expect.stringContaining('Evelyn') })]);
+    expect(totalStars(d.state, child)).toBe(0);
+    expect(d.state.creatures.filter((c) => c.childId === child)).toHaveLength(0);
+    expect(d.state.celebrations.map((c) => c.type)).toEqual(['praise']);
+    expect(albumFor(d.state, catalog, child)[0].praise).toBe(true);
+  });
+
+  it('never turns sparks on an emotion challenge into stars', () => {
+    const d = new Driver();
+    const child = d.addChild('Evelyn', 2020, 3);
+    const id = d.activate(child, SORRY);
+    for (let day = 0; day < 3; day += 1) d.addDays(1).run({ type: 'recordAttempt', challengeId: id });
+
+    expect(d.state.challenges[0].sparks).toBe(3);
+    expect(d.state.ledger).toHaveLength(0);
+  });
+
+  it('keeps giving stars for library skills and custom challenges', () => {
+    const d = new Driver();
+    const child = d.addChild('Evelyn', 2020, 3);
+    d.run({ type: 'approveCompletion', challengeId: d.activate(child, freeTemplate('kanslor')) });
+    d.run({ type: 'approveCompletion', challengeId: d.custom(child, 'kanslor', 'Säga förlåt') });
+
+    expect(totalStars(d.state, child)).toBe(2);
   });
 });
 

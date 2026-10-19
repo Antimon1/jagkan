@@ -57,7 +57,7 @@ export function ChallengeRow({ view, childName }: { view: ChallengeView; childNa
                   onPress={async () => {
                     const ok = await dispatch(
                       { type: 'approveCompletion', challengeId: challenge.id },
-                      { success: t('parent.approve.approved', { name: childName }) },
+                      { success: t(view.reward === 'praise' ? 'parent.approve.approvedPraise' : 'parent.approve.approved', { name: childName }) },
                     );
                     if (ok) playSound('chime');
                   }}
@@ -71,7 +71,7 @@ export function ChallengeRow({ view, childName }: { view: ChallengeView; childNa
                 />
               </>
             ) : null}
-            {challenge.status === 'paused' || challenge.status === 'suggested' ? (
+            {challenge.status === 'paused' ? (
               <Button
                 size="sm"
                 label={t('parent.child.activate')}

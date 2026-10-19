@@ -10,6 +10,7 @@ import { goBack, Screen } from '@/components/Screen';
 import { showToast } from '@/components/Toast';
 import { catalog } from '@/data/catalog';
 import { challengeView, findChild } from '@/domain/selectors';
+import { canEarnBonusStar } from '@/domain/stars';
 import { ChildAvatar } from '@/features/children/ChildAvatar';
 import { EggArt } from '@/features/creatures/EggArt';
 import { useT } from '@/lib/i18n';
@@ -42,9 +43,10 @@ export default function Approve() {
     );
   }
 
-  const view = challengeView(catalog, challenge, state.family.settings.sparkBonusEnabled);
+  const view = challengeView(catalog, challenge, canEarnBonusStar(state, catalog, challenge));
   const attempts = state.attempts.filter((a) => a.childChallengeId === challenge.id).length;
   const open = challenge.status === 'active' || challenge.status === 'requested';
+  const praise = view.reward === 'praise';
 
   const approve = async () => {
     setBusy(true);
@@ -55,7 +57,7 @@ export default function Approve() {
         await saveMediaForCompletion(completed.completionId, media);
       }
       playSound('chime');
-      showToast(t('parent.approve.approved', { name: child.firstName }), 'success');
+      showToast(t(praise ? 'parent.approve.approvedPraise' : 'parent.approve.approved', { name: child.firstName }), 'success');
       goBack('/parent');
     }
     setBusy(false);
@@ -84,11 +86,16 @@ export default function Approve() {
         <AppText variant="caption" color={palette.inkSoft} align="center">
           {t('parent.approve.attempts', { count: attempts })} · 🔥 {challenge.sparks} · {t(`branches.${challenge.branch}`)}
         </AppText>
+        {praise ? (
+          <AppText variant="caption" color={palette.inkSoft} align="center">
+            💛 {t('parent.approve.praiseHint')}
+          </AppText>
+        ) : null}
       </Card>
 
       {open ? (
         <>
-          <Button label={t('parent.approve.approve')} variant="star" size="lg" onPress={approve} loading={busy} testID="approve-confirm" />
+          <Button label={t(praise ? 'parent.approve.approvePraise' : 'parent.approve.approve')} variant="star" size="lg" onPress={approve} loading={busy} testID="approve-confirm" />
           <TextField
             label={t('parent.approve.noteLabel')}
             placeholder={t('parent.approve.notePlaceholder')}

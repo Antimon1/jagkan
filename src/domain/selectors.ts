@@ -1,13 +1,14 @@
 import { bandForAge, childAge, graduationTarget } from './age';
-import { branchSpecies, creatureDisplay, findTemplate, milestonesAscending } from './catalog';
+import { branchSpecies, creatureDisplay, findTemplate, milestonesAscending, playableSpecies } from './catalog';
 import { BRANCHES, SPARKS_PER_BONUS_STAR } from './constants';
 import { starsToNextStage } from './creatures';
 import { activeGoal, goalProgress } from './progress';
-import { availableStars, totalStars } from './stars';
+import { availableStars, canEarnBonusStar, totalStars } from './stars';
 import type {
   BranchId,
   Catalog,
   Celebration,
+  ChallengeReward,
   Child,
   ChildChallenge,
   ChildCreature,
@@ -35,15 +36,21 @@ export interface ChallengeView {
   difficulty: number | null;
   /** 0..3 charge shown on the egg. */
   charge: number;
+  reward: ChallengeReward;
 }
 
-export function challengeView(catalog: Catalog, challenge: ChildChallenge, sparkBonusEnabled = true): ChallengeView {
+/**
+ * `bonusAvailable` (see canEarnBonusStar): the egg fills up towards a bonus star and
+ * starts over. Without a bonus to earn it stays full until a parent approves.
+ */
+export function challengeView(catalog: Catalog, challenge: ChildChallenge, bonusAvailable = true): ChallengeView {
   const template = findTemplate(catalog, challenge.templateId);
-  const charge = sparkBonusEnabled
+  const charge = bonusAvailable
     ? challenge.sparks % SPARKS_PER_BONUS_STAR
     : Math.min(challenge.sparks, SPARKS_PER_BONUS_STAR);
   return {
     challenge,
+    reward: template?.reward ?? 'star',
     title: template?.titleChild ?? challenge.customTitle ?? '',
     parentTitle: template?.titleParent ?? challenge.customTitle ?? '',
     icon: template?.icon ?? challenge.customIcon ?? '⭐',
@@ -54,7 +61,7 @@ export function challengeView(catalog: Catalog, challenge: ChildChallenge, spark
 }
 
 function views(state: FamilyState, catalog: Catalog, list: ChildChallenge[]): ChallengeView[] {
-  return list.map((c) => challengeView(catalog, c, state.family.settings.sparkBonusEnabled));
+  return list.map((c) => challengeView(catalog, c, canEarnBonusStar(state, catalog, c)));
 }
 
 /** Eggs on the child's home screen: active and waiting-for-parent challenges. */
@@ -93,7 +100,7 @@ export function pendingApprovals(state: FamilyState, catalog: Catalog): PendingA
     .sort((a, b) => (a.requestedAt ?? '').localeCompare(b.requestedAt ?? ''))
     .flatMap((c) => {
       const child = findChild(state, c.childId);
-      return child ? [{ child, view: challengeView(catalog, c, state.family.settings.sparkBonusEnabled) }] : [];
+      return child ? [{ child, view: challengeView(catalog, c, canEarnBonusStar(state, catalog, c)) }] : [];
     });
 }
 
@@ -118,6 +125,7 @@ export interface CreatureSlotView {
   stage: Stage;
   name: string;
   emoji: string;
+  assetKey: string;
   color: string;
   toNextStage: number | null;
 }
@@ -128,7 +136,10 @@ export interface BranchCollectionView {
   isMaster: boolean;
 }
 
-/** The collection for one world, grouped by branch. Locked creatures are shown as silhouettes. */
+/**
+ * The collection for one world, grouped by branch. Locked creatures are shown as
+ * silhouettes, but only those inside the game scope; frozen ones show once owned.
+ */
 export function collectionFor(
   state: FamilyState,
   catalog: Catalog,
@@ -137,7 +148,11 @@ export function collectionFor(
 ): BranchCollectionView[] {
   const owned = state.creatures.filter((c) => c.childId === childId && c.world === world && !c.isSpecial);
   return BRANCHES.map((branch) => {
-    const slots = branchSpecies(catalog, world, branch).map((species) => {
+    const playable = new Set(playableSpecies(catalog, world, branch).map((s) => s.id));
+    const visible = branchSpecies(catalog, world, branch).filter(
+      (species) => playable.has(species.id) || owned.some((c) => c.creatureId === species.id),
+    );
+    const slots = visible.map((species) => {
       const mine = owned.find((c) => c.creatureId === species.id) ?? null;
       const stage = mine?.stage ?? 1;
       const info = species.stages.find((s) => s.stage === stage) ?? species.stages[0];
@@ -147,6 +162,7 @@ export function collectionFor(
         stage,
         name: info.name,
         emoji: info.emoji,
+        assetKey: info.assetKey,
         color: species.color,
         toNextStage: mine ? starsToNextStage(mine.growth) : null,
       };
@@ -155,13 +171,15 @@ export function collectionFor(
   });
 }
 
+/** Special creatures of a world. While specials are frozen, only owned ones show. */
 export function specialsFor(state: FamilyState, catalog: Catalog, childId: string, world: WorldId) {
   return catalog.specials
     .filter((s) => s.world === world)
     .map((special) => ({
       special,
       owned: state.creatures.find((c) => c.childId === childId && c.creatureId === special.id) ?? null,
-    }));
+    }))
+    .filter((view) => catalog.scope.specials || view.owned !== null);
 }
 
 /** Worlds where the child owns at least one creature (trophy tabs, spec 5). */
@@ -249,7 +267,8 @@ export interface AlbumEntry {
   completion: Completion;
   title: string;
   icon: string;
-  creature: { name: string; emoji: string; color: string } | null;
+  creature: { name: string; emoji: string; color: string; assetKey: string } | null;
+  praise: boolean;
 }
 
 export function albumFor(state: FamilyState, catalog: Catalog, childId: string): AlbumEntry[] {
@@ -269,7 +288,8 @@ export function albumFor(state: FamilyState, catalog: Catalog, childId: string):
         completion,
         title: view?.title ?? '',
         icon: view?.icon ?? '⭐',
-        creature: display ? { name: display.name, emoji: display.emoji, color: display.color } : null,
+        creature: display ? { name: display.name, emoji: display.emoji, color: display.color, assetKey: display.assetKey } : null,
+        praise: view?.reward === 'praise',
       };
     });
 }
@@ -284,7 +304,7 @@ export function childBand(child: Child, nowIso: string, timeZone: string) {
   return bandForAge(childAge(child, nowIso, timeZone));
 }
 
-export function graduationFor(state: FamilyState, childId: string, nowIso: string): WorldId | null {
+export function graduationFor(state: FamilyState, catalog: Catalog, childId: string, nowIso: string): WorldId | null {
   const child = findChild(state, childId);
-  return child ? graduationTarget(child, nowIso, state.family.settings.timeZone) : null;
+  return child ? graduationTarget(child, nowIso, state.family.settings.timeZone, catalog.scope.worlds) : null;
 }

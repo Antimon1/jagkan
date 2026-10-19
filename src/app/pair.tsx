@@ -1,6 +1,6 @@
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 
 import { AppText } from '@/components/AppText';
@@ -9,7 +9,8 @@ import { Card } from '@/components/Card';
 import { PinPad } from '@/components/PinPad';
 import { Screen } from '@/components/Screen';
 import { showToast } from '@/components/Toast';
-import { pairDevice } from '@/lib/api';
+import { secretFromScan } from '@/features/pairing/pairingLink';
+import { pairDevice, type PairSecret } from '@/lib/api';
 import { config } from '@/lib/config';
 import { useT } from '@/lib/i18n';
 import { logError } from '@/lib/log';
@@ -19,25 +20,20 @@ import { palette, radius, space } from '@/theme/tokens';
 
 const CODE_LENGTH = 6;
 
-function codeFromScan(data: string): string | null {
-  const match = /code=(\d{6})/.exec(data) ?? /^(\d{6})$/.exec(data.trim());
-  return match ? match[1] : null;
-}
-
 /** "Jag är ett barn": pair this device with a code or QR from the parent (spec 11). */
 export default function Pair() {
   const t = useT();
-  const params = useLocalSearchParams<{ code?: string }>();
+  const params = useLocalSearchParams<{ code?: string; token?: string }>();
   const [code, setCode] = useState(params.code && /^\d{6}$/.test(params.code) ? params.code : '');
   const [busy, setBusy] = useState(false);
   const [scanning, setScanning] = useState(false);
   const [permission, requestPermission] = useCameraPermissions();
 
-  const connect = async (value: string) => {
-    if (busy || value.length !== CODE_LENGTH) return;
+  const connect = async (secret: PairSecret) => {
+    if (busy || ('code' in secret && secret.code.length !== CODE_LENGTH)) return;
     setBusy(true);
     try {
-      const result = await pairDevice(value);
+      const result = await pairDevice(secret);
       const device = useDeviceStore.getState();
       device.setBackend('cloud', 'child-device');
       device.setPairedChildren(result.childIds);
@@ -57,8 +53,19 @@ export default function Pair() {
   /** Connect automatically when all six digits are in. */
   const updateCode = (value: string) => {
     setCode(value);
-    if (value.length === CODE_LENGTH) connect(value);
+    if (value.length === CODE_LENGTH) connect({ code: value });
   };
+
+  // Opened from the QR code with the phone camera: jagkan://pair?token=...
+  useEffect(() => {
+    const secret = params.token ? secretFromScan(`token=${params.token}`) : null;
+    if (!secret || !config.cloudEnabled) return undefined;
+    // Pair after the first render, so the screen can show that it is working.
+    const timer = setTimeout(() => connect(secret), 0);
+    return () => clearTimeout(timer);
+    // Only for the link the screen was opened with.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params.token]);
 
   if (!config.cloudEnabled) {
     return (
@@ -81,10 +88,11 @@ export default function Pair() {
               facing="back"
               barcodeScannerSettings={{ barcodeTypes: ['qr'] }}
               onBarcodeScanned={({ data }) => {
-                const scanned = codeFromScan(data);
+                const scanned = secretFromScan(data);
                 if (scanned) {
                   setScanning(false);
-                  updateCode(scanned);
+                  if ('code' in scanned) updateCode(scanned.code);
+                  else connect(scanned);
                 }
               }}
             />
@@ -106,7 +114,7 @@ export default function Pair() {
           {t('pair.enterCode')}
         </AppText>
         <PinPad value={code} onChange={updateCode} secret={false} maxLength={CODE_LENGTH} length={CODE_LENGTH} />
-        <Button label={t('pair.connect')} onPress={() => connect(code)} loading={busy} disabled={code.length !== CODE_LENGTH} />
+        <Button label={t('pair.connect')} onPress={() => connect({ code })} loading={busy} disabled={code.length !== CODE_LENGTH} />
       </Card>
     </Screen>
   );

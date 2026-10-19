@@ -19,7 +19,6 @@ export const COLLECTION_TABLES = {
   rewardRequests: 'reward_requests',
   goals: 'family_goals',
   weeklyResults: 'weekly_results',
-  aiSuggestions: 'ai_suggestions',
   celebrations: 'celebrations',
 } as const;
 
@@ -78,7 +77,6 @@ export interface FamilySnapshot {
   rewardRequests: Row[];
   goals: Row[];
   weeklyResults: Row[];
-  aiSuggestions: Row[];
   celebrations: Row[];
 }
 
@@ -124,7 +122,6 @@ export function snapshotToState(snapshot: FamilySnapshot): FamilyState {
         }
       : { ...DEFAULT_COMPETITIONS },
     weeklyResults: list(snapshot.weeklyResults),
-    aiSuggestions: list(snapshot.aiSuggestions),
     celebrations: list(snapshot.celebrations),
   };
 }
@@ -147,7 +144,6 @@ export function stateToSnapshot(state: FamilyState): FamilySnapshot {
     rewardRequests: rows(state.rewardRequests),
     goals: rows(state.goals),
     weeklyResults: rows(state.weeklyResults),
-    aiSuggestions: rows(state.aiSuggestions),
     celebrations: rows(state.celebrations),
   };
 }

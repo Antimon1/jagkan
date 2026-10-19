@@ -41,10 +41,27 @@ describe('authorization (spec 14.1 RLS rules, enforced in the engine)', () => {
     });
   });
 
-  it('reserves Plus and AI-suggestion writes for trusted server code', () => {
-    const { d, evelyn } = twoKids();
+  it('lets only the admin remove a child; a co-parent can do the rest', () => {
+    const { d, evelyn, egg } = twoKids();
+    const coparent: Actor = { kind: 'parent', parentId: 'coparent-1' };
+    d.state = {
+      ...d.state,
+      parents: [
+        ...d.state.parents,
+        { id: 'coparent-1', familyId: d.state.family.id, role: 'coparent', displayName: 'Pappa', createdAt: d.now },
+      ],
+    };
+
+    expect(d.try({ type: 'removeChild', childId: evelyn }, coparent)).toMatchObject({ error: 'forbidden', message: 'admin_only' });
+    d.run({ type: 'approveCompletion', challengeId: egg }, coparent);
+    d.run({ type: 'updateChild', childId: evelyn, firstName: 'Eve' }, coparent);
+    d.run({ type: 'removeChild', childId: evelyn });
+    expect(d.state.children.map((c) => c.firstName)).toEqual(['Rafael']);
+  });
+
+  it('reserves Plus writes for trusted server code', () => {
+    const { d } = twoKids();
     expect(d.try({ type: 'setPlus', active: false })).toMatchObject({ error: 'forbidden' });
-    expect(d.try({ type: 'addAiSuggestions', childId: evelyn, items: [] })).toMatchObject({ error: 'forbidden' });
   });
 
   it('rejects parents from another family', () => {

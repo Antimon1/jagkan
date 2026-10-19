@@ -1,10 +1,4 @@
-import type {
-  AiChallengePayload,
-  BranchId,
-  FamilySettings,
-  NotificationSettings,
-  WorldId,
-} from './types';
+import type { BranchId, FamilySettings, NotificationSettings, WorldId } from './types';
 
 /**
  * Every state change in JagKan! is a serializable command. The same command
@@ -35,6 +29,8 @@ export type Command =
     }
   | { type: 'setChallengeStatus'; challengeId: string; status: 'active' | 'paused' | 'archived' }
   | { type: 'approveCompletion'; challengeId: string; note?: string | null; cardText?: string | null }
+  /** "Godkänn alla": every listed challenge that still waits for a parent, in one transaction. */
+  | { type: 'approveAll'; challengeIds: string[] }
   | { type: 'giveSpark'; challengeId: string }
   // Child actions (child device or parent)
   | { type: 'recordAttempt'; challengeId: string }
@@ -63,9 +59,6 @@ export type Command =
       handicaps?: Record<string, number>;
     }
   | { type: 'rollupWeeks' }
-  // AI suggestions
-  | { type: 'addAiSuggestions'; childId: string; items: AiChallengePayload[] }
-  | { type: 'resolveAiSuggestion'; suggestionId: string; accept: boolean }
   // Collection & worlds
   | { type: 'markCelebrationsSeen'; childId: string; celebrationIds: string[] }
   | { type: 'setAvatar'; childId: string; creatureId: string }
@@ -86,5 +79,11 @@ export const CHILD_COMMANDS: ReadonlySet<CommandType> = new Set<CommandType>([
   'rollupWeeks',
 ]);
 
-/** Commands only trusted server code may send (RevenueCat webhook, AI functions, demo mode). */
-export const SYSTEM_COMMANDS: ReadonlySet<CommandType> = new Set<CommandType>(['setPlus', 'addAiSuggestions']);
+/**
+ * Destructive commands only the admin parent may send. A co-parent can do
+ * everything else (idépanelen: a co-parent must not be able to erase a child).
+ */
+export const ADMIN_COMMANDS: ReadonlySet<CommandType> = new Set<CommandType>(['removeChild']);
+
+/** Commands only trusted server code may send (RevenueCat webhook, demo mode). */
+export const SYSTEM_COMMANDS: ReadonlySet<CommandType> = new Set<CommandType>(['setPlus']);

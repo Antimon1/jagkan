@@ -104,9 +104,11 @@ export const BRANCH_COLORS = {
   kropp: '#4FA3E0',
   mat: '#F28C38',
   hem: '#8A6FE8',
+  tid: '#5B6CD9',
   ute: '#3FAE6A',
   pengar: '#E0B323',
   kanslor: '#EB5E8E',
+  omtanke: '#26A69A',
   mod: '#E2533B',
 } as const;
 

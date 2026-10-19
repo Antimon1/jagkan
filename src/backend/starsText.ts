@@ -1,4 +1,0 @@
-/** "1 stjärna" / "3 stjärnor" for server-side texts (the app uses i18next plurals). */
-export function stars(count: number): string {
-  return `${count} ${count === 1 ? 'stjärna' : 'stjärnor'}`;
-}
