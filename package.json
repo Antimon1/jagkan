@@ -113,6 +113,12 @@
         "branches": 70,
         "functions": 80,
         "statements": 80
+      },
+      "./src/state/": {
+        "lines": 70,
+        "branches": 60,
+        "functions": 50,
+        "statements": 65
       }
     }
   }
