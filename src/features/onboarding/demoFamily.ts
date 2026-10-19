@@ -85,13 +85,14 @@ export function buildDemoFamily(now: Date = new Date()): FamilyState {
   run({ type: 'createReward', title: 'Biokväll', icon: '🎬', costStars: 20, childId: null }, 9);
   run({ type: 'setFamilyGoal', title: 'Bio i helgen', targetStars: 15, rewardText: 'Bio med popcorn', endAt: null }, 5);
 
-  // Active eggs, one of them with sparks, one waiting for approval.
+  // Active eggs: one with sparks, and one per child waiting for approval (shows "Godkänn alla").
   run({ type: 'activateTemplate', childId: evelyn, templateId: firstTemplate('ute', 6) }, 2);
   run({ type: 'recordAttempt', challengeId: lastChallenge() }, 2, 'child');
   run({ type: 'recordAttempt', challengeId: lastChallenge() }, 1, 'child');
   run({ type: 'activateTemplate', childId: evelyn, templateId: firstTemplate('pengar', 6) }, 1);
   run({ type: 'requestCompletion', challengeId: lastChallenge() }, 0, 'child');
   run({ type: 'activateTemplate', childId: rafael, templateId: firstTemplate('kanslor', 6) }, 1);
+  run({ type: 'requestCompletion', challengeId: lastChallenge() }, 0, 'child');
   run({ type: 'activateTemplate', childId: rafael, templateId: firstTemplate('ute', 6) }, 0);
   run({ type: 'recordAttempt', challengeId: lastChallenge() }, 0, 'child');
 

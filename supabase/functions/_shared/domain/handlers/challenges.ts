@@ -11,6 +11,7 @@ import {
   fail,
   findChallenge,
   isBranch,
+  isFailure,
   optionalText,
   type HandlerResult,
 } from '../guards.ts';
@@ -27,6 +28,8 @@ const TITLE_MAX = 80;
 const TIP_MAX = 300;
 const NOTE_MAX = 300;
 const CARD_MAX = 600;
+/** Upper bound for one "Godkänn alla", far above what a family has waiting. */
+const APPROVE_ALL_MAX = 50;
 
 export function challengeTitle(ctx: EngineContext, challenge: ChildChallenge): string {
   return findTemplate(ctx.catalog, challenge.templateId)?.titleChild ?? challenge.customTitle ?? '';
@@ -290,4 +293,26 @@ export function approveCompletion(tx: Tx, cmd: Cmd<'approveCompletion'>, ctx: En
     challengeId: challenge.id,
     completionId: completion.id,
   });
+}
+
+/**
+ * "Godkänn alla" on the parent overview: approves every listed challenge that still
+ * waits for a parent, in one transaction. Challenges approved meanwhile (by the other
+ * parent, or offline) are skipped; eggs the child has not asked about are never approved.
+ */
+export function approveAll(tx: Tx, cmd: Cmd<'approveAll'>, ctx: EngineContext, parentId: string | null): HandlerResult {
+  const ids: unknown = cmd.challengeIds;
+  if (!Array.isArray(ids) || ids.length === 0 || ids.length > APPROVE_ALL_MAX) return fail('invalid_input');
+  if (ids.some((id) => typeof id !== 'string')) return fail('invalid_input');
+
+  let result = tx;
+  let approved = 0;
+  for (const challengeId of new Set(ids as string[])) {
+    if (findChallenge(result.state, challengeId)?.status !== 'requested') continue;
+    const next = approveCompletion(result, { type: 'approveCompletion', challengeId }, ctx, parentId);
+    if (isFailure(next)) return next;
+    result = next;
+    approved += 1;
+  }
+  return approved > 0 ? result : fail('invalid_status');
 }

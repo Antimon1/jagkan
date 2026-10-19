@@ -4,6 +4,7 @@ import { fail, isFailure, type Failure, type HandlerResult } from './guards.ts';
 import {
   activateTemplate,
   addCustomChallenge,
+  approveAll,
   approveCompletion,
   giveSpark,
   recordAttempt,
@@ -92,6 +93,8 @@ function run(tx: Tx, command: Command, ctx: EngineContext, actor: Actor): Handle
       return setChallengeStatus(tx, command, ctx);
     case 'approveCompletion':
       return approveCompletion(tx, command, ctx, parentId);
+    case 'approveAll':
+      return approveAll(tx, command, ctx, parentId);
     case 'giveSpark':
       return giveSpark(tx, command, ctx);
     case 'recordAttempt':

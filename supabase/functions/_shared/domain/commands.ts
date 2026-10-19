@@ -30,6 +30,8 @@ export type Command =
     }
   | { type: 'setChallengeStatus'; challengeId: string; status: 'active' | 'paused' | 'archived' }
   | { type: 'approveCompletion'; challengeId: string; note?: string | null; cardText?: string | null }
+  /** "Godkänn alla": every listed challenge that still waits for a parent, in one transaction. */
+  | { type: 'approveAll'; challengeIds: string[] }
   | { type: 'giveSpark'; challengeId: string }
   // Child actions (child device or parent)
   | { type: 'recordAttempt'; challengeId: string }

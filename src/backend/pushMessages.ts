@@ -24,6 +24,8 @@ const APP_NAME = 'JagKan!';
 export function messagesForEvents(state: FamilyState, events: DomainEvent[]): PushMessage[] {
   const settings = state.family.settings.notifications;
   const out: PushMessage[] = [];
+  // "Godkänn alla" approves several eggs at once: one push per child is enough.
+  const toldChildren = new Set<string>();
   for (const event of events) {
     if (event.type === 'completion_requested' && settings.approvals) {
       out.push({
@@ -34,7 +36,8 @@ export function messagesForEvents(state: FamilyState, events: DomainEvent[]): Pu
       });
     } else if (event.type === 'reward_requested' && settings.approvals) {
       out.push({ audience: { kind: 'parents' }, title: APP_NAME, body: 'Ny önskan i belöningsbutiken 🎁', url: '/parent/rewards' });
-    } else if (event.type === 'challenge_completed') {
+    } else if (event.type === 'challenge_completed' && !toldChildren.has(event.childId)) {
+      toldChildren.add(event.childId);
       out.push({ audience: { kind: 'child', childId: event.childId }, title: APP_NAME, body: 'En vuxen har godkänt! ⭐', url: '/child' });
     } else if (event.type === 'reward_resolved' && event.confirmed) {
       out.push({ audience: { kind: 'child', childId: event.childId }, title: APP_NAME, body: 'En belöning är din! 🎁', url: '/child/shop' });
